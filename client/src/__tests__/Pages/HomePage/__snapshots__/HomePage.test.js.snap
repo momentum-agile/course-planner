@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomePage /> 1`] = `
+<div
+  className="css-qxc4md"
+>
+  <div
+    className="css-1es2l9a"
+  >
+    <div
+      className="css-1lads1q"
+    >
+      <p
+        className="css-ejldw8"
+      >
+        Image from Figma goes here
+      </p>
+    </div>
+  </div>
+  <div
+    className="css-gqkmby"
+  >
+    <div
+      className="css-trwzgo"
+    >
+      <div
+        className="css-gmuwbf"
+      >
+        <img
+          className="css-0"
+        />
+      </div>
+      <div
+        className="css-1orkoap"
+      >
+        <p
+          className="css-18zyayk"
+        >
+          Course Planner
+        </p>
+      </div>
+      <div
+        className="css-u6v8er"
+      >
+        <a
+          href="/students"
+          onClick={[Function]}
+        >
+          <button
+            className="css-sw1q1f"
+            type="button"
+          >
+            <p
+              className="css-181lpyk"
+            >
+              Students
+            </p>
+          </button>
+        </a>
+        <a
+          href="/courses"
+          onClick={[Function]}
+        >
+          <button
+            className="css-sw1q1f"
+            type="button"
+          >
+            <p
+              className="css-181lpyk"
+            >
+              Courses
+            </p>
+          </button>
+        </a>
+        <a
+          href="/programmes"
+          onClick={[Function]}
+        >
+          <button
+            className="css-sw1q1f"
+            type="button"
+          >
+            <p
+              className="css-181lpyk"
+            >
+              Programmes
+            </p>
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;

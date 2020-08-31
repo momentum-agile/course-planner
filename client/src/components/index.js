@@ -1,3 +1,3 @@
-import Button from "./Button";
+import AppConfiguration from "./AppConfiguration";
 
-export { Button };
+export { AppConfiguration };
