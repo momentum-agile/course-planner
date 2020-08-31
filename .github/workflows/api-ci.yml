@@ -33,4 +33,4 @@ jobs:
           yarn install --frozen-lockfile
           # yarn audit
           # yarn build
-          # yarn test
+          yarn test
