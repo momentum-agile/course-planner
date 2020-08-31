@@ -4,8 +4,11 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "jest --runInBand",
         "start": "nodemon src/index.js"
+    },
+    "jest": {
+        "testEnvironment": "node"
     },
     "author": "",
     "license": "ISC",
@@ -21,9 +24,11 @@
         "winston": "^3.3.3"
     },
     "devDependencies": {
+        "@shelf/jest-mongodb": "^1.2.2",
         "husky": ">=4",
         "lint-staged": ">=10",
-        "prettier": "^2.1.1"
+        "prettier": "^2.1.1",
+        "supertest": "^4.0.2"
     },
     "husky": {
         "hooks": {
