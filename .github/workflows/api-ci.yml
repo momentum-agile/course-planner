@@ -1,0 +1,36 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: api ci
+
+on:
+  push:
+    branches: [master, pre-master]
+  pull_request:
+    branches: [master, pre-master]
+    paths: 
+      - 'api/**'
+
+jobs:
+  build:
+    runs-on: [ubuntu-latest]
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: build and test api
+        run: |
+          cd api
+          yarn install --frozen-lockfile
+          # yarn audit
+          # yarn build
+          # yarn test
