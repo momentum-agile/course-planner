@@ -21,6 +21,8 @@
         "mongoose": "^5.10.0",
         "mongoose-unique-validator": "^2.0.3",
         "nodemon": "^2.0.4",
+        "swagger-jsdoc": "^4.0.0",
+        "swagger-ui-express": "^4.1.4",
         "winston": "^3.3.3"
     },
     "devDependencies": {
