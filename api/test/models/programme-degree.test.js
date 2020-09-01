@@ -57,7 +57,7 @@ test("Create and get a second specified ProgrammeDegree successfully", async () 
         description: "Fake it til you make it",
     };
     const mockRegulation = {
-        _id: mongoose.Types.ObjectId(),
+        points: 20,
         pointRequirement: "UPTO",
         courses: [mockCourse],
     };

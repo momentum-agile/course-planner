@@ -1,6 +1,7 @@
 const MongoMemoryServer = require("mongodb-memory-server").MongoMemoryServer;
 const mongoose = require("mongoose");
 const Course = require("../../src/models/course");
+const Regulation = require("../../src/models/regulation");
 
 let mongod;
 
@@ -21,17 +22,21 @@ afterAll(async () => {
 });
 
 beforeEach(async () => {
+    const newRegulation = {
+        points: 90,
+        pointRequirement: "UPTO",
+        courses: [],
+    };
     const newCourse = new Course({
         name: "Software Engineering Theory",
         courseCode: "SOFTENG701",
         points: 15,
         semester: ["SS"],
-        prerequisites: [],
-        corequisites: [],
-        restrictions: [],
+        prerequisites: [newRegulation],
+        corequisites: [newRegulation],
+        restrictions: [newRegulation],
         description: "Theory of engineering",
     });
-
     await newCourse.save();
 });
 

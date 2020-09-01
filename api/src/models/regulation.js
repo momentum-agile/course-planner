@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const uniqueValidator = require("mongoose-unique-validator");
 /**
  * @swagger
  *  components:
@@ -24,7 +23,7 @@ const uniqueValidator = require("mongoose-unique-validator");
  *              $ref: '#/components/schemas/Course'
  *            description: courses available for this regulation
  */
-const regulationSchema = mongoose.Schema({
+const regulationSchema = {
     points: {
         type: Number,
         required: true,
@@ -37,10 +36,8 @@ const regulationSchema = mongoose.Schema({
     courses: {
         type: [mongoose.Schema.Types.ObjectId],
         ref: "Course",
-        required: false,
+        required: true,
     },
-});
+};
 
-regulationSchema.plugin(uniqueValidator);
-
-module.exports = mongoose.model("Regulation", regulationSchema);
+module.exports = regulationSchema;

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
+const Regulation = require("./regulation");
 
 /**
  * @swagger
@@ -26,8 +27,7 @@ const uniqueValidator = require("mongoose-unique-validator");
 const programmeDegreeSchema = mongoose.Schema({
     name: String,
     regulations: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: "Regulation",
+        type: [Regulation],
         required: false,
     },
     // TODO: Create Plan Model

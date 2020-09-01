@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
+const Regulation = require("./regulation");
 /**
  * @swagger
  *  components:
@@ -70,18 +71,15 @@ const courseSchema = mongoose.Schema({
         required: true,
     },
     prerequisites: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: "Regulation",
+        type: [Regulation],
         required: false,
     },
     corequisites: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: "Regulation",
+        type: [Regulation],
         required: false,
     },
     restrictions: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: "Regulation",
+        type: [Regulation],
         required: false,
     },
     informalEquivalents: {
