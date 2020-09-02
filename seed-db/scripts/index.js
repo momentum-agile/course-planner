@@ -1,8 +1,11 @@
+
 const yargs = require("yargs");
 const fs = require("fs");
 const { generateCourses } = require("./course");
+const { generateRegulations } = require("./regulation");
 
-const filename = "./fake-courses.json";
+const courseFilename = "./fakeCourses.json";
+const regulationFilename = "./fakeRegulations.json";
 
 const argv = yargs
     .command("amount", "Decides the number of courses to generate", {
@@ -15,10 +18,13 @@ const argv = yargs
     .help()
     .alias("help", "h").argv;
 
+const writeFile =  (filename,obj) => {
+    const jsonObj = JSON.stringify(obj);
+    fs.writeFileSync(filename, jsonObj);
+}
+
 if (argv.hasOwnProperty("amount")) {
     const amount = argv.amount;
-    const courses = generateCourses(amount);
-
-    const jsonObj = JSON.stringify(courses);
-    fs.writeFileSync(filename, jsonObj);
+    writeFile(courseFilename,generateCourses(amount))
+    writeFile(regulationFilename,generateRegulations(amount))
 }
