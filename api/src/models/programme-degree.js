@@ -7,7 +7,7 @@ const Regulation = require("./regulation");
  *  components:
  *   $ref: './regulation.js/#components'
  *   schemas:
- *    programmeDegree:
+ *    ProgrammeDegree:
  *      type: object
  *      required:
  *        - name

@@ -35,7 +35,7 @@ router.get("/:courseCode", async (req, res) => {
     Course.findOne({ courseCode: req.params.courseCode }, (err, course) => {
         if (err) {
             LOGGER.error(err);
-            res.status(400).json({ msg: "Database error thrown" });
+            res.status(400).json({ msg: err.message });
         } else {
             if (course == null) {
                 LOGGER.info("No course found for /course/{id}");
@@ -75,7 +75,7 @@ router.get("/", async (req, res) => {
     Course.find({}, (err, courses) => {
         if (err) {
             LOGGER.error(err);
-            res.status(400).json({ msg: "Database error thrown" });
+            res.status(400).json({ msg: err.message });
         } else {
             if (courses.length <= 0) {
                 LOGGER.info("No courses found");
@@ -117,7 +117,7 @@ router.put("/", (req, res) => {
     Course.findOneAndUpdate({ courseCode: req.body.courseCode }, req.body, { upsert: "true" }, (err, course) => {
         if (err) {
             LOGGER.error(err);
-            res.status(400).json({ msg: "Database error" });
+            res.status(400).json({ msg: err.message });
         } else {
             LOGGER.info("PUT Request Suceeded for /Course/");
             res.status(200).json(course);
@@ -150,7 +150,7 @@ router.post("/", (req, res) => {
     newCourse.save((err, product) => {
         if (err) {
             LOGGER.error(err);
-            res.status(400).json({ msg: "Database error" });
+            res.status(400).json({ msg: err.message });
         } else {
             LOGGER.info("POST Request Suceeded for /Course/");
             LOGGER.info(product);
@@ -189,7 +189,7 @@ router.delete("/:courseCode", (req, res) => {
     Course.findOneAndDelete({ courseCode: req.params.courseCode }, (err, course) => {
         if (err) {
             LOGGER.error(err);
-            res.status(400).json({ msg: "Database error" });
+            res.status(400).json({ msg: err.message });
         } else {
             LOGGER.info("DELETE Request Suceeded for /Course/:courseCode");
             res.status(200).send(course);
