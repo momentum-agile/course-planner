@@ -20,27 +20,27 @@ const ProgrammeDegree = require("../models/programme-degree");
  *                type: array
  *                items:
  *                  $ref: '#/components/schemas/ProgrammeDegree'
- *        "204":
+ *        "404":
  *           description: No programme degrees found
  *        "400":
  *           description: Error message
- * 
+ *
  */
 router.get("/", async (req, res) => {
-  ProgrammeDegree.find({}, (err, programmeDegrees) => {
-    if (err) {
-      LOGGER.error(err.message);
-      res.status(400).json({ message: err.message });
-    } else {
-      if (programmeDegrees.length <= 0) {
-        LOGGER.info("No programme degrees found");
-        res.status(204).send();
-      } else {
-        LOGGER.info("GET request succeeded for /programmedegree");
-        res.status(200).send({ programmeDegrees });
-      }
-    }
-  })
+    ProgrammeDegree.find({}, (err, programmeDegrees) => {
+        if (err) {
+            LOGGER.error(err.message);
+            res.status(400).json({ message: err.message });
+        } else {
+            if (programmeDegrees.length <= 0) {
+                LOGGER.info("No programme degrees found");
+                res.status(404).json({ msg: "Requested object not found" });
+            } else {
+                LOGGER.info("GET request succeeded for /programmedegree");
+                res.status(200).send({ programmeDegrees });
+            }
+        }
+    });
 });
 
 // GET Single programme degree
@@ -65,27 +65,27 @@ router.get("/", async (req, res) => {
  *            application/json:
  *              schema:
  *                $ref: '#/components/schemas/ProgrammeDegree'
- *        "204":
+ *        "404":
  *          description: No programme degree for given id
  *        "400":
  *          description: Database error
  *
  */
 router.get("/:id", async (req, res) => {
-  ProgrammeDegree.findOne({ _id: req.params.id }, (err, result) => {
-    if (err) {
-      LOGGER.error(err.message);
-      res.status(400).json({ message: err.message });
-    } else {
-      if (result === null) {
-        LOGGER.info("No programme degree found for /programmedegree/{id}");
-        res.status(204).send();
-      } else {
-        LOGGER.info("GET Request Succeeded for /programmedegree/{id}");
-        res.status(200).send({ result });
-      }
-    }
-  });
+    ProgrammeDegree.findOne({ _id: req.params.id }, (err, result) => {
+        if (err) {
+            LOGGER.error(err.message);
+            res.status(400).json({ message: err.message });
+        } else {
+            if (result === null) {
+                LOGGER.info(`No programme degree found for /programmedegree/${req.params.id}`);
+                res.status(404).json({ msg: "Requested object not found" });
+            } else {
+                LOGGER.info(`GET Request Succeeded for /programmedegree/${req.params.id}`);
+                res.status(200).send({ result });
+            }
+        }
+    });
 });
 
 // Creates a new programme degree
@@ -109,19 +109,19 @@ router.get("/:id", async (req, res) => {
  *          description: Database error
  */
 router.post("/", async (req, res) => {
-  const programmeDegree = new ProgrammeDegree(req.body);
-  programmeDegree.save((err, result) => {
-    if (err) {
-      LOGGER.error(err.message);
-      res.status(400).json({ message: err.message });
-    } else {
-      LOGGER.info("POST request succeeded for /programmedegree");
-      res.status(201).json(result);
-    }
-  })
-})
+    const programmeDegree = new ProgrammeDegree(req.body);
+    programmeDegree.save((err, result) => {
+        if (err) {
+            LOGGER.error(err.message);
+            res.status(400).json({ message: err.message });
+        } else {
+            LOGGER.info("POST request succeeded for /programmedegree");
+            res.status(201).json(result);
+        }
+    });
+});
 
-// Updates a programme degree 
+// Updates a programme degree
 /**
  * @swagger
  * path:
@@ -153,15 +153,15 @@ router.post("/", async (req, res) => {
  *          description: Database error
  */
 router.put("/:id", async (req, res) => {
-  ProgrammeDegree.findOneAndUpdate({ _id: req.params.id }, req.body, { upsert: "true" }, (err, result) => {
-      if (err) {
-          LOGGER.error(err);
-          res.status(400).json({ msg: err.message });
-      } else {
-          LOGGER.info("PUT Request Succeeded for /programmedegree/");
-          res.status(200).json(result);
-      }
-  });
+    ProgrammeDegree.findOneAndUpdate({ _id: req.params.id }, req.body, { upsert: "true" }, (err, result) => {
+        if (err) {
+            LOGGER.error(err);
+            res.status(400).json({ msg: err.message });
+        } else {
+            LOGGER.info("PUT Request Succeeded for /programmedegree/");
+            res.status(200).json(result);
+        }
+    });
 });
 
 // deletes a course
@@ -186,26 +186,26 @@ router.put("/:id", async (req, res) => {
  *            application/json:
  *              schema:
  *                $ref: '#/components/schemas/ProgrammeDegree'
- *        "204":
+ *        "404":
  *          description: No programme degree found
  *        "400":
  *          description: Database error
  */
 router.delete("/:id", (req, res) => {
-  ProgrammeDegree.findOneAndDelete({ _id: req.params.id }, (err, result) => {
-      if (err) {
-          LOGGER.error(err);
-          res.status(400).json({ msg: err.message });
-      } else {
-          if (result === null) {
-            LOGGER.info("programme degree not found");
-            res.status(204).send();
-          } else {
-            LOGGER.info("DELETE Request Succeeded for /programmedegree/:id");
-            res.status(200).send(result);
-          }
-      }
-  });
+    ProgrammeDegree.findOneAndDelete({ _id: req.params.id }, (err, result) => {
+        if (err) {
+            LOGGER.error(err);
+            res.status(400).json({ msg: err.message });
+        } else {
+            if (result === null) {
+                LOGGER.info("programme degree not found");
+                res.status(404).json({ msg: "Requested object not found" });
+            } else {
+                LOGGER.info(`DELETE Request Succeeded for /programmedegree/${req.params.id}`);
+                res.status(200).send(result);
+            }
+        }
+    });
 });
 
 module.exports = router;

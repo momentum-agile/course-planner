@@ -15,7 +15,7 @@ const uniqueValidator = require("mongoose-unique-validator");
  *          type: string
  *          description: name of the student
  *        id:
- *          type: String
+ *          type: string
  *          description: ID of the student
  *        upi:
  *          type: string
@@ -24,7 +24,10 @@ const uniqueValidator = require("mongoose-unique-validator");
  *          type: integer
  *          description: year level of the student
  *        plans:
- *          type: Object
+ *          type: array
+ *          items:
+ *            type: plan
+ *            default: null
  *          description: the plans that the student has
  */
 const studentSchema = mongoose.Schema({
@@ -47,9 +50,9 @@ const studentSchema = mongoose.Schema({
         type: Number,
         required: false,
     },
-    // TODO: Create Plan Model
+    // TODO: Create Plan Model and change to objectId once Plan has been implemented
     plans: {
-        type: [mongoose.Schema.Types.ObjectId],
+        type: [Object],
         ref: "Plan",
         required: false,
     },

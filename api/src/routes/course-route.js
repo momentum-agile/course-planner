@@ -37,11 +37,11 @@ router.get("/:courseCode", async (req, res) => {
             LOGGER.error(err);
             res.status(400).json({ msg: err.message });
         } else {
-            if (course == null) {
-                LOGGER.info("No course found for /course/{id}");
+            if (course === null) {
+                LOGGER.info(`No course found for /course/${req.params.courseCode}`);
                 res.status(204).send();
             } else {
-                LOGGER.info("GET Request Suceeded for /course/{id}");
+                LOGGER.info(`GET Request Succeeded for /course/${req.params.courseCode}`);
                 LOGGER.info(course);
                 res.status(200).json(course);
             }
@@ -81,7 +81,7 @@ router.get("/", async (req, res) => {
                 LOGGER.info("No courses found");
                 res.status(204).send();
             } else {
-                LOGGER.info("GET Request Suceeded for /course");
+                LOGGER.info("GET Request Succeeded for /course");
                 LOGGER.info(courses);
                 res.status(200).json(courses);
             }
@@ -155,7 +155,7 @@ router.post("/", async (req, res) => {
             LOGGER.error(err);
             res.status(400).json({ msg: err.message });
         } else {
-            LOGGER.info("POST Request Suceeded for /Course/");
+            LOGGER.info("POST Request Succeeded for /Course/");
             LOGGER.info(product);
             res.status(201).json(product);
         }
