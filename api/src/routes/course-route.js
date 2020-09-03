@@ -43,7 +43,7 @@ router.get("/:courseCode", async (req, res) => {
             } else {
                 LOGGER.info("GET Request Suceeded for /course/{id}");
                 LOGGER.info(course);
-                res.status(200).send({ course });
+                res.status(200).json(course);
             }
         }
     });
@@ -83,7 +83,7 @@ router.get("/", async (req, res) => {
             } else {
                 LOGGER.info("GET Request Suceeded for /course");
                 LOGGER.info(courses);
-                res.status(200).send({ courses });
+                res.status(200).json(courses);
             }
         }
     });
@@ -113,14 +113,17 @@ router.get("/", async (req, res) => {
  *        "400":
  *          description: Database error
  */
-router.put("/", (req, res) => {
+router.put("/", async (req, res) => {
     Course.findOneAndUpdate({ courseCode: req.body.courseCode }, req.body, { upsert: "true" }, (err, course) => {
         if (err) {
             LOGGER.error(err);
             res.status(400).json({ msg: err.message });
         } else {
-            LOGGER.info("PUT Request Suceeded for /Course/");
-            res.status(200).json(course);
+            //change to send the updated course, rather than the old course
+            Course.findById(course._id, (err, updatedCourse) => {
+                LOGGER.info("PUT Request Suceeded for /Course/");
+                res.status(200).json(updatedCourse);
+            });
         }
     });
 });
@@ -145,7 +148,7 @@ router.put("/", (req, res) => {
  *        "400":
  *          description: Database error
  */
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
     const newCourse = new Course(req.body);
     newCourse.save((err, product) => {
         if (err) {
@@ -185,14 +188,19 @@ router.post("/", (req, res) => {
  *        "400":
  *          description: Database error (internal)
  */
-router.delete("/:courseCode", (req, res) => {
+router.delete("/:courseCode", async (req, res) => {
     Course.findOneAndDelete({ courseCode: req.params.courseCode }, (err, course) => {
         if (err) {
             LOGGER.error(err);
             res.status(400).json({ msg: err.message });
         } else {
-            LOGGER.info("DELETE Request Suceeded for /Course/:courseCode");
-            res.status(200).send(course);
+            if (course === null) {
+                LOGGER.error("Course does not exist");
+                res.status(204).send();
+            } else {
+                LOGGER.info("DELETE Request Suceeded for /Course/:courseCode");
+                res.status(200).json(course);
+            }
         }
     });
 });

@@ -3,12 +3,14 @@ const loaders = require("./loaders");
 const logger = require("./common/logger");
 const port = process.env.PORT || 3001;
 
+//separate out to be used for supertest
+const app = express();
+
 const startServer = async () => {
-    const app = express();
     await loaders(app);
-    app.listen(port, () => logger.info(`Server running on port ${port} :)`));
 };
 
 startServer();
+const server = app.listen(port, () => logger.info(`Server running on port ${port} :)`));
 
-module.exports = startServer;
+module.exports = server;
