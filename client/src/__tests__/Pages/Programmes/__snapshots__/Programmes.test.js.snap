@@ -1,0 +1,429 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Creating new programmes sub-page  1`] = `
+<div
+  className="css-1ofqig9"
+>
+  <div
+    className="css-gmuwbf"
+  >
+    <p
+      className="css-19i5rf8"
+    >
+      Create Programme Requirements
+    </p>
+  </div>
+  <div
+    className="css-1yfye7s"
+  >
+    <i
+      className="css-1dbqq24"
+    >
+      Programme Name
+    </i>
+  </div>
+  <div
+    className="css-1yfye7s"
+  >
+    <input
+      className="css-frh740"
+      placeholder="Enter Programme Name"
+    />
+  </div>
+  <div
+    className="css-1ailrle"
+  >
+    <i
+      className="css-1dbqq24"
+    >
+      Requirements
+    </i>
+    <span
+      className="css-1q0hmy3"
+    />
+  </div>
+  <div
+    className="css-16iwlaa"
+  />
+  <div
+    className="css-ldo4d5"
+  >
+    <a
+      href="/programmes/0/create-template"
+      onClick={[Function]}
+    >
+      <button
+        className="css-1ad5y8q"
+        type="button"
+      >
+        <p
+          className="css-181lpyk"
+        >
+          Define Template
+        </p>
+      </button>
+    </a>
+  </div>
+  <div
+    className="css-4xdld5"
+  >
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <button
+        className="css-1rnlx15"
+        onClick={[Function]}
+        type="button"
+      >
+        <p
+          className="css-181lpyk"
+        >
+          Cancel
+        </p>
+      </button>
+    </a>
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <button
+        className="css-1rnlx15"
+        onClick={[Function]}
+        type="button"
+      >
+        <p
+          className="css-181lpyk"
+        >
+          Save
+        </p>
+      </button>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Empty programmes sub-page  1`] = `
+<div
+  className="css-7eifx2"
+>
+  <div
+    className="css-gmuwbf"
+  >
+    <i
+      className="css-1fwnx19"
+    >
+      Create or Select a Programme to view its information here.
+    </i>
+  </div>
+</div>
+`;
+
+exports[`Existing programmes sub-page  1`] = `
+<div
+  className="css-1ofqig9"
+>
+  <div
+    className="css-gmuwbf"
+  >
+    <div
+      className="css-1u9fuhx"
+    >
+      <button
+        className="css-q3he6u"
+        type="button"
+      >
+        <svg
+          aria-hidden={true}
+          className="css-1im46kq"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <g
+            fill="currentColor"
+          >
+            <path
+              d="M19.452,7.5H4.547a.5.5,0,0,0-.5.545L5.334,22.181A2,2,0,0,0,7.326,24h9.347a2,2,0,0,0,1.992-1.819L19.95,8.045a.5.5,0,0,0-.129-.382A.5.5,0,0,0,19.452,7.5Zm-9.2,13a.75.75,0,0,1-1.5,0v-9a.75.75,0,0,1,1.5,0Zm5,0a.75.75,0,0,1-1.5,0v-9a.75.75,0,0,1,1.5,0Z"
+            />
+            <path
+              d="M22,4H17.25A.25.25,0,0,1,17,3.75V2.5A2.5,2.5,0,0,0,14.5,0h-5A2.5,2.5,0,0,0,7,2.5V3.75A.25.25,0,0,1,6.75,4H2A1,1,0,0,0,2,6H22a1,1,0,0,0,0-2ZM9,3.75V2.5A.5.5,0,0,1,9.5,2h5a.5.5,0,0,1,.5.5V3.75a.25.25,0,0,1-.25.25H9.25A.25.25,0,0,1,9,3.75Z"
+            />
+          </g>
+        </svg>
+      </button>
+    </div>
+    <p
+      className="css-19i5rf8"
+    >
+      Programme Requirements
+    </p>
+    <div
+      className="css-o8da8w"
+    >
+      <button
+        className="css-nfb2wp"
+        type="button"
+      >
+        <svg
+          aria-hidden={true}
+          className="css-1im46kq"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <g
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="full"
+            strokeWidth="2"
+          >
+            <path
+              d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+            />
+            <path
+              d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+            />
+          </g>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div
+    className="css-1yfye7s"
+  >
+    <i
+      className="css-1dbqq24"
+    >
+      Programme Name
+    </i>
+  </div>
+  <div
+    className="css-1yfye7s"
+  >
+    <b
+      className="css-1t9wziz"
+    >
+      BE (Hons) SE
+    </b>
+  </div>
+  <div
+    className="css-1ailrle"
+  >
+    <i
+      className="css-1dbqq24"
+    >
+      Requirements
+    </i>
+    <span
+      className="css-1q0hmy3"
+    />
+  </div>
+  <div
+    className="css-16iwlaa"
+  />
+  <div
+    className="css-ldo4d5"
+  >
+    <a
+      href="/programmes/undefined/create-template"
+      onClick={[Function]}
+    >
+      <button
+        className="css-1ad5y8q"
+        type="button"
+      >
+        <p
+          className="css-181lpyk"
+        >
+          Define Template
+        </p>
+      </button>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Main Programmes Page 1`] = `
+<div
+  className="css-qxc4md"
+>
+  <div
+    className="css-r7xox5"
+  >
+    <div
+      className="css-1u9fuhx"
+    >
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        <svg
+          className="css-1kqqf0s"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          strokeWidth="0"
+          style={
+            Object {
+              "color": undefined,
+            }
+          }
+          type="button"
+          viewBox="0 0 1024 1024"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M946.5 505L534.6 93.4a31.93 31.93 0 0 0-45.2 0L77.5 505c-12 12-18.8 28.3-18.8 45.3 0 35.3 28.7 64 64 64h43.4V908c0 17.7 14.3 32 32 32H448V716h112v224h265.9c17.7 0 32-14.3 32-32V614.3h43.4c17 0 33.3-6.7 45.3-18.8 24.9-25 24.9-65.5-.1-90.5z"
+          />
+        </svg>
+      </a>
+    </div>
+    <div
+      className="css-9jtr4b"
+    >
+      <p
+        className="css-wqr37p"
+      >
+        Programmes
+      </p>
+    </div>
+    <div
+      className="css-9jn3o8"
+    >
+      <div
+        className="css-yh0f2e"
+      >
+        <div
+          className="css-1lads1q"
+        >
+          <div
+            className="css-3lf2mu"
+          >
+            <div
+              className="css-k6882c"
+            >
+              <svg
+                className="css-1xb1rov"
+                focusable={false}
+                role="presentation"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M23.384,21.619,16.855,15.09a9.284,9.284,0,1,0-1.768,1.768l6.529,6.529a1.266,1.266,0,0,0,1.768,0A1.251,1.251,0,0,0,23.384,21.619ZM2.75,9.5a6.75,6.75,0,1,1,6.75,6.75A6.758,6.758,0,0,1,2.75,9.5Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+            <input
+              className="css-n5gi9c"
+              placeholder="Search Programmes"
+              type="search"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="css-1lads1q"
+    >
+      <div
+        className="css-1kvbe8u"
+      >
+        <a
+          href="/programmes/new"
+          onClick={[Function]}
+          style={
+            Object {
+              "textDecoration": "none",
+            }
+          }
+        >
+          <button
+            className="css-8nc45l"
+            type="button"
+          >
+            <p
+              className="css-1li4w8y"
+            >
+              <svg
+                className="css-1xb1rov"
+                focusable={false}
+                role="presentation"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </p>
+          </button>
+        </a>
+        <a
+          href="/programmes/1"
+          onClick={[Function]}
+          style={
+            Object {
+              "textDecoration": "none",
+            }
+          }
+        >
+          <button
+            className="css-1speelj"
+            type="button"
+          >
+            <p
+              className="css-dbik8z"
+            >
+              MEngSt SE
+            </p>
+          </button>
+        </a>
+        <a
+          href="/programmes/2"
+          onClick={[Function]}
+          style={
+            Object {
+              "textDecoration": "none",
+            }
+          }
+        >
+          <button
+            className="css-1speelj"
+            type="button"
+          >
+            <p
+              className="css-dbik8z"
+            >
+              BE (Hons) SE
+            </p>
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div
+    className="css-6hu3eg"
+  >
+    <div
+      className="css-trwzgo"
+    >
+      <div
+        className="css-7eifx2"
+      >
+        <div
+          className="css-gmuwbf"
+        >
+          <i
+            className="css-1fwnx19"
+          >
+            Create or Select a Programme to view its information here.
+          </i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

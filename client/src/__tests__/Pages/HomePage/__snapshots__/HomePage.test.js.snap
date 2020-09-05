@@ -5,16 +5,17 @@ exports[`<HomePage /> 1`] = `
   className="css-qxc4md"
 >
   <div
-    className="css-1es2l9a"
+    className="css-uxy78k"
   >
     <div
       className="css-1lads1q"
     >
-      <p
-        className="css-ejldw8"
-      >
-        Image from Figma goes here
-      </p>
+      <img
+        alt="Homepage Image of Course Planner's screeshots"
+        className="css-1phd9a0"
+        height="400px"
+        width="1000px"
+      />
     </div>
   </div>
   <div

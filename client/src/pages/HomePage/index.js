@@ -1,27 +1,19 @@
 import React from "react";
-import { Flex, Text, Button, Image } from "@chakra-ui/core";
-import { Link } from "react-router-dom";
-
-const HomePageButton = ({ text, to }) => {
-    return (
-        <Link to={to}>
-            <Button backgroundColor="#F0F0F0" border="2px solid #122776" rounded="35px" width="320px" height="90px" marginTop="50px">
-                <Text textAlign="center" fontSize="2xl" color="#113F73">
-                    {text}
-                </Text>
-            </Button>
-        </Link>
-    );
-};
+import { Flex, Text, Image } from "@chakra-ui/core";
+import { OutlineButton } from "../../components";
 
 const HomePage = () => {
     return (
         <Flex height="100vh" width="100%" direction="row">
-            <Flex width="75%" backgroundColor="#2A2A2A">
+            <Flex width="75%" backgroundColor="#303030">
                 <Flex width="100%" align="center" justify="center">
-                    <Text textAlign="center" fontSize="4xl" color="#FFFFFF">
-                        Image from Figma goes here
-                    </Text>
+                    <Image
+                        htmlWidth="1000px"
+                        htmlHeight="400px"
+                        objectFit="cover"
+                        src="./homepageImg.png"
+                        alt="Homepage Image of Course Planner's screeshots"
+                    />
                 </Flex>
             </Flex>
             <Flex width="25%" backgroundColor="#F0F0F0">
@@ -37,9 +29,9 @@ const HomePage = () => {
                     </Flex>
 
                     <Flex direction="column" align="center" justify="center">
-                        <HomePageButton text="Students" to="/students" />
-                        <HomePageButton text="Courses" to="/courses" />
-                        <HomePageButton text="Programmes" to="/programmes" />
+                        <OutlineButton text="Students" to="/students" />
+                        <OutlineButton text="Courses" to="/courses" />
+                        <OutlineButton text="Programmes" to="/programmes" />
                     </Flex>
                 </Flex>
             </Flex>
