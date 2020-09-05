@@ -37,7 +37,7 @@ router.get("/", async (req, res) => {
                 res.status(404).json({ msg: "Requested object not found" });
             } else {
                 LOGGER.info("GET request succeeded for /programmedegree");
-                res.status(200).send({ programmeDegrees });
+                res.status(200).json({ programmeDegrees });
             }
         }
     });
@@ -82,7 +82,7 @@ router.get("/:id", async (req, res) => {
                 res.status(404).json({ msg: "Requested object not found" });
             } else {
                 LOGGER.info(`GET Request Succeeded for /programmedegree/${req.params.id}`);
-                res.status(200).send({ result });
+                res.status(200).json(result);
             }
         }
     });
@@ -202,7 +202,7 @@ router.delete("/:id", (req, res) => {
                 res.status(404).json({ msg: "Requested object not found" });
             } else {
                 LOGGER.info(`DELETE Request Succeeded for /programmedegree/${req.params.id}`);
-                res.status(200).send(result);
+                res.status(200).json(result);
             }
         }
     });

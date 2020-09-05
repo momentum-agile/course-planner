@@ -79,8 +79,11 @@ router.put("/", async (req, res) => {
             LOGGER.error(err);
             res.status(400).json({ msg: err.message });
         } else {
-            LOGGER.info("PUT Request Succeeded for /student/");
-            res.status(200).json(student);
+            // change to send the updated student, rather than the old student
+            Student.findById(student._id, (err, updatedStudent) => {
+                LOGGER.info("PUT Request Suceeded for /student/");
+                res.status(200).json(updatedStudent);
+            });
         }
     });
 });
@@ -107,14 +110,14 @@ router.put("/", async (req, res) => {
  */
 router.post("/", async (req, res) => {
     const newStudent = new Student(req.body);
-    newStudent.save((err, product) => {
+    newStudent.save((err, student) => {
         if (err) {
             LOGGER.error(err);
             res.status(400).json({ msg: err.message });
         } else {
             LOGGER.info("POST Request Succeeded for /student/");
-            LOGGER.info(product);
-            res.status(201).json(product);
+            LOGGER.info(student);
+            res.status(201).json(student);
         }
     });
 });
@@ -152,10 +155,12 @@ router.delete("/:upi", async (req, res) => {
             res.status(400).json({ msg: err.message });
         } else {
             if (student === null) {
+                LOGGER.error("Student does not exist");
                 res.status(404).json({ msg: "Requested object not found" });
+            } else {
+                LOGGER.info(`DELETE Request Succeeded for /student/${req.params.upi}`);
+                res.status(200).json(student);
             }
-            LOGGER.info(`DELETE Request Succeeded for /student/${req.params.upi}`);
-            res.status(200).send(student);
         }
     });
 });

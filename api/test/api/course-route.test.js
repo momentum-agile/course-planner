@@ -63,12 +63,12 @@ describe("DELETE /course/:courseCode", () => {
                 });
         });
     });
-    it("should give 204 error if the courseCode does not exist when deleting", async (done) => {
+    it("should give 404 error if the courseCode does not exist when deleting", async (done) => {
         request(app)
             .delete("/course/fakeCourseCode")
             .type("json")
             .end((_err, res) => {
-                expect(res.statusCode).toBe(204);
+                expect(res.statusCode).toBe(404);
                 done();
             });
     });
@@ -160,12 +160,12 @@ describe("/GET course", () => {
                 });
         });
     });
-    it("should return 204 if no course is found", async (done) => {
+    it("should return 404 if no course is found", async (done) => {
         request(app)
             .get("/course/SOFTENG701")
             .type("json")
             .end((_err, res) => {
-                expect(res.statusCode).toBe(204);
+                expect(res.statusCode).toBe(404);
                 done();
             });
     });

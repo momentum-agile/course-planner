@@ -25,7 +25,7 @@ const Course = require("../models/course");
  *            application/json:
  *              schema:
  *                $ref: '#/components/schemas/Course'
- *        "204":
+ *        "404":
  *          description: No course found for given course code
  *        "400":
  *          description: Error message
@@ -39,7 +39,7 @@ router.get("/:courseCode", async (req, res) => {
         } else {
             if (course === null) {
                 LOGGER.info(`No course found for /course/${req.params.courseCode}`);
-                res.status(204).send();
+                res.status(404).json();
             } else {
                 LOGGER.info(`GET Request Succeeded for /course/${req.params.courseCode}`);
                 LOGGER.info(course);
@@ -65,7 +65,7 @@ router.get("/:courseCode", async (req, res) => {
  *                  type: array
  *                  items:
  *                      $ref: '#/components/schemas/Course'
- *        "204":
+ *        "404":
  *          description: No courses found
  *        "400":
  *          description: Error message
@@ -79,7 +79,7 @@ router.get("/", async (req, res) => {
         } else {
             if (courses.length <= 0) {
                 LOGGER.info("No courses found");
-                res.status(204).send();
+                res.status(404).json();
             } else {
                 LOGGER.info("GET Request Succeeded for /course");
                 LOGGER.info(courses);
@@ -150,17 +150,18 @@ router.put("/", async (req, res) => {
  */
 router.post("/", async (req, res) => {
     const newCourse = new Course(req.body);
-    newCourse.save((err, product) => {
+    newCourse.save((err, course) => {
         if (err) {
             LOGGER.error(err);
             res.status(400).json({ msg: err.message });
         } else {
             LOGGER.info("POST Request Succeeded for /Course/");
-            LOGGER.info(product);
-            res.status(201).json(product);
+            LOGGER.info(course);
+            res.status(201).json(course);
         }
     });
 });
+
 // deletes a course
 /**
  * @swagger
@@ -183,7 +184,7 @@ router.post("/", async (req, res) => {
  *            application/json:
  *              schema:
  *                $ref: '#/components/schemas/Course'
- *        "204":
+ *        "404":
  *          description: No course found
  *        "400":
  *          description: Database error (internal)
@@ -196,7 +197,7 @@ router.delete("/:courseCode", async (req, res) => {
         } else {
             if (course === null) {
                 LOGGER.error("Course does not exist");
-                res.status(204).send();
+                res.status(404).json({ msg: "Requested object not found" });
             } else {
                 LOGGER.info("DELETE Request Suceeded for /Course/:courseCode");
                 res.status(200).json(course);
