@@ -5,7 +5,7 @@ WORKDIR /data
 COPY . .
 
 RUN yarn
-RUN node ./scripts/index.js --amount 10
+RUN node ./scripts/index.js --amount 100
 
 FROM mongo:latest
 
