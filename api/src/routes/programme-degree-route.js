@@ -30,14 +30,14 @@ router.get("/", async (req, res) => {
     ProgrammeDegree.find({}, (err, programmeDegrees) => {
         if (err) {
             LOGGER.error(err.message);
-            res.status(400).json({ message: err.message });
+            res.status(400).json({ msg: err.message });
         } else {
             if (programmeDegrees.length <= 0) {
                 LOGGER.info("No programme degrees found");
                 res.status(404).json({ msg: "Requested object not found" });
             } else {
                 LOGGER.info("GET request succeeded for /programmedegree");
-                res.status(200).json({ programmeDegrees });
+                res.status(200).json(programmeDegrees);
             }
         }
     });
@@ -75,7 +75,7 @@ router.get("/:id", async (req, res) => {
     ProgrammeDegree.findOne({ _id: req.params.id }, (err, result) => {
         if (err) {
             LOGGER.error(err.message);
-            res.status(400).json({ message: err.message });
+            res.status(400).json({ msg: err.message });
         } else {
             if (result === null) {
                 LOGGER.info(`No programme degree found for /programmedegree/${req.params.id}`);
@@ -113,7 +113,7 @@ router.post("/", async (req, res) => {
     programmeDegree.save((err, result) => {
         if (err) {
             LOGGER.error(err.message);
-            res.status(400).json({ message: err.message });
+            res.status(400).json({ msg: err.message });
         } else {
             LOGGER.info("POST request succeeded for /programmedegree");
             res.status(201).json(result);
@@ -158,8 +158,11 @@ router.put("/:id", async (req, res) => {
             LOGGER.error(err);
             res.status(400).json({ msg: err.message });
         } else {
-            LOGGER.info("PUT Request Succeeded for /programmedegree/");
-            res.status(200).json(result);
+            //change to send the updated programmedegree, rather than the old programmedegree
+            ProgrammeDegree.findById(result._id, (err, updatedProgrammeDegree) => {
+                LOGGER.info("PUT Request Suceeded for /Course/");
+                res.status(200).json(updatedProgrammeDegree);
+            });
         }
     });
 });

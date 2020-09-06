@@ -25,14 +25,17 @@ const Regulation = require("./regulation");
  *          description: the default plan associated with this programme
  */
 const programmeDegreeSchema = mongoose.Schema({
-    name: String,
+    name: {
+        type: String,
+        required: true,
+    },
     regulations: {
         type: [Regulation],
         required: false,
     },
-    // TODO: Create Plan Model
+    // TODO: Create Plan Model and change to objectId once Plan has been implemented
     defaultPlan: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Object,
         ref: "Plan",
         required: false,
     },
