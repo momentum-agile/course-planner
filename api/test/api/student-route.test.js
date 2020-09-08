@@ -33,6 +33,25 @@ afterAll(async () => {
 });
 
 describe("/GET student", () => {
+    it("can successfully get all students", async (done) => {
+        const student = new Student({
+            name: "John Doe",
+            id: "1234567890",
+            upi: "jdoe123",
+            yearLevel: 2,
+            plans: [],
+        });
+        student.save((err, studentRes) => {
+            request(app)
+                .get("/student")
+                .type("json")
+                .end((_err, res) => {
+                    expect(res.statusCode).toBe(200);
+                    expect(res.body).toHaveLength(1);
+                    done();
+                });
+        });
+    });
     it("can successfully get a student by id", async (done) => {
         const student = new Student({
             name: "John Doe",
