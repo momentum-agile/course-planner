@@ -23,9 +23,9 @@ afterAll(async () => {
 
 beforeEach(async () => {
     const newRegulation = {
-        points: 90,
-        pointRequirement: "UPTO",
-        courses: [],
+        type: "TEXT",
+        points: 31,
+        courses: ["SOFTENG309"],
     };
     const newCourse = new Course({
         name: "Software Engineering Theory",
@@ -34,7 +34,7 @@ beforeEach(async () => {
         semester: ["SS"],
         prerequisites: [newRegulation],
         corequisites: [newRegulation],
-        restrictions: [newRegulation],
+        restrictions: ["TESTCOURSE2332"],
         description: "Theory of engineering",
     });
     await newCourse.save();

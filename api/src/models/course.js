@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
-const Regulation = require("./regulation");
+const CourseRegulaton = require("./course-regulation");
 /**
  * @swagger
  *  components:
@@ -30,23 +30,23 @@ const Regulation = require("./regulation");
  *          prerequisites:
  *            type: array
  *            items:
- *              $ref: '#/components/schemas/Regulation'
+ *              $ref: '#/components/schemas/CourseRegulation'
  *            description: prerequisites for this course
  *          corequisites:
  *            type: array
  *            items:
- *              $ref: '#/components/schemas/Regulation'
+ *              $ref: '#/components/schemas/CourseRegulation'
  *            description: corequisites for this course
  *          restrictions:
  *            type: array
  *            items:
- *              $ref: '#/components/schemas/Regulation'
- *            description: restrictions for this course
+ *              type: string
+ *            description: restrictions for this course noted by course codes
  *          informalEquivalents:
  *            type: array
  *            items:
- *              $ref: '#/components/schemas/Course'
- *            description: informal equivalents for this course
+ *              type: string
+ *            description: informal equivalents for this course noted by course codes
  *          description:
  *            type: string
  *            description: description for the course
@@ -71,20 +71,19 @@ const courseSchema = mongoose.Schema({
         required: true,
     },
     prerequisites: {
-        type: [Regulation],
+        type: [CourseRegulaton],
         required: false,
     },
     corequisites: {
-        type: [Regulation],
+        type: [CourseRegulaton],
         required: false,
     },
     restrictions: {
-        type: [Regulation],
+        type: [String],
         required: false,
     },
     informalEquivalents: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: "Course",
+        type: [String],
         required: false,
     },
     description: {

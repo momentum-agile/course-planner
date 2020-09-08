@@ -32,11 +32,11 @@ afterAll(async () => {
     await mongod.stop();
 });
 
-const newRegulation = {
+const newCourseRegulation = {
     _id: "56cb91bdc3464f14678934ca",
-    points: 90,
-    pointRequirement: "UPTO",
-    courses: [],
+    type: "TEXT",
+    points: 30,
+    courses: ["SOFTENG111"],
 };
 
 describe("DELETE /course/:courseCode", () => {
@@ -46,9 +46,9 @@ describe("DELETE /course/:courseCode", () => {
             courseCode: "SOFTENG701",
             points: 15,
             semester: ["SS"],
-            prerequisites: [newRegulation],
-            corequisites: [newRegulation],
-            restrictions: [newRegulation],
+            prerequisites: [newCourseRegulation],
+            corequisites: [newCourseRegulation],
+            restrictions: ["TESTCOURSE123"],
             informalEquivalents: [],
             description: "Theory of engineering",
         });
@@ -81,9 +81,9 @@ describe("PUT /course", () => {
             courseCode: "SOFTENG701",
             points: 15,
             semester: ["SS"],
-            prerequisites: [newRegulation],
-            corequisites: [newRegulation],
-            restrictions: [newRegulation],
+            prerequisites: [newCourseRegulation],
+            corequisites: [newCourseRegulation],
+            restrictions: ["TESTCOURSE123"],
             informalEquivalents: [],
             description: "Theory of engineering",
         });
@@ -96,9 +96,9 @@ describe("PUT /course", () => {
                     courseCode: "SOFTENG701",
                     points: 20,
                     semester: ["SS"],
-                    prerequisites: [newRegulation],
-                    corequisites: [newRegulation],
-                    restrictions: [newRegulation],
+                    prerequisites: [newCourseRegulation],
+                    corequisites: [newCourseRegulation],
+                    restrictions: ["TESTCOURSE123"],
                     informalEquivalents: [],
                     description: "Theory of engineering",
                 })
@@ -119,9 +119,9 @@ describe("/GET course", () => {
             courseCode: "SOFTENG701",
             points: 15,
             semester: ["SS"],
-            prerequisites: [newRegulation],
-            corequisites: [newRegulation],
-            restrictions: [newRegulation],
+            prerequisites: [newCourseRegulation],
+            corequisites: [newCourseRegulation],
+            restrictions: ["TESTCOURSE123"],
             informalEquivalents: [],
             description: "Theory of engineering",
         });
@@ -142,9 +142,9 @@ describe("/GET course", () => {
             courseCode: "SOFTENG701",
             points: 15,
             semester: ["SS"],
-            prerequisites: [newRegulation],
-            corequisites: [newRegulation],
-            restrictions: [newRegulation],
+            prerequisites: [newCourseRegulation],
+            corequisites: [newCourseRegulation],
+            restrictions: ["TESTCOURSE123"],
             informalEquivalents: [],
             description: "Theory of engineering",
         });
@@ -180,9 +180,9 @@ describe("/POST course", () => {
                 courseCode: "SOFTENG701",
                 points: 15,
                 semester: ["SS"],
-                prerequisites: [newRegulation],
-                corequisites: [newRegulation],
-                restrictions: [newRegulation],
+                prerequisites: [newCourseRegulation],
+                corequisites: [newCourseRegulation],
+                restrictions: ["TESTCOURSE123"],
                 informalEquivalents: [],
                 description: "Theory of engineering",
             })
@@ -192,9 +192,9 @@ describe("/POST course", () => {
                 expect(res.body).toHaveProperty("courseCode", "SOFTENG701");
                 expect(res.body).toHaveProperty("points", 15);
                 expect(res.body).toHaveProperty("semester", ["SS"]);
-                expect(res.body).toHaveProperty("prerequisites", [newRegulation]);
-                expect(res.body).toHaveProperty("corequisites", [newRegulation]);
-                expect(res.body).toHaveProperty("restrictions", [newRegulation]);
+                expect(res.body).toHaveProperty("prerequisites", [newCourseRegulation]);
+                expect(res.body).toHaveProperty("corequisites", [newCourseRegulation]);
+                expect(res.body).toHaveProperty("restrictions", ["TESTCOURSE123"]);
                 expect(res.body).toHaveProperty("informalEquivalents", []);
                 expect(res.body).toHaveProperty("description", "Theory of engineering");
                 done();
@@ -209,9 +209,9 @@ describe("/POST course", () => {
                 courseCode: "SOFTENG750",
                 points: 15,
                 semester: ["SS"],
-                prerequisites: [newRegulation],
-                corequisites: [newRegulation],
-                restrictions: [newRegulation],
+                prerequisites: [newCourseRegulation],
+                corequisites: [newCourseRegulation],
+                restrictions: ["TESTCOURSE123"],
                 informalEquivalents: [],
                 description: "Theory of engineering",
             })
@@ -229,9 +229,9 @@ describe("/POST course", () => {
                 name: "Big Databases",
                 points: 15,
                 semester: ["SS"],
-                prerequisites: [newRegulation],
-                corequisites: [newRegulation],
-                restrictions: [newRegulation],
+                prerequisites: [newCourseRegulation],
+                corequisites: [newCourseRegulation],
+                restrictions: ["TESTCOURSE123"],
                 informalEquivalents: [],
                 description: "Theory of engineering",
             })
@@ -249,9 +249,9 @@ describe("/POST course", () => {
                 name: "Small Databases",
                 courseCode: "SOFTENG711",
                 semester: ["SS"],
-                prerequisites: [newRegulation],
-                corequisites: [newRegulation],
-                restrictions: [newRegulation],
+                prerequisites: [newCourseRegulation],
+                corequisites: [newCourseRegulation],
+                restrictions: ["TESTCOURSE123"],
                 informalEquivalents: [],
                 description: "Theory of engineering",
             })
