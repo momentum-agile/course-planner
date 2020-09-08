@@ -118,7 +118,7 @@ router.put("/", async (req, res) => {
         } else {
             // change to send the updated student, rather than the old student
             Student.findById(student._id, (err, updatedStudent) => {
-                LOGGER.info("PUT Request Suceeded for /student/");
+                LOGGER.info("PUT request succeeded for /student/");
                 res.status(200).json(updatedStudent);
             });
         }

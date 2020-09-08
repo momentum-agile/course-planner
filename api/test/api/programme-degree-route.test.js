@@ -50,7 +50,6 @@ describe("/GET programmedegree", () => {
                 .get("/programmedegree")
                 .type("json")
                 .end((_err, res) => {
-                    console.log(res.body);
                     expect(res.statusCode).toBe(200);
                     expect(res.body).toHaveLength(1);
                     done();
@@ -156,7 +155,6 @@ describe("PUT /programmeDegree", () => {
             defaultPlan: null,
         });
         programmeDegree.save((err, programmeRes) => {
-            console.log(programmeRes._id);
             request(app)
                 .put("/programmedegree/" + programmeRes._id)
                 .type("json")

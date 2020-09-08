@@ -121,7 +121,7 @@ router.put("/", async (req, res) => {
         } else {
             //change to send the updated course, rather than the old course
             Course.findById(course._id, (err, updatedCourse) => {
-                LOGGER.info("PUT Request Suceeded for /Course/");
+                LOGGER.info("PUT request succeeded for /Course/");
                 res.status(200).json(updatedCourse);
             });
         }
@@ -199,7 +199,7 @@ router.delete("/:courseCode", async (req, res) => {
                 LOGGER.error("Course does not exist");
                 res.status(404).json({ msg: "Requested object not found" });
             } else {
-                LOGGER.info("DELETE Request Suceeded for /Course/:courseCode");
+                LOGGER.info("DELETE request succeeded for /Course/${req.params.name}");
                 res.status(200).json(course);
             }
         }

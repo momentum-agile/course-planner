@@ -87,7 +87,6 @@ test("Create and get a second specified Plan successfully", async () => {
     await newPlan.save();
 
     const fromDb = await Plan.find({ _id: testId2 });
-    console.log(fromDb);
     expect(fromDb).toBeTruthy();
     expect(fromDb[0].name).toBe("new plan");
     expect(fromDb[0].courseAllocations[0]._id.toString()).toEqual(testId3.toString());

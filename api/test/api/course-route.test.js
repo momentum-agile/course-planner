@@ -103,7 +103,6 @@ describe("PUT /course", () => {
                     description: "Theory of engineering",
                 })
                 .end((_err, res) => {
-                    console.log(res.body.points);
                     expect(res.statusCode).toBe(200);
                     expect(res.body.points).toEqual(20);
                     expect(res.body._id.toString()).toEqual(courseRes._id.toString());
