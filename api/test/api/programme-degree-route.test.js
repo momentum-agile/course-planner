@@ -38,16 +38,12 @@ const newRegulation = {
     courses: [],
 };
 
-const mockPlan = {
-    name: "mockPlan",
-};
-
 describe("/GET programmedegree", () => {
     it("should successfully get all programme degrees", async (done) => {
         const programmeDegree = new ProgrammeDegree({
             name: "Be Hons Software Engineering",
             regulations: [newRegulation],
-            defaultPlan: mockPlan,
+            defaultPlan: null,
         });
         programmeDegree.save((err, programmeRes) => {
             request(app)
@@ -65,7 +61,7 @@ describe("/GET programmedegree", () => {
         const programmeDegree = new ProgrammeDegree({
             name: "Be Hons Software Engineering",
             regulations: [newRegulation],
-            defaultPlan: mockPlan,
+            defaultPlan: null,
         });
         programmeDegree.save((err, programmeRes) => {
             request(app)
@@ -97,13 +93,13 @@ describe("/POST programme-degree", () => {
             .send({
                 name: "Be Hons Software Engineering",
                 regulations: [newRegulation],
-                defaultPlan: mockPlan,
+                defaultPlan: null,
             })
             .end((err, res) => {
                 expect(res.statusCode).toBe(201);
                 expect(res.body).toHaveProperty("name", "Be Hons Software Engineering");
                 expect(res.body).toHaveProperty("regulations", [newRegulation]);
-                expect(res.body).toHaveProperty("defaultPlan", mockPlan);
+                expect(res.body).toHaveProperty("defaultPlan", null);
                 done();
             });
     });
@@ -113,7 +109,7 @@ describe("/POST programme-degree", () => {
             .type("json")
             .send({
                 regulations: [newRegulation],
-                defaultPlan: mockPlan,
+                defaultPlan: null,
             })
             .end((err, res) => {
                 expect(res.statusCode).toBe(400);
@@ -128,7 +124,7 @@ describe("DELETE /programmedegree/:id", () => {
         const programmeDegree = new ProgrammeDegree({
             name: "Be Hons Software Engineering",
             regulations: [newRegulation],
-            defaultPlan: mockPlan,
+            defaultPlan: null,
         });
         programmeDegree.save((err, programmeRes) => {
             request(app)
@@ -157,7 +153,7 @@ describe("PUT /programmeDegree", () => {
         const programmeDegree = new ProgrammeDegree({
             name: "Be Hons Software Engineering",
             regulations: [newRegulation],
-            defaultPlan: mockPlan,
+            defaultPlan: null,
         });
         programmeDegree.save((err, programmeRes) => {
             console.log(programmeRes._id);
@@ -167,7 +163,7 @@ describe("PUT /programmeDegree", () => {
                 .send({
                     name: "updatedName",
                     regulations: [newRegulation],
-                    defaultPlan: mockPlan,
+                    defaultPlan: null,
                 })
                 .end((_err, res) => {
                     expect(res.statusCode).toBe(200);

@@ -21,7 +21,7 @@ const Regulation = require("./regulation");
  *            $ref: '#/components/schemas/Regulation'
  *          description: all the regulations for this particular programme
  *        defaultPlan:
- *          type: object
+ *          $ref: '#/components/schemas/Plan'
  *          description: the default plan associated with this programme
  */
 const programmeDegreeSchema = mongoose.Schema({
@@ -35,7 +35,7 @@ const programmeDegreeSchema = mongoose.Schema({
     },
     // TODO: Create Plan Model and change to objectId once Plan has been implemented
     defaultPlan: {
-        type: Object,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Plan",
         required: false,
     },

@@ -3,6 +3,7 @@ const uniqueValidator = require("mongoose-unique-validator");
 /**
  * @swagger
  *  components:
+ *   $ref: './course.js/#components'
  *   schemas:
  *    Student:
  *      type: object
@@ -50,9 +51,8 @@ const studentSchema = mongoose.Schema({
         type: Number,
         required: false,
     },
-    // TODO: Create Plan Model and change to objectId once Plan has been implemented
     plans: {
-        type: [Object],
+        type: [mongoose.Schema.Types.ObjectId],
         ref: "Plan",
         required: false,
     },

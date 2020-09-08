@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 /**
  * @swagger
  *  components:
- *    $ref: './course.js/#components'
  *    schemas:
  *      Regulation:
  *        type: object
