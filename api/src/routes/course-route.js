@@ -114,7 +114,7 @@ router.get("/", async (req, res) => {
  *          description: Database error
  */
 router.put("/", async (req, res) => {
-    Course.findOneAndUpdate({ courseCode: req.body.courseCode }, req.body, { upsert: "true" }, (err, course) => {
+    Course.findByIdAndUpdate(req.body._id, req.body, { upsert: "true" }, (err, course) => {
         if (err) {
             LOGGER.error(err);
             res.status(400).json({ msg: err.message });

@@ -52,6 +52,7 @@ const programmeDegree = new ProgrammeDegree({
 
 const generatePlan = () =>
     new Plan({
+        _id: "5f58655ad0d808069389c5be",
         name: "BobsPlan",
         student: "56cb91bdc3464f14678934cb",
         programmeDegree: "56cb91bdc3464f14678934cc",
@@ -93,6 +94,7 @@ describe("PUT /plan", () => {
                 .put("/plan")
                 .type("json")
                 .send({
+                    _id: "5f58655ad0d808069389c5be",
                     name: "BobsPlan",
                     student: "56cb91bdc3464f14678934cb",
                     programmeDegree: "56cb91bdc3464f14678934cc",

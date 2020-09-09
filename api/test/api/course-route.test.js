@@ -77,6 +77,7 @@ describe("DELETE /course/:courseCode", () => {
 describe("PUT /course", () => {
     it("should update a course correctly", async (done) => {
         const course = new Course({
+            _id: "5f58655ad0d808069389c5be",
             name: "Software Engineering Theory",
             courseCode: "SOFTENG701",
             points: 15,
@@ -92,6 +93,7 @@ describe("PUT /course", () => {
                 .put("/course")
                 .type("json")
                 .send({
+                    _id: "5f58655ad0d808069389c5be",
                     name: "Software Engineering Theory",
                     courseCode: "SOFTENG701",
                     points: 20,

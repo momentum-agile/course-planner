@@ -153,7 +153,7 @@ router.post("/", async (req, res) => {
  *          description: Database error
  */
 router.put("/:id", async (req, res) => {
-    ProgrammeDegree.findOneAndUpdate({ _id: req.params.id }, req.body, { upsert: "true" }, (err, result) => {
+    ProgrammeDegree.findByIdAndUpdate(req.params.id, req.body, { upsert: "true" }, (err, result) => {
         if (err) {
             LOGGER.error(err);
             res.status(400).json({ msg: err.message });

@@ -150,6 +150,7 @@ describe("DELETE /programmedegree/:id", () => {
 describe("PUT /programmeDegree", () => {
     it("should update a programmeDegree correctly", async (done) => {
         const programmeDegree = new ProgrammeDegree({
+            _id: "5f58655ad0d808069389c5be",
             name: "Be Hons Software Engineering",
             regulations: [newRegulation],
             defaultPlan: null,
@@ -159,6 +160,7 @@ describe("PUT /programmeDegree", () => {
                 .put("/programmedegree/" + programmeRes._id)
                 .type("json")
                 .send({
+                    _id: "5f58655ad0d808069389c5be",
                     name: "updatedName",
                     regulations: [newRegulation],
                     defaultPlan: null,
