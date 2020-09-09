@@ -14,12 +14,15 @@ function getRandomInt(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+const getStudentID = (i) => i.toString().padStart(24, 'DefacedC0ffeeBabeB0b1012');
 
-const createStudent = () => {
+
+const createStudent = (i) => {
     const firstName = faker.name.firstName();
     const lastName = faker.name.lastName();
     const upi = firstName.substring(0, 1).toLowerCase() + lastName.substring(0, 3).toLowerCase() + getRandomInt(100, 999);
     const student = {
+        _id: getStudentID(i),
         name: firstName + " " + lastName,
         id: getRandomInt(100000000, 999999999),
         upi: upi,

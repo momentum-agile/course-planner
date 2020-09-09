@@ -4,11 +4,13 @@ const fs = require("fs");
 const { generateCourses } = require("./course");
 const { generateProgrammeDegrees } = require("./programme-degree");
 const { generateStudents } = require("./students");
+const { generatePlans } = require("./plan");
 
 
 const courseFilename = "./fakeCourses.json";
 const programmeDegreeFilename = "./fakeProgrammeDegrees.json";
 const studentFilename = "./fakeStudents.json";
+const planFilename = "./fakePlans.json";
 
 const argv = yargs
     .command("amount", "Decides the number of courses to generate", {
@@ -28,7 +30,10 @@ const writeFile = (filename, obj) => {
 
 if (argv.hasOwnProperty("amount")) {
     const amount = argv.amount;
-    writeFile(courseFilename, generateCourses(amount))
-    writeFile(studentFilename, generateStudents(amount / 10))
-    writeFile(programmeDegreeFilename, generateProgrammeDegrees())
+    const students = generateStudents(amount/10)
+    const programs = generateProgrammeDegrees()
+    const plans = generatePlans(amount/10,programs,students)
+    writeFile(studentFilename, students)
+    writeFile(programmeDegreeFilename, programs)
+    writeFile(planFilename, plans)
 }

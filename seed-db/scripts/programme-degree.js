@@ -4,14 +4,16 @@ const generateProgrammeDegrees = () => {
     const programmeDegrees = [];
 
     for (let i = 0; i < programmeDegreeNames.length; i++) {
-        programmeDegrees.push(createProgrammeDegree(programmeDegreeNames[i]));
+        programmeDegrees.push(createProgrammeDegree(programmeDegreeNames[i],i));
     }
 
     return programmeDegrees;
 };
+const getProgrammeDegreeID = (i) => i.toString().padStart(24, 'DefacedC0ffeeBabeB0b2012');
 
-const createProgrammeDegree = (name) => {
+const createProgrammeDegree = (name,i) => {
     const programmeDegree = {
+        _id:getProgrammeDegreeID(i),
         name: name,
         regulations: [],
         defaultPlan: null,

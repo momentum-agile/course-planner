@@ -1,558 +1,282 @@
-[
-  {
-    "name": "Software Engineering Design 1",
-    "courseCode": "SOFTENG 206",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "SOFTENG 251",
-            "SOFTENG 281"
-          ]
-        }
-      ]
-    ],
-    "description": "Project work. Skills and tools in systematic development of software, including testing, version control, build systems, working with others."
+[{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b301c"
   },
-  {
-    "name": "Software Engineering Theory",
-    "courseCode": "SOFTENG 211",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "ENGGEN 131",
-            "COMPSCI 101"
-          ]
-        }
-      ]
-    ],
-    "description": "Sets. Formal languages, operations on languages. Deterministic and nondeterministic automata, designing automata, determinisation. Regular expressions. Logic. Induction. Recursion. Program correctness. Computability. Counting. Elements of graph algorithms."
-  },
-  {
-    "name": "Introduction to Data Structures and Algorithms",
-    "courseCode": "SOFTENG 250",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "ENGGEN 131",
-            "COMPSCI 101"
-          ]
-        }
-      ]
-    ],
-    "corequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "ENGSCI 213"
-          ]
-        }
-      ]
-    ],
-    "description": "Introduction to the analytical and empirical behaviour of basic algorithms and data structures."
-  },
-  {
-    "name": "Object Oriented Software Construction",
-    "courseCode": "SOFTENG 251",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "ENGGEN 131",
-            "COMPSCI 101"
-          ]
-        }
-      ]
-    ],
-    "description": "An introduction to Object Oriented software development. Programming with classes; objects and polymorphism. Evolutionary and test-driven development. Analysis and design. Modelling with UML. Design patterns. Design for reuse, for testing, and for ease of change."
-  },
-  {
-    "name": "Quality Assurance",
-    "courseCode": "SOFTENG 254",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 30,
-          "type": "POINTS",
-          "courses": [
-            "SOFTENG 250",
-            "SOFTENG 251"
-          ]
-        }
-      ]
-    ],
-    "description": "Software verification and validation. Static and dynamic QA activities as part of the software lifecycle. Unit, integration, system, and usability testing. Use of visual notations, automation, and tools to support development activities. Metrics to quantify strength of testing and complexity of programs."
-  },
-  {
-    "name": "Fundamentals of Software Engineering 1",
-    "courseCode": "SOFTENG 281",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "ENGGEN 131",
-            "COMPSCI 101"
-          ]
-        }
-      ]
-    ],
-    "restrictions": "SOFTENG 250 or SOFTENG 251",
-    "description": "Object-oriented programming: Computer programming using objects as the mechanism for modularity, abstraction, and code reuse. Instance variables, methods, and encapsulation. Review of control structures for conditionals and iteration. Basic data structures including stacks, queues, array lists, linked lists, basic binary trees. Introduction to algorithms including sorting and searching. Interfaces, inheritance, polymorphism, and abstract classes. Exception handling."
-  },
-  {
-    "name": "Fundamentals of Software Engineering 2",
-    "courseCode": "SOFTENG 282",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "ENGGEN 131",
-            "COMPSCI 101"
-          ]
-        }
-      ]
-    ],
-    "restrictions": "SOFTENG 251",
-    "description": "Data structures including complex trees, hash tables; graph representations and algorithms, including minimum spanning trees, traversals, shortest paths; introduction to algorithmic design strategies; correctness and performance analysis."
-  },
-  {
-    "name": "Fundamentals of Software Engineering 3",
-    "courseCode": "SOFTENG 283",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "SOFTENG 251",
-            "SOFTENG 281"
-          ]
-        }
-      ]
-    ],
-    "restrictions": "SOFTENG 254",
-    "description": "Software verification and validation. Static and dynamic quality assurance activities as part of the software lifecycle. Unit, integration, system, and usability testing. Metrics to quantify strength of testing and complexity of programs. Techniques for requirements analysis and engineering of software systems including requirements elicitation, analysis, specification, validation, verification. Modelling paradigms including information, behaviour, domain, function and constraint models. Specification languages."
-  },
-  {
-    "name": "Fundamentals of Software Engineering 4",
-    "courseCode": "SOFTENG 284",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "SOFTENG 251",
-            "SOFTENG 281"
-          ]
-        }
-      ]
-    ],
-    "restrictions": "SOFTENG 211",
-    "description": "Theoretical foundations of software engineering, including sets, formal languages, operations on languages, deterministic and nondeterministic automata, designing automata, determinisation, regular expressions, logic, induction, recursion, program correctness, computability, counting, elements of graph algorithms."
-  },
-  {
-    "name": "Software Engineering Design 2",
-    "courseCode": "SOFTENG 306",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "SOFTENG 206",
-            "SOFTENG 283"
-          ]
-        }
-      ],
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "SOFTENG 254",
-            "SOFTENG 350"
-          ]
-        }
-      ]
-    ],
-    "description": "Working in project teams to develop software to meet changing requirements for a large application. Project Planning. Requirements gathering. Estimating, costing and tracking. Acceptance and unit testing. Evolutionary design and development. Collaborative development tools."
-  },
-  {
-    "name": "Software Evolution and Maintenance",
-    "courseCode": "SOFTENG 310",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "SOFTENG 254",
-            "SOFTENG 283"
-          ]
-        }
-      ]
-    ],
-    "description": "Design and maintenance of multi-version software, debugging techniques, design and documentation for software re-use, programme migration and transformation, refactoring, tools for software evolution and maintenance."
-  },
-  {
-    "name": "Software Architecture",
-    "courseCode": "SOFTENG 325",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "COMPSYS 302",
-            "SOFTENG 283"
-          ]
-        }
-      ]
-    ],
-    "description": "Taxonomy of software architecture patterns, including client/server and multi-tier. Understanding quality attributes. Methodologies for design of software architectures. Technologies for architecture level development, including middleware."
-  },
-  {
-    "name": "Human Computer Interaction",
-    "courseCode": "SOFTENG 350",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "SOFTENG 206"
-          ]
-        }
-      ]
-    ],
-    "restrictions": "COMPSCI 345,   370",
-    "description": "Human behaviour and humans’ expectations of computers. Computer interfaces and the interaction between humans and computers. The significance of the user interface, interface design and user centred design process in software development. Interface usability evaluation methodologies and practice. Includes an evaluation project, group design project, and implementation using current techniques and tools."
-  },
-  {
-    "name": "Fundamentals of Database Systems",
-    "courseCode": "SOFTENG 351",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "COMPSCI 225",
-            "SOFTENG 211",
-            "SOFTENG 284"
-          ]
-        }
-      ]
-    ],
-    "restrictions": "COMPSCI 351",
-    "description": "Relational model, Relational algebra, Relational calculus, SQL, SQL and programming languages, Entity-Relationship model, Normalisation, Query processing, Query optimisation, Distributed databases, Transaction management, Concurrency control, Database recovery."
-  },
-  {
-    "name": "Networks and Security",
-    "courseCode": "SOFTENG 364",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        [
-          {
-            "points": 15,
-            "type": "POINTS",
-            "courses": [
-              "SOFTENG 251",
-              "SOFTENG 281"
-            ]
-          }
-        ],
-        [
-          {
-            "points": 15,
-            "type": "POINTS",
-            "courses": [
-              "COMPSYS 201"
-            ]
-          }
+  "name": "Software Engineering Theory",
+  "courseCode": "SOFTENG 211",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "ENGGEN 131",
+          "COMPSCI 101"
         ]
-      ]
-    ],
-    "description": "Physical networks, TCP/IP protocols, switching methods, network layering and components, network services. Information security, computer and network security threats, defence mechanisms and encryption."
+      }
+    ]
+  ],
+  "description": "Sets. Formal languages, operations on languages. Deterministic and nondeterministic automata, designing automata, determinisation. Regular expressions. Logic. Induction. Recursion. Program correctness. Computability. Counting. Elements of graph algorithms."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b301d"
   },
-  {
-    "name": "Operating Systems",
-    "courseCode": "SOFTENG 370",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        [
-          {
-            "points": 15,
-            "type": "POINTS",
-            "courses": [
-              "SOFTENG 251",
-              "SOFTENG 281"
-            ]
-          }
-        ],
-        [
-          {
-            "points": 15,
-            "type": "POINTS",
-            "courses": [
-              "COMPSYS 201"
-            ]
-          }
+  "name": "Introduction to Data Structures and Algorithms",
+  "courseCode": "SOFTENG 250",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "ENGGEN 131",
+          "COMPSCI 101"
         ]
-      ]
-    ],
-    "restrictions": "COMPSCI 340",
-    "description": "History of operating systems. Multi-user systems. Scheduling. Concurrent processes, threads and synchronisation. Memory allocation and virtual memory. Managing files, disks and other peripherals. Security, protection and archiving. Engineering distributed systems; location, migration and replication transparency. Real-time programming and embedded systems."
+      }
+    ]
+  ],
+  "description": "Introduction to the analytical and empirical behaviour of basic algorithms and data structures."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b301e"
   },
-  {
-    "name": "Research Project",
-    "courseCode": "SOFTENG 700A",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "SOFTENG 306"
-          ]
-        }
-      ],
-      [
-        {
-          "type": "TEXT",
-          "courses": [
-            "To complete this course students must enrol in SOFTENG 700 A and B"
-          ]
-        }
-      ]
-    ],
-    "description": "Students are required to submit a report on project work carried out on a Software Engineering topic assigned by the Head of Department."
-  },
-  {
-    "name": "Research Project",
-    "courseCode": "SOFTENG 700B",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "SOFTENG 306"
-          ]
-        }
-      ],
-      [
-        {
-          "type": "TEXT",
-          "courses": [
-            "To complete this course students must enrol in SOFTENG 700 A and B"
-          ]
-        }
-      ]
-    ],
-    "description": "Students are required to submit a report on project work carried out on a Software Engineering topic assigned by the Head of Department."
-  },
-  {
-    "name": "Advanced Software Engineering Development Methods",
-    "courseCode": "SOFTENG 701",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "COMPSYS 302",
-            "SOFTENG 306"
-          ]
-        }
-      ]
-    ],
-    "description": "Advanced studies in methods and techniques for developing complex software systems including topics in software engineering environments, advanced software design, tool construction and software architectures. The core taught skills are extended by individual projects in which independent research is undertaken to address challenging software system problems."
-  },
-  {
-    "name": "Advanced Human Computer Interaction",
-    "courseCode": "SOFTENG 702",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "COMPSCI 345",
-            "SOFTENG 350"
-          ]
-        }
-      ]
-    ],
-    "restrictions": "COMPSCI 705",
-    "description": "Advanced topics in human computer interaction and human aspects of computer systems relevant to commercial solution development and computer science research. Sample topics: advanced evaluation methods; support of pen and touch-based interaction; trends with domain specific user interface design, such as interfaces for enterprise systems."
-  },
-  {
-    "name": "Studies in Software Engineering 1",
-    "courseCode": "SOFTENG 710",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "type": "TEXT",
-          "courses": [
-            "Permission of the Head of Department"
-          ]
-        }
-      ]
-    ],
-    "description": "Advanced courses on topics to be determined each year by the Head of Department."
-  },
-  {
-    "name": "Studies in Software Engineering 2",
-    "courseCode": "SOFTENG 711",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "type": "TEXT",
-          "courses": [
-            "Permission of the Head of Department"
-          ]
-        }
-      ]
-    ],
-    "description": "Advanced courses on topics to be determined each year by the Head of Department."
-  },
-  {
-    "name": "Software Development Methodologies",
-    "courseCode": "SOFTENG 750",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "SOFTENG 306"
-          ]
-        }
-      ]
-    ],
-    "restrictions": "COMPSCI 732",
-    "description": "Software lifecycle; software process models; examples of software processes; software process improvement; project management; tool support for software development; issues in software engineering."
-  },
-  {
-    "name": "High Performance Computing",
-    "courseCode": "SOFTENG 751",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        [
-          {
-            "points": 15,
-            "type": "POINTS",
-            "courses": [
-              "SOFTENG 306",
-              "COMPSYS 302",
-              "MECHENG 313"
-            ]
-          }
-        ],
-        [
-          {
-            "type": "TEXT",
-            "courses": [
-              "30 points at Stage III in Computer Science"
-            ]
-          }
+  "name": "Object Oriented Software Construction",
+  "courseCode": "SOFTENG 251",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "ENGGEN 131",
+          "COMPSCI 101"
         ]
-      ]
-    ],
-    "description": "Advanced parallel and high performance computing concepts and techniques such as parallel system architecture; parallelisation concepts, algorithms and methodology; parallel programming paradigms and technologies. Core concepts and skills are deepened by a hands-on research project in which a challenging parallel computing problem is analysed and solved."
+      }
+    ]
+  ],
+  "description": "An introduction to Object Oriented software development. Programming with classes; objects and polymorphism. Evolutionary and test-driven development. Analysis and design. Modelling with UML. Design patterns. Design for reuse, for testing, and for ease of change."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b301f"
   },
-  {
-    "name": "Formal Specification and Design",
-    "courseCode": "SOFTENG 752",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "SOFTENG 306"
-          ]
-        }
-      ]
-    ],
-    "description": "Formal specification, design, and (automatic) analysis of software systems. Quality assurance through precise description and rigorous verification on the design. Introduction to the Z, OCL, and CSP notations. Comparison of approaches, emphasising on their practical application."
+  "name": "Quality Assurance",
+  "courseCode": "SOFTENG 254",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 30,
+        "type": "POINTS",
+        "courses": [
+          "SOFTENG 250",
+          "SOFTENG 251"
+        ]
+      }
+    ]
+  ],
+  "description": "Software verification and validation. Static and dynamic QA activities as part of the software lifecycle. Unit, integration, system, and usability testing. Use of visual notations, automation, and tools to support development activities. Metrics to quantify strength of testing and complexity of programs."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3020"
   },
-  {
-    "name": "Bayesian Machine Learning",
-    "courseCode": "SOFTENG 753",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "ENGSCI 211",
-            "ENGSCI 213"
-          ]
-        }
-      ],
-      [
-        {
-          "points": 15,
-          "type": "POINTS",
-          "courses": [
-            "ENGSCI 251",
-            "ENGSCI 281"
-          ]
-        }
-      ]
-    ],
-    "description": "Examines classic and state of the art algorithms in the field of machine learning. Topics will include: Bayesian classification, regression and state estimation; clustering and mixture models; kernel-based methods; sequential models; graphical models; neural networks and deep architectures."
+  "name": "Fundamentals of Software Engineering 1",
+  "courseCode": "SOFTENG 281",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "ENGGEN 131",
+          "COMPSCI 101"
+        ]
+      }
+    ]
+  ],
+  "description": "Object-oriented programming: Computer programming using objects as the mechanism for modularity, abstraction, and code reuse. Instance variables, methods, and encapsulation. Review of control structures for conditionals and iteration. Basic data structures including stacks, queues, array lists, linked lists, basic binary trees. Introduction to algorithms including sorting and searching. Interfaces, inheritance, polymorphism, and abstract classes. Exception handling."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3021"
   },
-  {
-    "name": "Advanced Software Requirements Engineering",
-    "courseCode": "SOFTENG 754",
-    "points": 15.0,
-    "prerequisites": [
+  "name": "Fundamentals of Software Engineering 2",
+  "courseCode": "SOFTENG 282",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "ENGGEN 131",
+          "COMPSCI 101"
+        ]
+      }
+    ]
+  ],
+  "description": "Data structures including complex trees, hash tables; graph representations and algorithms, including minimum spanning trees, traversals, shortest paths; introduction to algorithmic design strategies; correctness and performance analysis."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3022"
+  },
+  "name": "Fundamentals of Software Engineering 3",
+  "courseCode": "SOFTENG 283",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "SOFTENG 251",
+          "SOFTENG 281"
+        ]
+      }
+    ]
+  ],
+  "description": "Software verification and validation. Static and dynamic quality assurance activities as part of the software lifecycle. Unit, integration, system, and usability testing. Metrics to quantify strength of testing and complexity of programs. Techniques for requirements analysis and engineering of software systems including requirements elicitation, analysis, specification, validation, verification. Modelling paradigms including information, behaviour, domain, function and constraint models. Specification languages."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3023"
+  },
+  "name": "Fundamentals of Software Engineering 4",
+  "courseCode": "SOFTENG 284",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "SOFTENG 251",
+          "SOFTENG 281"
+        ]
+      }
+    ]
+  ],
+  "description": "Theoretical foundations of software engineering, including sets, formal languages, operations on languages, deterministic and nondeterministic automata, designing automata, determinisation, regular expressions, logic, induction, recursion, program correctness, computability, counting, elements of graph algorithms."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3024"
+  },
+  "name": "Software Engineering Design 2",
+  "courseCode": "SOFTENG 306",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "SOFTENG 206",
+          "SOFTENG 283"
+        ]
+      }
+    ],
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "SOFTENG 254",
+          "SOFTENG 350"
+        ]
+      }
+    ]
+  ],
+  "description": "Working in project teams to develop software to meet changing requirements for a large application. Project Planning. Requirements gathering. Estimating, costing and tracking. Acceptance and unit testing. Evolutionary design and development. Collaborative development tools."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3025"
+  },
+  "name": "Software Evolution and Maintenance",
+  "courseCode": "SOFTENG 310",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "SOFTENG 254",
+          "SOFTENG 283"
+        ]
+      }
+    ]
+  ],
+  "description": "Design and maintenance of multi-version software, debugging techniques, design and documentation for software re-use, programme migration and transformation, refactoring, tools for software evolution and maintenance."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3026"
+  },
+  "name": "Software Architecture",
+  "courseCode": "SOFTENG 325",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "COMPSYS 302",
+          "SOFTENG 283"
+        ]
+      }
+    ]
+  ],
+  "description": "Taxonomy of software architecture patterns, including client/server and multi-tier. Understanding quality attributes. Methodologies for design of software architectures. Technologies for architecture level development, including middleware."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3027"
+  },
+  "name": "Human Computer Interaction",
+  "courseCode": "SOFTENG 350",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "SOFTENG 206"
+        ]
+      }
+    ]
+  ],
+  "description": "Human behaviour and humans’ expectations of computers. Computer interfaces and the interaction between humans and computers. The significance of the user interface, interface design and user centred design process in software development. Interface usability evaluation methodologies and practice. Includes an evaluation project, group design project, and implementation using current techniques and tools."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3000"
+  },
+  "name": "Fundamentals of Database Systems",
+  "courseCode": "SOFTENG 351",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "COMPSCI 225",
+          "SOFTENG 211",
+          "SOFTENG 284"
+        ]
+      }
+    ]
+  ],
+  "description": "Relational model, Relational algebra, Relational calculus, SQL, SQL and programming languages, Entity-Relationship model, Normalisation, Query processing, Query optimisation, Distributed databases, Transaction management, Concurrency control, Database recovery."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3001"
+  },
+  "name": "Networks and Security",
+  "courseCode": "SOFTENG 364",
+  "points": 15,
+  "prerequisites": [
+    [
       [
         {
           "points": 15,
@@ -572,98 +296,245 @@
           ]
         }
       ]
-    ],
-    "description": "Advanced software engineering concepts focusing on techniques for requirements analysis and requirements engineering (RE) of software systems. Topics will include: requirements elicitation, analysis, specification, validation, verification, user experience design, test-driven development, and continuous integration."
+    ]
+  ],
+  "description": "Physical networks, TCP/IP protocols, switching methods, network layering and components, network services. Information security, computer and network security threats, defence mechanisms and encryption."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3002"
   },
-  {
-    "name": "Special Topic",
-    "courseCode": "SOFTENG 755",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "type": "TEXT",
-          "courses": [
-            "Permission of the Head of Department"
-          ]
-        }
-      ]
-    ],
-    "description": "An advanced course on a topic to be determined each year by the Head of Department. Includes a substantial individual research project."
-  },
-  {
-    "name": "Advanced Agile and Lean Software Development",
-    "courseCode": "SOFTENG 761",
-    "points": 15.0,
-    "prerequisites": [
+  "name": "Operating Systems",
+  "courseCode": "SOFTENG 370",
+  "points": 15,
+  "prerequisites": [
+    [
       [
         {
           "points": 15,
           "type": "POINTS",
           "courses": [
-            "SOFTENG 306"
+            "SOFTENG 251",
+            "SOFTENG 281"
           ]
-        },
+        }
+      ],
+      [
         {
           "points": 15,
-          "type": "TEXT",
+          "type": "POINTS",
           "courses": [
-            "SOFTENG 306 or equivalent"
+            "COMPSYS 201"
           ]
         }
       ]
-    ],
-    "description": "Advanced software engineering concepts focussing on Agile and Lean software development; including hands-on iterative and incremental software development, self-organising teamwork, project management, and an individual research component to explore challenging issues in this discipline."
+    ]
+  ],
+  "description": "History of operating systems. Multi-user systems. Scheduling. Concurrent processes, threads and synchronisation. Memory allocation and virtual memory. Managing files, disks and other peripherals. Security, protection and archiving. Engineering distributed systems; location, migration and replication transparency. Real-time programming and embedded systems."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3003"
   },
-  {
-    "name": "Special Topic: Robotics Process Automation",
-    "courseCode": "SOFTENG 762",
-    "points": 15.0,
-    "prerequisites": [
+  "name": "Research Project",
+  "courseCode": "SOFTENG 700A",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "SOFTENG 306"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "To complete this course students must enrol in SOFTENG 700 A and B"
+        ]
+      }
+    ]
+  ],
+  "description": "Students are required to submit a report on project work carried out on a Software Engineering topic assigned by the Head of Department."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3004"
+  },
+  "name": "Research Project",
+  "courseCode": "SOFTENG 700B",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "SOFTENG 306"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "To complete this course students must enrol in SOFTENG 700 A and B"
+        ]
+      }
+    ]
+  ],
+  "description": "Students are required to submit a report on project work carried out on a Software Engineering topic assigned by the Head of Department."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3005"
+  },
+  "name": "Advanced Software Engineering Development Methods",
+  "courseCode": "SOFTENG 701",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "COMPSYS 302",
+          "SOFTENG 306"
+        ]
+      }
+    ]
+  ],
+  "description": "Advanced studies in methods and techniques for developing complex software systems including topics in software engineering environments, advanced software design, tool construction and software architectures. The core taught skills are extended by individual projects in which independent research is undertaken to address challenging software system problems."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3006"
+  },
+  "name": "Software Engineering Design 1",
+  "courseCode": "SOFTENG 206",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "SOFTENG 251",
+          "SOFTENG 281"
+        ]
+      }
+    ]
+  ],
+  "description": "Project work. Skills and tools in systematic development of software, including testing, version control, build systems, working with others."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3007"
+  },
+  "name": "Advanced Human Computer Interaction",
+  "courseCode": "SOFTENG 702",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "COMPSCI 345",
+          "SOFTENG 350"
+        ]
+      }
+    ]
+  ],
+  "description": "Advanced topics in human computer interaction and human aspects of computer systems relevant to commercial solution development and computer science research. Sample topics: advanced evaluation methods; support of pen and touch-based interaction; trends with domain specific user interface design, such as interfaces for enterprise systems."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3008"
+  },
+  "name": "Studies in Software Engineering 1",
+  "courseCode": "SOFTENG 710",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "Permission of the Head of Department"
+        ]
+      }
+    ]
+  ],
+  "description": "Advanced courses on topics to be determined each year by the Head of Department."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3009"
+  },
+  "name": "Studies in Software Engineering 2",
+  "courseCode": "SOFTENG 711",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "Permission of the Head of Department"
+        ]
+      }
+    ]
+  ],
+  "description": "Advanced courses on topics to be determined each year by the Head of Department."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b300a"
+  },
+  "name": "Software Development Methodologies",
+  "courseCode": "SOFTENG 750",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "SOFTENG 306"
+        ]
+      }
+    ]
+  ],
+  "description": "Software lifecycle; software process models; examples of software processes; software process improvement; project management; tool support for software development; issues in software engineering."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b300b"
+  },
+  "name": "Formal Specification and Design",
+  "courseCode": "SOFTENG 752",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "SOFTENG 306"
+        ]
+      }
+    ]
+  ],
+  "description": "Formal specification, design, and (automatic) analysis of software systems. Quality assurance through precise description and rigorous verification on the design. Introduction to the Z, OCL, and CSP notations. Comparison of approaches, emphasising on their practical application."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b300c"
+  },
+  "name": "High Performance Computing",
+  "courseCode": "SOFTENG 751",
+  "points": 15,
+  "prerequisites": [
+    [
       [
         {
-          "type": "TEXT",
+          "points": 15,
+          "type": "POINTS",
           "courses": [
-            "Permission of the Head of Department"
-          ]
-        }
-      ]
-    ],
-    "description": "This course covers the fundamentals of Robotic Process Automation (RPA) systems. Students explore what RPA is and where it is useful, how RPA fits into current information technology setups, extracting and manipulating data from both external and internal sources, generating reports and statistics, and orchestrating multi-robot installations. Core concepts are extended by a research project where a complex automation problem is analysed and a solution implemented and tested."
-  },
-  {
-    "name": "Capstone Project",
-    "courseCode": "SOFTENG 770",
-    "points": 15.0,
-    "prerequisites": "75 points from Part III courses listed in the BE(Hons) Schedule for the Software Engineering specialisation",
-    "description": "Final year team exercise with students in multi-disciplinary roles, with focus on software engineering, integrating technical learning into realistic design outcomes. Comprehensive investigation of an open ended, complex, real or synthetic computer, electrical and software engineering problem with simulated professional design office constraints. Includes technical, economic and environmental impact components to complete a scheme assessment report."
-  },
-  {
-    "name": "Project X",
-    "courseCode": "SOFTENG 787",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "type": "TEXT",
-          "courses": [
-            "Departmental approval"
-          ]
-        }
-      ]
-    ],
-    "description": "Students are required to submit a report on a topic assigned by the Head of Department."
-  },
-  {
-    "name": "Project Y",
-    "courseCode": "SOFTENG 788A",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "type": "TEXT",
-          "courses": [
-            "Departmental approval"
+            "SOFTENG 306",
+            "COMPSYS 302",
+            "MECHENG 313"
           ]
         }
       ],
@@ -671,171 +542,359 @@
         {
           "type": "TEXT",
           "courses": [
-            "To complete this course students must enrol in SOFTENG 788 A and B"
+            "30 points at Stage III in Computer Science"
           ]
         }
       ]
-    ],
-    "description": "Students are required to submit a report on a topic assigned by the Head of Department."
+    ]
+  ],
+  "description": "Advanced parallel and high performance computing concepts and techniques such as parallel system architecture; parallelisation concepts, algorithms and methodology; parallel programming paradigms and technologies. Core concepts and skills are deepened by a hands-on research project in which a challenging parallel computing problem is analysed and solved."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b300d"
   },
-  {
-    "name": "Project Y",
-    "courseCode": "SOFTENG 788B",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "type": "TEXT",
-          "courses": [
-            "Departmental approval"
-          ]
-        }
-      ],
-      [
-        {
-          "type": "TEXT",
-          "courses": [
-            "To complete this course students must enrol in SOFTENG 788 A and B"
-          ]
-        }
-      ]
+  "name": "Bayesian Machine Learning",
+  "courseCode": "SOFTENG 753",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "ENGSCI 211",
+          "ENGSCI 213"
+        ]
+      }
     ],
-    "description": "Students are required to submit a report on a topic assigned by the Head of Department."
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "ENGSCI 251",
+          "ENGSCI 281"
+        ]
+      }
+    ]
+  ],
+  "description": "Examines classic and state of the art algorithms in the field of machine learning. Topics will include: Bayesian classification, regression and state estimation; clustering and mixture models; kernel-based methods; sequential models; graphical models; neural networks and deep architectures."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b300e"
   },
-  {
-    "name": "Project Z",
-    "courseCode": "SOFTENG 789",
-    "points": 30.0,
-    "prerequisites": [
-      [
-        {
-          "type": "TEXT",
-          "courses": [
-            "Departmental approval"
-          ]
-        }
-      ]
-    ],
-    "description": "Students are required to submit a report on a topic assigned by the Head of Department."
+  "name": "Special Topic",
+  "courseCode": "SOFTENG 755",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "Permission of the Head of Department"
+        ]
+      }
+    ]
+  ],
+  "description": "An advanced course on a topic to be determined each year by the Head of Department. Includes a substantial individual research project."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b300f"
   },
-  {
-    "name": "Research Project (Software Engineering)",
-    "courseCode": "SOFTENG 795",
-    "points": 45.0,
-    "prerequisites": [
-      [
-        {
-          "type": "TEXT",
-          "courses": [
-            "Departmental approval"
-          ]
-        }
-      ],
-      [
-        {
-          "type": "TEXT",
-          "courses": [
-            "To complete this course students must enrol in SOFTENG 785 A and B or SOFTENG 795"
-          ]
-        }
-      ]
+  "name": "Advanced Software Requirements Engineering",
+  "courseCode": "SOFTENG 754",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "SOFTENG 251",
+          "SOFTENG 281"
+        ]
+      }
     ],
-    "description": "Students are required to submit a report on a topic relevant to the specialisation, as assigned by the appropriate Head of Department."
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "COMPSYS 201"
+        ]
+      }
+    ]
+  ],
+  "description": "Advanced software engineering concepts focusing on techniques for requirements analysis and requirements engineering (RE) of software systems. Topics will include: requirements elicitation, analysis, specification, validation, verification, user experience design, test-driven development, and continuous integration."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3010"
   },
-  {
-    "name": "Research Project (Software Engineering)",
-    "courseCode": "SOFTENG 795A",
-    "points": 15.0,
-    "prerequisites": [
-      [
-        {
-          "type": "TEXT",
-          "courses": [
-            "Departmental approval"
-          ]
-        }
-      ],
-      [
-        {
-          "type": "TEXT",
-          "courses": [
-            "To complete this course students must enrol in SOFTENG 785 A and B or SOFTENG 795"
-          ]
-        }
-      ]
-    ],
-    "description": "Students are required to submit a report on a topic relevant to the specialisation, as assigned by the appropriate Head of Department."
+  "name": "Special Topic: Robotics Process Automation",
+  "courseCode": "SOFTENG 762",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "Permission of the Head of Department"
+        ]
+      }
+    ]
+  ],
+  "description": "This course covers the fundamentals of Robotic Process Automation (RPA) systems. Students explore what RPA is and where it is useful, how RPA fits into current information technology setups, extracting and manipulating data from both external and internal sources, generating reports and statistics, and orchestrating multi-robot installations. Core concepts are extended by a research project where a complex automation problem is analysed and a solution implemented and tested."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3011"
   },
-  {
-    "name": "Research Project (Software Engineering)",
-    "courseCode": "SOFTENG 795B",
-    "points": 30.0,
-    "prerequisites": [
-      [
-        {
-          "type": "TEXT",
-          "courses": [
-            "Departmental approval"
-          ]
-        }
-      ],
-      [
-        {
-          "type": "TEXT",
-          "courses": [
-            "To complete this course students must enrol in SOFTENG 785 A and B or SOFTENG 795"
-          ]
-        }
-      ]
-    ],
-    "description": "Students are required to submit a report on a topic relevant to the specialisation, as assigned by the appropriate Head of Department."
+  "name": "Capstone Project",
+  "courseCode": "SOFTENG 770",
+  "points": 15,
+  "prerequisites": "75 points from Part III courses listed in the BE(Hons) Schedule for the Software Engineering specialisation",
+  "description": "Final year team exercise with students in multi-disciplinary roles, with focus on software engineering, integrating technical learning into realistic design outcomes. Comprehensive investigation of an open ended, complex, real or synthetic computer, electrical and software engineering problem with simulated professional design office constraints. Includes technical, economic and environmental impact components to complete a scheme assessment report."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3012"
   },
-  {
-    "name": "ME Thesis (Software Engineering)",
-    "courseCode": "SOFTENG 796A",
-    "points": 60.0,
-    "prerequisites": [
-      [
-        {
-          "type": "TEXT",
-          "courses": [
-            "Departmental approval"
-          ]
-        }
-      ],
-      [
-        {
-          "type": "TEXT",
-          "courses": [
-            "To complete this course students must enrol in SOFTENG 796 A and B"
-          ]
-        }
-      ]
-    ],
-    "description": "Students are required to submit a thesis on a topic assigned by the Head of Department."
+  "name": "Project X",
+  "courseCode": "SOFTENG 787",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "Departmental approval"
+        ]
+      }
+    ]
+  ],
+  "description": "Students are required to submit a report on a topic assigned by the Head of Department."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3013"
   },
-  {
-    "name": "ME Thesis (Software Engineering)",
-    "courseCode": "SOFTENG 796B",
-    "points": 60.0,
-    "prerequisites": [
-      [
-        {
-          "type": "TEXT",
-          "courses": [
-            "Departmental approval"
-          ]
-        }
-      ],
-      [
-        {
-          "type": "TEXT",
-          "courses": [
-            "To complete this course students must enrol in SOFTENG 796 A and B"
-          ]
-        }
-      ]
+  "name": "Advanced Agile and Lean Software Development",
+  "courseCode": "SOFTENG 761",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "points": 15,
+        "type": "POINTS",
+        "courses": [
+          "SOFTENG 306"
+        ]
+      },
+      {
+        "points": 15,
+        "type": "TEXT",
+        "courses": [
+          "SOFTENG 306 or equivalent"
+        ]
+      }
+    ]
+  ],
+  "description": "Advanced software engineering concepts focussing on Agile and Lean software development; including hands-on iterative and incremental software development, self-organising teamwork, project management, and an individual research component to explore challenging issues in this discipline."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3014"
+  },
+  "name": "Project Y",
+  "courseCode": "SOFTENG 788B",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "Departmental approval"
+        ]
+      }
     ],
-    "description": "Students are required to submit a thesis on a topic assigned by the Head of Department."
-  }
-]
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "To complete this course students must enrol in SOFTENG 788 A and B"
+        ]
+      }
+    ]
+  ],
+  "description": "Students are required to submit a report on a topic assigned by the Head of Department."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3015"
+  },
+  "name": "Project Z",
+  "courseCode": "SOFTENG 789",
+  "points": 30,
+  "prerequisites": [
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "Departmental approval"
+        ]
+      }
+    ]
+  ],
+  "description": "Students are required to submit a report on a topic assigned by the Head of Department."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3016"
+  },
+  "name": "Project Y",
+  "courseCode": "SOFTENG 788A",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "Departmental approval"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "To complete this course students must enrol in SOFTENG 788 A and B"
+        ]
+      }
+    ]
+  ],
+  "description": "Students are required to submit a report on a topic assigned by the Head of Department."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3017"
+  },
+  "name": "Research Project (Software Engineering)",
+  "courseCode": "SOFTENG 795",
+  "points": 45,
+  "prerequisites": [
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "Departmental approval"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "To complete this course students must enrol in SOFTENG 785 A and B or SOFTENG 795"
+        ]
+      }
+    ]
+  ],
+  "description": "Students are required to submit a report on a topic relevant to the specialisation, as assigned by the appropriate Head of Department."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3018"
+  },
+  "name": "Research Project (Software Engineering)",
+  "courseCode": "SOFTENG 795B",
+  "points": 30,
+  "prerequisites": [
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "Departmental approval"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "To complete this course students must enrol in SOFTENG 785 A and B or SOFTENG 795"
+        ]
+      }
+    ]
+  ],
+  "description": "Students are required to submit a report on a topic relevant to the specialisation, as assigned by the appropriate Head of Department."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b3019"
+  },
+  "name": "Research Project (Software Engineering)",
+  "courseCode": "SOFTENG 795A",
+  "points": 15,
+  "prerequisites": [
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "Departmental approval"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "To complete this course students must enrol in SOFTENG 785 A and B or SOFTENG 795"
+        ]
+      }
+    ]
+  ],
+  "description": "Students are required to submit a report on a topic relevant to the specialisation, as assigned by the appropriate Head of Department."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b301a"
+  },
+  "name": "ME Thesis (Software Engineering)",
+  "courseCode": "SOFTENG 796B",
+  "points": 60,
+  "prerequisites": [
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "Departmental approval"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "To complete this course students must enrol in SOFTENG 796 A and B"
+        ]
+      }
+    ]
+  ],
+  "description": "Students are required to submit a thesis on a topic assigned by the Head of Department."
+},{
+  "_id": {
+    "$oid": "DefacedC0ffeeBabeB0b301b"
+  },
+  "name": "ME Thesis (Software Engineering)",
+  "courseCode": "SOFTENG 796A",
+  "points": 60,
+  "prerequisites": [
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "Departmental approval"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "TEXT",
+        "courses": [
+          "To complete this course students must enrol in SOFTENG 796 A and B"
+        ]
+      }
+    ]
+  ],
+  "description": "Students are required to submit a thesis on a topic assigned by the Head of Department."
+}]
