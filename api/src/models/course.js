@@ -71,11 +71,11 @@ const courseSchema = mongoose.Schema({
         required: true,
     },
     prerequisites: {
-        type: [CourseRegulaton],
+        type: [[CourseRegulaton]],
         required: false,
     },
     corequisites: {
-        type: [CourseRegulaton],
+        type: [[CourseRegulaton]],
         required: false,
     },
     restrictions: {

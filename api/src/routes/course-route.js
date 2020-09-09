@@ -199,7 +199,7 @@ router.delete("/:courseCode", async (req, res) => {
                 LOGGER.error("Course does not exist");
                 res.status(404).json({ msg: "Requested object not found" });
             } else {
-                LOGGER.info("DELETE request succeeded for /Course/${req.params.name}");
+                LOGGER.info("DELETE request succeeded for /Course/${req.params.courseCode}");
                 res.status(200).json(course);
             }
         }

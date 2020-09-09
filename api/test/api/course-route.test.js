@@ -192,8 +192,8 @@ describe("/POST course", () => {
                 expect(res.body).toHaveProperty("courseCode", "SOFTENG701");
                 expect(res.body).toHaveProperty("points", 15);
                 expect(res.body).toHaveProperty("semester", ["SS"]);
-                expect(res.body).toHaveProperty("prerequisites", [newCourseRegulation]);
-                expect(res.body).toHaveProperty("corequisites", [newCourseRegulation]);
+                expect(res.body).toHaveProperty("prerequisites", [[newCourseRegulation]]);
+                expect(res.body).toHaveProperty("corequisites", [[newCourseRegulation]]);
                 expect(res.body).toHaveProperty("restrictions", ["TESTCOURSE123"]);
                 expect(res.body).toHaveProperty("informalEquivalents", []);
                 expect(res.body).toHaveProperty("description", "Theory of engineering");
