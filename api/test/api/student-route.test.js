@@ -117,6 +117,7 @@ describe("DELETE /student/:upi", () => {
 describe("PUT /student", () => {
     it("should update a course correctly", async (done) => {
         const student = new Student({
+            _id: "5f58655a5bf4944afca0e69d",
             name: "John Doe",
             id: "1234567890",
             upi: "jdoe123",
@@ -128,6 +129,7 @@ describe("PUT /student", () => {
                 .put("/student")
                 .type("json")
                 .send({
+                    _id: "5f58655a5bf4944afca0e69d",
                     name: "John Doe",
                     id: "1234567890",
                     upi: "jdoe123",

@@ -111,7 +111,7 @@ router.get("/", async (req, res) => {
  *          description: Database error
  */
 router.put("/", async (req, res) => {
-    Student.findOneAndUpdate({ upi: req.body.upi }, req.body, { upsert: "true" }, (err, student) => {
+    Student.findByIdAndUpdate(req.body._id, req.body, { upsert: "true" }, (err, student) => {
         if (err) {
             LOGGER.error(err);
             res.status(400).json({ msg: err.message });
