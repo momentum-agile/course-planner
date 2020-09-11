@@ -10,8 +10,16 @@ const generatePlans = (amount, programs, students) => {
     return plans;
 };
 const getRandomNumberInRange = (tic, toc) => Math.floor(Math.random() * (toc - tic - +1)) + tic
-const getPlanID = (i) => i.toString().padStart(24, 'DefacedC0ffeeBabeB0b0012');
-const getCourseID = () => getRandomNumberInRange(0, 39).toString(16).padStart(24, 'DefacedC0ffeeBabeB0b3000');
+const getPlanID = (i) => {
+    return {
+        "$oid": i.toString().padStart(24, 'DefacedC0ffeeBabeB0b0000')
+    }
+}
+const getCourseID = () => {
+    return {
+        "$oid": getRandomNumberInRange(0, 39).toString(16).padStart(24, 'DefacedC0ffeeBabeB0b3000')
+    }
+}
 const semesters = ["S1", "S2", "SS"]
 
 getRandomElement = (array) => array[Math.floor(Math.random() * array.length)]

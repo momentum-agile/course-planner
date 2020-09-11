@@ -14,7 +14,12 @@ function getRandomInt(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-const getStudentID = (i) => i.toString().padStart(24, 'DefacedC0ffeeBabeB0b1012');
+
+const getStudentID = (i) => {
+    return {
+        "$oid": i.toString().padStart(24, 'DefacedC0ffeeBabeB0b1000')
+    }
+}
 
 
 const createStudent = (i) => {
