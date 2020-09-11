@@ -1,6 +1,6 @@
 import React from "react";
+import { HomePage, CoursesPage, Programmes, Students } from "./pages";
 import { Route, Switch } from "react-router-dom";
-import { HomePage, CoursesPage, Programmes } from "./pages";
 
 const App = () => {
     return (
@@ -8,6 +8,7 @@ const App = () => {
             <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route path="/programmes/" component={Programmes} />
+                <Route exact path="/students" component={Students} />
                 <Route exact path="/courses" component={CoursesPage} />
             </Switch>
         </div>
