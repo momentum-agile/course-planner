@@ -1,11 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Flex, Text, Input, Box } from "@chakra-ui/core";
 import { OutlineButton } from "../../components";
+import useProgrammmes from "./useProgrammes";
 
-const NewProgramme = () => {
+const NewProgramme = ({ notifyAddition }) => {
+    const { createProgramme } = useProgrammmes();
+    const [programmeName, setProgrammeName] = useState();
+    const [newProgramme, setNewProgramme] = useState({
+        name: "",
+        regulations: [
+            {
+                points: 0,
+                pointRequirement: "UPTO",
+                courses: [],
+            },
+        ],
+        defaultPlan: null,
+    });
+
+    useEffect(() => {
+        setNewProgramme({
+            name: programmeName,
+            regulations: [
+                {
+                    // TODO: add and change regulations here
+                    points: 0,
+                    pointRequirement: "UPTO",
+                    courses: [],
+                },
+            ],
+            // TODO: add default plan here
+            defaultPlan: null,
+        });
+    }, [programmeName]);
+
     const saveProgramme = () => {
-        // TODO: save programme here
-        console.log("Saved");
+        createProgramme(newProgramme, notifyAddition);
     };
 
     const cancelProgramme = () => {
@@ -29,7 +59,14 @@ const NewProgramme = () => {
                 </Text>
             </Flex>
             <Flex align="center" justify="center" marginTop="10px">
-                <Input variant="flushed" placeholder="Enter Programme Name" textAlign="center" width="50%" size="lg" />
+                <Input
+                    variant="flushed"
+                    placeholder="Enter Programme Name"
+                    textAlign="center"
+                    width="50%"
+                    size="lg"
+                    onChange={(event) => setProgrammeName(event.target.value)}
+                />
             </Flex>
 
             <Flex align="center" justify="center" marginTop="50px">
@@ -45,8 +82,8 @@ const NewProgramme = () => {
                 <OutlineButton text="Define Template" to={`/programmes/${id}/create-template`} height="60px" />
             </Flex>
             <Flex justifyContent="space-evenly" width="100%" align="center">
-                <OutlineButton text="Cancel" height="60px" width="200px" onClick={cancelProgramme} />
-                <OutlineButton text="Save" height="60px" width="200px" onClick={saveProgramme} />
+                <OutlineButton text="Cancel" height="60px" width="200px" onClick={cancelProgramme} to={`/programmes/`} />
+                <OutlineButton text="Save" height="60px" width="200px" onClick={saveProgramme} to={`/programmes/`} />
             </Flex>
         </Flex>
     );

@@ -1,13 +1,17 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { AppConfiguration } from "../../../components";
-import { Programmes, ExistingProgramme, EmptyProgramme, NewProgramme } from "../../../pages";
+import { ProgrammesPage } from "../../../pages";
+import NewProgramme from "../../../pages/Programmes/NewProgramme";
+import ExistingProgramme from "../../../pages/Programmes/ExistingProgramme";
+import EmptyProgramme from "../../../pages/Programmes/EmptyProgramme";
+import MomentumClient from "../../../common/MomentumClient";
 
 test("Main Programmes Page", () => {
     const tree = renderer
         .create(
             <AppConfiguration>
-                <Programmes />
+                <ProgrammesPage />
             </AppConfiguration>,
         )
         .toJSON();
@@ -28,10 +32,12 @@ test("Creating new programmes sub-page ", () => {
 });
 
 test("Existing programmes sub-page ", () => {
+    let firstCourse;
+
     const tree = renderer
         .create(
             <AppConfiguration>
-                <ExistingProgramme />
+                <ExistingProgramme id={"fakeProgrammeID"} />
             </AppConfiguration>,
         )
         .toJSON();

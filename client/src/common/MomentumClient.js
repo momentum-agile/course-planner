@@ -36,6 +36,28 @@ const addStudent = (student) => {
     });
 };
 
+
+const getProgrammes = () => {
+    return ApiClient(`programmedegree`);
+};
+
+const getProgrammeInfo = (id) => {
+    return ApiClient(`programmedegree/${id}`);
+};
+
+const createProgramme = (newProgramme) => {
+    return ApiClient(`programmedegree`, {
+        method: "POST",
+        body: newProgramme,
+    });
+};
+
+const deleteProgramme = (id) => {
+    return ApiClient(`programmedegree/${id}`, {
+        method: "DELETE",
+    });
+};
+
 const MomentumClient = {
     getCourses,
     createCourse,
@@ -44,6 +66,10 @@ const MomentumClient = {
     addStudent,
     editStudent,
     deleteStudent,
+    getProgrammes,
+    getProgrammeInfo,
+    createProgramme,
+    deleteProgramme,
 };
 
 export default MomentumClient;

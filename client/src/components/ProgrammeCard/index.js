@@ -2,10 +2,10 @@ import React from "react";
 import { Text, Button, Icon } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 
-const ProgrammeCard = ({ programmeName, to }) => {
+const ProgrammeCard = ({ programme, to }) => {
     return (
         <Link to={`/programmes/${to}`} style={{ textDecoration: "none" }}>
-            {programmeName ? (
+            {programme ? (
                 <Button
                     backgroundColor="#FFFFFF"
                     border="none"
@@ -18,7 +18,7 @@ const ProgrammeCard = ({ programmeName, to }) => {
                     _focus={{ bg: "#0F487E", color: "#F2F2F2" }}
                 >
                     <Text textAlign="center" fontSize="2xl" color="#000000">
-                        {programmeName}
+                        {programme.name}
                     </Text>
                 </Button>
             ) : (

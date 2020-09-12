@@ -27,6 +27,7 @@ exports[`Creating new programmes sub-page  1`] = `
   >
     <input
       className="css-frh740"
+      onChange={[Function]}
       placeholder="Enter Programme Name"
     />
   </div>
@@ -68,7 +69,7 @@ exports[`Creating new programmes sub-page  1`] = `
     className="css-4xdld5"
   >
     <a
-      href="/"
+      href="/programmes/"
       onClick={[Function]}
     >
       <button
@@ -84,7 +85,7 @@ exports[`Creating new programmes sub-page  1`] = `
       </button>
     </a>
     <a
-      href="/"
+      href="/programmes/"
       onClick={[Function]}
     >
       <button
@@ -131,6 +132,7 @@ exports[`Existing programmes sub-page  1`] = `
     >
       <button
         className="css-q3he6u"
+        onClick={[Function]}
         type="button"
       >
         <svg
@@ -203,9 +205,7 @@ exports[`Existing programmes sub-page  1`] = `
   >
     <b
       className="css-1t9wziz"
-    >
-      BE (Hons) SE
-    </b>
+    />
   </div>
   <div
     className="css-u6v8er"
@@ -646,7 +646,7 @@ exports[`Existing programmes sub-page  1`] = `
     className="css-ldo4d5"
   >
     <a
-      href="/programmes/undefined/create-template"
+      href="/programmes/fakeProgrammeID/create-template"
       onClick={[Function]}
     >
       <button
@@ -746,10 +746,10 @@ exports[`Main Programmes Page 1`] = `
       </div>
     </div>
     <div
-      className="css-1lads1q"
+      className="css-1nox3ec"
     >
       <div
-        className="css-1kvbe8u"
+        className="css-1d3az10"
       >
         <a
           href="/programmes/new"
@@ -778,46 +778,6 @@ exports[`Main Programmes Page 1`] = `
                   fill="currentColor"
                 />
               </svg>
-            </p>
-          </button>
-        </a>
-        <a
-          href="/programmes/1"
-          onClick={[Function]}
-          style={
-            Object {
-              "textDecoration": "none",
-            }
-          }
-        >
-          <button
-            className="css-1speelj"
-            type="button"
-          >
-            <p
-              className="css-dbik8z"
-            >
-              MEngSt SE
-            </p>
-          </button>
-        </a>
-        <a
-          href="/programmes/2"
-          onClick={[Function]}
-          style={
-            Object {
-              "textDecoration": "none",
-            }
-          }
-        >
-          <button
-            className="css-1speelj"
-            type="button"
-          >
-            <p
-              className="css-dbik8z"
-            >
-              BE (Hons) SE
             </p>
           </button>
         </a>
