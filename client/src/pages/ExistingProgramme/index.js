@@ -1,8 +1,10 @@
-import React from "react";
-import { Flex, Text, Box, IconButton } from "@chakra-ui/core";
-import { OutlineButton } from "../../components";
+import React, { useState } from "react";
+import { Flex, Text, Box, IconButton, Stack } from "@chakra-ui/core";
+import EditRequirementsBox from "./EditRequirementsBox";
+import { OutlineButton, ProgrammeRequirementsItem } from "../../components";
 
 const ExistingProgramme = ({ id }) => {
+    const [createNewRequirements, setCreateNewRequirements] = useState(false);
     return (
         <Flex width="100%" direction="column">
             <Flex align="center" justify="center">
@@ -30,15 +32,22 @@ const ExistingProgramme = ({ id }) => {
                 </Text>
             </Flex>
 
-            <Flex align="center" justify="center" marginTop="50px">
+            <Flex align="center" justify="center" direction="column">
                 <Text textAlign="center" fontSize="md" color="#000000" as="i">
                     Requirements
                 </Text>
-                <Box as="span" ml="2" color="gray.600" bg="gray" />
+                <Box bg="#e2e2e2" width="75%" textAlign="center" padding="5px" marginTop="10px">
+                    <IconButton width="90%" icon="add" bg="#616161" color="white" onClick={() => setCreateNewRequirements(true)} />
+                    <Stack direction="column" height="150px" width="100%" overflowY="scroll" align="center">
+                        <ProgrammeRequirementsItem onClick={() => setCreateNewRequirements(true)} />
+                        <ProgrammeRequirementsItem onClick={() => setCreateNewRequirements(true)} />
+                        <ProgrammeRequirementsItem onClick={() => setCreateNewRequirements(true)} />
+                        <ProgrammeRequirementsItem onClick={() => setCreateNewRequirements(true)} />
+                        <ProgrammeRequirementsItem onClick={() => setCreateNewRequirements(true)} />
+                    </Stack>
+                </Box>
             </Flex>
-
-            <Flex direction="column" align="center" justify="center" height="100%"></Flex>
-
+            {createNewRequirements && <EditRequirementsBox closeEdit={() => setCreateNewRequirements(false)} />}
             <Flex justify="center" width="100%">
                 <OutlineButton text="Define Template" to={`/programmes/${id}/create-template`} height="60px" />
             </Flex>

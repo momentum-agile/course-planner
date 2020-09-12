@@ -208,20 +208,440 @@ exports[`Existing programmes sub-page  1`] = `
     </b>
   </div>
   <div
-    className="css-1ailrle"
+    className="css-u6v8er"
   >
     <i
       className="css-1dbqq24"
     >
       Requirements
     </i>
-    <span
-      className="css-1q0hmy3"
-    />
+    <div
+      className="css-c0ak17"
+    >
+      <button
+        className="css-1eie9zm"
+        onClick={[Function]}
+        type="button"
+      >
+        <svg
+          aria-hidden={true}
+          className="css-1im46kq"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+      <div
+        className="css-12wbpgd"
+      >
+        <div
+          className="css-4s5mmi"
+        >
+          <p
+            className="css-7rc2le"
+          >
+            1.
+          </p>
+          <p
+            className="css-12kv7x2"
+          >
+            Exactly
+          </p>
+          <p
+            className="css-12kv7x2"
+          >
+            15 pts
+          </p>
+          <p
+            className="css-lslvft"
+          >
+            FROM
+          </p>
+          <div
+            className="programmeRequirements css-chxm8w"
+          >
+            <p
+              className="css-xbb7oq"
+            >
+              SE306
+            </p>
+            <p
+              className="css-xbb7oq"
+            >
+              SE325
+            </p>
+            <p
+              className="css-xbb7oq"
+            >
+              SE350
+            </p>
+            <p
+              className="css-xbb7oq"
+            >
+              SE351
+            </p>
+            <p
+              className="css-xbb7oq"
+            >
+              SE351
+            </p>
+            <p
+              className="css-8fehp9"
+            >
+              SE351
+            </p>
+          </div>
+          <svg
+            className="css-m4orox"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+              }
+            }
+            viewBox="0 0 1024 1024"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M696 480H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+            />
+            <path
+              d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+            />
+          </svg>
+        </div>
+        <div
+          className="css-4s5mmi"
+        >
+          <p
+            className="css-7rc2le"
+          >
+            1.
+          </p>
+          <p
+            className="css-12kv7x2"
+          >
+            Exactly
+          </p>
+          <p
+            className="css-12kv7x2"
+          >
+            15 pts
+          </p>
+          <p
+            className="css-lslvft"
+          >
+            FROM
+          </p>
+          <div
+            className="programmeRequirements css-chxm8w"
+          >
+            <p
+              className="css-xbb7oq"
+            >
+              SE306
+            </p>
+            <p
+              className="css-xbb7oq"
+            >
+              SE325
+            </p>
+            <p
+              className="css-xbb7oq"
+            >
+              SE350
+            </p>
+            <p
+              className="css-xbb7oq"
+            >
+              SE351
+            </p>
+            <p
+              className="css-xbb7oq"
+            >
+              SE351
+            </p>
+            <p
+              className="css-8fehp9"
+            >
+              SE351
+            </p>
+          </div>
+          <svg
+            className="css-m4orox"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+              }
+            }
+            viewBox="0 0 1024 1024"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M696 480H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+            />
+            <path
+              d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+            />
+          </svg>
+        </div>
+        <div
+          className="css-4s5mmi"
+        >
+          <p
+            className="css-7rc2le"
+          >
+            1.
+          </p>
+          <p
+            className="css-12kv7x2"
+          >
+            Exactly
+          </p>
+          <p
+            className="css-12kv7x2"
+          >
+            15 pts
+          </p>
+          <p
+            className="css-lslvft"
+          >
+            FROM
+          </p>
+          <div
+            className="programmeRequirements css-chxm8w"
+          >
+            <p
+              className="css-xbb7oq"
+            >
+              SE306
+            </p>
+            <p
+              className="css-xbb7oq"
+            >
+              SE325
+            </p>
+            <p
+              className="css-xbb7oq"
+            >
+              SE350
+            </p>
+            <p
+              className="css-xbb7oq"
+            >
+              SE351
+            </p>
+            <p
+              className="css-xbb7oq"
+            >
+              SE351
+            </p>
+            <p
+              className="css-8fehp9"
+            >
+              SE351
+            </p>
+          </div>
+          <svg
+            className="css-m4orox"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+              }
+            }
+            viewBox="0 0 1024 1024"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M696 480H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+            />
+            <path
+              d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+            />
+          </svg>
+        </div>
+        <div
+          className="css-4s5mmi"
+        >
+          <p
+            className="css-7rc2le"
+          >
+            1.
+          </p>
+          <p
+            className="css-12kv7x2"
+          >
+            Exactly
+          </p>
+          <p
+            className="css-12kv7x2"
+          >
+            15 pts
+          </p>
+          <p
+            className="css-lslvft"
+          >
+            FROM
+          </p>
+          <div
+            className="programmeRequirements css-chxm8w"
+          >
+            <p
+              className="css-xbb7oq"
+            >
+              SE306
+            </p>
+            <p
+              className="css-xbb7oq"
+            >
+              SE325
+            </p>
+            <p
+              className="css-xbb7oq"
+            >
+              SE350
+            </p>
+            <p
+              className="css-xbb7oq"
+            >
+              SE351
+            </p>
+            <p
+              className="css-xbb7oq"
+            >
+              SE351
+            </p>
+            <p
+              className="css-8fehp9"
+            >
+              SE351
+            </p>
+          </div>
+          <svg
+            className="css-m4orox"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+              }
+            }
+            viewBox="0 0 1024 1024"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M696 480H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+            />
+            <path
+              d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+            />
+          </svg>
+        </div>
+        <div
+          className="css-4s5mmi"
+        >
+          <p
+            className="css-7rc2le"
+          >
+            1.
+          </p>
+          <p
+            className="css-12kv7x2"
+          >
+            Exactly
+          </p>
+          <p
+            className="css-12kv7x2"
+          >
+            15 pts
+          </p>
+          <p
+            className="css-lslvft"
+          >
+            FROM
+          </p>
+          <div
+            className="programmeRequirements css-chxm8w"
+          >
+            <p
+              className="css-xbb7oq"
+            >
+              SE306
+            </p>
+            <p
+              className="css-xbb7oq"
+            >
+              SE325
+            </p>
+            <p
+              className="css-xbb7oq"
+            >
+              SE350
+            </p>
+            <p
+              className="css-xbb7oq"
+            >
+              SE351
+            </p>
+            <p
+              className="css-xbb7oq"
+            >
+              SE351
+            </p>
+            <p
+              className="css-8fehp9"
+            >
+              SE351
+            </p>
+          </div>
+          <svg
+            className="css-m4orox"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+              }
+            }
+            viewBox="0 0 1024 1024"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M696 480H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+            />
+            <path
+              d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
   </div>
-  <div
-    className="css-16iwlaa"
-  />
   <div
     className="css-ldo4d5"
   >

@@ -36,7 +36,6 @@ const addStudent = (student) => {
     });
 };
 
-
 const MomentumClient = {
     getCourses,
     createCourse,
