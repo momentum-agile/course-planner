@@ -125,7 +125,7 @@ router.post("/", async (req, res) => {
 /**
  * @swagger
  * path:
- *  /programmedegree/{id}:
+ *  /programmedegree/:
  *    put:
  *      tags: [ProgrammeDegree]
  *      summary: Updates a Programme degree
@@ -152,8 +152,8 @@ router.post("/", async (req, res) => {
  *        "400":
  *          description: Database error
  */
-router.put("/:id", async (req, res) => {
-    ProgrammeDegree.findByIdAndUpdate(req.params.id, req.body, { upsert: "true" }, (err, result) => {
+router.put("/", async (req, res) => {
+    ProgrammeDegree.findByIdAndUpdate(req.body._id, req.body, { upsert: "true" }, (err, result) => {
         if (err) {
             LOGGER.error(err);
             res.status(400).json({ msg: err.message });

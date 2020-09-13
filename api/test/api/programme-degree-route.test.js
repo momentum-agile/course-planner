@@ -112,7 +112,7 @@ describe("/POST programme-degree", () => {
             })
             .end((err, res) => {
                 expect(res.statusCode).toBe(400);
-                expect(res.body).toMatchObject({ msg: "ProgrammeDegree validation failed: name: Path `name` is required." });
+                expect(res.body).toMatchObject({msg: "ProgrammeDegree validation failed: name: Path `name` is required."});
                 done();
             });
     });
@@ -157,7 +157,7 @@ describe("PUT /programmeDegree", () => {
         });
         programmeDegree.save((err, programmeRes) => {
             request(app)
-                .put("/programmedegree/" + programmeRes._id)
+                .put("/programmedegree/")
                 .type("json")
                 .send({
                     _id: "5f58655ad0d808069389c5be",
