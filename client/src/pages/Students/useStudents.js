@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import MomentumClient from "../../common/MomentumClient";
+import CoursePlannerClient from "../../common/CoursePlannerClient";
 
 const courseTableColumns = [
     {
@@ -20,25 +20,25 @@ const useStudents = () => {
     const [students, setStudents] = useState([]);
 
     const addStudent = (student) => {
-        MomentumClient.addStudent(student)
+        CoursePlannerClient.addStudent(student)
             .then(() => fetchAllStudents())
             .catch((e) => console.error(e));
     };
 
     const editStudent = (student) => {
-        MomentumClient.editStudent(student)
+        CoursePlannerClient.editStudent(student)
             .then(() => fetchAllStudents())
             .catch((e) => console.error(e));
     };
 
     const deleteStudent = (upi) => {
-        MomentumClient.deleteStudent(upi)
+        CoursePlannerClient.deleteStudent(upi)
             .then(() => fetchAllStudents())
             .catch((e) => console.error(e));
     };
 
     const fetchAllStudents = () => {
-        MomentumClient.getStudents()
+        CoursePlannerClient.getStudents()
             .then((res) => setStudents(res))
             .catch((e) => console.error(e));
     };

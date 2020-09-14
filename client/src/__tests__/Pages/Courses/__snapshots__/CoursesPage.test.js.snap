@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<CoursesPage /> 1`] = `
+exports[`<Courses /> 1`] = `
 <div
   className="css-m5hsxh"
 >

@@ -1,17 +1,16 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { AppConfiguration } from "../../../components";
-import { ProgrammesPage } from "../../../pages";
+import { Programmes } from "../../../pages";
 import NewProgramme from "../../../pages/Programmes/NewProgramme";
 import ExistingProgramme from "../../../pages/Programmes/ExistingProgramme";
 import EmptyProgramme from "../../../pages/Programmes/EmptyProgramme";
-import MomentumClient from "../../../common/MomentumClient";
 
 test("Main Programmes Page", () => {
     const tree = renderer
         .create(
             <AppConfiguration>
-                <ProgrammesPage />
+                <Programmes />
             </AppConfiguration>,
         )
         .toJSON();

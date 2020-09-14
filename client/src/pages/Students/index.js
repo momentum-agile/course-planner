@@ -1,3 +1,3 @@
-import StudentPage from "./StudentPage";
+import Students from "./Students";
 
-export default StudentPage;
+export default Students;

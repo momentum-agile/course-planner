@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
-import MomentumClient from "../../common/MomentumClient";
+import CoursePlannerClient from "../../common/CoursePlannerClient";
 
 const useProgrammes = () => {
     const [programmeDegrees, setProgrammeDegrees] = useState([]);
 
     const createProgramme = (programme, updateList) => {
-        MomentumClient.createProgramme(programme)
+        CoursePlannerClient.createProgramme(programme)
             .then(() => updateList())
             .then(() => fetchAllProgrammes())
             .catch((e) => console.error(e));
     };
 
     const deleteProgramme = (id, history, notifyUpdate) => {
-        MomentumClient.deleteProgramme(id)
+        CoursePlannerClient.deleteProgramme(id)
             .then(() => {
                 history.push("/programmes/");
                 notifyUpdate();
@@ -21,13 +21,13 @@ const useProgrammes = () => {
     };
 
     const fetchAllProgrammes = () => {
-        MomentumClient.getProgrammes()
+        CoursePlannerClient.getProgrammes()
             .then((res) => setProgrammeDegrees(res))
             .catch((e) => console.error(e));
     };
 
     const updateProgramme = (programme, notifyUpdate) => {
-        MomentumClient.updateProgramme(programme)
+        CoursePlannerClient.updateProgramme(programme)
             .then(() => notifyUpdate())
             .catch((e) => console.error(e));
     };

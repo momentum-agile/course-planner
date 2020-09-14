@@ -1,3 +1,3 @@
-import ProgrammesPage from "./ProgrammesPage";
+import Programmes from "./Programmes";
 
-export default ProgrammesPage;
+export default Programmes;

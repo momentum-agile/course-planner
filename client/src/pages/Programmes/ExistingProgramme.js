@@ -3,7 +3,7 @@ import { Flex, Text, Box, IconButton, Stack, Input } from "@chakra-ui/core";
 import { OutlineButton, ProgrammeRequirementsItem } from "../../components";
 import EditRequirementsBox from "./EditRequirementsBox";
 import { useHistory } from "react-router-dom";
-import ConfirmationDialog from "../../components/ConfirmationDialog";
+import { ConfirmationDialog } from "../../components/";
 import useProgrammmes from "./useProgrammes";
 
 const ExistingProgramme = ({ programme, notifyUpdate }) => {

@@ -13,3 +13,18 @@ code {
 * {
     box-sizing: border-box;
 }
+
+/* width */
+.programmeRequirements::-webkit-scrollbar {
+    height: 3px;
+}
+
+/* Handle */
+.programmeRequirements::-webkit-scrollbar-thumb {
+    background: white;
+}
+
+/* Handle on hover */
+.programmeRequirements::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

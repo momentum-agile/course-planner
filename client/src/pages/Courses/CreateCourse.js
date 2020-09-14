@@ -6,21 +6,20 @@ import SaveCancelButtonSet from "./SaveCancelButtonSet";
 const TYPES = {
     simple: "simple",
     points: "points",
-    complex: "complex"
-}
+    complex: "complex",
+};
 
 const CreateCourse = () => {
-
     const cancelCreateCourse = () => {
         console.log("CANCEL");
-    }
+    };
 
     const saveCreateCourse = () => {
         console.log("SAVE");
-    }
+    };
 
     return (
-        <Flex width="100%" align="center" justify="left" marginTop="20px" p={4} direction="column" >
+        <Flex width="100%" align="center" justify="left" marginTop="20px" p={4} direction="column">
             <CourseField type={TYPES.simple} title="Course Code" required={true} />
             <CourseField type={TYPES.simple} title="Course Name" />
             <CourseField type={TYPES.simple} title="Description" />

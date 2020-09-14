@@ -8,7 +8,7 @@ import EmptyProgramme from "./EmptyProgramme";
 import NewProgramme from "./NewProgramme";
 import useProgrammmes from "./useProgrammes";
 
-const ProgrammesPage = () => {
+const Programmes = () => {
     const location = useParams();
     const { programmeDegrees, fetchAllProgrammes } = useProgrammmes();
     const [numOfProgrammes, setNumOfProgrammes] = useState(programmeDegrees.length);
@@ -62,4 +62,4 @@ const ProgrammesPage = () => {
     );
 };
 
-export default ProgrammesPage;
+export default Programmes;

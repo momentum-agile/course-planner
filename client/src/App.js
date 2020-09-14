@@ -1,16 +1,16 @@
 import React from "react";
-import { HomePage, CoursesPage, ProgrammesPage, Students } from "./pages";
+import { Home, Courses, Programmes, Students } from "./pages";
 import { Route, Switch } from "react-router-dom";
 
 const App = () => {
     return (
         <div>
             <Switch>
-                <Route exact path="/" component={HomePage} />
-                <Route exact path="/programmes/" component={ProgrammesPage} />
-                <Route path="/programmes/:id" component={ProgrammesPage} />
+                <Route exact path="/" component={Home} />
+                <Route exact path="/programmes/" component={Programmes} />
+                <Route path="/programmes/:id" component={Programmes} />
                 <Route exact path="/students" component={Students} />
-                <Route exact path="/courses" component={CoursesPage} />
+                <Route exact path="/courses" component={Courses} />
             </Switch>
         </div>
     );

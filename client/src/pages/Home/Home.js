@@ -2,7 +2,7 @@ import React from "react";
 import { Flex, Text, Image } from "@chakra-ui/core";
 import { OutlineButton } from "../../components";
 
-const HomePage = () => {
+const Home = () => {
     return (
         <Flex height="100vh" width="100%" direction="row">
             <Flex width="75%" backgroundColor="#303030">
@@ -39,4 +39,4 @@ const HomePage = () => {
     );
 };
 
-export default HomePage;
+export default Home;

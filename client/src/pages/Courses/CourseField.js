@@ -2,17 +2,21 @@ import React from "react";
 import { Flex, Text, Box, Editable, EditableInput, EditablePreview, NumberInput } from "@chakra-ui/core";
 
 const CourseField = ({ type, title, value, onChange, required = false }) => {
-
     return (
         <Flex height="100%" width="100%" direction="row" paddingTop="2">
-            {
-                type === "simple"
-                    ? <InlineEdit onSubmit={() => console.log("SUBMIT")} onCancel={() => console.log("CANCEL")} title={title} value={value} placeholder={`Add a ${title}`} onChange={onChange} />
-
-                    : <InLineNumber title={title} value={value} onChange={onChange} />
-            }
+            {type === "simple" ? (
+                <InlineEdit
+                    onSubmit={() => console.log("SUBMIT")}
+                    onCancel={() => console.log("CANCEL")}
+                    title={title}
+                    value={value}
+                    placeholder={`Add a ${title}`}
+                    onChange={onChange}
+                />
+            ) : (
+                <InLineNumber title={title} value={value} onChange={onChange} />
+            )}
         </Flex>
-
     );
 };
 
@@ -46,7 +50,6 @@ const InlineEdit = ({ onSubmit, onCancel, onChange, value, title, placeholder })
 };
 
 const InLineNumber = ({ onChange, value, title }) => {
-
     return (
         <Flex fontSize="2xl" justify="space-around" marginTop="8px">
             <Box>
@@ -57,6 +60,6 @@ const InLineNumber = ({ onChange, value, title }) => {
             </Box>
         </Flex>
     );
-}
+};
 
 export default CourseField;

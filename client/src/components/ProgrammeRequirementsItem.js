@@ -1,7 +1,6 @@
 import React from "react";
 import { Flex, Box, Text, Stack } from "@chakra-ui/core";
 import { AiOutlineMinusCircle } from "react-icons/ai";
-import styles from "./index.module.css";
 
 const ProgrammeRequirementsItem = () => {
     return (
@@ -29,7 +28,7 @@ const ProgrammeRequirementsItem = () => {
             <Text textAlign="left" width="10%">
                 FROM
             </Text>
-            <Stack className={styles.programmeRequirements} textAlign="left" isInline overflowX="scroll" width="35%">
+            <Stack className="programmeRequirements" textAlign="left" isInline overflowX="scroll" width="35%">
                 <Text
                     height="60%"
                     border="solid"

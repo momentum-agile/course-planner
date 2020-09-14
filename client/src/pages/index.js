@@ -1,6 +1,6 @@
-import HomePage from "./HomePage";
-import CoursesPage from "./CoursesPage";
-import ProgrammesPage from "./Programmes/ProgrammesPage";
+import Home from "./Home";
+import Courses from "./Courses";
+import Programmes from "./Programmes/";
 import Students from "./Students";
 
-export { HomePage, CoursesPage, ProgrammesPage, Students };
+export { Home, Courses, Programmes, Students };

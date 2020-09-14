@@ -1,34 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Text, Button, Divider, Input, IconButton } from "@chakra-ui/core";
-import { Link } from "react-router-dom";
-import { AiFillHome } from "react-icons/ai";
+import { Flex, Text, Button, Divider, Input } from "@chakra-ui/core";
 import Table from "./Table";
-import useStudents from "./useStudents";
-import ViewStudent from "./ViewStudent";
-import AddStudent from "./AddStudent";
+import CreateCourse from "./CreateCourse";
+import ViewCourse from "./ViewCourse";
+import useCourses from "./useCourses";
 
-const StudentPage = () => {
+const Courses = () => {
     const [currRow, setCurrRow] = useState("0");
     const [searchInput, setSearchInput] = useState("");
-    const [selectedStudent, setSelectedStudent] = useState({});
-    const [addingStudent, setAddingStudent] = useState(false);
-    const { data, columns, editStudent, deleteStudent, addStudent } = useStudents();
+    const [selectedCourse, setSelectedCourse] = useState({});
+    const [addingCourse, setAddingCourse] = useState(false);
+    const { data, columns, updateCourse } = useCourses();
 
     useEffect(() => {
-        setSelectedStudent(data[currRow] || {});
+        setSelectedCourse(data[currRow] || {});
     }, [data, currRow]);
 
     return (
         <Flex height="100vh" width="100%" direction="row" backgroundColor="#F0F0F0">
             <Flex height="100%" width="50%" direction="column">
-                <Flex left="1px" justify="flex-start">
-                    <Link to="/">
-                        <IconButton as={AiFillHome} left="20px" top="20px" size="sm" />
-                    </Link>
-                </Flex>
-                <Flex width="100%" justify="center" marginTop="20px">
-                    <Text textAlign="center" fontSize="5xl" color="#113F73">
-                        Students
+                <Flex width="100%" align="center" justify="center" marginTop="20px" p={4}>
+                    <Text textAlign="center" fontSize="4xl" color="#113F73">
+                        Courses
                     </Text>
                 </Flex>
                 <Flex width="100%" align="center" justify="center" direction="row">
@@ -38,7 +31,7 @@ const StudentPage = () => {
                             value={searchInput}
                             onChange={(e) => setSearchInput(e.target.value)}
                             backgroundColor="#D3D3D3"
-                            placeholder="Search Students"
+                            placeholder="Search Courses"
                         />
                     </Flex>
                     <Flex p={2} marginLeft={2}>
@@ -47,11 +40,11 @@ const StudentPage = () => {
                             backgroundColor="#162971"
                             onClick={() => {
                                 setCurrRow();
-                                setAddingStudent(true);
+                                setAddingCourse(true);
                             }}
                         >
                             <Text textAlign="center" color="white">
-                                Add Student
+                                + Add Course
                             </Text>
                         </Button>
                     </Flex>
@@ -62,7 +55,7 @@ const StudentPage = () => {
                         data={data}
                         getRowProps={(row) => ({
                             onClick: () => {
-                                setAddingStudent(false);
+                                setAddingCourse(false);
                                 setCurrRow(row.id);
                             },
                             style: {
@@ -76,15 +69,12 @@ const StudentPage = () => {
                 </Flex>
             </Flex>
             <Divider orientation="vertical" backgroundColor="#A7C4E0" width="2px" />
+            {/* Right side of page */}
             <Flex height="100%" width="50%" direction="column">
-                {addingStudent ? (
-                    <AddStudent addStudent={addStudent} />
-                ) : (
-                    <ViewStudent student={selectedStudent} editStudent={editStudent} deleteStudent={deleteStudent} />
-                )}
+                {addingCourse ? <CreateCourse /> : <ViewCourse course={selectedCourse} updateCourse={updateCourse} />}
             </Flex>
         </Flex>
     );
 };
 
-export default StudentPage;
+export default Courses;

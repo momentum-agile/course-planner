@@ -6,14 +6,14 @@ import SaveCancelButtonSet from "./SaveCancelButtonSet";
 const TYPES = {
     simple: "simple",
     points: "points",
-}
+};
 
 const FIELDS = {
     code: "courseCode",
     name: "name",
     desc: "description",
     pts: "points",
-}
+};
 
 const ViewCourse = ({ course, updateCourse }) => {
     const [isEdited, setIsEdited] = useState(false);
@@ -28,28 +28,28 @@ const ViewCourse = ({ course, updateCourse }) => {
         setName(course.name);
         setDesc(course.description);
         setPts(course.points);
-    }, [course])
+    }, [course]);
 
     const editField = (field, val) => {
         setIsEdited(true);
 
         switch (field) {
             case FIELDS.code:
-                setCode(val)
+                setCode(val);
                 return;
             case FIELDS.name:
-                setName(val)
+                setName(val);
                 return;
             case FIELDS.desc:
-                setDesc(val)
+                setDesc(val);
                 return;
             case FIELDS.pts:
-                setPts(val)
+                setPts(val);
                 return;
             default:
                 return;
         }
-    }
+    };
 
     const cancelEditCourse = () => {
         setIsEdited(false);
@@ -57,7 +57,7 @@ const ViewCourse = ({ course, updateCourse }) => {
         setName(course.name);
         setDesc(course.description);
         setPts(course.points);
-    }
+    };
 
     const saveEditCourse = () => {
         const editedCourse = { ...course };
@@ -70,14 +70,14 @@ const ViewCourse = ({ course, updateCourse }) => {
         setIsEdited(false);
 
         updateCourse(editedCourse);
-    }
+    };
 
     return (
-        <Flex width="100%" align="center" justify="left" marginTop="20px" p={4} direction="column" >
-            <CourseField type={TYPES.simple} title="Course Code" value={code} onChange={c => editField(FIELDS.code, c)} required={true} />
-            <CourseField type={TYPES.simple} title="Course Name" value={name} onChange={n => editField(FIELDS.name, n)} />
-            <CourseField type={TYPES.simple} title="Description" value={desc} onChange={d => editField(FIELDS.desc, d)} />
-            <CourseField type={TYPES.points} title="Points" value={pts} onChange={p => editField(FIELDS.pts, p)} required={true} />
+        <Flex width="100%" align="center" justify="left" marginTop="20px" p={4} direction="column">
+            <CourseField type={TYPES.simple} title="Course Code" value={code} onChange={(c) => editField(FIELDS.code, c)} required={true} />
+            <CourseField type={TYPES.simple} title="Course Name" value={name} onChange={(n) => editField(FIELDS.name, n)} />
+            <CourseField type={TYPES.simple} title="Description" value={desc} onChange={(d) => editField(FIELDS.desc, d)} />
+            <CourseField type={TYPES.points} title="Points" value={pts} onChange={(p) => editField(FIELDS.pts, p)} required={true} />
             <SaveCancelButtonSet onCancel={cancelEditCourse} onSave={saveEditCourse} isActive={isEdited} />
         </Flex>
     );

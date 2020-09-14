@@ -1,13 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { HomePage } from "../../../pages";
 import { AppConfiguration } from "../../../components";
+import { Courses } from "../../../pages";
 
-test("<HomePage />", () => {
+test("<Courses />", () => {
     const tree = renderer
         .create(
             <AppConfiguration>
-                <HomePage />
+                <Courses />
             </AppConfiguration>,
         )
         .toJSON();

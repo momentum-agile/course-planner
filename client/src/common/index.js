@@ -1,2 +1,3 @@
-import MomentumClient from "./MomentumClient";
-export { MomentumClient };
+import CoursePlannerClient from "./CoursePlannerClient";
+
+export { CoursePlannerClient };

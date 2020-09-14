@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import MomentumClient from "../../common/MomentumClient";
+import CoursePlannerClient from "../../common/CoursePlannerClient";
 
 const courseTableColumns = [
     {
@@ -24,14 +24,16 @@ const useCourses = () => {
     const [courses, setCourses] = useState([]);
 
     const fetchAllCourses = () => {
-        MomentumClient.getCourses().then(res => setCourses(res))
-            .catch(e => console.log(e));
-    }
+        CoursePlannerClient.getCourses()
+            .then((res) => setCourses(res))
+            .catch((e) => console.log(e));
+    };
 
     const updateCourse = (course) => {
-        MomentumClient.updateCourse(course).then(r => fetchAllCourses())
-            .catch(e => console.log(e));
-    }
+        CoursePlannerClient.updateCourse(course)
+            .then((r) => fetchAllCourses())
+            .catch((e) => console.log(e));
+    };
 
     useEffect(() => fetchAllCourses(), []);
 
