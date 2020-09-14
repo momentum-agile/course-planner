@@ -31,7 +31,7 @@ const EditRequirementsBox = ({ closeEdit }) => {
                 Create new requirements
             </Text>
             <Flex justify="space-evenly">
-                <Flex width="20%">
+                <Flex direction="column" width="20%" align="center">
                     <Select defaultValue="exactly" width="100%" bg="#303030">
                         <option value="exactly">Exactly</option>
                         <option value="atleast">At Least</option>
