@@ -32,12 +32,22 @@ test("Creating new programmes sub-page ", () => {
 });
 
 test("Existing programmes sub-page ", () => {
-    let firstCourse;
+    let programme = {
+        name: "SOFTENG761",
+        regulations: [
+            {
+                points: 15,
+                pointRequirement: "ATLEAST",
+                courses: [],
+            },
+        ],
+        defaultPlan: null,
+    };
 
     const tree = renderer
         .create(
             <AppConfiguration>
-                <ExistingProgramme id={"fakeProgrammeID"} />
+                <ExistingProgramme id={"fakeProgrammeID"} programme={programme} />
             </AppConfiguration>,
         )
         .toJSON();

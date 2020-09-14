@@ -1,19 +1,42 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Text, Box, IconButton, Stack } from "@chakra-ui/core";
+import { Flex, Text, Box, IconButton, Stack, Input } from "@chakra-ui/core";
 import { OutlineButton, ProgrammeRequirementsItem } from "../../components";
 import EditRequirementsBox from "./EditRequirementsBox";
 import { useHistory } from "react-router-dom";
 import ConfirmationDialog from "../../components/ConfirmationDialog";
 import useProgrammmes from "./useProgrammes";
 
-const ExistingProgramme = ({ id, notifyUpdate }) => {
+const ExistingProgramme = ({ programme, notifyUpdate }) => {
     const history = useHistory();
-    const { deleteProgramme, getProgramme } = useProgrammmes();
+    const { deleteProgramme, updateProgramme } = useProgrammmes();
     const [programmeDegreeInfo, setProgrammeDegreeInfo] = useState({});
     const [createNewRequirements, setCreateNewRequirements] = useState(false);
     const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
+    const [isEdited, setIsEdited] = useState(false);
+    const [name, setName] = useState("");
 
-    useEffect(() => getProgramme(id, setProgrammeDegreeInfo), [id, getProgramme]);
+    useEffect(() => {
+        setProgrammeDegreeInfo(programme);
+        setName(programme.name);
+    }, [isEdited, programme]);
+
+    const cancelEditProgramme = () => {
+        setIsEdited(false);
+        setName(programmeDegreeInfo.name);
+    };
+
+    const saveEditProgramme = () => {
+        const editedProgramme = {
+            ...programmeDegreeInfo,
+            name: name,
+        };
+
+        // TODO: show popup success message
+        setIsEdited(false);
+
+        // Update the programme and refresh
+        updateProgramme(editedProgramme, notifyUpdate);
+    };
 
     const confirmDelete = () => {
         setOpenConfirmationDialog(false);
@@ -39,8 +62,11 @@ const ExistingProgramme = ({ id, notifyUpdate }) => {
                     Programme Requirements
                 </Text>
                 <Flex right="1px" justify="flex-start">
-                    {/* TODO: add edit functionality */}
-                    <IconButton icon="edit" variantColor="blue" left="40px" size="lg" />
+                    {!isEdited ? (
+                        <IconButton icon="edit" variantColor="blue" left="40px" size="lg" onClick={() => setIsEdited(true)} />
+                    ) : (
+                        ""
+                    )}
                 </Flex>
             </Flex>
             <Flex align="center" justify="center" marginTop="10px">
@@ -49,9 +75,21 @@ const ExistingProgramme = ({ id, notifyUpdate }) => {
                 </Text>
             </Flex>
             <Flex align="center" justify="center" marginTop="10px">
-                <Text textAlign="center" fontSize="30px" color="#000000" as="b">
-                    {programmeDegreeInfo.name}
-                </Text>
+                {isEdited ? (
+                    <Input
+                        variant="flushed"
+                        placeholder="Enter Programme Name"
+                        textAlign="center"
+                        width="50%"
+                        size="lg"
+                        value={name}
+                        onChange={(event) => setName(event.target.value)}
+                    />
+                ) : (
+                    <Text textAlign="center" fontSize="30px" color="#000000" as="b">
+                        {programmeDegreeInfo.name}
+                    </Text>
+                )}
             </Flex>
 
             <Flex align="center" justify="center" direction="column">
@@ -74,11 +112,21 @@ const ExistingProgramme = ({ id, notifyUpdate }) => {
             <Flex justify="center" width="100%">
                 {/* TODO: redefine routing for template plans because they interefere with GET requests with URL */}
                 {programmeDegreeInfo.defaultPlan ? (
-                    <OutlineButton text="View Template" to={`/programmes/${id}/template`} height="60px" />
+                    <OutlineButton text="View Template" to={`/programmes/${programmeDegreeInfo._id}/template`} height="60px" />
                 ) : (
-                    <OutlineButton text="Define Template" to={`/programmes/${id}/create-template`} height="60px" />
+                    <OutlineButton text="Define Template" to={`/programmes/${programmeDegreeInfo._id}/create-template`} height="60px" />
                 )}
             </Flex>
+
+            {/* Save and Close Buttons for Editing */}
+            {isEdited ? (
+                <Flex justifyContent="space-evenly" width="100%" align="center">
+                    <OutlineButton text="Cancel" height="60px" width="200px" onClick={cancelEditProgramme} />
+                    <OutlineButton text="Save" height="60px" width="200px" onClick={saveEditProgramme} />
+                </Flex>
+            ) : (
+                ""
+            )}
         </Flex>
     );
 };

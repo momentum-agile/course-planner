@@ -26,15 +26,15 @@ const useProgrammes = () => {
             .catch((e) => console.error(e));
     };
 
-    const getProgramme = (id, setSelectedProgramme) => {
-        MomentumClient.getProgrammeInfo(id)
-            .then((res) => setSelectedProgramme(res))
+    const updateProgramme = (programme, notifyUpdate) => {
+        MomentumClient.updateProgramme(programme)
+            .then(() => notifyUpdate())
             .catch((e) => console.error(e));
     };
 
     useEffect(() => fetchAllProgrammes(), []);
 
-    return { programmeDegrees, fetchAllProgrammes, getProgramme, createProgramme, deleteProgramme };
+    return { programmeDegrees, fetchAllProgrammes, createProgramme, deleteProgramme, updateProgramme };
 };
 
 export default useProgrammes;

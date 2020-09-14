@@ -22,9 +22,10 @@ const ProgrammesPage = () => {
 
     const renderProgramme = (location) => {
         // Obtain programme ID using query parameter
-        const selectedProgramme = location.id;
 
-        return selectedProgramme ? <ExistingProgramme id={selectedProgramme} notifyUpdate={updateList} /> : <EmptyProgramme />;
+        const programme = programmeDegrees.find((f) => f._id === location.id);
+
+        return programme ? <ExistingProgramme programme={programme} notifyUpdate={updateList} /> : <EmptyProgramme />;
     };
 
     return (
@@ -51,6 +52,7 @@ const ProgrammesPage = () => {
                     </SimpleGrid>
                 </Flex>
             </Flex>
+            {/* RHS of the page */}
             <Flex width="50%" backgroundColor="#F0F0F0">
                 <Flex width="100%" direction="column" marginTop="60px">
                     {location.id === "new" ? <NewProgramme notifyAddition={updateList} /> : renderProgramme(location)}

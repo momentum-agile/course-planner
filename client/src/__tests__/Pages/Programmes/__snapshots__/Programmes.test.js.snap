@@ -165,6 +165,7 @@ exports[`Existing programmes sub-page  1`] = `
     >
       <button
         className="css-nfb2wp"
+        onClick={[Function]}
         type="button"
       >
         <svg
@@ -205,7 +206,9 @@ exports[`Existing programmes sub-page  1`] = `
   >
     <b
       className="css-1t9wziz"
-    />
+    >
+      SOFTENG761
+    </b>
   </div>
   <div
     className="css-u6v8er"
@@ -646,7 +649,7 @@ exports[`Existing programmes sub-page  1`] = `
     className="css-ldo4d5"
   >
     <a
-      href="/programmes/fakeProgrammeID/create-template"
+      href="/programmes/undefined/create-template"
       onClick={[Function]}
     >
       <button
@@ -661,6 +664,7 @@ exports[`Existing programmes sub-page  1`] = `
       </button>
     </a>
   </div>
+  
 </div>
 `;
 
