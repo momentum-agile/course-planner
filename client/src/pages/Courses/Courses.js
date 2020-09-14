@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Text, Button, Divider, Input } from "@chakra-ui/core";
+import { Flex, Text, Button, Divider, Input, IconButton } from "@chakra-ui/core";
+import { Link } from "react-router-dom";
+import { AiFillHome } from "react-icons/ai";
 import Table from "./Table";
 import CreateCourse from "./CreateCourse";
 import ViewCourse from "./ViewCourse";
@@ -19,6 +21,11 @@ const Courses = () => {
     return (
         <Flex height="100vh" width="100%" direction="row" backgroundColor="#F0F0F0">
             <Flex height="100%" width="50%" direction="column">
+                <Flex left="1px" justify="flex-start">
+                    <Link to="/">
+                        <IconButton as={AiFillHome} left="20px" top="20px" size="sm" />
+                    </Link>
+                </Flex>
                 <Flex width="100%" align="center" justify="center" marginTop="20px" p={4}>
                     <Text textAlign="center" fontSize="4xl" color="#113F73">
                         Courses

@@ -28,3 +28,7 @@ code {
 .programmeRequirements::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+#modal-regulation-modal {
+    width: 40%;
+}

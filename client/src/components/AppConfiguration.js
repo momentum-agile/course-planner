@@ -9,11 +9,16 @@ import { theme, ThemeProvider, CSSReset } from "@chakra-ui/core";
 
 const AppConfiguration = ({ children }) => {
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={customTheme}>
             <CSSReset />
             <Router>{children}</Router>
         </ThemeProvider>
     );
+};
+
+// See: https://chakra-ui.com/getting-started
+const customTheme = {
+    ...theme,
 };
 
 export default AppConfiguration;
