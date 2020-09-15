@@ -3,6 +3,7 @@ import { Flex, Text, Box, Select, Button } from "@chakra-ui/core";
 import AlertButton from "./AlertBox";
 import InlineEdit from "./InlineEdit";
 import ProgrammeTable from "./ProgrammeTable";
+import { Link } from "react-router-dom";
 
 const programmeTableColumns = [
     {
@@ -125,11 +126,13 @@ const ViewStudent = ({ student, editStudent, deleteStudent }) => {
                         <Text textAlign="center" fontSize="2xl">
                             Plans
                         </Text>
-                        <Button variantColor="blue" backgroundColor="#162971" marginLeft="20px">
-                            <Text textAlign="center" color="white">
-                                Create Programme
-                            </Text>
-                        </Button>
+                        <Link to={`plan/${upi}/${data.length + 1}`}>
+                            <Button variantColor="blue" backgroundColor="#162971" marginLeft="20px">
+                                <Text textAlign="center" color="white">
+                                    Create Plan
+                                </Text>
+                            </Button>
+                        </Link>
                     </Flex>
                     <ProgrammeTable columns={programmeTableColumns} data={data} />
                 </Flex>

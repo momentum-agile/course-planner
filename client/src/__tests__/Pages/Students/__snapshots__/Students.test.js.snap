@@ -265,16 +265,21 @@ exports[`Main Students Page 1`] = `
             >
               Plans
             </p>
-            <button
-              className="css-1h5n3x9"
-              type="button"
+            <a
+              href="/plan/undefined/3"
+              onClick={[Function]}
             >
-              <p
-                className="css-17tlezs"
+              <button
+                className="css-1h5n3x9"
+                type="button"
               >
-                Create Programme
-              </p>
-            </button>
+                <p
+                  className="css-17tlezs"
+                >
+                  Create Plan
+                </p>
+              </button>
+            </a>
           </div>
           <div
             className="css-nb2vca"

@@ -24,7 +24,12 @@ const addStudent = (student) => {
     });
 };
 
+const getStudent = (upi) => {
+    return ApiClient(`student/${upi}`);
+};
+
 const StudentClient = {
+    getStudent,
     getStudents,
     editStudent,
     deleteStudent,
