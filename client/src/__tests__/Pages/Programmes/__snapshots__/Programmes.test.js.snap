@@ -742,8 +742,10 @@ exports[`Main Programmes Page 1`] = `
             </div>
             <input
               className="css-n5gi9c"
+              onChange={[Function]}
               placeholder="Search Programmes"
               type="search"
+              value=""
             />
           </div>
         </div>

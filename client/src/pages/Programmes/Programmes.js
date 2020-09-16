@@ -7,11 +7,13 @@ import ExistingProgramme from "./ExistingProgramme";
 import EmptyProgramme from "./EmptyProgramme";
 import NewProgramme from "./NewProgramme";
 import useProgrammmes from "./useProgrammes";
+import filter from "@mcabreradev/filter";
 
 const Programmes = () => {
     const location = useParams();
     const { programmeDegrees, fetchAllProgrammes } = useProgrammmes();
     const [numOfProgrammes, setNumOfProgrammes] = useState(programmeDegrees.length);
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(fetchAllProgrammes, [numOfProgrammes]);
 
@@ -41,14 +43,13 @@ const Programmes = () => {
                         Programmes
                     </Text>
                 </Flex>
-                {/* TODO: Implement search functionality */}
-                <SearchBar searchCategory="Programmes" />
+                <SearchBar searchCategory="Programmes" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                 <Flex width="102%" justify="center" align="center" overflowY="scroll" marginTop="15px" marginBottom="15px">
                     <SimpleGrid columns={2} spacingX="50px" spacingY="10px" height="100%">
                         <ProgrammeCard to="new" />
-                        {programmeDegrees.map((programme) => {
-                            return <ProgrammeCard to={programme._id} programme={programme} />;
-                        })}
+                        {filter(programmeDegrees, { name: searchTerm }).map((programme) => (
+                            <ProgrammeCard to={programme._id} programme={programme} />
+                        ))}
                     </SimpleGrid>
                 </Flex>
             </Flex>
