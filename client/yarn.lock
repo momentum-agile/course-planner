@@ -1491,6 +1491,11 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@mcabreradev/filter@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@mcabreradev/filter/-/filter-2.0.2.tgz#b21aabbf65bca46a747f1b5e37af85db3b18b3e3"
+  integrity sha512-i/7bG4gl3dgFC45/4BSIIKWn3Y8oe7TeXbGo0EBUXZHc/Hjx/kv8XrXppX0EaCP34moDBMuC/VLo5huGVq3ZpQ==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"

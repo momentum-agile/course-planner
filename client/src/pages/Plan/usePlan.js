@@ -5,15 +5,17 @@ import { useParams } from "react-router-dom";
 const usePlan = () => {
     const [student, setStudent] = useState();
     const { studentId } = useParams();
+    const [realCourses, setRealCourses] = useState([]);
 
     const initPage = useCallback(async () => {
         // Promise.all because we are going to have a lot of API calls
         // once requirements/cousres/notes come in !
 
-        Promise.all([CoursePlannerClient.getStudent(studentId)])
+        Promise.all([CoursePlannerClient.getStudent(studentId), CoursePlannerClient.getCourses()])
             .then((values) => {
-                const [studentRes] = values;
+                const [studentRes, realCourses] = values;
                 setStudent(studentRes);
+                setRealCourses(realCourses);
             })
             .catch((e) => console.log(e));
     }, [studentId]);
@@ -22,7 +24,7 @@ const usePlan = () => {
         initPage();
     }, [initPage]);
 
-    return { student };
+    return { student, realCourses };
 };
 
 export default usePlan;

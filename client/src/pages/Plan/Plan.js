@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Flex, Text, Divider, Box } from "@chakra-ui/core";
 import usePlan from "./usePlan";
 import Header from "./Header";
 import HomeIcon from "./HomeIcon";
 import Year from "./Year";
 import { SearchBar } from "../../components";
+import filter from "@mcabreradev/filter";
 
 const CoursePill = ({ courseName }) => {
     return (
-        <Box flex="1 1 25%" height="100%" background="gray" borderRadius="10px" borderRight="solid white" marginTop="10px">
+        <Box flex="1 1 25%" height="100%" background="gray" borderRadius="10px" borderRight="solid white" maxWidth="25%" marginTop="10px">
             <Text textAlign="center" color="white">
                 {courseName}
             </Text>
@@ -17,22 +18,8 @@ const CoursePill = ({ courseName }) => {
 };
 
 const Plan = () => {
-    const { student } = usePlan();
-
-    const courses = [
-        "SOFTENG211",
-        "SOFTENG251",
-        "SOFTENG213",
-        "SOFTENG254",
-        "SOFTENG211",
-        "SOFTENG251",
-        "SOFTENG213",
-        "SOFTENG254",
-        "SOFTENG211",
-        "SOFTENG251",
-        "SOFTENG213",
-        "SOFTENG254",
-    ];
+    const { student, realCourses } = usePlan();
+    const [searchTerm, setSearchTerm] = useState("");
 
     return (
         <Flex height="100vh" width="100%" direction="row" backgroundColor="#F0F0F0">
@@ -50,12 +37,21 @@ const Plan = () => {
                     <Text textAlign="center" fontSize="5xl" color="white">
                         Courses
                     </Text>
-                    <SearchBar searchCategory="Courses" />
+                    <SearchBar searchCategory="Courses" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                     <Flex align="center" justify="center">
-                        <Flex width="80%" flexWrap="wrap" padding="0 0 10px 10px" background="white" marginTop="20px">
-                            {courses.map((course) => (
-                                <CoursePill courseName={course} />
-                            ))}
+                        <Flex
+                            width="80%"
+                            flexWrap="wrap"
+                            padding="0 0 10px 10px"
+                            background="white"
+                            marginTop="20px"
+                            maxHeight="200px"
+                            overflowY="scroll"
+                        >
+                            {realCourses &&
+                                filter(realCourses, { courseCode: searchTerm }).map(({ courseCode }) => (
+                                    <CoursePill courseName={courseCode} />
+                                ))}
                         </Flex>
                     </Flex>
                 </Flex>
