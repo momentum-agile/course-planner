@@ -7,27 +7,27 @@ import {
     AlertDialogBody,
     AlertDialogFooter,
     AlertDialogHeader,
+    IconButton,
 } from "@chakra-ui/core";
 
-const AlertButton = ({ btnText, confirmFn }) => {
+const AlertButton = ({ itemType, itemName, action, navigateTo, confirmFn }) => {
     const [isOpen, setIsOpen] = React.useState();
     const onClose = () => setIsOpen(false);
     const cancelRef = React.useRef();
 
     return (
         <>
-            <Button variantColor="red" onClick={() => setIsOpen(true)}>
-                {btnText}
-            </Button>
-
+            <IconButton icon="delete" variantColor="red" size="lg" onClick={() => setIsOpen(true)} />
             <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
                 <AlertDialogOverlay />
                 <AlertDialogContent>
                     <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                        {btnText}
+                        {action} {itemType}
                     </AlertDialogHeader>
 
-                    <AlertDialogBody>Are you sure? You can't undo this action afterwards.</AlertDialogBody>
+                    <AlertDialogBody>
+                        Are you sure you want to {action && action.toLowerCase()} {itemName}? You can't undo this action afterwards.
+                    </AlertDialogBody>
 
                     <AlertDialogFooter>
                         <Button ref={cancelRef} onClick={onClose}>

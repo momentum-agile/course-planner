@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Flex, Text, Button, Divider, Input, IconButton } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
-import Table from "./Table";
+import { Table } from "../../components";
 import useStudents from "./useStudents";
 import ViewStudent from "./ViewStudent";
 import AddStudent from "./AddStudent";

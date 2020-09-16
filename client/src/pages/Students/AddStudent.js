@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Flex, Text, Box, Select, Button, useToast } from "@chakra-ui/core";
-import InlineEdit from "./InlineEdit";
+import { InlineEdit } from "../../components";
 
 const AddStudent = ({ addStudent }) => {
     const [editName, setEditName] = useState("");

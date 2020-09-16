@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Flex, Text, Box, Select, Button } from "@chakra-ui/core";
-import AlertButton from "./AlertBox";
-import InlineEdit from "./InlineEdit";
+import { InlineEdit } from "../../components";
+import { AlertButton } from "../../components/";
+
 import ProgrammeTable from "./ProgrammeTable";
 import { Link } from "react-router-dom";
 
@@ -138,7 +139,7 @@ const ViewStudent = ({ student, editStudent, deleteStudent }) => {
                 </Flex>
 
                 <Flex mt={12} justify="center" align="center">
-                    <AlertButton btnText={"Delete Student"} confirmFn={() => deleteStudent(upi)} />
+                    <AlertButton itemName={name} itemType={"Student"} action={"Delete"} confirmFn={() => deleteStudent(upi)} />
                 </Flex>
             </Flex>
         </Flex>

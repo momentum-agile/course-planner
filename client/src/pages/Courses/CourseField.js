@@ -1,5 +1,6 @@
 import React from "react";
-import { Flex, Text, Box, Select, Editable, EditableInput, EditablePreview } from "@chakra-ui/core";
+import { InlineEdit } from "../../components";
+import { Flex, Text, Box, Select } from "@chakra-ui/core";
 
 const points = [15, 20, 30];
 
@@ -19,35 +20,6 @@ const CourseField = ({ type, title, value, onChange, required = false }) => {
                 <InLineNumber title={title} value={value} onChange={onChange} />
             )}
         </Flex>
-    );
-};
-
-const InlineEdit = ({ onSubmit, onCancel, onChange, value, title, placeholder }) => {
-    return (
-        <Editable
-            value={value}
-            onSubmit={onSubmit}
-            onCancel={onCancel}
-            onChange={onChange}
-            marginTop="8px"
-            textAlign="center"
-            fontSize="2xl"
-            display="flex"
-            flexDirection="row"
-            justifyContent="center"
-            alignContent="center"
-            placeholder={placeholder}
-        >
-            <Box>
-                <Text> {title}: </Text>
-            </Box>
-            <Box>
-                <EditablePreview ml={3} height={10} />
-            </Box>
-            <Box>
-                <EditableInput ml={3} height={10} />
-            </Box>
-        </Editable>
     );
 };
 

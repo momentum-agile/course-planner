@@ -3,7 +3,7 @@ import { Flex, Text, Box, IconButton, Stack, Input } from "@chakra-ui/core";
 import { OutlineButton, ProgrammeRequirementsItem } from "../../components";
 import EditRequirementsBox from "./EditRequirementsBox";
 import { useHistory } from "react-router-dom";
-import { ConfirmationDialog } from "../../components/";
+import { AlertButton } from "../../components/";
 import useProgrammmes from "./useProgrammes";
 
 const ExistingProgramme = ({ programme, notifyUpdate }) => {
@@ -48,14 +48,12 @@ const ExistingProgramme = ({ programme, notifyUpdate }) => {
             <Flex align="center" justify="center">
                 <Flex left="1px" justify="flex-start">
                     {/* Deleting the Programme*/}
-                    <IconButton icon="delete" variantColor="red" right="40px" size="lg" onClick={() => setOpenConfirmationDialog(true)} />
-                    <ConfirmationDialog
+                    <AlertButton
                         itemName={programmeDegreeInfo.name}
                         itemType={"Programme"}
                         action={"Delete"}
                         isOpen={openConfirmationDialog}
-                        onClose={() => setOpenConfirmationDialog(false)}
-                        confirm={confirmDelete}
+                        confirmFn={() => confirmDelete()}
                     />
                 </Flex>
                 <Text textAlign="center" fontSize="4xl" color="#0F487E">
