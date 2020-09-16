@@ -77,7 +77,13 @@ const ViewCourse = ({ course, updateCourse }) => {
             <CourseField type={TYPES.simple} title="Course Code" value={code} onChange={(c) => editField(FIELDS.code, c)} required={true} />
             <CourseField type={TYPES.simple} title="Course Name" value={name} onChange={(n) => editField(FIELDS.name, n)} />
             <CourseField type={TYPES.simple} title="Description" value={desc} onChange={(d) => editField(FIELDS.desc, d)} />
-            <CourseField type={TYPES.points} title="Points" value={pts} onChange={(p) => editField(FIELDS.pts, p)} required={true} />
+            <CourseField
+                type={TYPES.points}
+                title="Points"
+                value={pts}
+                onChange={(p) => editField(FIELDS.pts, p.target.value)}
+                required={true}
+            />
             <SaveCancelButtonSet onCancel={cancelEditCourse} onSave={saveEditCourse} isActive={isEdited} />
         </Flex>
     );

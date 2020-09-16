@@ -1,5 +1,7 @@
 import React from "react";
-import { Flex, Text, Box, Editable, EditableInput, EditablePreview, NumberInput } from "@chakra-ui/core";
+import { Flex, Text, Box, Select, Editable, EditableInput, EditablePreview } from "@chakra-ui/core";
+
+const points = [15, 20, 30];
 
 const CourseField = ({ type, title, value, onChange, required = false }) => {
     return (
@@ -55,9 +57,11 @@ const InLineNumber = ({ onChange, value, title }) => {
             <Box>
                 <Text> {title}: </Text>
             </Box>
-            <Box>
-                <NumberInput value={value} size="md" onChange={onChange} />
-            </Box>
+            <Select ml={5} value={value} onChange={onChange}>
+                {points.map((val) => (
+                    <option value={val}>{val} points</option>
+                ))}
+            </Select>
         </Flex>
     );
 };
