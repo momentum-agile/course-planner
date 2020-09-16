@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Flex, Text, Divider, Box } from "@chakra-ui/core";
+import { Flex, Text, Divider, Box, Textarea } from "@chakra-ui/core";
 import usePlan from "./usePlan";
 import Header from "./Header";
 import HomeIcon from "./HomeIcon";
@@ -20,6 +20,7 @@ const CoursePill = ({ courseName }) => {
 const Plan = () => {
     const { student, realCourses } = usePlan();
     const [searchTerm, setSearchTerm] = useState("");
+    const [note, setNote] = useState("");
 
     return (
         <Flex height="100vh" width="100%" direction="row" backgroundColor="#F0F0F0">
@@ -52,6 +53,20 @@ const Plan = () => {
                                 filter(realCourses, { courseCode: searchTerm }).map(({ courseCode }) => (
                                     <CoursePill courseName={courseCode} />
                                 ))}
+                        </Flex>
+                    </Flex>
+                    <Text textAlign="center" fontSize="5xl" color="white">
+                        Notes
+                    </Text>
+                    <Flex align="center" justify="center">
+                        <Flex width="80%" background="white">
+                            <Textarea
+                                placeholder="Add your note here"
+                                size="sm"
+                                height="200px"
+                                value={note}
+                                onChange={(e) => setNote(e.target.value)}
+                            />
                         </Flex>
                     </Flex>
                 </Flex>
