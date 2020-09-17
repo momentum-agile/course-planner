@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Flex } from "@chakra-ui/core";
 import CourseField from "./CourseField";
 import SaveCancelButtonSet from "./SaveCancelButtonSet";
+import { AlertButton } from "../../components"
 
 const TYPES = {
     simple: "simple",
@@ -15,7 +16,7 @@ const FIELDS = {
     pts: "points",
 };
 
-const ViewCourse = ({ course, updateCourse }) => {
+const ViewCourse = ({ course, updateCourse, deleteCourse }) => {
     const [isEdited, setIsEdited] = useState(false);
     const [code, setCode] = useState("");
     const [name, setName] = useState("");
@@ -85,6 +86,9 @@ const ViewCourse = ({ course, updateCourse }) => {
                 required={true}
             />
             <SaveCancelButtonSet onCancel={cancelEditCourse} onSave={saveEditCourse} isActive={isEdited} />
+            <Flex mt={12} justify="center" align="center">
+                <AlertButton btnText={"Delete Course"} confirmFn={() => deleteCourse(code)} />
+            </Flex>
         </Flex>
     );
 };

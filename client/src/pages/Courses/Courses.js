@@ -12,7 +12,7 @@ const Courses = () => {
     const [searchInput, setSearchInput] = useState("");
     const [selectedCourse, setSelectedCourse] = useState({});
     const [addingCourse, setAddingCourse] = useState(false);
-    const { data, columns, updateCourse } = useCourses();
+    const { data, columns, updateCourse, deleteCourse } = useCourses();
 
     useEffect(() => {
         setSelectedCourse(data[currRow] || {});
@@ -78,7 +78,7 @@ const Courses = () => {
             <Divider orientation="vertical" backgroundColor="#A7C4E0" width="2px" />
             {/* Right side of page */}
             <Flex height="100%" width="50%" direction="column">
-                {addingCourse ? <CreateCourse /> : <ViewCourse course={selectedCourse} updateCourse={updateCourse} />}
+                {addingCourse ? <CreateCourse /> : <ViewCourse course={selectedCourse} updateCourse={updateCourse} deleteCourse={deleteCourse} />}
             </Flex>
         </Flex>
     );

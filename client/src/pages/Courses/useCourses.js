@@ -35,12 +35,18 @@ const useCourses = () => {
             .catch((e) => console.log(e));
     };
 
+    const deleteCourse = (courseCode) => {
+        CoursePlannerClient.deleteCourse(courseCode)
+            .then((r) => fetchAllCourses())
+            .catch((e) => console.log(e));
+    };
+
     useEffect(() => fetchAllCourses(), []);
 
     const columns = useMemo(() => courseTableColumns, []);
     const data = useMemo(() => courses, [courses]);
 
-    return { data, columns, updateCourse };
+    return { data, columns, updateCourse, deleteCourse };
 };
 
 export default useCourses;
