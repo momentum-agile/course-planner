@@ -9,9 +9,8 @@ import {
     NumberInputStepper,
     NumberIncrementStepper,
     NumberDecrementStepper,
-    Stack,
 } from "@chakra-ui/core";
-import { AiOutlineCheckCircle, AiOutlineCloseCircle } from "react-icons/ai";
+import { AiOutlineCheckCircle, AiOutlineCloseCircle, AiOutlineClose } from "react-icons/ai";
 import useCourses from "../Courses/useCourses";
 import useProgrammes from "./useProgrammes";
 
@@ -89,7 +88,7 @@ const EditRequirementsBox = ({ closeEdit, programme, notifyUpdate, regulation, h
                         <option value="UPTO">Up to</option>
                     </Select>
                 </Flex>
-                <NumberInput step={5} min={0} height="50%" width="15%" bg="#303030" value={points} onChange={(value) => setPoints(value)}>
+                <NumberInput step={5} min={0} height="40px" width="15%" bg="#303030" value={points} onChange={(value) => setPoints(value)}>
                     <NumberInputField bg="#303030" />
                     <NumberInputStepper>
                         <NumberIncrementStepper />
@@ -97,7 +96,7 @@ const EditRequirementsBox = ({ closeEdit, programme, notifyUpdate, regulation, h
                     </NumberInputStepper>
                 </NumberInput>
                 <Text color="black">From</Text>
-                <Flex direction="column" width="35%" align="center">
+                <Flex direction="column" width="45%" align="center">
                     <Select placeholder="select courses" bg="#303030" width="80%" onChange={(e) => handleAddCourse(e.target.value)}>
                         {data.map((course) => (
                             <option key={course._id} value={course._id}>
@@ -105,32 +104,42 @@ const EditRequirementsBox = ({ closeEdit, programme, notifyUpdate, regulation, h
                             </option>
                         ))}
                     </Select>
-                    <Stack
+                    <Flex
                         className="programmeRequirements"
                         bg="#565656"
                         minHeight="40px"
+                        maxHeight="70px"
                         width="100%"
-                        overFlowX="scroll"
-                        isInline
+                        overflowY="scroll"
+                        flexWrap="wrap"
                         padding="5px"
                     >
                         {courses.map((course) => (
-                            <Text
-                                key={course._id}
-                                border="solid"
-                                cursor="pointer"
-                                borderColor="white"
-                                borderRadius="20px"
-                                borderWidth="1px"
-                                fontSize="12px"
-                                padding="3px"
-                                margin="2px"
-                                onClick={() => handleRemoveCourse(course._id)}
-                            >
-                                {course.courseCode}
-                            </Text>
+                            <Flex>
+                                <Text
+                                    key={course._id}
+                                    border="solid"
+                                    borderColor="white"
+                                    borderRadius="20px"
+                                    borderWidth="1px"
+                                    fontSize="12px"
+                                    padding="3px"
+                                    margin="2px"
+                                >
+                                    {course.courseCode}
+                                </Text>
+                                <Box
+                                    as={AiOutlineClose}
+                                    position="relative"
+                                    size="12px"
+                                    right="10px"
+                                    color="#ff0000"
+                                    cursor="pointer"
+                                    onClick={() => handleRemoveCourse(course._id)}
+                                />
+                            </Flex>
                         ))}
-                    </Stack>
+                    </Flex>
                 </Flex>
                 {/* Buttons to be refactored */}
                 <Box as={AiOutlineCloseCircle} size="32px" color="red.400" onClick={closeEdit} bottom="5px" cursor="pointer" />
