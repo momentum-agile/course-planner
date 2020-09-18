@@ -5,13 +5,18 @@ import EditRequirementsBox from "./EditRequirementsBox";
 import { useHistory } from "react-router-dom";
 import { AlertButton } from "../../components/";
 import useProgrammmes from "./useProgrammes";
+import useCourses from "../Courses/useCourses";
 
 const ExistingProgramme = ({ programme, notifyUpdate }) => {
     const history = useHistory();
     const { deleteProgramme, updateProgramme } = useProgrammmes();
+    const { data } = useCourses();
     const [programmeDegreeInfo, setProgrammeDegreeInfo] = useState({});
     const [createNewRequirements, setCreateNewRequirements] = useState(false);
     const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
+    const [editRequirementsHeading, setEditRequirementsHeading] = useState("");
+    const [openConfirmationDeleteRegulation, setOpenConfirmationDeleteRegulation] = useState(false);
+    const [regulationInEdit, setRegulationInEdit] = useState(null);
     const [isEdited, setIsEdited] = useState(false);
     const [name, setName] = useState("");
 
@@ -41,6 +46,14 @@ const ExistingProgramme = ({ programme, notifyUpdate }) => {
     const confirmDelete = () => {
         setOpenConfirmationDialog(false);
         deleteProgramme(programmeDegreeInfo._id, history, notifyUpdate);
+    };
+
+    const deleteRegulation = (regulation) => {
+        const updatedRegulations = programme.regulations.filter((r) => r._id !== regulation._id);
+        const updatedProgramme = { ...programme, regulations: updatedRegulations };
+        updateProgramme(updatedProgramme, notifyUpdate);
+        setOpenConfirmationDeleteRegulation(false);
+        setCreateNewRequirements(false);
     };
 
     return (
@@ -93,20 +106,56 @@ const ExistingProgramme = ({ programme, notifyUpdate }) => {
             <Flex align="center" justify="center" direction="column">
                 <Text textAlign="center" fontSize="md" color="#000000" as="i">
                     Requirements
-                    {/* Add regulations here */}
                 </Text>
                 <Box bg="#e2e2e2" width="75%" textAlign="center" padding="5px" marginTop="10px">
-                    <IconButton width="90%" icon="add" bg="#616161" color="white" onClick={() => setCreateNewRequirements(true)} />
+                    <IconButton
+                        width="90%"
+                        icon="add"
+                        bg="#616161"
+                        color="white"
+                        onClick={() => {
+                            setCreateNewRequirements(true);
+                            setRegulationInEdit(null);
+                            setEditRequirementsHeading("Creating new requirement");
+                        }}
+                    />
                     <Stack direction="column" height="150px" width="100%" overflowY="scroll" align="center">
-                        <ProgrammeRequirementsItem onClick={() => setCreateNewRequirements(true)} />
-                        <ProgrammeRequirementsItem onClick={() => setCreateNewRequirements(true)} />
-                        <ProgrammeRequirementsItem onClick={() => setCreateNewRequirements(true)} />
-                        <ProgrammeRequirementsItem onClick={() => setCreateNewRequirements(true)} />
-                        <ProgrammeRequirementsItem onClick={() => setCreateNewRequirements(true)} />
+                        {programme.regulations.map((regulation, index) => (
+                            <ProgrammeRequirementsItem
+                                key={index}
+                                itemNumber={`${index + 1}.`}
+                                onEdit={() => {
+                                    setCreateNewRequirements(true);
+                                    setRegulationInEdit(regulation);
+                                    setEditRequirementsHeading(`Editing requirement ${index + 1}`);
+                                }}
+                                pointRequirement={regulation.pointRequirement}
+                                points={regulation.points}
+                                courseList={data.filter((course) => regulation.courses.includes(course._id))}
+                                deleteButton={
+                                    <AlertButton
+                                        itemName={`regulation ${index + 1}`}
+                                        itemType={"Programme Regulation"}
+                                        action={"Delete"}
+                                        isOpen={openConfirmationDeleteRegulation}
+                                        onClose={() => setOpenConfirmationDeleteRegulation(false)}
+                                        confirmFn={() => deleteRegulation(regulation)}
+                                    />
+                                }
+                            />
+                        ))}
                     </Stack>
                 </Box>
             </Flex>
-            {createNewRequirements && <EditRequirementsBox closeEdit={() => setCreateNewRequirements(false)} />}
+            {createNewRequirements && (
+                <EditRequirementsBox
+                    heading={editRequirementsHeading}
+                    closeEdit={() => setCreateNewRequirements(false)}
+                    programme={programme}
+                    notifyUpdate={notifyUpdate}
+                    regulation={regulationInEdit}
+                />
+            )}
             <Flex justify="center" width="100%">
                 {/* TODO: redefine routing for template plans because they interefere with GET requests with URL */}
                 {programmeDegreeInfo.defaultPlan ? (

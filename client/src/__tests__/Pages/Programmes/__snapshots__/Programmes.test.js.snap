@@ -243,7 +243,7 @@ exports[`Existing programmes sub-page  1`] = `
         className="css-12wbpgd"
       >
         <div
-          className="css-4s5mmi"
+          className="css-19qzdfz"
         >
           <p
             className="css-7rc2le"
@@ -253,7 +253,7 @@ exports[`Existing programmes sub-page  1`] = `
           <p
             className="css-12kv7x2"
           >
-            Exactly
+            At least
           </p>
           <p
             className="css-12kv7x2"
@@ -261,48 +261,18 @@ exports[`Existing programmes sub-page  1`] = `
             15 pts
           </p>
           <p
-            className="css-lslvft"
+            className="css-vwuyue"
           >
             FROM
           </p>
           <div
             className="programmeRequirements css-chxm8w"
-          >
-            <p
-              className="css-xbb7oq"
-            >
-              SE306
-            </p>
-            <p
-              className="css-xbb7oq"
-            >
-              SE325
-            </p>
-            <p
-              className="css-xbb7oq"
-            >
-              SE350
-            </p>
-            <p
-              className="css-xbb7oq"
-            >
-              SE351
-            </p>
-            <p
-              className="css-xbb7oq"
-            >
-              SE351
-            </p>
-            <p
-              className="css-8fehp9"
-            >
-              SE351
-            </p>
-          </div>
+          />
           <svg
-            className="css-m4orox"
+            className="css-pnngj5"
             fill="currentColor"
             height="1em"
+            onClick={[Function]}
             stroke="currentColor"
             strokeWidth="0"
             style={
@@ -315,332 +285,33 @@ exports[`Existing programmes sub-page  1`] = `
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M696 480H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
-            />
-            <path
-              d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+              d="M257.7 752c2 0 4-.2 6-.5L431.9 722c2-.4 3.9-1.3 5.3-2.8l423.9-423.9a9.96 9.96 0 0 0 0-14.1L694.9 114.9c-1.9-1.9-4.4-2.9-7.1-2.9s-5.2 1-7.1 2.9L256.8 538.8c-1.5 1.5-2.4 3.3-2.8 5.3l-29.5 168.2a33.5 33.5 0 0 0 9.4 29.8c6.6 6.4 14.9 9.9 23.8 9.9zm67.4-174.4L687.8 215l73.3 73.3-362.7 362.6-88.9 15.7 15.6-89zM880 836H144c-17.7 0-32 14.3-32 32v36c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-36c0-17.7-14.3-32-32-32z"
             />
           </svg>
-        </div>
-        <div
-          className="css-4s5mmi"
-        >
-          <p
-            className="css-7rc2le"
+          <button
+            className="css-11ufct2"
+            onClick={[Function]}
+            type="button"
           >
-            1.
-          </p>
-          <p
-            className="css-12kv7x2"
-          >
-            Exactly
-          </p>
-          <p
-            className="css-12kv7x2"
-          >
-            15 pts
-          </p>
-          <p
-            className="css-lslvft"
-          >
-            FROM
-          </p>
-          <div
-            className="programmeRequirements css-chxm8w"
-          >
-            <p
-              className="css-xbb7oq"
+            <svg
+              aria-hidden={true}
+              className="css-1im46kq"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
             >
-              SE306
-            </p>
-            <p
-              className="css-xbb7oq"
-            >
-              SE325
-            </p>
-            <p
-              className="css-xbb7oq"
-            >
-              SE350
-            </p>
-            <p
-              className="css-xbb7oq"
-            >
-              SE351
-            </p>
-            <p
-              className="css-xbb7oq"
-            >
-              SE351
-            </p>
-            <p
-              className="css-8fehp9"
-            >
-              SE351
-            </p>
-          </div>
-          <svg
-            className="css-m4orox"
-            fill="currentColor"
-            height="1em"
-            stroke="currentColor"
-            strokeWidth="0"
-            style={
-              Object {
-                "color": undefined,
-              }
-            }
-            viewBox="0 0 1024 1024"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M696 480H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
-            />
-            <path
-              d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
-            />
-          </svg>
-        </div>
-        <div
-          className="css-4s5mmi"
-        >
-          <p
-            className="css-7rc2le"
-          >
-            1.
-          </p>
-          <p
-            className="css-12kv7x2"
-          >
-            Exactly
-          </p>
-          <p
-            className="css-12kv7x2"
-          >
-            15 pts
-          </p>
-          <p
-            className="css-lslvft"
-          >
-            FROM
-          </p>
-          <div
-            className="programmeRequirements css-chxm8w"
-          >
-            <p
-              className="css-xbb7oq"
-            >
-              SE306
-            </p>
-            <p
-              className="css-xbb7oq"
-            >
-              SE325
-            </p>
-            <p
-              className="css-xbb7oq"
-            >
-              SE350
-            </p>
-            <p
-              className="css-xbb7oq"
-            >
-              SE351
-            </p>
-            <p
-              className="css-xbb7oq"
-            >
-              SE351
-            </p>
-            <p
-              className="css-8fehp9"
-            >
-              SE351
-            </p>
-          </div>
-          <svg
-            className="css-m4orox"
-            fill="currentColor"
-            height="1em"
-            stroke="currentColor"
-            strokeWidth="0"
-            style={
-              Object {
-                "color": undefined,
-              }
-            }
-            viewBox="0 0 1024 1024"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M696 480H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
-            />
-            <path
-              d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
-            />
-          </svg>
-        </div>
-        <div
-          className="css-4s5mmi"
-        >
-          <p
-            className="css-7rc2le"
-          >
-            1.
-          </p>
-          <p
-            className="css-12kv7x2"
-          >
-            Exactly
-          </p>
-          <p
-            className="css-12kv7x2"
-          >
-            15 pts
-          </p>
-          <p
-            className="css-lslvft"
-          >
-            FROM
-          </p>
-          <div
-            className="programmeRequirements css-chxm8w"
-          >
-            <p
-              className="css-xbb7oq"
-            >
-              SE306
-            </p>
-            <p
-              className="css-xbb7oq"
-            >
-              SE325
-            </p>
-            <p
-              className="css-xbb7oq"
-            >
-              SE350
-            </p>
-            <p
-              className="css-xbb7oq"
-            >
-              SE351
-            </p>
-            <p
-              className="css-xbb7oq"
-            >
-              SE351
-            </p>
-            <p
-              className="css-8fehp9"
-            >
-              SE351
-            </p>
-          </div>
-          <svg
-            className="css-m4orox"
-            fill="currentColor"
-            height="1em"
-            stroke="currentColor"
-            strokeWidth="0"
-            style={
-              Object {
-                "color": undefined,
-              }
-            }
-            viewBox="0 0 1024 1024"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M696 480H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
-            />
-            <path
-              d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
-            />
-          </svg>
-        </div>
-        <div
-          className="css-4s5mmi"
-        >
-          <p
-            className="css-7rc2le"
-          >
-            1.
-          </p>
-          <p
-            className="css-12kv7x2"
-          >
-            Exactly
-          </p>
-          <p
-            className="css-12kv7x2"
-          >
-            15 pts
-          </p>
-          <p
-            className="css-lslvft"
-          >
-            FROM
-          </p>
-          <div
-            className="programmeRequirements css-chxm8w"
-          >
-            <p
-              className="css-xbb7oq"
-            >
-              SE306
-            </p>
-            <p
-              className="css-xbb7oq"
-            >
-              SE325
-            </p>
-            <p
-              className="css-xbb7oq"
-            >
-              SE350
-            </p>
-            <p
-              className="css-xbb7oq"
-            >
-              SE351
-            </p>
-            <p
-              className="css-xbb7oq"
-            >
-              SE351
-            </p>
-            <p
-              className="css-8fehp9"
-            >
-              SE351
-            </p>
-          </div>
-          <svg
-            className="css-m4orox"
-            fill="currentColor"
-            height="1em"
-            stroke="currentColor"
-            strokeWidth="0"
-            style={
-              Object {
-                "color": undefined,
-              }
-            }
-            viewBox="0 0 1024 1024"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M696 480H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
-            />
-            <path
-              d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
-            />
-          </svg>
+              <g
+                fill="currentColor"
+              >
+                <path
+                  d="M19.452,7.5H4.547a.5.5,0,0,0-.5.545L5.334,22.181A2,2,0,0,0,7.326,24h9.347a2,2,0,0,0,1.992-1.819L19.95,8.045a.5.5,0,0,0-.129-.382A.5.5,0,0,0,19.452,7.5Zm-9.2,13a.75.75,0,0,1-1.5,0v-9a.75.75,0,0,1,1.5,0Zm5,0a.75.75,0,0,1-1.5,0v-9a.75.75,0,0,1,1.5,0Z"
+                />
+                <path
+                  d="M22,4H17.25A.25.25,0,0,1,17,3.75V2.5A2.5,2.5,0,0,0,14.5,0h-5A2.5,2.5,0,0,0,7,2.5V3.75A.25.25,0,0,1,6.75,4H2A1,1,0,0,0,2,6H22a1,1,0,0,0,0-2ZM9,3.75V2.5A.5.5,0,0,1,9.5,2h5a.5.5,0,0,1,.5.5V3.75a.25.25,0,0,1-.25.25H9.25A.25.25,0,0,1,9,3.75Z"
+                />
+              </g>
+            </svg>
+          </button>
         </div>
       </div>
     </div>

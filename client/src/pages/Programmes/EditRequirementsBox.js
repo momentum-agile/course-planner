@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
     Flex,
     Text,
@@ -12,8 +12,59 @@ import {
     Stack,
 } from "@chakra-ui/core";
 import { AiOutlineCheckCircle, AiOutlineCloseCircle } from "react-icons/ai";
+import useCourses from "../Courses/useCourses";
+import useProgrammes from "./useProgrammes";
 
-const EditRequirementsBox = ({ closeEdit }) => {
+const EditRequirementsBox = ({ closeEdit, programme, notifyUpdate, regulation, heading }) => {
+    const { data } = useCourses();
+    const { updateProgramme } = useProgrammes();
+    const [courses, setCourses] = useState([]);
+    const [points, setPoints] = useState(15);
+    const [pointRequirement, setPointRequirement] = useState("EXACTLY");
+
+    const handleAddCourse = (courseId) => {
+        if (courseId !== "") {
+            const foundCourse = data.find((course) => course._id === courseId);
+            if (!courses.includes(foundCourse)) {
+                setCourses((oldCourses) => [...oldCourses, foundCourse]);
+            }
+        }
+    };
+
+    const handleRemoveCourse = (courseId) => {
+        const filteredCourses = courses.filter((course) => course._id !== courseId);
+        setCourses(filteredCourses);
+    };
+    const handleUpdateRegulation = () => {
+        if (courses.length !== 0 && points > 0) {
+            if (regulation === null) {
+                programme.regulations.push({ courses, points, pointRequirement });
+            } else {
+                const foundRegulationIndex = programme.regulations.findIndex((r) => r._id === regulation._id);
+                programme.regulations[foundRegulationIndex] = {
+                    ...programme.regulations[foundRegulationIndex],
+                    courses,
+                    points,
+                    pointRequirement,
+                };
+            }
+            updateProgramme(programme, notifyUpdate);
+            closeEdit();
+        }
+    };
+
+    useEffect(() => {
+        if (regulation !== null) {
+            setCourses(data.filter((course) => regulation.courses.includes(course._id)));
+            setPointRequirement(regulation.pointRequirement);
+            setPoints(regulation.points);
+        } else {
+            setCourses([]);
+            setPointRequirement("EXACTLY");
+            setPoints(15);
+        }
+    }, [regulation, data]);
+
     return (
         <Flex
             alignItems="center"
@@ -28,17 +79,17 @@ const EditRequirementsBox = ({ closeEdit }) => {
             padding="5px"
         >
             <Text textAlign="center" fontSize="md" color="#000000" as="i">
-                Create new requirements
+                {heading}
             </Text>
             <Flex justify="space-evenly">
                 <Flex direction="column" width="20%" align="center">
-                    <Select defaultValue="exactly" width="100%" bg="#303030">
-                        <option value="exactly">Exactly</option>
-                        <option value="atleast">At Least</option>
-                        <option value="upto">Up to</option>
+                    <Select width="100%" bg="#303030" value={pointRequirement} onChange={(e) => setPointRequirement(e.target.value)}>
+                        <option value="EXACTLY">Exactly</option>
+                        <option value="ATLEAST">At Least</option>
+                        <option value="UPTO">Up to</option>
                     </Select>
                 </Flex>
-                <NumberInput step={15} defaultValue={15} height="50%" width="15%" bg="#303030">
+                <NumberInput step={5} min={0} height="50%" width="15%" bg="#303030" value={points} onChange={(value) => setPoints(value)}>
                     <NumberInputField bg="#303030" />
                     <NumberInputStepper>
                         <NumberIncrementStepper />
@@ -47,49 +98,50 @@ const EditRequirementsBox = ({ closeEdit }) => {
                 </NumberInput>
                 <Text color="black">From</Text>
                 <Flex direction="column" width="35%" align="center">
-                    <Select placeholder="Select course" bg="#303030" width="80%">
-                        <option value="course1">course 1</option>
-                        <option value="course2">course 2</option>
+                    <Select placeholder="select courses" bg="#303030" width="80%" onChange={(e) => handleAddCourse(e.target.value)}>
+                        {data.map((course) => (
+                            <option key={course._id} value={course._id}>
+                                {course.courseCode}
+                            </option>
+                        ))}
                     </Select>
-                    <Stack bg="#565656" height="100%" width="100%" shouldWrapChildren overFlowY="scroll" isInline padding="5px">
-                        <Text
-                            border="solid"
-                            borderColor="white"
-                            borderRadius="20px"
-                            borderWidth="1px"
-                            fontSize="12px"
-                            padding="3px"
-                            margin="2px"
-                        >
-                            SE306
-                        </Text>
-                        <Text
-                            border="solid"
-                            borderColor="white"
-                            borderRadius="20px"
-                            borderWidth="1px"
-                            fontSize="12px"
-                            padding="3px"
-                            margin="2px"
-                        >
-                            SE306
-                        </Text>
-                        <Text
-                            border="solid"
-                            borderColor="white"
-                            borderRadius="20px"
-                            borderWidth="1px"
-                            fontSize="12px"
-                            padding="3px"
-                            margin="2px"
-                        >
-                            SE306
-                        </Text>
+                    <Stack
+                        className="programmeRequirements"
+                        bg="#565656"
+                        minHeight="40px"
+                        width="100%"
+                        overFlowX="scroll"
+                        isInline
+                        padding="5px"
+                    >
+                        {courses.map((course) => (
+                            <Text
+                                key={course._id}
+                                border="solid"
+                                cursor="pointer"
+                                borderColor="white"
+                                borderRadius="20px"
+                                borderWidth="1px"
+                                fontSize="12px"
+                                padding="3px"
+                                margin="2px"
+                                onClick={() => handleRemoveCourse(course._id)}
+                            >
+                                {course.courseCode}
+                            </Text>
+                        ))}
                     </Stack>
                 </Flex>
                 {/* Buttons to be refactored */}
                 <Box as={AiOutlineCloseCircle} size="32px" color="red.400" onClick={closeEdit} bottom="5px" cursor="pointer" />
-                <Box as={AiOutlineCheckCircle} size="32px" color="green.400" onClick={closeEdit} bottom="5px" cursor="pointer" />
+                <Box
+                    as={AiOutlineCheckCircle}
+                    size="32px"
+                    color={courses.length !== 0 && points > 0 ? "green.400" : "grey"}
+                    onClick={() => handleUpdateRegulation()}
+                    bottom="5px"
+                    cursor={courses.length !== 0 && points > 0 ? "pointer" : "default"}
+                />
             </Flex>
         </Flex>
     );
