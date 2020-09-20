@@ -13,6 +13,7 @@ import {
 import { AiOutlineCheckCircle, AiOutlineCloseCircle, AiOutlineClose } from "react-icons/ai";
 import useCourses from "../Courses/useCourses";
 import useProgrammes from "./useProgrammes";
+import { SingleSelect } from "../../components/";
 
 const EditRequirementsBox = ({ closeEdit, programme, notifyUpdate, regulation, heading }) => {
     const { data } = useCourses();
@@ -21,12 +22,9 @@ const EditRequirementsBox = ({ closeEdit, programme, notifyUpdate, regulation, h
     const [points, setPoints] = useState(15);
     const [pointRequirement, setPointRequirement] = useState("EXACTLY");
 
-    const handleAddCourse = (courseId) => {
-        if (courseId !== "") {
-            const foundCourse = data.find((course) => course._id === courseId);
-            if (!courses.includes(foundCourse)) {
-                setCourses((oldCourses) => [...oldCourses, foundCourse]);
-            }
+    const handleAddCourse = (course) => {
+        if (!courses.includes(course)) {
+            setCourses((oldCourses) => [...oldCourses, course]);
         }
     };
 
@@ -97,13 +95,11 @@ const EditRequirementsBox = ({ closeEdit, programme, notifyUpdate, regulation, h
                 </NumberInput>
                 <Text color="black">From</Text>
                 <Flex direction="column" width="45%" align="center">
-                    <Select placeholder="select courses" bg="#303030" width="80%" onChange={(e) => handleAddCourse(e.target.value)}>
-                        {data.map((course) => (
-                            <option key={course._id} value={course._id}>
-                                {course.courseCode}
-                            </option>
-                        ))}
-                    </Select>
+                    <SingleSelect
+                        onChange={(course) => handleAddCourse(course)}
+                        data={data.map((course) => ({ value: course, label: course.courseCode }))}
+                        placeholder="Add courses"
+                    />
                     <Flex
                         className="programmeRequirements"
                         bg="#565656"
