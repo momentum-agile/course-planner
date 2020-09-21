@@ -1,11 +1,14 @@
 import React from "react";
 import { Flex, Text, Image } from "@chakra-ui/core";
-import { OutlineButton } from "../../components";
+import { OutlineButton, NavigationMenu } from "../../components";
 
 const Home = () => {
     return (
         <Flex height="100vh" width="100%" direction="row">
             <Flex width="75%" backgroundColor="#303030">
+                <Flex left="1px" justify="flex-start">
+                    <NavigationMenu />
+                </Flex>
                 <Flex width="100%" align="center" justify="center">
                     <Image
                         htmlWidth="1000px"

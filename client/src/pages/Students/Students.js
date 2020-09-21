@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Text, Button, Divider, IconButton } from "@chakra-ui/core";
-import { Link } from "react-router-dom";
-import { AiFillHome } from "react-icons/ai";
-import { Table, SearchBar } from "../../components";
+import { Flex, Text, Button, Divider } from "@chakra-ui/core";
+import { Table, SearchBar, NavigationMenu } from "../../components";
 import useStudents from "./useStudents";
 import ViewStudent from "./ViewStudent";
 import AddStudent from "./AddStudent";
@@ -22,9 +20,7 @@ const Students = () => {
         <Flex height="100vh" width="100%" direction="row" backgroundColor="#F0F0F0">
             <Flex height="100%" width="50%" direction="column">
                 <Flex left="1px" justify="flex-start">
-                    <Link to="/">
-                        <IconButton as={AiFillHome} left="20px" top="20px" size="sm" />
-                    </Link>
+                    <NavigationMenu />
                 </Flex>
                 <Flex width="100%" justify="center" marginTop="20px">
                     <Text textAlign="center" fontSize="5xl" color="#113F73">

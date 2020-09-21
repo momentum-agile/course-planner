@@ -8,6 +8,7 @@ import InlineEdit from "./InlineEdit";
 import ConfirmationDialog from "./ConfirmationDialog";
 import SearchSelect from "./SearchSelect";
 import SingleSelect from "./SingleSelect";
+import NavigationMenu from "./NavigationMenu";
 
 export {
     AppConfiguration,
@@ -20,4 +21,5 @@ export {
     SearchSelect,
     SingleSelect,
     ConfirmationDialog,
+    NavigationMenu,
 };

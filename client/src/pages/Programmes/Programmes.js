@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Text, SimpleGrid, IconButton } from "@chakra-ui/core";
-import { Link, useParams } from "react-router-dom";
-import { AiFillHome } from "react-icons/ai";
-import { SearchBar, ProgrammeCard } from "../../components";
+import { Flex, Text, SimpleGrid } from "@chakra-ui/core";
+import { useParams } from "react-router-dom";
+import { SearchBar, ProgrammeCard, NavigationMenu } from "../../components";
 import ExistingProgramme from "./ExistingProgramme";
 import EmptyProgramme from "./EmptyProgramme";
 import NewProgramme from "./NewProgramme";
@@ -34,9 +33,7 @@ const Programmes = () => {
         <Flex height="100vh" width="100%" direction="row">
             <Flex width="50%" backgroundColor="#2A2A2A" direction="column">
                 <Flex left="1px" justify="flex-start">
-                    <Link to="/">
-                        <IconButton as={AiFillHome} variantColor="black" left="20px" top="20px" size="sm" />
-                    </Link>
+                    <NavigationMenu />
                 </Flex>
                 <Flex width="100%" justify="center" marginTop="20px">
                     <Text textAlign="center" fontSize="5xl" color="#F0F0F0">
