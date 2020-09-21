@@ -26,6 +26,7 @@ import {
     FormLabel,
     ButtonGroup,
 } from "@chakra-ui/core";
+import ReactTooltip from "react-tooltip";
 
 const defaultReg = {
     type: "POINTS",
@@ -41,6 +42,8 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
     const [noteValue, setNoteValue] = useState("");
 
     const [outputRegulation, setOutputRegulation] = useState([]);
+
+    const addToolTip = "Please add an AND or OR statement before adding another course";
 
     useEffect(() => {
         if (editReg) {
@@ -76,10 +79,7 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
 
     const handleCourseChange = (event) => setCourseTextValue(event.target.value);
 
-    const handleNoteChange = (event) => {
-        setNoteValue(event.target.value);
-        updateReg("courses")([event.target.value], "NOTE");
-    };
+    const handleNoteChange = (event) => setNoteValue(event.target.value);
 
     // Adds course to the current regulation (down button)
     const handleCourseClick = () => {
@@ -154,6 +154,12 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
         setCourseTextValue("");
     };
 
+    const isAddDisabled =
+        currentReg.courses.length === 0
+            ? true
+            : outputRegulation.length > 0 &&
+              outputRegulation[outputRegulation.length - 1] !== "OR" &&
+              outputRegulation[outputRegulation.length - 1] !== "AND";
     return (
         <>
             <Modal id="regulation-modal" isOpen={isOpen} onClose={handleClose} size="full">
@@ -224,15 +230,14 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
                                         <IconButton
                                             aria-label="Add input"
                                             icon="add"
-                                            isDisabled={
-                                                currentReg.courses.length === 0
-                                                    ? true
-                                                    : outputRegulation.length > 0 &&
-                                                      outputRegulation[outputRegulation.length - 1] !== "OR" &&
-                                                      outputRegulation[outputRegulation.length - 1] !== "AND"
-                                            }
+                                            isDisabled={isAddDisabled}
+                                            data-tip
+                                            data-for="addTooltip"
                                             onClick={() => handleAddToRegArrayClick("POINTS")}
                                         />
+                                        <ReactTooltip id="addTooltip" place="top" effect="solid" disable={!isAddDisabled}>
+                                            {addToolTip}
+                                        </ReactTooltip>
                                     </Flex>
                                 </>
                             ) : (
