@@ -48,7 +48,7 @@ exports[`<Courses /> 1`] = `
       className="css-1qd02q1"
     >
       <p
-        className="css-18zyayk"
+        className="css-19i5rf8"
       >
         Courses
       </p>
@@ -98,12 +98,12 @@ exports[`<Courses /> 1`] = `
         className="css-jeup5m"
       >
         <button
-          className="css-vvaeh6"
+          className="css-jyhka6"
           onClick={[Function]}
           type="button"
         >
           <p
-            className="css-17tlezs"
+            className="css-168qb02"
           >
             + Add Course
           </p>
@@ -145,7 +145,7 @@ exports[`<Courses /> 1`] = `
             role="button"
           >
             <svg
-              className="css-zgxhu3"
+              className="css-11orafl"
               fill="currentColor"
               height="1em"
               stroke="currentColor"
@@ -335,7 +335,7 @@ exports[`<Courses /> 1`] = `
           className="css-1ofqig9"
         >
           <button
-            className="css-ldllc3"
+            className="css-132lga7"
             onClick={[Function]}
             type="button"
           >
@@ -355,7 +355,7 @@ exports[`<Courses /> 1`] = `
           className="css-1ofqig9"
         >
           <button
-            className="css-ldllc3"
+            className="css-132lga7"
             onClick={[Function]}
             type="button"
           >
@@ -375,7 +375,7 @@ exports[`<Courses /> 1`] = `
           className="css-1ofqig9"
         >
           <button
-            className="css-ldllc3"
+            className="css-132lga7"
             onClick={[Function]}
             type="button"
           >
@@ -395,7 +395,7 @@ exports[`<Courses /> 1`] = `
           className="css-1ofqig9"
         >
           <button
-            className="css-ldllc3"
+            className="css-132lga7"
             onClick={[Function]}
             type="button"
           >

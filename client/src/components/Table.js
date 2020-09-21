@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useTable, useGlobalFilter } from "react-table";
 import { Box, Text } from "@chakra-ui/core";
+import { colors as c } from "../colors";
 
 const Table = ({ columns, data, getRowProps = () => ({}), currRow, searchInput }) => {
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, setGlobalFilter } = useTable(
@@ -33,12 +34,12 @@ const Table = ({ columns, data, getRowProps = () => ({}), currRow, searchInput }
                                     as="th"
                                     m={0}
                                     p="0.5rem"
-                                    borderBottomColor="#122776"
+                                    borderBottomColor={c.darkBlue}
                                     borderBottom={1}
                                     borderBottomStyle="solid"
                                     {...column.getHeaderProps()}
                                 >
-                                    <Text textAlign="center" fontSize="m" color="#9F9F9F">
+                                    <Text textAlign="center" fontSize="m" color={c.nightBlue}>
                                         {column.render("Header")}
                                     </Text>
                                 </Box>
@@ -57,12 +58,12 @@ const Table = ({ columns, data, getRowProps = () => ({}), currRow, searchInput }
                                             as="td"
                                             m={0}
                                             p="0.5rem"
-                                            borderBottomColor="#122776"
+                                            borderBottomColor={c.uoaBlue}
                                             borderBottom={1}
                                             borderBottomStyle="solid"
                                             {...cell.getCellProps()}
                                         >
-                                            <Text textAlign="center" fontSize="2xl" color={row.id !== currRow ? "#113F73" : "white"}>
+                                            <Text textAlign="center" fontSize="2xl" color={row.id !== currRow ? c.uoaBlue : c.white}>
                                                 {cell.render("Cell")}
                                             </Text>
                                         </Box>

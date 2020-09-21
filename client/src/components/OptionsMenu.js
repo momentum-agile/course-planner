@@ -2,6 +2,7 @@ import React from "react";
 import { Menu, MenuButton, MenuList, MenuGroup, MenuItem, Icon, Text, Flex, IconButton } from "@chakra-ui/core";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import ConfirmationDialog from "./ConfirmationDialog";
+import { colors as c } from "../colors";
 
 const OptionsMenu = ({ item, itemType, setOpenConfirmationDialog, openConfirmationDialog, confirm, hasEdit, onEdit }) => {
     return (
@@ -13,17 +14,17 @@ const OptionsMenu = ({ item, itemType, setOpenConfirmationDialog, openConfirmati
                             <IconButton
                                 as={BiDotsHorizontalRounded}
                                 size="xs"
-                                _active={{ bg: "#063b59", color: "#F2F2F2" }}
-                                _hover={isOpen ? { bg: "#063b59", color: "#F2F2F2" } : { bg: "#D3D3D3", color: "black" }}
-                                bg={isOpen ? "#063b59" : "none"}
-                                color={isOpen ? "#F2F2F2" : "black"}
+                                _active={{ bg: c.darkBlue, color: c.whiteGrey }}
+                                _hover={isOpen ? { bg: c.darkBlue, color: c.whiteGrey } : { bg: c.lightGrey, color: c.black }}
+                                bg={isOpen ? c.darkBlue : "none"}
+                                color={isOpen ? c.whiteGrey : c.black}
                             />
                         </MenuButton>
                         <MenuList placement="bottom-end" minWidth="160px">
                             <MenuGroup>
                                 <MenuItem onClick={() => setOpenConfirmationDialog(true)}>
-                                    <Icon name="delete" mr={3} color="red.500" />
-                                    <Text color="red.500">Delete</Text>
+                                    <Icon name="delete" mr={3} color={c.red} />
+                                    <Text color={c.red}>Delete</Text>
                                 </MenuItem>
                                 {hasEdit && (
                                     <MenuItem onClick={onEdit}>

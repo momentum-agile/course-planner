@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import useProgrammmes from "./useProgrammes";
 import useCourses from "../Courses/useCourses";
 import OptionsMenu from "../../components/OptionsMenu";
+import { colors as c } from "../../colors";
 
 const ExistingProgramme = ({ programme, notifyUpdate }) => {
     const history = useHistory();
@@ -59,7 +60,7 @@ const ExistingProgramme = ({ programme, notifyUpdate }) => {
     return (
         <Flex width="100%" direction="column">
             <Flex align="center" justify="center" direction="row">
-                <Text textAlign="center" fontSize="4xl" color="#0F487E">
+                <Text textAlign="center" fontSize="4xl" color={c.uoaBlue}>
                     Programme Requirements
                 </Text>
                 <Flex justify="flex-end" align="flex-end" right="50px" position="absolute">
@@ -76,7 +77,7 @@ const ExistingProgramme = ({ programme, notifyUpdate }) => {
                 </Flex>
             </Flex>
             <Flex align="center" justify="center" marginTop="10px">
-                <Text textAlign="center" fontSize="md" color="#000000" as="i">
+                <Text textAlign="center" fontSize="md" color={c.black} as="i">
                     Programme Name
                 </Text>
             </Flex>
@@ -92,29 +93,30 @@ const ExistingProgramme = ({ programme, notifyUpdate }) => {
                         onChange={(event) => setName(event.target.value)}
                     />
                 ) : (
-                    <Text textAlign="center" fontSize="30px" color="#000000" as="b">
+                    <Text textAlign="center" fontSize="30px" color={c.black} as="b">
                         {programmeDegreeInfo.name}
                     </Text>
                 )}
             </Flex>
 
             <Flex align="center" justify="center" direction="column">
-                <Text textAlign="center" fontSize="md" color="#000000" as="i">
+                <Text textAlign="center" fontSize="md" color={c.black} as="i" mt={5}>
                     Requirements
                 </Text>
-                <Box bg="#e2e2e2" width="75%" textAlign="center" padding="5px" marginTop="10px">
+                <Box bg={c.lightGrey} width="75%" textAlign="center" padding="5px" marginTop="10px">
                     <IconButton
+                        mt={2}
                         width="90%"
                         icon="add"
-                        bg="#616161"
-                        color="white"
+                        bg={c.darkGrey}
+                        color={c.white}
                         onClick={() => {
                             setCreateNewRequirements(true);
                             setRegulationInEdit(null);
                             setEditRequirementsHeading("Creating new requirement");
                         }}
                     />
-                    <Stack direction="column" height="150px" width="100%" overflowY="scroll" align="center">
+                    <Stack direction="column" height="150px" width="100%" overflowY="auto" align="center">
                         {programme.regulations.map((regulation, index) => (
                             <ProgrammeRequirementsItem
                                 key={index}

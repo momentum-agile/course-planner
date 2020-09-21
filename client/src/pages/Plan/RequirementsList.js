@@ -1,6 +1,7 @@
-import React from 'react';
-import { Flex } from '@chakra-ui/core';
-import RequirementsListItem from './RequirementListItem'
+import React from "react";
+import { Flex } from "@chakra-ui/core";
+import RequirementsListItem from "./RequirementListItem";
+import { colors as c } from "../../colors";
 
 const RequirementsList = ({ programme }) => {
     // const regulations = programme.regulations;
@@ -12,7 +13,7 @@ const RequirementsList = ({ programme }) => {
             direction="column"
             width="80%"
             padding="0 0 10px 10px"
-            background="#FFF"
+            background={c.white}
             marginTop="20px"
             maxHeight="200px"
             overflowY="scroll"
@@ -24,11 +25,11 @@ const RequirementsList = ({ programme }) => {
                     prefix={reg.pointRequirement}
                     points={reg.points}
                     courses={reg.courses}
-                    isSatisfied={reg.isSatisfied} />
+                    isSatisfied={reg.isSatisfied}
+                />
             ))}
         </Flex>
     );
-
-}
+};
 
 export default RequirementsList;

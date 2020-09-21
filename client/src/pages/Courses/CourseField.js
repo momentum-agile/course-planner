@@ -30,8 +30,10 @@ const InLineNumber = ({ onChange, value, title }) => {
                 <Text> {title}: </Text>
             </Box>
             <Select ml={5} value={value} onChange={onChange}>
-                {points.map((val) => (
-                    <option value={val}>{val} points</option>
+                {points.map((val, i) => (
+                    <option value={val} key={i}>
+                        {val} points
+                    </option>
                 ))}
             </Select>
         </Flex>

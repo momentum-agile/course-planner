@@ -4,6 +4,7 @@ import { Table, SearchBar, NavigationMenu } from "../../components";
 import useStudents from "./useStudents";
 import ViewStudent from "./ViewStudent";
 import AddStudent from "./AddStudent";
+import { colors as c } from "../../colors";
 
 const Students = () => {
     const [currRow, setCurrRow] = useState("0");
@@ -17,29 +18,29 @@ const Students = () => {
     }, [data, currRow]);
 
     return (
-        <Flex height="100vh" width="100%" direction="row" backgroundColor="#F0F0F0">
+        <Flex height="100vh" width="100%" direction="row" backgroundColor={c.whiteGrey}>
             <Flex height="100%" width="50%" direction="column">
                 <Flex left="1px" justify="flex-start">
                     <NavigationMenu />
                 </Flex>
                 <Flex width="100%" justify="center" marginTop="20px">
-                    <Text textAlign="center" fontSize="5xl" color="#113F73">
+                    <Text textAlign="center" fontSize="5xl" color={c.uoaBlue}>
                         Students
                     </Text>
                 </Flex>
 
                 <Flex width="100%" align="center" justify="center" direction="row">
-                    <SearchBar searchCategory="Students" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
+                    <SearchBar searchCategory="Students" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                     <Flex p={2} marginLeft={2}>
                         <Button
                             variantColor="blue"
-                            backgroundColor="#162971"
+                            backgroundColor={c.uoaBlue}
                             onClick={() => {
                                 setCurrRow();
                                 setAddingStudent(true);
                             }}
                         >
-                            <Text textAlign="center" color="white">
+                            <Text textAlign="center" color={c.white}>
                                 Add Student
                             </Text>
                         </Button>
@@ -57,7 +58,7 @@ const Students = () => {
                             },
                             style: {
                                 cursor: "pointer",
-                                background: row.id === currRow ? "#0F487E" : null,
+                                background: row.id === currRow ? c.uoaBlue : null,
                             },
                         })}
                         currRow={currRow}
@@ -65,15 +66,13 @@ const Students = () => {
                     />
                 </Flex>
             </Flex>
-            <Divider orientation="vertical" backgroundColor="#A7C4E0" width="2px" />
+            <Divider orientation="vertical" backgroundColor={c.iceBlue} width="2px" />
             <Flex height="100%" width="50%" direction="column">
-                {addingStudent
-                    ? (
-                        <AddStudent addStudent={addStudent} />
-                    )
-                    : (
-                        <ViewStudent student={selectedStudent} editStudent={editStudent} deleteStudent={deleteStudent} />
-                    )}
+                {addingStudent ? (
+                    <AddStudent addStudent={addStudent} />
+                ) : (
+                    <ViewStudent student={selectedStudent} editStudent={editStudent} deleteStudent={deleteStudent} />
+                )}
             </Flex>
         </Flex>
     );

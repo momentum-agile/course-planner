@@ -14,6 +14,7 @@ import { AiOutlineCheckCircle, AiOutlineCloseCircle, AiOutlineClose } from "reac
 import useCourses from "../Courses/useCourses";
 import useProgrammes from "./useProgrammes";
 import { SingleSelect } from "../../components/";
+import { colors as c } from "../../colors";
 
 const EditRequirementsBox = ({ closeEdit, programme, notifyUpdate, regulation, heading }) => {
     const { data } = useCourses();
@@ -71,29 +72,37 @@ const EditRequirementsBox = ({ closeEdit, programme, notifyUpdate, regulation, h
             marginTop="20px"
             height="150px"
             width="85%"
-            color="white"
-            bg="#e2e2e2"
+            color={c.white}
+            bg={c.whiteGrey}
             padding="5px"
         >
-            <Text textAlign="center" fontSize="md" color="#000000" as="i">
+            <Text textAlign="center" fontSize="md" color={c.black} as="i">
                 {heading}
             </Text>
             <Flex justify="space-evenly">
                 <Flex direction="column" width="20%" align="center">
-                    <Select width="100%" bg="#303030" value={pointRequirement} onChange={(e) => setPointRequirement(e.target.value)}>
+                    <Select width="100%" bg={c.darkGrey} value={pointRequirement} onChange={(e) => setPointRequirement(e.target.value)}>
                         <option value="EXACTLY">Exactly</option>
                         <option value="ATLEAST">At Least</option>
                         <option value="UPTO">Up to</option>
                     </Select>
                 </Flex>
-                <NumberInput step={5} min={0} height="40px" width="15%" bg="#303030" value={points} onChange={(value) => setPoints(value)}>
-                    <NumberInputField bg="#303030" />
+                <NumberInput
+                    step={5}
+                    min={0}
+                    height="40px"
+                    width="15%"
+                    bg={c.darkGrey}
+                    value={points}
+                    onChange={(value) => setPoints(value)}
+                >
+                    <NumberInputField bg={c.darkGrey} />
                     <NumberInputStepper>
                         <NumberIncrementStepper />
                         <NumberDecrementStepper />
                     </NumberInputStepper>
                 </NumberInput>
-                <Text color="black">From</Text>
+                <Text color={c.black}>From</Text>
                 <Flex direction="column" width="45%" align="center">
                     <SingleSelect
                         onChange={(course) => handleAddCourse(course)}
@@ -102,7 +111,7 @@ const EditRequirementsBox = ({ closeEdit, programme, notifyUpdate, regulation, h
                     />
                     <Flex
                         className="programmeRequirements"
-                        bg="#565656"
+                        bg={c.darkGrey}
                         minHeight="40px"
                         maxHeight="70px"
                         width="100%"
@@ -115,7 +124,7 @@ const EditRequirementsBox = ({ closeEdit, programme, notifyUpdate, regulation, h
                                 <Text
                                     key={course._id}
                                     border="solid"
-                                    borderColor="white"
+                                    borderColor={c.white}
                                     borderRadius="20px"
                                     borderWidth="1px"
                                     fontSize="12px"
@@ -129,7 +138,7 @@ const EditRequirementsBox = ({ closeEdit, programme, notifyUpdate, regulation, h
                                     position="relative"
                                     size="12px"
                                     right="10px"
-                                    color="#ff0000"
+                                    color={c.red}
                                     cursor="pointer"
                                     onClick={() => handleRemoveCourse(course._id)}
                                 />
@@ -142,7 +151,7 @@ const EditRequirementsBox = ({ closeEdit, programme, notifyUpdate, regulation, h
                 <Box
                     as={AiOutlineCheckCircle}
                     size="32px"
-                    color={courses.length !== 0 && points > 0 ? "green.400" : "grey"}
+                    color={courses.length !== 0 && points > 0 ? c.green : "grey"}
                     onClick={() => handleUpdateRegulation()}
                     bottom="5px"
                     cursor={courses.length !== 0 && points > 0 ? "pointer" : "default"}

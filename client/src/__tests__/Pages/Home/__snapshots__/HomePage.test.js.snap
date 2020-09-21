@@ -72,7 +72,7 @@ exports[`<Home /> 1`] = `
         className="css-1orkoap"
       >
         <p
-          className="css-18zyayk"
+          className="css-19i5rf8"
         >
           Course Planner
         </p>
@@ -85,11 +85,11 @@ exports[`<Home /> 1`] = `
           onClick={[Function]}
         >
           <button
-            className="css-sw1q1f"
+            className="css-zvqurx"
             type="button"
           >
             <p
-              className="css-181lpyk"
+              className="css-hw1cjb"
             >
               Students
             </p>
@@ -100,11 +100,11 @@ exports[`<Home /> 1`] = `
           onClick={[Function]}
         >
           <button
-            className="css-sw1q1f"
+            className="css-zvqurx"
             type="button"
           >
             <p
-              className="css-181lpyk"
+              className="css-hw1cjb"
             >
               Courses
             </p>
@@ -115,11 +115,11 @@ exports[`<Home /> 1`] = `
           onClick={[Function]}
         >
           <button
-            className="css-sw1q1f"
+            className="css-zvqurx"
             type="button"
           >
             <p
-              className="css-181lpyk"
+              className="css-hw1cjb"
             >
               Programmes
             </p>

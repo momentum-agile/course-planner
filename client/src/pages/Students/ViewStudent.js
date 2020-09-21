@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Flex, Text, Box, Select, Button } from "@chakra-ui/core";
 import { InlineEdit } from "../../components";
-import ProgrammeTable from "./ProgrammeTable";
+import PlanTable from "./PlanTable";
 import { Link } from "react-router-dom";
 import OptionsMenu from "../../components/OptionsMenu";
+import { colors as c } from "../../colors";
 
-const programmeTableColumns = [
+const PlanTableColumns = [
     {
         Header: "Name",
         accessor: "name",
@@ -77,7 +78,7 @@ const ViewStudent = ({ student, editStudent, deleteStudent }) => {
                             confirm={deleteStudent}
                         />
                     </Flex>
-                    <Text textAlign="center" fontStyle="bold" fontSize="5xl" color="#113F73">
+                    <Text textAlign="center" fontStyle="bold" fontSize="5xl" color={c.uoaBlue}>
                         Selected Student
                     </Text>
                 </Flex>
@@ -139,14 +140,14 @@ const ViewStudent = ({ student, editStudent, deleteStudent }) => {
                             Plans
                         </Text>
                         <Link to={`plan/${upi}/${data.length + 1}`}>
-                            <Button variantColor="blue" backgroundColor="#162971" marginLeft="20px">
-                                <Text textAlign="center" color="white">
+                            <Button variantColor="blue" backgroundColor={c.uoaBlue} marginLeft="20px">
+                                <Text textAlign="center" color={c.white}>
                                     Create Plan
                                 </Text>
                             </Button>
                         </Link>
                     </Flex>
-                    <ProgrammeTable columns={programmeTableColumns} data={data} />
+                    <PlanTable columns={PlanTableColumns} data={data} />
                 </Flex>
             </Flex>
         </Flex>

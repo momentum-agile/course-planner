@@ -1,5 +1,6 @@
-import React from 'react';
+import React from "react";
 import { Flex, Text, Stack, Icon } from "@chakra-ui/core";
+import { colors as c } from "../../colors";
 
 // TODO: Refactor this to be common with Allen's component from the ProgrammeDegree page
 
@@ -9,14 +10,14 @@ const RequirementListItem = ({ index, prefix, points, courses, isSatisfied }) =>
             height="60px"
             paddingLeft="3px"
             paddingRight="3px"
-            bg={isSatisfied ? "green.500" : "#303030"}
+            bg={isSatisfied ? c.green : c.darkGrey}
             borderRadius="5px"
             direction="row"
             alignItems="center"
             textAlign="center"
             justify="space-around"
             marginTop="5px"
-            color="#ffffff"
+            color={c.white}
         >
             <Text textAlign="left" width="2%">
                 {index + 1}.
@@ -36,7 +37,7 @@ const RequirementListItem = ({ index, prefix, points, courses, isSatisfied }) =>
                         key={index}
                         height="60%"
                         border="solid"
-                        borderColor="white"
+                        borderColor={c.white}
                         borderRadius="20px"
                         borderWidth="1px"
                         fontSize="12px"
@@ -47,15 +48,9 @@ const RequirementListItem = ({ index, prefix, points, courses, isSatisfied }) =>
                     </Text>
                 ))}
             </Stack>
-            <Flex>
-                {isSatisfied
-                    && <Icon name="check" />
-
-                }
-            </Flex>
+            <Flex>{isSatisfied && <Icon name="check" />}</Flex>
         </Flex>
     );
-
 };
 
 export default RequirementListItem;

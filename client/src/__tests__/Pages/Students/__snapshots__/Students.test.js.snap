@@ -48,7 +48,7 @@ exports[`Main Students Page 1`] = `
       className="css-9jtr4b"
     >
       <p
-        className="css-2p6jeh"
+        className="css-o10up6"
       >
         Students
       </p>
@@ -98,12 +98,12 @@ exports[`Main Students Page 1`] = `
         className="css-jeup5m"
       >
         <button
-          className="css-vvaeh6"
+          className="css-1dad4i1"
           onClick={[Function]}
           type="button"
         >
           <p
-            className="css-17tlezs"
+            className="css-168qb02"
           >
             Add Student
           </p>
@@ -151,7 +151,7 @@ exports[`Main Students Page 1`] = `
                 role="button"
               >
                 <svg
-                  className="css-zgxhu3"
+                  className="css-11orafl"
                   fill="currentColor"
                   height="1em"
                   stroke="currentColor"
@@ -174,7 +174,7 @@ exports[`Main Students Page 1`] = `
             </div>
           </div>
           <p
-            className="css-kscmhb"
+            className="css-qvwayb"
           >
             Selected Student
           </p>
@@ -349,11 +349,11 @@ exports[`Main Students Page 1`] = `
               onClick={[Function]}
             >
               <button
-                className="css-1h5n3x9"
+                className="css-abregs"
                 type="button"
               >
                 <p
-                  className="css-17tlezs"
+                  className="css-168qb02"
                 >
                   Create Plan
                 </p>
@@ -375,45 +375,45 @@ exports[`Main Students Page 1`] = `
                   role="row"
                 >
                   <th
-                    className="css-pewfw0"
+                    className="css-1oifyfq"
                     colSpan={1}
                     role="columnheader"
                   >
                     <p
-                      className="css-126lxaa"
+                      className="css-evrumw"
                     >
                       Name
                     </p>
                   </th>
                   <th
-                    className="css-pewfw0"
+                    className="css-1oifyfq"
                     colSpan={1}
                     role="columnheader"
                   >
                     <p
-                      className="css-126lxaa"
+                      className="css-evrumw"
                     >
                       Programme
                     </p>
                   </th>
                   <th
-                    className="css-pewfw0"
+                    className="css-1oifyfq"
                     colSpan={1}
                     role="columnheader"
                   >
                     <p
-                      className="css-126lxaa"
+                      className="css-evrumw"
                     >
                       Start Year
                     </p>
                   </th>
                   <th
-                    className="css-pewfw0"
+                    className="css-1oifyfq"
                     colSpan={1}
                     role="columnheader"
                   >
                     <p
-                      className="css-126lxaa"
+                      className="css-evrumw"
                     >
                       End Year
                     </p>
@@ -429,41 +429,41 @@ exports[`Main Students Page 1`] = `
                   role="row"
                 >
                   <td
-                    className="css-19lsqn0"
+                    className="css-1i8kqc6"
                     role="cell"
                   >
                     <p
-                      className="css-7t2dre"
+                      className="css-6ewox4"
                     >
                       Plan1
                     </p>
                   </td>
                   <td
-                    className="css-19lsqn0"
+                    className="css-1i8kqc6"
                     role="cell"
                   >
                     <p
-                      className="css-7t2dre"
+                      className="css-6ewox4"
                     >
                       BE (Hons) SE
                     </p>
                   </td>
                   <td
-                    className="css-19lsqn0"
+                    className="css-1i8kqc6"
                     role="cell"
                   >
                     <p
-                      className="css-7t2dre"
+                      className="css-6ewox4"
                     >
                       2018
                     </p>
                   </td>
                   <td
-                    className="css-19lsqn0"
+                    className="css-1i8kqc6"
                     role="cell"
                   >
                     <p
-                      className="css-7t2dre"
+                      className="css-6ewox4"
                     >
                       2020
                     </p>
@@ -474,41 +474,41 @@ exports[`Main Students Page 1`] = `
                   role="row"
                 >
                   <td
-                    className="css-19lsqn0"
+                    className="css-1i8kqc6"
                     role="cell"
                   >
                     <p
-                      className="css-7t2dre"
+                      className="css-6ewox4"
                     >
                       Plan2
                     </p>
                   </td>
                   <td
-                    className="css-19lsqn0"
+                    className="css-1i8kqc6"
                     role="cell"
                   >
                     <p
-                      className="css-7t2dre"
+                      className="css-6ewox4"
                     >
                       BE (Hone) SE
                     </p>
                   </td>
                   <td
-                    className="css-19lsqn0"
+                    className="css-1i8kqc6"
                     role="cell"
                   >
                     <p
-                      className="css-7t2dre"
+                      className="css-6ewox4"
                     >
                       2018
                     </p>
                   </td>
                   <td
-                    className="css-19lsqn0"
+                    className="css-1i8kqc6"
                     role="cell"
                   >
                     <p
-                      className="css-7t2dre"
+                      className="css-6ewox4"
                     >
                       2020
                     </p>

@@ -7,6 +7,7 @@ import EmptyProgramme from "./EmptyProgramme";
 import NewProgramme from "./NewProgramme";
 import useProgrammmes from "./useProgrammes";
 import filter from "@mcabreradev/filter";
+import { colors as c } from "../../colors";
 
 const Programmes = () => {
     const location = useParams();
@@ -31,18 +32,19 @@ const Programmes = () => {
 
     return (
         <Flex height="100vh" width="100%" direction="row">
-            <Flex width="50%" backgroundColor="#2A2A2A" direction="column">
+            <Flex width="50%" backgroundColor={c.midnightBlue} direction="column">
                 <Flex left="1px" justify="flex-start">
                     <NavigationMenu />
                 </Flex>
                 <Flex width="100%" justify="center" marginTop="20px">
-                    <Text textAlign="center" fontSize="5xl" color="#F0F0F0">
+                    <Text textAlign="center" fontSize="5xl" color={c.whiteGrey}>
                         Programmes
                     </Text>
                 </Flex>
                 <SearchBar searchCategory="Programmes" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-                <Flex width="102%" justify="center" align="center" overflowY="scroll" marginTop="15px" marginBottom="15px">
-                    <SimpleGrid columns={2} spacingX="50px" spacingY="10px" height="100%">
+                {/* TODO: style scrollbar */}
+                <Flex width="100%" justify="center" align="flex-start" overflowY="auto" marginTop="15px" marginBottom="15px" height="100%">
+                    <SimpleGrid columns={2} spacingX="50px">
                         <ProgrammeCard to="new" />
                         {filter(programmeDegrees, { name: searchTerm }).map((programme) => (
                             <ProgrammeCard currentID={location.id} to={programme._id} programme={programme} />
@@ -51,7 +53,7 @@ const Programmes = () => {
                 </Flex>
             </Flex>
             {/* RHS of the page */}
-            <Flex width="50%" backgroundColor="#F0F0F0">
+            <Flex width="50%" backgroundColor={c.whiteGrey}>
                 <Flex width="100%" direction="column" marginTop="60px">
                     {location.id === "new" ? <NewProgramme notifyAddition={updateList} /> : renderProgramme(location)}
                 </Flex>

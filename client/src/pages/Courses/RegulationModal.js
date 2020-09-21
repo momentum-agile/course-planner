@@ -27,6 +27,7 @@ import {
     ButtonGroup,
 } from "@chakra-ui/core";
 import ReactTooltip from "react-tooltip";
+import { colors as c } from "../../colors";
 
 const defaultReg = {
     type: "POINTS",
@@ -216,7 +217,7 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
                                             p={2}
                                             h="48px"
                                             w="100%"
-                                            bg={currentReg.courses.length > 0 ? "white" : "gray.100"}
+                                            bg={currentReg.courses.length > 0 ? c.white : "gray.100"}
                                         >
                                             {currentReg.courses.map((course, idx) => (
                                                 <Tag size="sm" key={idx} rounded="full" variant="solid" variantColor="cyan">
@@ -306,7 +307,7 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
                             p={2}
                             h="60px"
                             m="2"
-                            bg="#f2f2f2"
+                            bg={c.whiteGrey}
                             overflowX="scroll"
                             flexWrap="wrap"
                         >

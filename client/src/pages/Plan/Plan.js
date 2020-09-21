@@ -6,14 +6,15 @@ import HomeIcon from "./HomeIcon";
 import Year from "./Year";
 import { SearchBar } from "../../components";
 import filter from "@mcabreradev/filter";
-import RequirementsList from './RequirementsList';
+import RequirementsList from "./RequirementsList";
+import { colors as c } from "../../colors";
 
-const reqsToolTip = "Requirements satisfied by the plan will be ticked off and become green"
+const reqsToolTip = "Requirements satisfied by the plan will be ticked off and become green";
 
 const CoursePill = ({ courseName }) => {
     return (
         <Box flex="1 1 25%" height="100%" background="gray" borderRadius="10px" borderRight="solid white" maxWidth="25%" marginTop="10px">
-            <Text textAlign="center" color="#FFF">
+            <Text textAlign="center" color={c.white}>
                 {courseName}
             </Text>
         </Box>
@@ -29,17 +30,17 @@ const Plan = () => {
     // whether it's been satisfied by the plan/timetable (show which ones have been satisfied, e.g. tick off)
 
     return (
-        <Flex height="100vh" width="100%" direction="row" backgroundColor="#F0F0F0">
-            <Flex height="100%" width="30%" direction="column" backgroundColor="#303030">
+        <Flex height="100vh" width="100%" direction="row" backgroundColor={c.whiteGrey}>
+            <Flex height="100%" width="30%" direction="column" backgroundColor={c.darkGrey}>
                 <HomeIcon />
 
                 <Flex direction="column" justify="center" align="center">
                     <Flex direction="row" align="center">
-                        <Text textAlign="center" fontSize="5xl" color="#FFF">
+                        <Text textAlign="center" fontSize="5xl" color={c.white}>
                             Requirements
                         </Text>
-                        <Tooltip label={reqsToolTip} placement="bottom" bg="#1F487A">
-                            <Icon name="question" color="#FFF" marginLeft="5px" />
+                        <Tooltip label={reqsToolTip} placement="bottom" bg={c.uoaBlue}>
+                            <Icon name="question" color={c.white} marginLeft="5px" />
                         </Tooltip>
                     </Flex>
 
@@ -49,7 +50,7 @@ const Plan = () => {
                 </Flex>
 
                 <Flex direction="column" width="100%">
-                    <Text textAlign="center" fontSize="5xl" color="#FFF">
+                    <Text textAlign="center" fontSize="5xl" color={c.white}>
                         Courses
                     </Text>
                     <SearchBar searchCategory="Courses" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
@@ -58,7 +59,7 @@ const Plan = () => {
                             width="80%"
                             flexWrap="wrap"
                             padding="0 0 10px 10px"
-                            background="#FFF"
+                            background={c.white}
                             marginTop="20px"
                             maxHeight="200px"
                             overflowY="scroll"
@@ -70,11 +71,11 @@ const Plan = () => {
                         </Flex>
                     </Flex>
 
-                    <Text textAlign="center" fontSize="5xl" color="#FFF">
+                    <Text textAlign="center" fontSize="5xl" color={c.white}>
                         Notes
                     </Text>
                     <Flex align="center" justify="center">
-                        <Flex width="80%" background="#FFF">
+                        <Flex width="80%" background={c.white}>
                             <Textarea
                                 placeholder="Add your note here"
                                 size="sm"
@@ -89,7 +90,7 @@ const Plan = () => {
 
             <Flex height="100%" width="70%" direction="column">
                 <Header name={student?.name} />
-                <Divider orientation="horizontal" backgroundColor="#A7C4E0" width="100%" height="2px" />
+                <Divider orientation="horizontal" backgroundColor={c.iceBlue} width="100%" height="2px" />
                 <Flex overflowY="scroll" direction="column">
                     <Year year={2020} />
                     <Year year={2021} />

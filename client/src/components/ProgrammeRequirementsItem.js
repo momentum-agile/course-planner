@@ -1,5 +1,6 @@
 import React from "react";
 import { Flex, Text, Stack, PseudoBox } from "@chakra-ui/core";
+import { colors as c } from "../colors";
 
 const ProgrammeRequirementsItem = ({ itemNumber, pointRequirement, points, courseList, onDelete, onEdit, deleteButton }) => {
     const pointRequirementMap = {
@@ -14,16 +15,16 @@ const ProgrammeRequirementsItem = ({ itemNumber, pointRequirement, points, cours
             width="90%"
             paddingLeft="3px"
             paddingRight="3px"
-            bg="#303030"
+            bg={c.white}
             borderRadius="5px"
             flex-direction="row"
             alignItems="center"
             textAlign="center"
             justify="space-around"
             marginTop="10px"
-            color="#ffffff"
+            color={c.midnightBlue}
             _hover={{
-                bg: "#3F3F3F",
+                bg: c.whiteGrey,
                 cursor: "pointer",
             }}
             onClick={onEdit}
@@ -47,7 +48,7 @@ const ProgrammeRequirementsItem = ({ itemNumber, pointRequirement, points, cours
                             key={index}
                             height="60%"
                             border="solid"
-                            borderColor="white"
+                            borderColor={c.lightBlue}
                             borderRadius="20px"
                             borderWidth="1px"
                             fontSize="12px"

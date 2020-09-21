@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Flex, Text, Input, Box } from "@chakra-ui/core";
 import { OutlineButton } from "../../components";
 import useProgrammmes from "./useProgrammes";
+import { colors as c } from "../../colors";
 
 const NewProgramme = ({ notifyAddition }) => {
     const { createProgramme } = useProgrammmes();
@@ -49,12 +50,12 @@ const NewProgramme = ({ notifyAddition }) => {
     return (
         <Flex width="100%" direction="column">
             <Flex align="center" justify="center">
-                <Text textAlign="center" fontSize="4xl" color="#0F487E">
+                <Text textAlign="center" fontSize="4xl" color={c.uoaBlue}>
                     Create Programme Requirements
                 </Text>
             </Flex>
             <Flex align="center" justify="center" marginTop="10px">
-                <Text textAlign="center" fontSize="md" color="#000000" as="i">
+                <Text textAlign="center" fontSize="md" color={c.black} as="i">
                     Programme Name
                 </Text>
             </Flex>
@@ -70,7 +71,7 @@ const NewProgramme = ({ notifyAddition }) => {
             </Flex>
 
             <Flex align="center" justify="center" marginTop="50px">
-                <Text textAlign="center" fontSize="md" color="#000000" as="i">
+                <Text textAlign="center" fontSize="md" color={c.black} as="i">
                     Requirements
                 </Text>
                 <Box as="span" ml="2" color="gray.600" bg="gray" />

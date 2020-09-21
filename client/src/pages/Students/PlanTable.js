@@ -1,8 +1,9 @@
 import React from "react";
 import { useTable } from "react-table";
 import { Box, Text } from "@chakra-ui/core";
+import { colors as c } from "../../colors";
 
-const ProgrammeTable = ({ columns, data }) => {
+const PlanTable = ({ columns, data }) => {
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
         columns,
         data,
@@ -26,12 +27,12 @@ const ProgrammeTable = ({ columns, data }) => {
                                     as="th"
                                     m={0}
                                     p="0.5rem"
-                                    borderBottomColor="#122776"
+                                    borderBottomColor={c.uoaBlue}
                                     borderBottom={1}
                                     borderBottomStyle="solid"
                                     {...column.getHeaderProps()}
                                 >
-                                    <Text textAlign="center" fontSize="m" color="black">
+                                    <Text textAlign="center" fontSize="m" color={c.black}>
                                         {column.render("Header")}
                                     </Text>
                                 </Box>
@@ -50,13 +51,13 @@ const ProgrammeTable = ({ columns, data }) => {
                                             as="td"
                                             m={0}
                                             p="0.5rem"
-                                            borderBottomColor="#122776"
+                                            borderBottomColor={c.uoaBlue}
                                             borderBottom={1}
                                             borderBottomStyle="solid"
-                                            backgroundColor="#2A2A2A"
+                                            backgroundColor={c.midnightBlue}
                                             {...cell.getCellProps()}
                                         >
-                                            <Text textAlign="center" fontSize="l" color={"white"}>
+                                            <Text textAlign="center" fontSize="l" color={c.white}>
                                                 {cell.render("Cell")}
                                             </Text>
                                         </Box>
@@ -71,4 +72,4 @@ const ProgrammeTable = ({ columns, data }) => {
     );
 };
 
-export default ProgrammeTable;
+export default PlanTable;

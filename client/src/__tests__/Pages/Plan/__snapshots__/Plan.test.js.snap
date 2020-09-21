@@ -15,7 +15,7 @@ exports[`<Plan /> 1`] = `
         onClick={[Function]}
       >
         <svg
-          className="css-1bj80pv"
+          className="css-1tqsd30"
           fill="currentColor"
           height="1em"
           stroke="currentColor"
@@ -43,12 +43,12 @@ exports[`<Plan /> 1`] = `
         className="css-u4p24i"
       >
         <p
-          className="css-15ehuni"
+          className="css-1g1e9sz"
         >
           Requirements
         </p>
         <svg
-          className="css-ikv9j6"
+          className="css-rw24u3"
           focusable={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -68,10 +68,10 @@ exports[`<Plan /> 1`] = `
         className="css-1lads1q"
       >
         <div
-          className="css-ew9cpt"
+          className="css-51am61"
         >
           <div
-            className="css-1k2oh4m"
+            className="css-bjsx6g"
           >
             <p
               className="css-1t07m2d"
@@ -98,17 +98,17 @@ exports[`<Plan /> 1`] = `
               className="programmeRequirements css-chxm8w"
             >
               <p
-                className="css-xbb7oq"
+                className="css-14ai1qy"
               >
                 SOFTENG370
               </p>
               <p
-                className="css-xbb7oq"
+                className="css-14ai1qy"
               >
                 SOFTENG370
               </p>
               <p
-                className="css-8fehp9"
+                className="css-1usq9ww"
               >
                 SOFTENG370
               </p>
@@ -133,7 +133,7 @@ exports[`<Plan /> 1`] = `
             </div>
           </div>
           <div
-            className="css-i7fexn"
+            className="css-13y1gzu"
           >
             <p
               className="css-1t07m2d"
@@ -160,12 +160,12 @@ exports[`<Plan /> 1`] = `
               className="programmeRequirements css-chxm8w"
             >
               <p
-                className="css-xbb7oq"
+                className="css-14ai1qy"
               >
                 SOFTENG370
               </p>
               <p
-                className="css-8fehp9"
+                className="css-1usq9ww"
               >
                 SOFTENG370
               </p>
@@ -175,7 +175,7 @@ exports[`<Plan /> 1`] = `
             />
           </div>
           <div
-            className="css-i7fexn"
+            className="css-13y1gzu"
           >
             <p
               className="css-1t07m2d"
@@ -202,7 +202,7 @@ exports[`<Plan /> 1`] = `
               className="programmeRequirements css-chxm8w"
             >
               <p
-                className="css-8fehp9"
+                className="css-1usq9ww"
               >
                 SOFTENG370
               </p>
@@ -212,7 +212,7 @@ exports[`<Plan /> 1`] = `
             />
           </div>
           <div
-            className="css-1k2oh4m"
+            className="css-bjsx6g"
           >
             <p
               className="css-1t07m2d"
@@ -239,12 +239,12 @@ exports[`<Plan /> 1`] = `
               className="programmeRequirements css-chxm8w"
             >
               <p
-                className="css-xbb7oq"
+                className="css-14ai1qy"
               >
                 SOFTENG370
               </p>
               <p
-                className="css-8fehp9"
+                className="css-1usq9ww"
               >
                 SOFTENG370
               </p>
@@ -269,7 +269,7 @@ exports[`<Plan /> 1`] = `
             </div>
           </div>
           <div
-            className="css-i7fexn"
+            className="css-13y1gzu"
           >
             <p
               className="css-1t07m2d"
@@ -296,7 +296,7 @@ exports[`<Plan /> 1`] = `
               className="programmeRequirements css-chxm8w"
             >
               <p
-                className="css-8fehp9"
+                className="css-1usq9ww"
               >
                 SOFTENG370
               </p>
@@ -306,7 +306,7 @@ exports[`<Plan /> 1`] = `
             />
           </div>
           <div
-            className="css-i7fexn"
+            className="css-13y1gzu"
           >
             <p
               className="css-1t07m2d"
@@ -333,17 +333,17 @@ exports[`<Plan /> 1`] = `
               className="programmeRequirements css-chxm8w"
             >
               <p
-                className="css-xbb7oq"
+                className="css-14ai1qy"
               >
                 SOFTENG370
               </p>
               <p
-                className="css-xbb7oq"
+                className="css-14ai1qy"
               >
                 SOFTENG370
               </p>
               <p
-                className="css-8fehp9"
+                className="css-1usq9ww"
               >
                 SOFTENG370
               </p>
@@ -359,7 +359,7 @@ exports[`<Plan /> 1`] = `
       className="css-1ofqig9"
     >
       <p
-        className="css-15ehuni"
+        className="css-1g1e9sz"
       >
         Courses
       </p>
@@ -405,11 +405,11 @@ exports[`<Plan /> 1`] = `
         className="css-gmuwbf"
       >
         <div
-          className="css-xqlat8"
+          className="css-1a105je"
         />
       </div>
       <p
-        className="css-15ehuni"
+        className="css-1g1e9sz"
       >
         Notes
       </p>
@@ -417,7 +417,7 @@ exports[`<Plan /> 1`] = `
         className="css-gmuwbf"
       >
         <div
-          className="css-ztlr2u"
+          className="css-w80loo"
         >
           <textarea
             className="css-ro0llr"
@@ -442,16 +442,16 @@ exports[`<Plan /> 1`] = `
           className="css-gmuwbf"
         >
           <p
-            className="css-12ij11l"
+            className="css-1gwygh1"
           >
             Student
           </p>
         </div>
         <div
-          className="css-n6i3t1"
+          className="css-5l6ak"
         >
           <p
-            className="css-1829zme"
+            className="css-erfz49"
           />
         </div>
       </div>
@@ -459,7 +459,7 @@ exports[`<Plan /> 1`] = `
         className="css-gmuwbf"
       >
         <p
-          className="css-1re1jep"
+          className="css-137ozra"
         >
           Plan
         </p>
@@ -471,16 +471,16 @@ exports[`<Plan /> 1`] = `
           className="css-gmuwbf"
         >
           <p
-            className="css-12ij11l"
+            className="css-1gwygh1"
           >
             Student
           </p>
         </div>
         <div
-          className="css-n6i3t1"
+          className="css-5l6ak"
         >
           <p
-            className="css-1829zme"
+            className="css-erfz49"
           />
         </div>
       </div>
@@ -499,7 +499,7 @@ exports[`<Plan /> 1`] = `
           className="css-yy05jd"
         >
           <p
-            className="css-ytbmbq"
+            className="css-13i6q8k"
           >
             2020
           </p>
@@ -514,49 +514,49 @@ exports[`<Plan /> 1`] = `
               className="css-yy05jd"
             >
               <p
-                className="css-e5eeiq"
+                className="css-1donknr"
               >
                 Semester One
               </p>
             </div>
             <div
-              className="css-xhuzoe"
+              className="css-1w2lqqm"
             >
               <div
                 className="courseContainer css-viqzwr"
               >
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     COMPSYS201
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     ENGSCI213
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     SOFTENG250
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     SOFTENG251
                   </p>
@@ -571,49 +571,49 @@ exports[`<Plan /> 1`] = `
               className="css-yy05jd"
             >
               <p
-                className="css-e5eeiq"
+                className="css-1donknr"
               >
                 Semester Two
               </p>
             </div>
             <div
-              className="css-xhuzoe"
+              className="css-1w2lqqm"
             >
               <div
                 className="courseContainer css-viqzwr"
               >
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     COMPSYS201
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     ENGSCI213
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     SOFTENG250
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     SOFTENG251
                   </p>
@@ -630,7 +630,7 @@ exports[`<Plan /> 1`] = `
           className="css-yy05jd"
         >
           <p
-            className="css-ytbmbq"
+            className="css-13i6q8k"
           >
             2021
           </p>
@@ -645,49 +645,49 @@ exports[`<Plan /> 1`] = `
               className="css-yy05jd"
             >
               <p
-                className="css-e5eeiq"
+                className="css-1donknr"
               >
                 Semester One
               </p>
             </div>
             <div
-              className="css-xhuzoe"
+              className="css-1w2lqqm"
             >
               <div
                 className="courseContainer css-viqzwr"
               >
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     COMPSYS201
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     ENGSCI213
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     SOFTENG250
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     SOFTENG251
                   </p>
@@ -702,49 +702,49 @@ exports[`<Plan /> 1`] = `
               className="css-yy05jd"
             >
               <p
-                className="css-e5eeiq"
+                className="css-1donknr"
               >
                 Semester Two
               </p>
             </div>
             <div
-              className="css-xhuzoe"
+              className="css-1w2lqqm"
             >
               <div
                 className="courseContainer css-viqzwr"
               >
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     COMPSYS201
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     ENGSCI213
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     SOFTENG250
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     SOFTENG251
                   </p>
@@ -761,7 +761,7 @@ exports[`<Plan /> 1`] = `
           className="css-yy05jd"
         >
           <p
-            className="css-ytbmbq"
+            className="css-13i6q8k"
           >
             2022
           </p>
@@ -776,49 +776,49 @@ exports[`<Plan /> 1`] = `
               className="css-yy05jd"
             >
               <p
-                className="css-e5eeiq"
+                className="css-1donknr"
               >
                 Semester One
               </p>
             </div>
             <div
-              className="css-xhuzoe"
+              className="css-1w2lqqm"
             >
               <div
                 className="courseContainer css-viqzwr"
               >
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     COMPSYS201
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     ENGSCI213
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     SOFTENG250
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     SOFTENG251
                   </p>
@@ -833,49 +833,49 @@ exports[`<Plan /> 1`] = `
               className="css-yy05jd"
             >
               <p
-                className="css-e5eeiq"
+                className="css-1donknr"
               >
                 Semester Two
               </p>
             </div>
             <div
-              className="css-xhuzoe"
+              className="css-1w2lqqm"
             >
               <div
                 className="courseContainer css-viqzwr"
               >
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     COMPSYS201
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     ENGSCI213
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     SOFTENG250
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     SOFTENG251
                   </p>
@@ -892,7 +892,7 @@ exports[`<Plan /> 1`] = `
           className="css-yy05jd"
         >
           <p
-            className="css-ytbmbq"
+            className="css-13i6q8k"
           >
             2023
           </p>
@@ -907,49 +907,49 @@ exports[`<Plan /> 1`] = `
               className="css-yy05jd"
             >
               <p
-                className="css-e5eeiq"
+                className="css-1donknr"
               >
                 Semester One
               </p>
             </div>
             <div
-              className="css-xhuzoe"
+              className="css-1w2lqqm"
             >
               <div
                 className="courseContainer css-viqzwr"
               >
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     COMPSYS201
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     ENGSCI213
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     SOFTENG250
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     SOFTENG251
                   </p>
@@ -964,49 +964,49 @@ exports[`<Plan /> 1`] = `
               className="css-yy05jd"
             >
               <p
-                className="css-e5eeiq"
+                className="css-1donknr"
               >
                 Semester Two
               </p>
             </div>
             <div
-              className="css-xhuzoe"
+              className="css-1w2lqqm"
             >
               <div
                 className="courseContainer css-viqzwr"
               >
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     COMPSYS201
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     ENGSCI213
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     SOFTENG250
                   </p>
                 </div>
                 <div
-                  className="css-75daej"
+                  className="css-g5w34c"
                 >
                   <p
-                    className="css-15kufix"
+                    className="css-o5909"
                   >
                     SOFTENG251
                   </p>

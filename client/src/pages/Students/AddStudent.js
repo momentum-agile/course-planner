@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Flex, Text, Box, Select, Button, useToast } from "@chakra-ui/core";
 import { InlineEdit } from "../../components";
+import { colors as c } from "../../colors";
 
 const AddStudent = ({ addStudent }) => {
     const [editName, setEditName] = useState("");
@@ -62,7 +63,7 @@ const AddStudent = ({ addStudent }) => {
     return (
         <Flex width="100%" align="center" justify="center" marginTop="20px" p={4}>
             <Flex height="100%" width="50%" direction="column">
-                <Text textAlign="center" fontStyle="bold" fontSize="5xl" color="#113F73">
+                <Text textAlign="center" fontStyle="bold" fontSize="5xl" color={c.uoaBlue}>
                     Creating New Student
                 </Text>
 

@@ -1,26 +1,27 @@
 import React, { useState } from "react";
 import Select from "react-select";
+import { colors as c } from "../colors";
 
 const customStyles = {
     option: (provided) => ({
         ...provided,
-        backgroundColor: "#303030",
+        backgroundColor: c.darkGrey,
         "&:hover": {
-            backgroundColor: "#434343",
+            backgroundColor: c.uoaBlue,
         },
     }),
     control: (provided) => ({
         ...provided,
         height: "40px",
         width: "200px",
-        backgroundColor: "#303030",
+        backgroundColor: c.darkGrey,
         '[type="text"]': {
-            color: "white",
+            color: c.white,
         },
     }),
     input: (provided) => ({
         ...provided,
-        color: "white",
+        color: c.white,
     }),
     menuList: (provided) => ({
         ...provided,

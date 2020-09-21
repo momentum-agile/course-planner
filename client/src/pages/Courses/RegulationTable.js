@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Flex, Stack, Text, Button, useDisclosure, IconButton, Box } from "@chakra-ui/core";
 import RegulationModal from "./RegulationModal";
+import { colors as c } from "../../colors";
 
 const RegulationTable = ({ name, updateCourse, course, regulationType }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -77,7 +78,7 @@ const RegulationTable = ({ name, updateCourse, course, regulationType }) => {
             <Stack w="100%">
                 <Button
                     variantColor="blue"
-                    backgroundColor="#162971"
+                    backgroundColor={c.uoaBlue}
                     onClick={handleOpen}
                     isDisabled={regulationType && regulationType.length > 0 ? true : false}
                 >
