@@ -30,12 +30,12 @@ const CourseRegulaton = require("./course-regulation");
  *          prerequisites:
  *            type: array
  *            items:
- *              $ref: '#/components/schemas/CourseRegulation'
+ *              type: string
  *            description: prerequisites for this course
  *          corequisites:
  *            type: array
  *            items:
- *              $ref: '#/components/schemas/CourseRegulation'
+ *              type: string
  *            description: corequisites for this course
  *          restrictions:
  *            type: array
@@ -71,11 +71,11 @@ const courseSchema = mongoose.Schema({
         required: true,
     },
     prerequisites: {
-        type: [[CourseRegulaton]],
+        type: [String],
         required: false,
     },
     corequisites: {
-        type: [[CourseRegulaton]],
+        type: [String],
         required: false,
     },
     restrictions: {

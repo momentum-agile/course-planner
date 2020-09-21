@@ -32,13 +32,6 @@ afterAll(async () => {
     await mongod.stop();
 });
 
-const newCourseRegulation = {
-    _id: "56cb91bdc3464f14678934ca",
-    type: "TEXT",
-    points: 30,
-    courses: ["SOFTENG111"],
-};
-
 describe("DELETE /course/:courseCode", () => {
     it("should delete a course given the courseCode", async (done) => {
         const course = new Course({
@@ -46,8 +39,8 @@ describe("DELETE /course/:courseCode", () => {
             courseCode: "SOFTENG701",
             points: 15,
             semester: ["SS"],
-            prerequisites: [newCourseRegulation],
-            corequisites: [newCourseRegulation],
+            prerequisites: ["15 Points from SOFTENG325"],
+            corequisites: ["15 Points from SOFTENG325"],
             restrictions: ["TESTCOURSE123"],
             informalEquivalents: [],
             description: "Theory of engineering",
@@ -82,8 +75,8 @@ describe("PUT /course", () => {
             courseCode: "SOFTENG701",
             points: 15,
             semester: ["SS"],
-            prerequisites: [newCourseRegulation],
-            corequisites: [newCourseRegulation],
+            prerequisites: ["15 Points from SOFTENG325"],
+            corequisites: ["15 Points from SOFTENG325"],
             restrictions: ["TESTCOURSE123"],
             informalEquivalents: [],
             description: "Theory of engineering",
@@ -98,8 +91,8 @@ describe("PUT /course", () => {
                     courseCode: "SOFTENG701",
                     points: 20,
                     semester: ["SS"],
-                    prerequisites: [newCourseRegulation],
-                    corequisites: [newCourseRegulation],
+                    prerequisites: ["15 Points from SOFTENG325"],
+                    corequisites: ["15 Points from SOFTENG325"],
                     restrictions: ["TESTCOURSE123"],
                     informalEquivalents: [],
                     description: "Theory of engineering",
@@ -121,8 +114,8 @@ describe("/GET course", () => {
             courseCode: "SOFTENG701",
             points: 15,
             semester: ["SS"],
-            prerequisites: [newCourseRegulation],
-            corequisites: [newCourseRegulation],
+            prerequisites: ["15 Points from SOFTENG325"],
+            corequisites: ["15 Points from SOFTENG325"],
             restrictions: ["TESTCOURSE123"],
             informalEquivalents: [],
             description: "Theory of engineering",
@@ -144,8 +137,8 @@ describe("/GET course", () => {
             courseCode: "SOFTENG701",
             points: 15,
             semester: ["SS"],
-            prerequisites: [newCourseRegulation],
-            corequisites: [newCourseRegulation],
+            prerequisites: ["15 Points from SOFTENG325"],
+            corequisites: ["15 Points from SOFTENG325"],
             restrictions: ["TESTCOURSE123"],
             informalEquivalents: [],
             description: "Theory of engineering",
@@ -182,8 +175,8 @@ describe("/POST course", () => {
                 courseCode: "SOFTENG701",
                 points: 15,
                 semester: ["SS"],
-                prerequisites: [newCourseRegulation],
-                corequisites: [newCourseRegulation],
+                prerequisites: ["15 Points from SOFTENG325"],
+                corequisites: ["15 Points from SOFTENG325"],
                 restrictions: ["TESTCOURSE123"],
                 informalEquivalents: [],
                 description: "Theory of engineering",
@@ -194,8 +187,8 @@ describe("/POST course", () => {
                 expect(res.body).toHaveProperty("courseCode", "SOFTENG701");
                 expect(res.body).toHaveProperty("points", 15);
                 expect(res.body).toHaveProperty("semester", ["SS"]);
-                expect(res.body).toHaveProperty("prerequisites", [[newCourseRegulation]]);
-                expect(res.body).toHaveProperty("corequisites", [[newCourseRegulation]]);
+                expect(res.body).toHaveProperty("prerequisites", ["15 Points from SOFTENG325"]);
+                expect(res.body).toHaveProperty("corequisites", ["15 Points from SOFTENG325"]);
                 expect(res.body).toHaveProperty("restrictions", ["TESTCOURSE123"]);
                 expect(res.body).toHaveProperty("informalEquivalents", []);
                 expect(res.body).toHaveProperty("description", "Theory of engineering");
@@ -211,8 +204,8 @@ describe("/POST course", () => {
                 courseCode: "SOFTENG750",
                 points: 15,
                 semester: ["SS"],
-                prerequisites: [newCourseRegulation],
-                corequisites: [newCourseRegulation],
+                prerequisites: ["15 Points from SOFTENG325"],
+                corequisites: ["15 Points from SOFTENG325"],
                 restrictions: ["TESTCOURSE123"],
                 informalEquivalents: [],
                 description: "Theory of engineering",
@@ -231,8 +224,8 @@ describe("/POST course", () => {
                 name: "Big Databases",
                 points: 15,
                 semester: ["SS"],
-                prerequisites: [newCourseRegulation],
-                corequisites: [newCourseRegulation],
+                prerequisites: ["15 Points from SOFTENG325"],
+                corequisites: ["15 Points from SOFTENG325"],
                 restrictions: ["TESTCOURSE123"],
                 informalEquivalents: [],
                 description: "Theory of engineering",
@@ -251,8 +244,8 @@ describe("/POST course", () => {
                 name: "Small Databases",
                 courseCode: "SOFTENG711",
                 semester: ["SS"],
-                prerequisites: [newCourseRegulation],
-                corequisites: [newCourseRegulation],
+                prerequisites: ["15 Points from SOFTENG325"],
+                corequisites: ["15 Points from SOFTENG325"],
                 restrictions: ["TESTCOURSE123"],
                 informalEquivalents: [],
                 description: "Theory of engineering",

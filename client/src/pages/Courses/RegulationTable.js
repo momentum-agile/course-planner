@@ -79,13 +79,13 @@ const RegulationTable = ({ name, updateCourse, course, regulationType }) => {
                     variantColor="blue"
                     backgroundColor="#162971"
                     onClick={handleOpen}
-                    isDisabled={regulationType.length > 0 ? true : false}
+                    isDisabled={regulationType && regulationType.length > 0 ? true : false}
                 >
                     <Text textAlign="center" color="white">
                         Add {name}
                     </Text>
                 </Button>
-                {regulationType.length > 0 ? (
+                {regulationType && regulationType.length > 0 ? (
                     <Flex p={1} shadow="md" borderWidth="1px" flex="1" rounded="md" justify="space-between" direction="row">
                         <Text>{regulationType.map((reg) => `${reg} `)}</Text>
                         <Box>

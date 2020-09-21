@@ -3,6 +3,7 @@ import { Flex } from "@chakra-ui/core";
 import CourseField from "./CourseField";
 import SaveCancelButtonSet from "./SaveCancelButtonSet";
 import OptionsMenu from "../../components/OptionsMenu";
+import RegulationTable from "./RegulationTable";
 
 const TYPES = {
     simple: "simple",
@@ -94,6 +95,15 @@ const ViewCourse = ({ course, updateCourse, deleteCourse }) => {
                 value={pts}
                 onChange={(p) => editField(FIELDS.pts, p.target.value)}
                 required={true}
+            />
+            <RegulationTable name="Prerequisites" updateCourse={updateCourse} course={course} regulationType={course.prerequisites} />
+            <RegulationTable name="Corequisites" updateCourse={updateCourse} course={course} regulationType={course.corequisites} />
+            <RegulationTable name="Restrictions" updateCourse={updateCourse} course={course} regulationType={course.restrictions} />
+            <RegulationTable
+                name="InformalEquivalents"
+                updateCourse={updateCourse}
+                course={course}
+                regulationType={course.informalEquivalents}
             />
             <SaveCancelButtonSet onCancel={cancelEditCourse} onSave={saveEditCourse} isActive={isEdited} />
         </Flex>

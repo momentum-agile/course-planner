@@ -36,7 +36,6 @@ const defaultReg = {
 
 const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg }) => {
     const [currentReg, setCurrentReg] = useState(defaultReg);
-
     // Text fields
     const [courseTextValue, setCourseTextValue] = useState("");
     const [noteValue, setNoteValue] = useState("");
@@ -78,7 +77,6 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
     };
 
     const handleCourseChange = (event) => setCourseTextValue(event.target.value);
-
     const handleNoteChange = (event) => setNoteValue(event.target.value);
 
     // Adds course to the current regulation (down button)

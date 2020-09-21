@@ -22,20 +22,13 @@ afterAll(async () => {
 });
 
 beforeEach(async () => {
-    const newRegulation = [
-        {
-            type: "TEXT",
-            points: 31,
-            courses: ["SOFTENG309"],
-        },
-    ];
     const newCourse = new Course({
         name: "Software Engineering Theory",
         courseCode: "SOFTENG701",
         points: 15,
         semester: ["SS"],
-        prerequisites: [newRegulation],
-        corequisites: [newRegulation],
+        prerequisites: ["15 Points from SOFTENG325"],
+        corequisites: ["15 Points from SOFTENG333"],
         restrictions: ["TESTCOURSE2332"],
         description: "Theory of engineering",
     });
