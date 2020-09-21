@@ -114,33 +114,26 @@ exports[`Main Students Page 1`] = `
                 onKeyDown={[Function]}
                 role="button"
               >
-                <div
-                  className="css-gmuwbf"
-                >
-                  <svg
-                    className="css-1wgd8j3"
-                    fill="currentColor"
-                    focusable={false}
-                    height="1em"
-                    role="presentation"
-                    stroke="currentColor"
-                    strokeWidth="0"
-                    style={
-                      Object {
-                        "color": undefined,
-                      }
+                <svg
+                  className="css-zgxhu3"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  strokeWidth="0"
+                  style={
+                    Object {
+                      "color": undefined,
                     }
-                    viewBox="0 0 24 24"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clipRule="evenodd"
-                      d="M3 9.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"
-                      fillRule="evenodd"
-                    />
-                  </svg>
-                </div>
+                  }
+                  type="button"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S13.1 10 12 10zM18 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S19.1 10 18 10zM6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S7.1 10 6 10z"
+                  />
+                </svg>
               </button>
             </div>
           </div>
