@@ -2,12 +2,12 @@ import React from "react";
 import { Text, Button, Icon } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 
-const ProgrammeCard = ({ programme, to }) => {
+const ProgrammeCard = ({ currentID, programme, to }) => {
     return (
         <Link to={`/programmes/${to}`} style={{ textDecoration: "none" }}>
             {programme ? (
                 <Button
-                    backgroundColor="#FFFFFF"
+                    backgroundColor={programme._id !== currentID ? "#FFFFFF" : "#0F487E"}
                     border="none"
                     rounded="20px"
                     width="300px"

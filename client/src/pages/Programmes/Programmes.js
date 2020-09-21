@@ -48,7 +48,7 @@ const Programmes = () => {
                     <SimpleGrid columns={2} spacingX="50px" spacingY="10px" height="100%">
                         <ProgrammeCard to="new" />
                         {filter(programmeDegrees, { name: searchTerm }).map((programme) => (
-                            <ProgrammeCard to={programme._id} programme={programme} />
+                            <ProgrammeCard currentID={location.id} to={programme._id} programme={programme} />
                         ))}
                     </SimpleGrid>
                 </Flex>
