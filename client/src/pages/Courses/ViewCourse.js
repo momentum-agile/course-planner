@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Flex } from "@chakra-ui/core";
 import CourseField from "./CourseField";
 import SaveCancelButtonSet from "./SaveCancelButtonSet";
-import { AlertButton } from "../../components"
+import OptionsMenu from "../../components/OptionsMenu";
 
 const TYPES = {
     simple: "simple",
@@ -22,6 +22,7 @@ const ViewCourse = ({ course, updateCourse, deleteCourse }) => {
     const [name, setName] = useState("");
     const [desc, setDesc] = useState("");
     const [pts, setPts] = useState(0);
+    const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
 
     useEffect(() => {
         setIsEdited(false);
@@ -75,6 +76,15 @@ const ViewCourse = ({ course, updateCourse, deleteCourse }) => {
 
     return (
         <Flex width="100%" align="center" justify="left" marginTop="20px" p={4} direction="column">
+            <Flex mt={12} justify="center" align="center">
+                <OptionsMenu
+                    item={course}
+                    itemType="Course"
+                    setOpenConfirmationDialog={setOpenConfirmationDialog}
+                    openConfirmationDialog={openConfirmationDialog}
+                    confirm={deleteCourse}
+                />
+            </Flex>
             <CourseField type={TYPES.simple} title="Course Code" value={code} onChange={(c) => editField(FIELDS.code, c)} required={true} />
             <CourseField type={TYPES.simple} title="Course Name" value={name} onChange={(n) => editField(FIELDS.name, n)} />
             <CourseField type={TYPES.simple} title="Description" value={desc} onChange={(d) => editField(FIELDS.desc, d)} />
@@ -86,9 +96,6 @@ const ViewCourse = ({ course, updateCourse, deleteCourse }) => {
                 required={true}
             />
             <SaveCancelButtonSet onCancel={cancelEditCourse} onSave={saveEditCourse} isActive={isEdited} />
-            <Flex mt={12} justify="center" align="center">
-                <AlertButton btnText={"Delete Course"} confirmFn={() => deleteCourse(code)} />
-            </Flex>
         </Flex>
     );
 };

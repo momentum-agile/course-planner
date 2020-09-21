@@ -1,6 +1,5 @@
 import React from "react";
-import { Flex, Box, Text, Stack } from "@chakra-ui/core";
-import { AiOutlineEdit } from "react-icons/ai";
+import { Flex, Text, Stack, PseudoBox } from "@chakra-ui/core";
 
 const ProgrammeRequirementsItem = ({ itemNumber, pointRequirement, points, courseList, onDelete, onEdit, deleteButton }) => {
     const pointRequirementMap = {
@@ -10,53 +9,59 @@ const ProgrammeRequirementsItem = ({ itemNumber, pointRequirement, points, cours
     };
 
     return (
-        <Flex
-            height="60px"
+        <PseudoBox
+            height="50px"
             width="90%"
             paddingLeft="3px"
             paddingRight="3px"
             bg="#303030"
             borderRadius="5px"
-            direction="row"
+            flex-direction="row"
             alignItems="center"
             textAlign="center"
             justify="space-around"
             marginTop="10px"
             color="#ffffff"
+            _hover={{
+                bg: "#3F3F3F",
+                cursor: "pointer",
+            }}
+            onClick={onEdit}
         >
-            <Text textAlign="left" width="5%">
-                {itemNumber}
-            </Text>
-            <Text textAlign="left" width="15%">
-                {pointRequirementMap[pointRequirement] || ""}
-            </Text>
-            <Text textAlign="left" width="15%">
-                {`${points} pts`}
-            </Text>
-            <Text textAlign="left" width="10%" fontSize="10px">
-                FROM
-            </Text>
-            <Stack className="programmeRequirements" textAlign="left" isInline overflowX="scroll" width="35%">
-                {courseList.map((course, index) => (
-                    <Text
-                        key={index}
-                        height="60%"
-                        border="solid"
-                        borderColor="white"
-                        borderRadius="20px"
-                        borderWidth="1px"
-                        fontSize="12px"
-                        padding="3px"
-                        margin="2px"
-                    >
-                        {course.courseCode}
-                    </Text>
-                ))}
-            </Stack>
-            {/* Buttons to be refactored  */}
-            <Box textAlign="left" as={AiOutlineEdit} size="32px" color="green.400" width="10%" cursor="pointer" onClick={onEdit} />
-            {deleteButton}
-        </Flex>
+            <Flex justify="center" align="center">
+                <Text textAlign="left" width="5%">
+                    {itemNumber}
+                </Text>
+                <Text textAlign="left" width="15%">
+                    {pointRequirementMap[pointRequirement] || ""}
+                </Text>
+                <Text textAlign="left" width="15%">
+                    {`${points} pts`}
+                </Text>
+                <Text textAlign="left" width="10%" fontSize="10px">
+                    FROM
+                </Text>
+                <Stack className="programmeRequirements" textAlign="left" isInline overflowX="scroll" width="50%">
+                    {courseList.map((course, index) => (
+                        <Text
+                            key={index}
+                            height="60%"
+                            border="solid"
+                            borderColor="white"
+                            borderRadius="20px"
+                            borderWidth="1px"
+                            fontSize="12px"
+                            padding="3px"
+                            margin="2px"
+                        >
+                            {course.courseCode}
+                        </Text>
+                    ))}
+                </Stack>
+                {/* Buttons to be refactored  */}
+                {deleteButton}
+            </Flex>
+        </PseudoBox>
     );
 };
 

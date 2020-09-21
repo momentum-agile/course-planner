@@ -93,6 +93,52 @@ exports[`<Courses /> 1`] = `
       className="css-c110bi"
     >
       <div
+        className="css-j1es92"
+      >
+        <div
+          className="css-k008qs"
+        >
+          <button
+            aria-controls="menu-1"
+            aria-expanded={false}
+            aria-haspopup="menu"
+            className="css-992tcj"
+            id="menubutton-2"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            role="button"
+          >
+            <div
+              className="css-gmuwbf"
+            >
+              <svg
+                className="css-1wgd8j3"
+                fill="currentColor"
+                focusable={false}
+                height="1em"
+                role="presentation"
+                stroke="currentColor"
+                strokeWidth="0"
+                style={
+                  Object {
+                    "color": undefined,
+                  }
+                }
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clipRule="evenodd"
+                  d="M3 9.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"
+                  fillRule="evenodd"
+                />
+              </svg>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div
         className="css-1acuto9"
       >
         <div
@@ -273,34 +319,6 @@ exports[`<Courses /> 1`] = `
           type="button"
         >
           Save
-        </button>
-      </div>
-      <div
-        className="css-j1es92"
-      >
-        <button
-          className="css-11ufct2"
-          onClick={[Function]}
-          type="button"
-        >
-          <svg
-            aria-hidden={true}
-            className="css-1im46kq"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <g
-              fill="currentColor"
-            >
-              <path
-                d="M19.452,7.5H4.547a.5.5,0,0,0-.5.545L5.334,22.181A2,2,0,0,0,7.326,24h9.347a2,2,0,0,0,1.992-1.819L19.95,8.045a.5.5,0,0,0-.129-.382A.5.5,0,0,0,19.452,7.5Zm-9.2,13a.75.75,0,0,1-1.5,0v-9a.75.75,0,0,1,1.5,0Zm5,0a.75.75,0,0,1-1.5,0v-9a.75.75,0,0,1,1.5,0Z"
-              />
-              <path
-                d="M22,4H17.25A.25.25,0,0,1,17,3.75V2.5A2.5,2.5,0,0,0,14.5,0h-5A2.5,2.5,0,0,0,7,2.5V3.75A.25.25,0,0,1,6.75,4H2A1,1,0,0,0,2,6H22a1,1,0,0,0,0-2ZM9,3.75V2.5A.5.5,0,0,1,9.5,2h5a.5.5,0,0,1,.5.5V3.75a.25.25,0,0,1-.25.25H9.25A.25.25,0,0,1,9,3.75Z"
-              />
-            </g>
-          </svg>
         </button>
       </div>
     </div>

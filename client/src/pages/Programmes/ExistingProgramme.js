@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Text, Box, IconButton, Stack, Input } from "@chakra-ui/core";
-import { OutlineButton, ProgrammeRequirementsItem } from "../../components";
+import { Flex, Text, Box, IconButton, Stack, Input, Button, Icon } from "@chakra-ui/core";
+import { OutlineButton, ProgrammeRequirementsItem, ConfirmationDialog } from "../../components";
 import EditRequirementsBox from "./EditRequirementsBox";
 import { useHistory } from "react-router-dom";
-import { AlertButton } from "../../components/";
 import useProgrammmes from "./useProgrammes";
 import useCourses from "../Courses/useCourses";
+import OptionsMenu from "../../components/OptionsMenu";
 
 const ExistingProgramme = ({ programme, notifyUpdate }) => {
     const history = useHistory();
@@ -58,26 +58,21 @@ const ExistingProgramme = ({ programme, notifyUpdate }) => {
 
     return (
         <Flex width="100%" direction="column">
-            <Flex align="center" justify="center">
-                <Flex left="1px" justify="flex-start">
-                    {/* Deleting the Programme*/}
-                    <AlertButton
-                        itemName={programmeDegreeInfo.name}
-                        itemType={"Programme"}
-                        action={"Delete"}
-                        isOpen={openConfirmationDialog}
-                        confirmFn={() => confirmDelete()}
-                    />
-                </Flex>
+            <Flex align="center" justify="center" direction="row">
                 <Text textAlign="center" fontSize="4xl" color="#0F487E">
                     Programme Requirements
                 </Text>
-                <Flex right="1px" justify="flex-start">
-                    {!isEdited ? (
-                        <IconButton icon="edit" variantColor="blue" left="40px" size="lg" onClick={() => setIsEdited(true)} />
-                    ) : (
-                        ""
-                    )}
+                <Flex justify="flex-end" align="flex-end" right="50px" position="absolute">
+                    {/* Dropdown menu to edit and delete */}
+                    <OptionsMenu
+                        item={programmeDegreeInfo}
+                        itemType="Programme"
+                        setOpenConfirmationDialog={setOpenConfirmationDialog}
+                        openConfirmationDialog={openConfirmationDialog}
+                        confirm={confirmDelete}
+                        hasEdit={!isEdited}
+                        onEdit={() => setIsEdited(true)}
+                    />
                 </Flex>
             </Flex>
             <Flex align="center" justify="center" marginTop="10px">
@@ -133,14 +128,24 @@ const ExistingProgramme = ({ programme, notifyUpdate }) => {
                                 points={regulation.points}
                                 courseList={data.filter((course) => regulation.courses.includes(course._id))}
                                 deleteButton={
-                                    <AlertButton
-                                        itemName={`regulation ${index + 1}`}
-                                        itemType={"Programme Regulation"}
-                                        action={"Delete"}
-                                        isOpen={openConfirmationDeleteRegulation}
-                                        onClose={() => setOpenConfirmationDeleteRegulation(false)}
-                                        confirmFn={() => deleteRegulation(regulation)}
-                                    />
+                                    <Button
+                                        _hover={{ transform: "scale(1.2, 1.2)" }}
+                                        _active="none"
+                                        bg="none"
+                                        align="flex-reverse"
+                                        justify="flex-end"
+                                        onClick={() => setOpenConfirmationDeleteRegulation(true)}
+                                    >
+                                        <Icon name="small-close" />
+                                        <ConfirmationDialog
+                                            item={regulation}
+                                            itemType={"Regulation"}
+                                            action={"Delete"}
+                                            isOpen={openConfirmationDeleteRegulation}
+                                            onClose={() => setOpenConfirmationDeleteRegulation(false)}
+                                            confirm={deleteRegulation}
+                                        />
+                                    </Button>
                                 }
                             />
                         ))}

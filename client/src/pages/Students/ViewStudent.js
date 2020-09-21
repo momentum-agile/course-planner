@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Flex, Text, Box, Select, Button } from "@chakra-ui/core";
 import { InlineEdit } from "../../components";
-import { AlertButton } from "../../components/";
-
 import ProgrammeTable from "./ProgrammeTable";
 import { Link } from "react-router-dom";
+import OptionsMenu from "../../components/OptionsMenu";
 
 const programmeTableColumns = [
     {
@@ -47,6 +46,7 @@ const ViewStudent = ({ student, editStudent, deleteStudent }) => {
     const [editUpi, setEditUpi] = useState(upi);
     const [editId, setEditId] = useState(id);
     const [editYearLevel, setEditYearLevel] = useState(yearLevel);
+    const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
 
     useEffect(() => {
         setEditName(name);
@@ -67,9 +67,20 @@ const ViewStudent = ({ student, editStudent, deleteStudent }) => {
     return (
         <Flex width="100%" align="center" justify="center" marginTop="20px" p={4}>
             <Flex height="100%" width="50%" direction="column">
-                <Text textAlign="center" fontStyle="bold" fontSize="5xl" color="#113F73">
-                    Selected Student
-                </Text>
+                <Flex direction="row">
+                    <Flex justify="flex-start" align="flex-start" position="absolute" right="50px">
+                        <OptionsMenu
+                            item={student}
+                            itemType="Student"
+                            setOpenConfirmationDialog={setOpenConfirmationDialog}
+                            openConfirmationDialog={openConfirmationDialog}
+                            confirm={deleteStudent}
+                        />
+                    </Flex>
+                    <Text textAlign="center" fontStyle="bold" fontSize="5xl" color="#113F73">
+                        Selected Student
+                    </Text>
+                </Flex>
 
                 <Flex mt={12} flexDirection="column">
                     <InlineEdit
@@ -136,10 +147,6 @@ const ViewStudent = ({ student, editStudent, deleteStudent }) => {
                         </Link>
                     </Flex>
                     <ProgrammeTable columns={programmeTableColumns} data={data} />
-                </Flex>
-
-                <Flex mt={12} justify="center" align="center">
-                    <AlertButton itemName={name} itemType={"Student"} action={"Delete"} confirmFn={() => deleteStudent(upi)} />
                 </Flex>
             </Flex>
         </Flex>

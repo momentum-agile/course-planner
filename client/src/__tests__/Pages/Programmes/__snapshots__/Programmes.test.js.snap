@@ -125,71 +125,58 @@ exports[`Existing programmes sub-page  1`] = `
   className="css-1ofqig9"
 >
   <div
-    className="css-gmuwbf"
+    className="css-1hyoz7m"
   >
-    <div
-      className="css-1u9fuhx"
-    >
-      <button
-        className="css-11ufct2"
-        onClick={[Function]}
-        type="button"
-      >
-        <svg
-          aria-hidden={true}
-          className="css-1im46kq"
-          focusable="false"
-          role="presentation"
-          viewBox="0 0 24 24"
-        >
-          <g
-            fill="currentColor"
-          >
-            <path
-              d="M19.452,7.5H4.547a.5.5,0,0,0-.5.545L5.334,22.181A2,2,0,0,0,7.326,24h9.347a2,2,0,0,0,1.992-1.819L19.95,8.045a.5.5,0,0,0-.129-.382A.5.5,0,0,0,19.452,7.5Zm-9.2,13a.75.75,0,0,1-1.5,0v-9a.75.75,0,0,1,1.5,0Zm5,0a.75.75,0,0,1-1.5,0v-9a.75.75,0,0,1,1.5,0Z"
-            />
-            <path
-              d="M22,4H17.25A.25.25,0,0,1,17,3.75V2.5A2.5,2.5,0,0,0,14.5,0h-5A2.5,2.5,0,0,0,7,2.5V3.75A.25.25,0,0,1,6.75,4H2A1,1,0,0,0,2,6H22a1,1,0,0,0,0-2ZM9,3.75V2.5A.5.5,0,0,1,9.5,2h5a.5.5,0,0,1,.5.5V3.75a.25.25,0,0,1-.25.25H9.25A.25.25,0,0,1,9,3.75Z"
-            />
-          </g>
-        </svg>
-      </button>
-    </div>
     <p
       className="css-19i5rf8"
     >
       Programme Requirements
     </p>
     <div
-      className="css-o8da8w"
+      className="css-qzt8sy"
     >
-      <button
-        className="css-nfb2wp"
-        onClick={[Function]}
-        type="button"
+      <div
+        className="css-k008qs"
       >
-        <svg
-          aria-hidden={true}
-          className="css-1im46kq"
-          focusable="false"
-          role="presentation"
-          viewBox="0 0 24 24"
+        <button
+          aria-controls="menu-1"
+          aria-expanded={false}
+          aria-haspopup="menu"
+          className="css-992tcj"
+          id="menubutton-2"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
         >
-          <g
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="full"
-            strokeWidth="2"
+          <div
+            className="css-gmuwbf"
           >
-            <path
-              d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
-            />
-            <path
-              d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
-            />
-          </g>
-        </svg>
-      </button>
+            <svg
+              className="css-1wgd8j3"
+              fill="currentColor"
+              focusable={false}
+              height="1em"
+              role="presentation"
+              stroke="currentColor"
+              strokeWidth="0"
+              style={
+                Object {
+                  "color": undefined,
+                }
+              }
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clipRule="evenodd"
+                d="M3 9.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </div>
+        </button>
+      </div>
     </div>
   </div>
   <div
@@ -243,75 +230,54 @@ exports[`Existing programmes sub-page  1`] = `
         className="css-12wbpgd"
       >
         <div
-          className="css-19qzdfz"
+          className="css-1dq1cye"
+          onClick={[Function]}
         >
-          <p
-            className="css-7rc2le"
-          >
-            1.
-          </p>
-          <p
-            className="css-12kv7x2"
-          >
-            At least
-          </p>
-          <p
-            className="css-12kv7x2"
-          >
-            15 pts
-          </p>
-          <p
-            className="css-vwuyue"
-          >
-            FROM
-          </p>
           <div
-            className="programmeRequirements css-chxm8w"
-          />
-          <svg
-            className="css-pnngj5"
-            fill="currentColor"
-            height="1em"
-            onClick={[Function]}
-            stroke="currentColor"
-            strokeWidth="0"
-            style={
-              Object {
-                "color": undefined,
-              }
-            }
-            viewBox="0 0 1024 1024"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
+            className="css-gmuwbf"
           >
-            <path
-              d="M257.7 752c2 0 4-.2 6-.5L431.9 722c2-.4 3.9-1.3 5.3-2.8l423.9-423.9a9.96 9.96 0 0 0 0-14.1L694.9 114.9c-1.9-1.9-4.4-2.9-7.1-2.9s-5.2 1-7.1 2.9L256.8 538.8c-1.5 1.5-2.4 3.3-2.8 5.3l-29.5 168.2a33.5 33.5 0 0 0 9.4 29.8c6.6 6.4 14.9 9.9 23.8 9.9zm67.4-174.4L687.8 215l73.3 73.3-362.7 362.6-88.9 15.7 15.6-89zM880 836H144c-17.7 0-32 14.3-32 32v36c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-36c0-17.7-14.3-32-32-32z"
-            />
-          </svg>
-          <button
-            className="css-11ufct2"
-            onClick={[Function]}
-            type="button"
-          >
-            <svg
-              aria-hidden={true}
-              className="css-1im46kq"
-              focusable="false"
-              role="presentation"
-              viewBox="0 0 24 24"
+            <p
+              className="css-7rc2le"
             >
-              <g
-                fill="currentColor"
+              1.
+            </p>
+            <p
+              className="css-12kv7x2"
+            >
+              At least
+            </p>
+            <p
+              className="css-12kv7x2"
+            >
+              15 pts
+            </p>
+            <p
+              className="css-vwuyue"
+            >
+              FROM
+            </p>
+            <div
+              className="programmeRequirements css-1aqk8yn"
+            />
+            <button
+              className="css-1h1blff"
+              onClick={[Function]}
+              type="button"
+            >
+              <svg
+                className="css-1im46kq"
+                focusable={false}
+                role="presentation"
+                viewBox="0 0 16 16"
               >
                 <path
-                  d="M19.452,7.5H4.547a.5.5,0,0,0-.5.545L5.334,22.181A2,2,0,0,0,7.326,24h9.347a2,2,0,0,0,1.992-1.819L19.95,8.045a.5.5,0,0,0-.129-.382A.5.5,0,0,0,19.452,7.5Zm-9.2,13a.75.75,0,0,1-1.5,0v-9a.75.75,0,0,1,1.5,0Zm5,0a.75.75,0,0,1-1.5,0v-9a.75.75,0,0,1,1.5,0Z"
+                  d="M9.41 8l2.29-2.29c.19-.18.3-.43.3-.71a1.003 1.003 0 0 0-1.71-.71L8 6.59l-2.29-2.3a1.003 1.003 0 0 0-1.42 1.42L6.59 8 4.3 10.29c-.19.18-.3.43-.3.71a1.003 1.003 0 0 0 1.71.71L8 9.41l2.29 2.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71L9.41 8z"
+                  fill="currentColor"
+                  fillRule="evenodd"
                 />
-                <path
-                  d="M22,4H17.25A.25.25,0,0,1,17,3.75V2.5A2.5,2.5,0,0,0,14.5,0h-5A2.5,2.5,0,0,0,7,2.5V3.75A.25.25,0,0,1,6.75,4H2A1,1,0,0,0,2,6H22a1,1,0,0,0,0-2ZM9,3.75V2.5A.5.5,0,0,1,9.5,2h5a.5.5,0,0,1,.5.5V3.75a.25.25,0,0,1-.25.25H9.25A.25.25,0,0,1,9,3.75Z"
-                />
-              </g>
-            </svg>
-          </button>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
