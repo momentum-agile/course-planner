@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     FormControl,
     Input,
@@ -24,68 +24,139 @@ import {
     Text,
     Switch,
     FormLabel,
+    ButtonGroup,
 } from "@chakra-ui/core";
 
-const RegulationModal = ({ isOpen, onClose, updateRegs, title }) => {
-    /** ----- REGULATIONS LIST ----- */
-    const [regArray, setRegArray] = useState([]);
+const defaultReg = {
+    type: "POINTS",
+    points: 15,
+    courses: [],
+};
 
-    // Regulation tags
-    const handleRegTagCloseClick = (reg) => {
-        setRegArray(regArray.filter((i) => i === reg));
+const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg }) => {
+    const [currentReg, setCurrentReg] = useState(defaultReg);
+
+    // Text fields
+    const [courseTextValue, setCourseTextValue] = useState("");
+    const [noteValue, setNoteValue] = useState("");
+
+    const [outputRegulation, setOutputRegulation] = useState([]);
+
+    useEffect(() => {
+        if (editReg) {
+            setOutputRegulation(editReg);
+        }
+    }, [editReg, isOpen]);
+
+    // plus button
+    const handleAddToRegArrayClick = (type) => {
+        if (type === "POINTS") {
+            setOutputRegulation([...outputRegulation, `${currentReg.points} points from ${currentReg.courses.join(", ")}`]);
+        } else if (noteValue.length > 0 && type === "NOTE") {
+            setOutputRegulation([...outputRegulation, currentReg.courses.join(", ")]);
+            setNoteValue("");
+        }
+        setCurrentReg(defaultReg);
     };
 
-    /** ----- COURSES LIST ----- */
-    const [coursesArray, setCoursesArray] = useState([]);
-    const [coursePointsValue, setCoursePointsValue] = useState(15);
-    const [courseTextValue, setCourseTextValue] = useState("");
+    // Removes a regulation from the regulations array
+    const handleRegTagCloseClick = (reg) => {
+        setOutputRegulation(outputRegulation.filter((i) => i !== reg));
+    };
 
-    const handlePointsChange = (value) => setCoursePointsValue(value);
+    // updates current regulation
+    const updateReg = (field) => (value, type) => {
+        const newReg = {
+            ...currentReg,
+            type: type,
+            [field]: value,
+        };
+        setCurrentReg(newReg);
+    };
+
     const handleCourseChange = (event) => setCourseTextValue(event.target.value);
 
+    const handleNoteChange = (event) => {
+        setNoteValue(event.target.value);
+        updateReg("courses")([event.target.value], "NOTE");
+    };
+
+    // Adds course to the current regulation (down button)
     const handleCourseClick = () => {
-        setCoursesArray([...coursesArray, courseTextValue]);
+        if (!courseTextValue) {
+            return;
+        }
+
+        console.log(courseTextValue);
+        updateReg("courses")([...currentReg.courses, courseTextValue], "POINTS");
         setCourseTextValue("");
     };
 
-    const handleCoursesListClick = () => {
-        setRegArray([...regArray, `${coursePointsValue} points from ${coursesArray}`]);
-        setCoursesArray([]);
-    };
-
-    // Course tags
+    // Removes a course tag
     const handleCourseTagCloseClick = (course) => {
-        setCoursesArray(coursesArray.filter((i) => i === course));
+        const currentRegsArray = currentReg.courses.filter((i) => i !== course);
+        updateReg("courses")(currentRegsArray, "POINTS");
     };
 
-    /** ----- NOTE TEXTFIELD ----- */
-    const [textValue, setTextValue] = useState("");
-    const handleTextChange = (event) => setTextValue(event.target.value);
+    /** Toggle input between adding courses and a note
+     * true: courses
+     * false: notes
+     */
+    const [toggleInput, setToggleInput] = useState(true);
+    const handleToggleChange = () => {
+        setToggleInput(!toggleInput);
+    };
 
-    const handleTextClick = () => {
-        setRegArray([...regArray, textValue]);
-        setTextValue("");
+    const handleAnd = () => {
+        setOutputRegulation([...outputRegulation, "AND"]);
+    };
+
+    const handleOr = () => {
+        setOutputRegulation([...outputRegulation, "OR"]);
     };
 
     const handleConfirm = () => {
-        updateRegs(regArray);
+        switch (title) {
+            case "Prerequisites":
+                updateCourse({
+                    ...course,
+                    prerequisites: outputRegulation,
+                });
+                break;
+            case "InformalEquivalents":
+                updateCourse({
+                    ...course,
+                    informalEquivalents: outputRegulation,
+                });
+                break;
+            case "Corequisites":
+                updateCourse({
+                    ...course,
+                    corequisites: outputRegulation,
+                });
+                break;
+            case "Restrictions":
+                updateCourse({
+                    ...course,
+                    restrictions: outputRegulation,
+                });
+                break;
+            default:
+                break;
+        }
         handleClose();
     };
 
     const handleClose = () => {
         onClose();
-        setRegArray([]);
-        setTextValue("");
+        setCurrentReg(defaultReg);
+        setNoteValue("");
         setCourseTextValue("");
-        setCoursesArray([]);
     };
-
-    /** */
-    const [toggleInput, setToggleInput] = useState(true);
 
     return (
         <>
-            <Modal id="regulation-modal" isOpen={isOpen} onClose={onClose} size="full">
+            <Modal id="regulation-modal" isOpen={isOpen} onClose={handleClose} size="full">
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Add {title}</ModalHeader>
@@ -93,27 +164,38 @@ const RegulationModal = ({ isOpen, onClose, updateRegs, title }) => {
                     <ModalBody>
                         <FormControl as="fieldset">
                             <Flex align="center">
-                                <Switch
-                                    id="course-note-switch"
-                                    m="2"
-                                    onChange={() => setToggleInput(!toggleInput)}
-                                    isChecked={toggleInput}
-                                />
+                                <Switch id="course-note-switch" m="2" onChange={handleToggleChange} isChecked={toggleInput} />
                                 <FormLabel m="2">{toggleInput ? "Add course regulation" : "Add note"}</FormLabel>
                             </Flex>
                             {toggleInput ? (
                                 <>
                                     <Flex m="2">
-                                        <Input id="courses" placeholder="Courses" onChange={handleCourseChange} value={courseTextValue} />
-                                        <IconButton aria-label="Add input" icon="arrow-down" onClick={handleCourseClick} />
+                                        <Input
+                                            id="courses"
+                                            placeholder="Courses"
+                                            onChange={handleCourseChange}
+                                            value={courseTextValue}
+                                            onKeyPress={(ev) => {
+                                                if (ev.key === "Enter") {
+                                                    handleCourseClick();
+                                                }
+                                            }}
+                                        />
+                                        <IconButton
+                                            aria-label="Add input"
+                                            icon="arrow-down"
+                                            onClick={handleCourseClick}
+                                            isDisabled={!courseTextValue}
+                                        />
                                     </Flex>
                                     <Flex m="2">
                                         <NumberInput
                                             size="lg"
                                             defaultValue={15}
                                             min={10}
-                                            onChange={handlePointsChange}
-                                            value={coursePointsValue}
+                                            onChange={(value) => updateReg("points")(value, "POINTS")}
+                                            value={currentReg.points}
+                                            step={5}
                                         >
                                             <NumberInputField />
                                             <NumberInputStepper>
@@ -130,46 +212,119 @@ const RegulationModal = ({ isOpen, onClose, updateRegs, title }) => {
                                             p={2}
                                             h="48px"
                                             w="100%"
-                                            bg={coursesArray.length > 0 ? "white" : "gray.100"}
+                                            bg={currentReg.courses.length > 0 ? "white" : "gray.100"}
                                         >
-                                            {coursesArray.map((course) => (
-                                                <Tag size="sm" key={course} rounded="full" variant="solid" variantColor="cyan">
+                                            {currentReg.courses.map((course, idx) => (
+                                                <Tag size="sm" key={idx} rounded="full" variant="solid" variantColor="cyan">
                                                     <TagLabel>{course}</TagLabel>
-                                                    <TagCloseButton onClick={(course) => handleCourseTagCloseClick(course)} />
+                                                    <TagCloseButton onClick={() => handleCourseTagCloseClick(course)} />
                                                 </Tag>
                                             ))}
                                         </Stack>
                                         <IconButton
                                             aria-label="Add input"
                                             icon="add"
-                                            isDisabled={coursesArray.length > 0 ? false : true}
-                                            onClick={handleCoursesListClick}
+                                            isDisabled={
+                                                currentReg.courses.length === 0
+                                                    ? true
+                                                    : outputRegulation.length > 0 &&
+                                                      outputRegulation[outputRegulation.length - 1] !== "OR" &&
+                                                      outputRegulation[outputRegulation.length - 1] !== "AND"
+                                            }
+                                            onClick={() => handleAddToRegArrayClick("POINTS")}
                                         />
                                     </Flex>
                                 </>
                             ) : (
                                 <Flex m="2">
-                                    <Input id="text" placeholder="Note" value={textValue} onChange={handleTextChange} />
-                                    <IconButton aria-label="Add input" icon="add" onClick={handleTextClick} />
+                                    <Input
+                                        id="text"
+                                        placeholder="Note"
+                                        value={noteValue}
+                                        onChange={handleNoteChange}
+                                        onKeyPress={(ev) => {
+                                            const isD =
+                                                !noteValue ||
+                                                (outputRegulation.length > 0 &&
+                                                    outputRegulation[outputRegulation.length - 1] !== "OR" &&
+                                                    outputRegulation[outputRegulation.length - 1] !== "AND");
+                                            if (ev.key === "Enter" && !isD) {
+                                                handleAddToRegArrayClick("NOTE");
+                                            }
+                                        }}
+                                    />
+                                    <IconButton
+                                        aria-label="Add input"
+                                        icon="add"
+                                        onClick={() => {
+                                            handleAddToRegArrayClick("NOTE");
+                                        }}
+                                        isDisabled={
+                                            !noteValue ||
+                                            (outputRegulation.length > 0 &&
+                                                outputRegulation[outputRegulation.length - 1] !== "OR" &&
+                                                outputRegulation[outputRegulation.length - 1] !== "AND")
+                                        }
+                                    />
                                 </Flex>
                             )}
                         </FormControl>
+
+                        <ButtonGroup m="2" spacing={4}>
+                            <Button
+                                variantColor="teal"
+                                variant="solid"
+                                onClick={handleAnd}
+                                isDisabled={
+                                    outputRegulation.length <= 0 ||
+                                    outputRegulation[outputRegulation.length - 1] === "OR" ||
+                                    outputRegulation[outputRegulation.length - 1] === "AND"
+                                }
+                            >
+                                AND
+                            </Button>
+                            <Button
+                                variantColor="teal"
+                                variant="solid"
+                                onClick={handleOr}
+                                isDisabled={
+                                    outputRegulation.length <= 0 ||
+                                    outputRegulation[outputRegulation.length - 1] === "OR" ||
+                                    outputRegulation[outputRegulation.length - 1] === "AND"
+                                }
+                            >
+                                OR
+                            </Button>
+                        </ButtonGroup>
+                        <Stack
+                            id="reg-stack"
+                            spacing={4}
+                            isInlineborderWidth="2px"
+                            p={2}
+                            h="60px"
+                            m="2"
+                            bg="#f2f2f2"
+                            overflowX="scroll"
+                            flexWrap="wrap"
+                        >
+                            <Flex>
+                                {outputRegulation.map((reg, i) => (
+                                    <>
+                                        <Tag size="sm" key={i} rounded="full" variant="solid">
+                                            <TagLabel>{reg}</TagLabel>
+                                            <TagCloseButton onClick={() => handleRegTagCloseClick(reg)} />
+                                        </Tag>
+                                    </>
+                                ))}
+                            </Flex>
+                        </Stack>
                     </ModalBody>
 
-                    <Stack id="reg-stack" spacing={4} isInline borderWidth="2px" p={2} h="48px" m="2" bg="#f2f2f2">
-                        {regArray.map((reg) => (
-                            <Tag size="sm" key={reg} rounded="full" variant="solid">
-                                <TagLabel>{reg}</TagLabel>
-                                <TagCloseButton onClick={(reg) => handleRegTagCloseClick(reg)} />
-                            </Tag>
-                        ))}
-                    </Stack>
-
                     <ModalFooter>
-                        <Button variantColor="blue" mr={3} onClick={handleClose}>
+                        <Button variantColor="red" mr={3} onClick={handleClose}>
                             Close
                         </Button>
-                        <Button variant="ghost" onClick={handleConfirm}>
+                        <Button variantColor="green" onClick={handleConfirm} isDisabled={outputRegulation.length <= 0}>
                             Confirm
                         </Button>
                     </ModalFooter>

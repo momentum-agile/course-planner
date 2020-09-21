@@ -72,7 +72,11 @@ const Courses = () => {
             <Divider orientation="vertical" backgroundColor="#A7C4E0" width="2px" />
             {/* Right side of page */}
             <Flex height="100%" width="50%" direction="column">
-                {addingCourse ? <CreateCourse /> : <ViewCourse course={selectedCourse} updateCourse={updateCourse} deleteCourse={deleteCourse} />}
+                {addingCourse ? (
+                    <CreateCourse />
+                ) : (
+                    <ViewCourse course={selectedCourse} updateCourse={updateCourse} deleteCourse={deleteCourse} />
+                )}
             </Flex>
         </Flex>
     );
