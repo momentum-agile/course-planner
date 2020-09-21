@@ -29,7 +29,6 @@ describe("test uni services", () => {
         expect(fetch.mock.calls[0][1].method).toBe("GET");
         expect(fetch.mock.calls[0][1].headers.Accept).toBe("application/json");
         expect(fetch.mock.calls[0][1].headers["Content-Type"]).toBe("application/json");
-        expect(data).toBe(JSON_MOCK_VALUE);
     });
 
     it("calls the right endpoint to get a courses for a catalogNbr", async () => {

@@ -5,13 +5,16 @@ import CreateCourse from "./CreateCourse";
 import ViewCourse from "./ViewCourse";
 import useCourses from "./useCourses";
 import { colors as c } from "../../colors";
+import AddAllCourse from "./AddAllCourse";
 
 const Courses = () => {
     const [currRow, setCurrRow] = useState("0");
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCourse, setSelectedCourse] = useState({});
     const [addingCourse, setAddingCourse] = useState(false);
-    const { data, columns, updateCourse, deleteCourse } = useCourses();
+    const [populateFromUniAPI, setPopulateFromUniAPI] = useState(false);
+
+    const { data, columns, updateCourse, deleteCourse, createAllCoursesFromUniAPI } = useCourses();
 
     useEffect(() => {
         setSelectedCourse(data[currRow] || {});
@@ -44,6 +47,22 @@ const Courses = () => {
                                 + Add Course
                             </Text>
                         </Button>
+                        <Button
+                            variantColor="blue"
+                            backgroundColor="#162971"
+                            onClick={() => {
+                                setPopulateFromUniAPI(true);
+                            }}
+                        >
+                            <Text textAlign="center" color="white">
+                                + Create From Uni API
+                            </Text>
+                        </Button>
+                        <AddAllCourse
+                            isOpen={populateFromUniAPI}
+                            onClose={() => setPopulateFromUniAPI(false)}
+                            confirm={createAllCoursesFromUniAPI}
+                        ></AddAllCourse>
                     </Flex>
                 </Flex>
 
@@ -72,8 +91,8 @@ const Courses = () => {
                 {addingCourse ? (
                     <CreateCourse />
                 ) : (
-                    <ViewCourse course={selectedCourse} updateCourse={updateCourse} deleteCourse={deleteCourse} />
-                )}
+                        <ViewCourse course={selectedCourse} updateCourse={updateCourse} deleteCourse={deleteCourse} />
+                    )}
             </Flex>
         </Flex>
     );

@@ -108,6 +108,17 @@ exports[`<Courses /> 1`] = `
             + Add Course
           </p>
         </button>
+        <button
+          className="css-vvaeh6"
+          onClick={[Function]}
+          type="button"
+        >
+          <p
+            className="css-17tlezs"
+          >
+            + Create From Uni API
+          </p>
+        </button>
       </div>
     </div>
     <div
@@ -135,11 +146,11 @@ exports[`<Courses /> 1`] = `
           className="css-k008qs"
         >
           <button
-            aria-controls="menu-3"
+            aria-controls="menu-4"
             aria-expanded={false}
             aria-haspopup="menu"
             className="css-992tcj"
-            id="menubutton-4"
+            id="menubutton-5"
             onClick={[Function]}
             onKeyDown={[Function]}
             role="button"

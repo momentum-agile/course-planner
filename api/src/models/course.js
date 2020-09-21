@@ -68,7 +68,7 @@ const courseSchema = mongoose.Schema({
     semester: {
         type: [String],
         enum: ["S1", "S2", "SS"],
-        required: true,
+        required: false,
     },
     prerequisites: {
         type: [String],

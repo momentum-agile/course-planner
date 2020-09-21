@@ -23,6 +23,12 @@ const courseTableColumns = [
 const useCourses = () => {
     const [courses, setCourses] = useState([]);
 
+    const createCourse = (course) => {
+        CoursePlannerClient.createCourse(course)
+            .then(() => fetchAllCourses())
+            .catch((e) => console.error(e));
+    };
+
     const fetchAllCourses = () => {
         CoursePlannerClient.getCourses()
             .then((res) => setCourses(res))
@@ -41,12 +47,18 @@ const useCourses = () => {
             .catch((e) => console.log(e));
     };
 
+    const createAllCoursesFromUniAPI = (subject) => {
+        CoursePlannerClient.createAllUniApiCourses(subject)
+            .then(() => fetchAllCourses())
+            .catch((e) => console.log(e));
+    };
+
     useEffect(() => fetchAllCourses(), []);
 
     const columns = useMemo(() => courseTableColumns, []);
     const data = useMemo(() => courses, [courses]);
 
-    return { data, columns, updateCourse, deleteCourse };
+    return { createCourse, data, columns, updateCourse, deleteCourse, createAllCoursesFromUniAPI };
 };
 
 export default useCourses;

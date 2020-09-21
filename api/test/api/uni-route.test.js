@@ -28,20 +28,6 @@ beforeEach(() => {
     jest.clearAllMocks();
 });
 
-describe("GET /uni/programme", () => {
-    it("checks the correct functions are called when the request is given", async () => {
-        const resp = await fetch("http://localhost:8081/uni/programme?subject=SOFTENG&year=2021", {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        });
-        const respJson = await resp.json();
-
-        expect(resp.status).toBe(200);
-        expect(mockFetchAllCourses).toBeCalledTimes(1);
-        expect(respJson).toEqual(UNI_API_DATA);
-    });
-});
-
 describe("GET /uni/course", () => {
     it("checks the correct functions are called when the request is given", async () => {
         const resp = await fetch("http://localhost:8081/uni/course?subject=SOFTENG&courseNbr=750&year=2021", {
@@ -53,5 +39,19 @@ describe("GET /uni/course", () => {
         expect(resp.status).toBe(200);
         expect(mockFetchParticularCourse).toBeCalledTimes(1);
         expect(respJson).toEqual(UNI_API_DATA);
+    });
+});
+
+describe("GET /uni/programme", () => {
+    it("checks the correct functions are called when the request is given", async () => {
+        jest.setTimeout(async () => {
+            const resp = await fetch("http://localhost:8081/uni/programme?subject=SOFTENG&year=2021", {
+                method: "GET",
+                headers: { "Content-Type": "application/json" },
+            });
+            expect(resp.status).toBe(204);
+            expect(mockFetchAllCourses).toBeCalledTimes(1);
+        }, 10000);
+
     });
 });
