@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Text, Button, Divider, Input, IconButton } from "@chakra-ui/core";
+import { Flex, Text, Button, Divider, IconButton } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
-import { Table } from "../../components";
+import { Table, SearchBar } from "../../components";
 import CreateCourse from "./CreateCourse";
 import ViewCourse from "./ViewCourse";
 import useCourses from "./useCourses";
 
 const Courses = () => {
     const [currRow, setCurrRow] = useState("0");
-    const [searchInput, setSearchInput] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
     const [selectedCourse, setSelectedCourse] = useState({});
     const [addingCourse, setAddingCourse] = useState(false);
     const { data, columns, updateCourse, deleteCourse } = useCourses();
@@ -31,16 +31,9 @@ const Courses = () => {
                         Courses
                     </Text>
                 </Flex>
+
                 <Flex width="100%" align="center" justify="center" direction="row">
-                    <Flex width="70%">
-                        <Input
-                            variant="filled"
-                            value={searchInput}
-                            onChange={(e) => setSearchInput(e.target.value)}
-                            backgroundColor="#D3D3D3"
-                            placeholder="Search Courses"
-                        />
-                    </Flex>
+                    <SearchBar searchCategory="Courses" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
                     <Flex p={2} marginLeft={2}>
                         <Button
                             variantColor="blue"
@@ -56,6 +49,7 @@ const Courses = () => {
                         </Button>
                     </Flex>
                 </Flex>
+
                 <Flex p={4}>
                     <Table
                         columns={columns}
@@ -71,7 +65,7 @@ const Courses = () => {
                             },
                         })}
                         currRow={currRow}
-                        searchInput={searchInput}
+                        searchInput={searchTerm}
                     />
                 </Flex>
             </Flex>

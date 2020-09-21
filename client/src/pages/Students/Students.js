@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Text, Button, Divider, Input, IconButton } from "@chakra-ui/core";
+import { Flex, Text, Button, Divider, IconButton } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
-import { Table } from "../../components";
+import { Table, SearchBar } from "../../components";
 import useStudents from "./useStudents";
 import ViewStudent from "./ViewStudent";
 import AddStudent from "./AddStudent";
 
 const Students = () => {
     const [currRow, setCurrRow] = useState("0");
-    const [searchInput, setSearchInput] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
     const [selectedStudent, setSelectedStudent] = useState({});
     const [addingStudent, setAddingStudent] = useState(false);
     const { data, columns, editStudent, deleteStudent, addStudent } = useStudents();
@@ -31,16 +31,9 @@ const Students = () => {
                         Students
                     </Text>
                 </Flex>
+
                 <Flex width="100%" align="center" justify="center" direction="row">
-                    <Flex width="70%">
-                        <Input
-                            variant="filled"
-                            value={searchInput}
-                            onChange={(e) => setSearchInput(e.target.value)}
-                            backgroundColor="#D3D3D3"
-                            placeholder="Search Students"
-                        />
-                    </Flex>
+                    <SearchBar searchCategory="Students" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
                     <Flex p={2} marginLeft={2}>
                         <Button
                             variantColor="blue"
@@ -56,6 +49,7 @@ const Students = () => {
                         </Button>
                     </Flex>
                 </Flex>
+
                 <Flex p={4}>
                     <Table
                         columns={columns}
@@ -71,17 +65,19 @@ const Students = () => {
                             },
                         })}
                         currRow={currRow}
-                        searchInput={searchInput}
+                        searchInput={searchTerm}
                     />
                 </Flex>
             </Flex>
             <Divider orientation="vertical" backgroundColor="#A7C4E0" width="2px" />
             <Flex height="100%" width="50%" direction="column">
-                {addingStudent ? (
-                    <AddStudent addStudent={addStudent} />
-                ) : (
-                    <ViewStudent student={selectedStudent} editStudent={editStudent} deleteStudent={deleteStudent} />
-                )}
+                {addingStudent
+                    ? (
+                        <AddStudent addStudent={addStudent} />
+                    )
+                    : (
+                        <ViewStudent student={selectedStudent} editStudent={editStudent} deleteStudent={deleteStudent} />
+                    )}
             </Flex>
         </Flex>
     );

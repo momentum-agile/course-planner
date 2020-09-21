@@ -49,14 +49,42 @@ exports[`Main Students Page 1`] = `
       className="css-1evpibw"
     >
       <div
-        className="css-1m2ggra"
+        className="css-9jn3o8"
       >
-        <input
-          className="css-1si41sc"
-          onChange={[Function]}
-          placeholder="Search Students"
-          value=""
-        />
+        <div
+          className="css-yh0f2e"
+        >
+          <div
+            className="css-1lads1q"
+          >
+            <div
+              className="css-3lf2mu"
+            >
+              <div
+                className="css-k6882c"
+              >
+                <svg
+                  className="css-1xb1rov"
+                  focusable={false}
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M23.384,21.619,16.855,15.09a9.284,9.284,0,1,0-1.768,1.768l6.529,6.529a1.266,1.266,0,0,0,1.768,0A1.251,1.251,0,0,0,23.384,21.619ZM2.75,9.5a6.75,6.75,0,1,1,6.75,6.75A6.758,6.758,0,0,1,2.75,9.5Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <input
+                className="css-n5gi9c"
+                onChange={[Function]}
+                placeholder="Search Students"
+                type="search"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
       </div>
       <div
         className="css-jeup5m"
