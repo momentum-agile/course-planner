@@ -8,6 +8,11 @@
 - [ ] Have tests been written?
 - [ ] Is the UI consistent?
 
-Fixes [CPM-x]
+## Requests
+- [ ] Can somebody check the styling/CSS?
+
+
+
+Addresses [CPM-x]
 
 Connects #y
