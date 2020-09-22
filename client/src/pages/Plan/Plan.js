@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Flex, Text, Divider, Textarea, Icon, Tooltip } from "@chakra-ui/core";
+import { Divider, Flex, Icon, Text, Textarea, Tooltip } from "@chakra-ui/core";
 import usePlan from "./usePlan";
 import Header from "./Header";
 import HomeIcon from "./HomeIcon";
@@ -16,6 +16,27 @@ const Plan = () => {
     const { student, realCourses, programme } = usePlan();
     const [searchTerm, setSearchTerm] = useState("");
     const [note, setNote] = useState("");
+    const start = 2020;
+    const end = 2021;
+    const years = [];
+    for (var i = start; i <= end; i++) {
+        years.push(i);
+    }
+    const [courseAllocations, setCourseAllocations] = useState([
+        { course: "Softeng 251", year: 2020, semester: "S1" },
+        { course: "Softeng 252", year: 2020, semester: "S1" },
+        { course: "Softeng 253", year: 2020, semester: "S1" },
+        { course: "Softeng 254", year: 2020, semester: "S1" },
+        { course: "Softeng 255", year: 2020, semester: "S2" },
+        { course: "Softeng 256", year: 2020, semester: "S2" },
+        { course: "Softeng 351", year: 2021, semester: "S1" },
+        { course: "Softeng 352", year: 2021, semester: "S1" },
+        { course: "Softeng 353", year: 2021, semester: "S1" },
+        { course: "Softeng 354", year: 2021, semester: "S1" },
+        { course: "Softeng 451", year: 2021, semester: "S2" },
+        { course: "Softeng 452", year: 2021, semester: "S2" },
+        { course: "Softeng 453", year: 2021, semester: "S2" },
+    ]);
 
     // TODO: The programme variable's requirements should have an attribute to check
     // whether it's been satisfied by the plan/timetable (show which ones have been satisfied, e.g. tick off)
@@ -83,10 +104,9 @@ const Plan = () => {
                 <Header name={student?.name} />
                 <Divider orientation="horizontal" backgroundColor={c.iceBlue} width="100%" height="2px" />
                 <Flex overflowY="scroll" direction="column">
-                    <Year year={2020} />
-                    <Year year={2021} />
-                    <Year year={2022} />
-                    <Year year={2023} />
+                    {years.map((year) => (
+                        <Year year={year} data={courseAllocations} updateData={setCourseAllocations} />
+                    ))}
                 </Flex>
             </Flex>
         </Flex>
