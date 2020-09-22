@@ -1,25 +1,16 @@
 import React, { useState } from "react";
-import { Flex, Text, Divider, Box, Textarea, Icon, Tooltip } from "@chakra-ui/core";
+import { Flex, Text, Divider, Textarea, Icon, Tooltip } from "@chakra-ui/core";
 import usePlan from "./usePlan";
 import Header from "./Header";
 import HomeIcon from "./HomeIcon";
 import Year from "./Year";
+import CoursePill from "./CoursePill";
 import { SearchBar } from "../../components";
 import filter from "@mcabreradev/filter";
 import RequirementsList from "./RequirementsList";
 import { colors as c } from "../../colors";
 
 const reqsToolTip = "Requirements satisfied by the plan will be ticked off and become green";
-
-const CoursePill = ({ courseName }) => {
-    return (
-        <Box flex="1 1 25%" height="100%" background="gray" borderRadius="10px" borderRight="solid white" maxWidth="25%" marginTop="10px">
-            <Text textAlign="center" color={c.white}>
-                {courseName}
-            </Text>
-        </Box>
-    );
-};
 
 const Plan = () => {
     const { student, realCourses, programme } = usePlan();
@@ -65,8 +56,8 @@ const Plan = () => {
                             overflowY="scroll"
                         >
                             {realCourses &&
-                                filter(realCourses, { courseCode: searchTerm }).map(({ courseCode }) => (
-                                    <CoursePill courseName={courseCode} />
+                                filter(realCourses, { courseCode: searchTerm }).map(({ courseCode }, idx) => (
+                                    <CoursePill key={idx} courseName={courseCode} />
                                 ))}
                         </Flex>
                     </Flex>

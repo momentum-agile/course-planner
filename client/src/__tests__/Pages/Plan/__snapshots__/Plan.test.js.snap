@@ -521,6 +521,11 @@ exports[`<Plan /> 1`] = `
             </div>
             <div
               className="css-1w2lqqm"
+              style={
+                Object {
+                  "backgroundColor": "#E2E2E2",
+                }
+              }
             >
               <div
                 className="courseContainer css-viqzwr"
@@ -550,15 +555,6 @@ exports[`<Plan /> 1`] = `
                     className="css-o5909"
                   >
                     SOFTENG250
-                  </p>
-                </div>
-                <div
-                  className="css-g5w34c"
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    SOFTENG251
                   </p>
                 </div>
               </div>
@@ -578,6 +574,11 @@ exports[`<Plan /> 1`] = `
             </div>
             <div
               className="css-1w2lqqm"
+              style={
+                Object {
+                  "backgroundColor": "#E2E2E2",
+                }
+              }
             >
               <div
                 className="courseContainer css-viqzwr"
@@ -607,15 +608,6 @@ exports[`<Plan /> 1`] = `
                     className="css-o5909"
                   >
                     SOFTENG250
-                  </p>
-                </div>
-                <div
-                  className="css-g5w34c"
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    SOFTENG251
                   </p>
                 </div>
               </div>
@@ -652,6 +644,11 @@ exports[`<Plan /> 1`] = `
             </div>
             <div
               className="css-1w2lqqm"
+              style={
+                Object {
+                  "backgroundColor": "#E2E2E2",
+                }
+              }
             >
               <div
                 className="courseContainer css-viqzwr"
@@ -681,15 +678,6 @@ exports[`<Plan /> 1`] = `
                     className="css-o5909"
                   >
                     SOFTENG250
-                  </p>
-                </div>
-                <div
-                  className="css-g5w34c"
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    SOFTENG251
                   </p>
                 </div>
               </div>
@@ -709,6 +697,11 @@ exports[`<Plan /> 1`] = `
             </div>
             <div
               className="css-1w2lqqm"
+              style={
+                Object {
+                  "backgroundColor": "#E2E2E2",
+                }
+              }
             >
               <div
                 className="courseContainer css-viqzwr"
@@ -738,15 +731,6 @@ exports[`<Plan /> 1`] = `
                     className="css-o5909"
                   >
                     SOFTENG250
-                  </p>
-                </div>
-                <div
-                  className="css-g5w34c"
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    SOFTENG251
                   </p>
                 </div>
               </div>
@@ -783,6 +767,11 @@ exports[`<Plan /> 1`] = `
             </div>
             <div
               className="css-1w2lqqm"
+              style={
+                Object {
+                  "backgroundColor": "#E2E2E2",
+                }
+              }
             >
               <div
                 className="courseContainer css-viqzwr"
@@ -812,15 +801,6 @@ exports[`<Plan /> 1`] = `
                     className="css-o5909"
                   >
                     SOFTENG250
-                  </p>
-                </div>
-                <div
-                  className="css-g5w34c"
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    SOFTENG251
                   </p>
                 </div>
               </div>
@@ -840,6 +820,11 @@ exports[`<Plan /> 1`] = `
             </div>
             <div
               className="css-1w2lqqm"
+              style={
+                Object {
+                  "backgroundColor": "#E2E2E2",
+                }
+              }
             >
               <div
                 className="courseContainer css-viqzwr"
@@ -869,15 +854,6 @@ exports[`<Plan /> 1`] = `
                     className="css-o5909"
                   >
                     SOFTENG250
-                  </p>
-                </div>
-                <div
-                  className="css-g5w34c"
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    SOFTENG251
                   </p>
                 </div>
               </div>
@@ -914,6 +890,11 @@ exports[`<Plan /> 1`] = `
             </div>
             <div
               className="css-1w2lqqm"
+              style={
+                Object {
+                  "backgroundColor": "#E2E2E2",
+                }
+              }
             >
               <div
                 className="courseContainer css-viqzwr"
@@ -943,15 +924,6 @@ exports[`<Plan /> 1`] = `
                     className="css-o5909"
                   >
                     SOFTENG250
-                  </p>
-                </div>
-                <div
-                  className="css-g5w34c"
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    SOFTENG251
                   </p>
                 </div>
               </div>
@@ -971,6 +943,11 @@ exports[`<Plan /> 1`] = `
             </div>
             <div
               className="css-1w2lqqm"
+              style={
+                Object {
+                  "backgroundColor": "#E2E2E2",
+                }
+              }
             >
               <div
                 className="courseContainer css-viqzwr"
@@ -1000,15 +977,6 @@ exports[`<Plan /> 1`] = `
                     className="css-o5909"
                   >
                     SOFTENG250
-                  </p>
-                </div>
-                <div
-                  className="css-g5w34c"
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    SOFTENG251
                   </p>
                 </div>
               </div>

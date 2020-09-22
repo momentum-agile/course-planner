@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Flex, Text, Stack } from "@chakra-ui/core";
+import { useDrop } from "react-dnd";
+import { ItemTypes } from "./ItemTypes";
 import { colors as c } from "../../colors";
 
 const CourseTile = ({ courseName }) => {
@@ -13,6 +15,28 @@ const CourseTile = ({ courseName }) => {
 };
 
 const SemesterBox = ({ semester }) => {
+    const [courses, setCourses] = useState(["COMPSYS201", "ENGSCI213", "SOFTENG250"]);
+
+    const [{ canDrop, isOver }, drop] = useDrop({
+        accept: ItemTypes.COURSE_PILL,
+        drop: ({ courseName }, monitor) => {
+            setCourses([...courses, courseName]);
+            return { name: "Dustbin" };
+        },
+        collect: (monitor) => ({
+            isOver: monitor.isOver(),
+            canDrop: monitor.canDrop(),
+        }),
+    });
+
+    const isActive = canDrop && isOver;
+    let backgroundColor = "#E2E2E2";
+    if (isActive) {
+        backgroundColor = "#A9A9A9";
+    } else if (canDrop) {
+        backgroundColor = "#E2E2E2";
+    }
+
     return (
         <Flex direction="column" width="50%" justify="center" align="center">
             <Flex width="100%" justify="center" align="center" marginTop="20px">
@@ -28,12 +52,12 @@ const SemesterBox = ({ semester }) => {
                 backgroundColor={c.lightGrey}
                 paddingTop="2"
                 paddingBottom="2"
+                style={{ backgroundColor }}
             >
-                <Stack className="courseContainer" spacing={8} width="100%" align="center" maxHeight="200px" overflowY="scroll">
-                    <CourseTile courseName="COMPSYS201" />
-                    <CourseTile courseName="ENGSCI213" />
-                    <CourseTile courseName="SOFTENG250" />
-                    <CourseTile courseName="SOFTENG251" />
+                <Stack className="courseContainer" spacing={8} width="100%" align="center" maxHeight="200px" overflowY="scroll" ref={drop}>
+                    {courses.map((course, idx) => (
+                        <CourseTile key={idx} courseName={course} />
+                    ))}
                 </Stack>
             </Flex>
         </Flex>
