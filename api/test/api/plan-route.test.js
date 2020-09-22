@@ -1,6 +1,7 @@
 const MongoMemoryServer = require("mongodb-memory-server").MongoMemoryServer;
 const mongoose = require("mongoose");
 const Plan = require("../../src/models/plan");
+const Student = require("../../src/models/student");
 const ProgrammeDegree = require("../../src/models/programme-degree");
 const app = require("../../src/index");
 const request = require("supertest");
@@ -52,7 +53,6 @@ const programmeDegree = new ProgrammeDegree({
 
 const generatePlan = () =>
     new Plan({
-        _id: "5f58655ad0d808069389c5be",
         name: "BobsPlan",
         student: "56cb91bdc3464f14678934cb",
         programmeDegree: "56cb91bdc3464f14678934cc",
@@ -61,12 +61,27 @@ const generatePlan = () =>
         completed: false,
     });
 
-describe("DELETE /plan/:plan", () => {
+const generateStudent = () =>
+    new Student({
+        _id: mongoose.Types.ObjectId(),
+        name: "A fake person",
+        id: "123871510343",
+        upi: "fake723",
+        yearLevel: 4,
+    })
+
+const generateProgramme = () =>
+    new ProgrammeDegree({
+        name: "Be Hons Software Engineering",
+        regulations: [newRegulation],
+    })
+
+describe("DELETE /plan/:id", () => {
     it("should delete a plan given the name", async (done) => {
         const plan = generatePlan();
         plan.save((err, planRes) => {
             request(app)
-                .delete("/plan/BobsPlan")
+                .delete(`/plan/${plan._id}`)
                 .type("json")
                 .end((_err, res) => {
                     expect(res.statusCode).toBe(200);
@@ -75,9 +90,9 @@ describe("DELETE /plan/:plan", () => {
                 });
         });
     });
-    it("should give 404 error if the name does not exist when deleting", async (done) => {
+    it("should give 404 error if the id does not exist when deleting", async (done) => {
         request(app)
-            .delete("/plan/fakeName")
+            .delete(`/plan/${mongoose.Types.ObjectId()}`)
             .type("json")
             .end((_err, res) => {
                 expect(res.statusCode).toBe(404);
@@ -94,7 +109,7 @@ describe("PUT /plan", () => {
                 .put("/plan")
                 .type("json")
                 .send({
-                    _id: "5f58655ad0d808069389c5be",
+                    _id: plan._id,
                     name: "BobsPlan",
                     student: "56cb91bdc3464f14678934cb",
                     programmeDegree: "56cb91bdc3464f14678934cc",
@@ -126,11 +141,11 @@ describe("/GET plan", () => {
                 });
         });
     });
-    it("can successfully get a single plan by name", async (done) => {
+    it("can successfully get a single plan by id", async (done) => {
         const plan = generatePlan();
         plan.save((err, planRes) => {
             request(app)
-                .get("/plan/BobsPlan")
+                .get(`/plan/${plan._id}`)
                 .type("json")
                 .end((_err, res) => {
                     expect(res.statusCode).toBe(200);
@@ -141,7 +156,7 @@ describe("/GET plan", () => {
     });
     it("should return 404 if no plan is found", async (done) => {
         request(app)
-            .get("/plan/BobsPlan")
+            .get(`/plan/${mongoose.Types.ObjectId()}`)
             .type("json")
             .end((_err, res) => {
                 expect(res.statusCode).toBe(404);
@@ -151,123 +166,189 @@ describe("/GET plan", () => {
 });
 
 describe("/POST plan", () => {
-    it("can successfully POST a plan", async (done) => {
-        request(app)
-            .post("/plan")
-            .type("json")
-            .send(generatePlan())
-            .end((err, res) => {
-                expect(res.statusCode).toBe(201);
-                expect(res.body).toHaveProperty("name", "BobsPlan");
-                expect(res.body).toHaveProperty("student", "56cb91bdc3464f14678934cb");
-                expect(res.body).toHaveProperty("programmeDegree", "56cb91bdc3464f14678934cc");
-                expect(res.body).toHaveProperty("startYear", 2020);
-                expect(res.body).toHaveProperty("endYear", 2024);
-                expect(res.body).toHaveProperty("completed", false);
-                done();
-            });
+    it("can successfully POST a plan for a student", async (done) => {
+        const student = generateStudent()
+        student.save((err, planRes) => {
+            request(app)
+                .post(`/plan/student/${student.upi}`)
+                .type("json")
+                .send(generatePlan())
+                .end((err, res) => {
+                    expect(res.statusCode).toBe(201);
+                    expect(res.body).toHaveProperty("name", "BobsPlan");
+                    expect(res.body).toHaveProperty("programmeDegree", "56cb91bdc3464f14678934cc");
+                    expect(res.body).toHaveProperty("startYear", 2020);
+                    expect(res.body).toHaveProperty("endYear", 2024);
+                    expect(res.body).toHaveProperty("completed", false);
+                    request(app)
+                        .get(`/student/${student.upi}`)
+                        .type("json")
+                        .end((_err, studentRes) => {
+                            expect(studentRes.statusCode).toBe(200);
+                            expect(studentRes.body).toHaveProperty("plans", [res.body._id]);
+                            done();
+                        });
+                });
+
+        })
     });
 
-    it("should not POST a plan without name field", async (done) => {
-        request(app)
-            .post("/plan")
-            .type("json")
-            .send({
-                student: "56cb91bdc3464f14678934cb",
-                programmeDegree: "56cb91bdc3464f14678934cc",
-                startYear: 2020,
-                endYear: 2024,
-                completed: false,
-            })
-            .end((err, res) => {
-                expect(res.statusCode).toBe(400);
-                expect(res.body).toMatchObject({ msg: "Plan validation failed: name: Path `name` is required." });
-                done();
-            });
+    it("can successfully POST a plan for a student with plans", async (done) => {
+        const student = generateStudent()
+        const newPlanId = "534f6d6520706c616e206964"
+        student.plans = [newPlanId]
+        student.save((err, planRes) => {
+            request(app)
+                .post(`/plan/student/${student.upi}`)
+                .type("json")
+                .send(generatePlan())
+                .end((err, res) => {
+                    expect(res.statusCode).toBe(201);
+                    expect(res.body).toHaveProperty("name", "BobsPlan");
+                    expect(res.body).toHaveProperty("programmeDegree", "56cb91bdc3464f14678934cc");
+                    expect(res.body).toHaveProperty("startYear", 2020);
+                    expect(res.body).toHaveProperty("endYear", 2024);
+                    expect(res.body).toHaveProperty("completed", false);
+                    request(app)
+                        .get(`/student/${student.upi}`)
+                        .type("json")
+                        .end((_err, studentRes) => {
+                            expect(studentRes.statusCode).toBe(200);
+                            expect(studentRes.body).toHaveProperty("plans", [newPlanId,res.body._id]);
+                            done();
+                        });
+                });
+
+        })
     });
+    it("can successfully POST a plan for a programme", async (done) => {
+        const programme = generateProgramme()
+        programme.save((err, planRes) => {
+            request(app)
+                .post(`/plan/programmedegree/${programme._id}`)
+                .type("json")
+                .send(generatePlan())
+                .end((err, res) => {
+                    expect(res.statusCode).toBe(201);
+                    expect(res.body).toHaveProperty("name", "BobsPlan");
+                    expect(res.body).toHaveProperty("programmeDegree", "56cb91bdc3464f14678934cc");
+                    expect(res.body).toHaveProperty("startYear", 2020);
+                    expect(res.body).toHaveProperty("endYear", 2024);
+                    expect(res.body).toHaveProperty("completed", false);
+                    request(app)
+                        .get(`/programmedegree/${programme._id}`)
+                        .type("json")
+                        .end((_err, programmeRes) => {
+                            expect(programmeRes.statusCode).toBe(200);
+                            expect(programmeRes.body).toHaveProperty("defaultPlan", res.body._id);
+                            done();
+                        });
+                });
+
+        })
+    });
+
+
     it("should not POST a plan without student field", async (done) => {
-        request(app)
-            .post("/plan")
-            .type("json")
-            .send({
-                name: "BobsPlan",
-                programmeDegree: "56cb91bdc3464f14678934cc",
-                startYear: 2020,
-                endYear: 2024,
-                completed: false,
-            })
-            .end((err, res) => {
-                expect(res.statusCode).toBe(400);
-                expect(res.body).toMatchObject({ msg: "Plan validation failed: student: Path `student` is required." });
-                done();
-            });
+        const student = generateStudent()
+        student.save((err, planRes) => {
+            request(app)
+                .post(`/plan/student/${student.upi}`)
+                .type("json")
+                .send({
+                    name: "BobsPlan",
+                    programmeDegree: "56cb91bdc3464f14678934cc",
+                    startYear: 2020,
+                    endYear: 2024,
+                    completed: false,
+                })
+                .end((err, res) => {
+                    expect(res.statusCode).toBe(400);
+                    expect(res.body).toMatchObject({msg: "Plan validation failed: student: Path `student` is required."});
+                    done();
+                });
+        });
     });
+
     it("should not POST a plan without programmeDegree field", async (done) => {
-        request(app)
-            .post("/plan")
-            .type("json")
-            .send({
-                name: "BobsPlan",
-                student: "56cb91bdc3464f14678934cb",
-                startYear: 2020,
-                endYear: 2024,
-                completed: false,
-            })
-            .end((err, res) => {
-                expect(res.statusCode).toBe(400);
-                expect(res.body).toMatchObject({ msg: "Plan validation failed: programmeDegree: Path `programmeDegree` is required." });
-                done();
-            });
+        const student = generateStudent()
+        student.save((err, planRes) => {
+            request(app)
+                .post(`/plan/student/${student.upi}`)
+                .type("json")
+                .send({
+                    name: "BobsPlan",
+                    student: "56cb91bdc3464f14678934cb",
+                    startYear: 2020,
+                    endYear: 2024,
+                    completed: false,
+                })
+                .end((err, res) => {
+                    expect(res.statusCode).toBe(400);
+                    expect(res.body).toMatchObject({msg: "Plan validation failed: programmeDegree: Path `programmeDegree` is required."});
+                    done();
+                });
+        });
     });
     it("should not POST a plan without startYear field", async (done) => {
-        request(app)
-            .post("/plan")
-            .type("json")
-            .send({
-                name: "BobsPlan",
-                student: "56cb91bdc3464f14678934cb",
-                programmeDegree: "56cb91bdc3464f14678934cc",
-                endYear: 2024,
-                completed: false,
-            })
-            .end((err, res) => {
-                expect(res.statusCode).toBe(400);
-                expect(res.body).toMatchObject({ msg: "Plan validation failed: startYear: Path `startYear` is required." });
-                done();
-            });
+        const student = generateStudent()
+        student.save((err, planRes) => {
+            request(app)
+                .post(`/plan/student/${student.upi}`)
+                .type("json")
+                .send({
+                    name: "BobsPlan",
+                    student: "56cb91bdc3464f14678934cb",
+                    programmeDegree: "56cb91bdc3464f14678934cc",
+                    endYear: 2024,
+                    completed: false,
+                })
+                .end((err, res) => {
+                    expect(res.statusCode).toBe(400);
+                    expect(res.body).toMatchObject({msg: "Plan validation failed: startYear: Path `startYear` is required."});
+                    done();
+                });
+        });
     });
     it("should not POST a plan without endYear field", async (done) => {
-        request(app)
-            .post("/plan")
-            .type("json")
-            .send({
-                name: "BobsPlan",
-                student: "56cb91bdc3464f14678934cb",
-                programmeDegree: "56cb91bdc3464f14678934cc",
-                startYear: 2020,
-                completed: false,
-            })
-            .end((err, res) => {
-                expect(res.statusCode).toBe(400);
-                expect(res.body).toMatchObject({ msg: "Plan validation failed: endYear: Path `endYear` is required." });
-                done();
-            });
+        const student = generateStudent()
+        student.save((err, planRes) => {
+            request(app)
+                .post(`/plan/student/${student.upi}`)
+                .type("json")
+                .send({
+                    name: "BobsPlan",
+                    student: "56cb91bdc3464f14678934cb",
+                    programmeDegree: "56cb91bdc3464f14678934cc",
+                    startYear: 2020,
+                    completed: false,
+                })
+                .end((err, res) => {
+                    expect(res.statusCode).toBe(400);
+                    expect(res.body).toMatchObject({msg: "Plan validation failed: endYear: Path `endYear` is required."});
+                    done();
+                });
+        });
     });
+
     it("should not POST a plan without completed field", async (done) => {
-        request(app)
-            .post("/plan")
-            .type("json")
-            .send({
-                name: "BobsPlan",
-                student: "56cb91bdc3464f14678934cb",
-                programmeDegree: "56cb91bdc3464f14678934cc",
-                startYear: 2020,
-                endYear: 2024,
-            })
-            .end((err, res) => {
-                expect(res.statusCode).toBe(400);
-                expect(res.body).toMatchObject({ msg: "Plan validation failed: completed: Path `completed` is required." });
-                done();
-            });
+        const student = generateStudent()
+        student.save((err, planRes) => {
+            request(app)
+                .post(`/plan/student/${student.upi}`)
+                .type("json")
+                .send({
+                    name: "BobsPlan",
+                    student: "56cb91bdc3464f14678934cb",
+                    programmeDegree: "56cb91bdc3464f14678934cc",
+                    startYear: 2020,
+                    endYear: 2024,
+                })
+                .end((err, res) => {
+                    expect(res.statusCode).toBe(400);
+                    expect(res.body).toMatchObject({msg: "Plan validation failed: completed: Path `completed` is required."});
+                    done();
+                });
+        });
     });
 });

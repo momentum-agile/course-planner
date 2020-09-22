@@ -2,18 +2,20 @@ const express = require("express");
 const router = express.Router();
 const LOGGER = require("../common/logger");
 const Plan = require("../models/plan");
+const Student = require("../models/student");
+const ProgrammeDegree = require("../models/programme-degree");
 
 // GET Single Plan
 /**
  * @swagger
  * path:
- *  /plan/{name}:
+ *  /plan/{id}:
  *    get:
  *      tags: [Plan]
  *      summary: Get a plan by plan code
  *      parameters:
  *        - in: path
- *          name: name
+ *          id: id
  *          schema:
  *            type: string
  *          required: true
@@ -31,17 +33,17 @@ const Plan = require("../models/plan");
  *          description: Error message
  *
  */
-router.get("/:name", async (req, res) => {
-    Plan.findOne({ name: req.params.name }, (err, plan) => {
+router.get("/:id", async (req, res) => {
+    Plan.findOne({_id: req.params.id}, (err, plan) => {
         if (err) {
             LOGGER.error(err);
-            res.status(400).json({ msg: err.message });
+            res.status(400).json({msg: err.message});
         } else {
             if (plan === null) {
-                LOGGER.info(`No plan found for /plan/${req.params.name}`);
+                LOGGER.info(`No plan found for /plan/${req.params.id}`);
                 res.status(404).json();
             } else {
-                LOGGER.info(`GET request succeeded for /plan/${req.params.name}`);
+                LOGGER.info(`GET request succeeded for /plan/${req.params.id}`);
                 LOGGER.debug(plan);
                 res.status(200).json(plan);
             }
@@ -75,7 +77,7 @@ router.get("/", async (req, res) => {
     Plan.find({}, (err, plans) => {
         if (err) {
             LOGGER.error(err);
-            res.status(400).json({ msg: err.message });
+            res.status(400).json({msg: err.message});
         } else {
             if (plans.length <= 0) {
                 LOGGER.info("No plans found");
@@ -114,10 +116,10 @@ router.get("/", async (req, res) => {
  *          description: Database error
  */
 router.put("/", async (req, res) => {
-    Plan.findByIdAndUpdate(req.body._id, req.body, { upsert: "true" }, (err, plan) => {
+    Plan.findByIdAndUpdate(req.body._id, req.body, {upsert: "true"}, (err, plan) => {
         if (err) {
             LOGGER.error(err);
-            res.status(400).json({ msg: err.message });
+            res.status(400).json({msg: err.message});
         } else {
             //change to send the updated plan, rather than the old plan
             Plan.findById(plan._id, (err, updatedPlan) => {
@@ -128,11 +130,11 @@ router.put("/", async (req, res) => {
     });
 });
 
-// Creates a new plan
+// Creates a new student plan
 /**
  * @swagger
  * path:
- *  /plan/:
+ *  /plan/student/{upi}:
  *    post:
  *      tags: [Plan]
  *      summary: Creates a Plan
@@ -147,17 +149,89 @@ router.put("/", async (req, res) => {
  *          description: A plan object is created
  *        "400":
  *          description: Database error
+ *        "404":
+ *          description: No student found
  */
-router.post("/", async (req, res) => {
-    const newPlan = new Plan(req.body);
-    newPlan.save((err, plan) => {
+router.post("/student/:upi", async (req, res) => {
+    Student.findOne({upi: req.params.upi}, (err, student) => {
         if (err) {
             LOGGER.error(err);
-            res.status(400).json({ msg: err.message });
+            res.status(400).json({msg: err.message});
         } else {
-            LOGGER.info("POST request succeeded for /Plan/");
-            LOGGER.debug(plan);
-            res.status(201).json(plan);
+            if (student === null) {
+                LOGGER.info(`No student found for /student/${req.params.upi}`);
+                res.status(404).json({msg: "Requested object not found"});
+            } else {
+                const newPlan = new Plan(req.body);
+                newPlan.save((err, plan) => {
+                    if (err) {
+                        LOGGER.error(err);
+                        res.status(400).json({msg: err.message});
+                    } else {
+                        LOGGER.info("POST request succeeded for /Plan/student");
+                        LOGGER.debug(plan);
+
+                        // Create plan array if it doesnt exist
+                        const plans = student.plans || []
+                        const updatedPlans = plans.concat(plan._id)
+                        student.plans = updatedPlans
+                        Student.findByIdAndUpdate(student._id, student, {upsert: "true"}, (err, student) => {
+                            res.status(201).json(plan);
+                        });
+                    }
+                });
+            }
+        }
+    });
+});
+// Creates a new programme plan
+/**
+ * @swagger
+ * path:
+ *  /plan/programmedegree/{id}:
+ *    post:
+ *      tags: [Plan]
+ *      summary: Creates a Plan
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Plan'
+ *      responses:
+ *        "201":
+ *          description: A plan object is created
+ *        "400":
+ *          description: Database error
+ *        "404":
+ *          description: No programme found
+ */
+router.post("/programmedegree/:id", async (req, res) => {
+    ProgrammeDegree.findOne({_id: req.params.id}, (err, programmedegree) => {
+        console.log(programmedegree)
+        if (err) {
+            LOGGER.error(err);
+            res.status(400).json({msg: err.message});
+        } else {
+            if (programmedegree === null) {
+                LOGGER.info(`No programmedegree found for /programmedegree/${req.params.id}`);
+                res.status(404).json({msg: "Requested object not found"});
+            } else {
+                const newPlan = new Plan(req.body);
+                newPlan.save((err, plan) => {
+                    if (err) {
+                        LOGGER.error(err);
+                        res.status(400).json({msg: err.message});
+                    } else {
+                        LOGGER.info("POST request succeeded for /Plan/programmedegree");
+                        LOGGER.debug(plan);
+                        programmedegree.defaultPlan = plan._id
+                        ProgrammeDegree.findByIdAndUpdate(programmedegree._id, programmedegree, {upsert: "true"}, (err, programme) => {
+                            res.status(201).json(plan);
+                        });
+                    }
+                });
+            }
         }
     });
 });
@@ -166,13 +240,13 @@ router.post("/", async (req, res) => {
 /**
  * @swagger
  * path:
- *  /plan/{name}:
+ *  /plan/{id}:
  *    delete:
  *      tags: [Plan]
  *      summary: Deletes a Plan
  *      parameters:
  *        - in: path
- *          name: name
+ *          id: id
  *          schema:
  *            type: string
  *          required: true
@@ -189,17 +263,17 @@ router.post("/", async (req, res) => {
  *        "400":
  *          description: Database error (internal)
  */
-router.delete("/:name", async (req, res) => {
-    Plan.findOneAndDelete({ name: req.params.name }, (err, plan) => {
+router.delete("/:id", async (req, res) => {
+    Plan.findOneAndDelete({_id: req.params.id}, (err, plan) => {
         if (err) {
             LOGGER.error(err);
-            res.status(400).json({ msg: err.message });
+            res.status(400).json({msg: err.message});
         } else {
             if (plan === null) {
                 LOGGER.error("Plan does not exist");
-                res.status(404).json({ msg: "Requested object not found" });
+                res.status(404).json({msg: "Requested object not found"});
             } else {
-                LOGGER.info("DELETE request succeeded for /Plan/${req.params.name}");
+                LOGGER.info("DELETE request succeeded for /Plan/${req.params.id}");
                 res.status(200).json(plan);
             }
         }
