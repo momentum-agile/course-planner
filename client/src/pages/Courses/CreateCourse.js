@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Flex } from "@chakra-ui/core";
+import { Flex, Button, Text, useToast } from "@chakra-ui/core";
+import { colors as c } from "../../colors";
 import CourseField from "./CourseField";
 import SaveCancelButtonSet from "./SaveCancelButtonSet";
 import RegulationTable from "./RegulationTable";
@@ -10,7 +11,12 @@ const TYPES = {
     complex: "complex",
 };
 
-const CreateCourse = () => {
+// Matches softeng370, softeng 370, SOFTENG 325, Softeng700LVL (which is a course) and so on
+const validCourseCodeRegex = /^([A-Za-z])*(\s?)([1-9][0-9][0-9])([A-Za-z]{0,3})$/;
+
+const CreateCourse = ({ prefillCourse }) => {
+    const toast = useToast();
+
     const cancelCreateCourse = () => {
         console.log("CANCEL");
     };
@@ -28,24 +34,78 @@ const CreateCourse = () => {
         }
      */
     const [course, setCourse] = useState({
-        name: "string",
-        courseCode: "string",
-        points: 0,
+        name: "",
+        courseCode: "",
+        points: 15,
         semester: "S1",
         prerequisites: [],
         corequisites: [],
         restrictions: [],
         informalEquivalents: [],
-        description: "string",
+        description: "",
     });
+
+    const validCourseCode = validCourseCodeRegex.test(course.courseCode);
+
+    const handleInputChange = (key) => (val) => {
+        setCourse({
+            ...course,
+            [key]: val,
+        });
+    };
+
+    const handlePrefill = () => {
+        const courseCodeArr = course.courseCode.split(/(\d+)/).filter((e) => e !== "");
+        const subject = courseCodeArr[0];
+        const courseCode = courseCodeArr.length === 2 ? courseCodeArr[1] : `${courseCodeArr[1]}${courseCodeArr[2]}`;
+
+        const toastBase = {
+            title: `Error 404 Course Code Not Found`,
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+        };
+
+        prefillCourse(subject.trim(), courseCode.trim())
+            .then((res) => {
+                setCourse(res);
+            })
+            .catch((e) => toast({ ...toastBase, description: `Course Code: ${course.courseCode} could not be found on the UoA API` }));
+    };
 
     // TODO: Confirm save to DB
     return (
         <Flex width="100%" justify="left" marginTop="20px" p={4} direction="column">
-            <CourseField type={TYPES.simple} title="Course Code" required={true} />
-            <CourseField type={TYPES.simple} title="Course Name" />
-            <CourseField type={TYPES.simple} title="Description" />
-            <CourseField type={TYPES.points} title="Points" required={true} />
+            <Flex height="100%" width="50%">
+                {validCourseCode && (
+                    <Button variantColor="blue" backgroundColor={c.lightBlue} onClick={handlePrefill}>
+                        <Text textAlign="center" color={c.white}>
+                            Prefill information from UoA API
+                        </Text>
+                    </Button>
+                )}
+            </Flex>
+            <CourseField
+                value={course.courseCode}
+                type={TYPES.simple}
+                title="Course Code"
+                required={true}
+                onChange={(e) => handleInputChange("courseCode")(e)}
+            />
+            <CourseField value={course.name} type={TYPES.simple} title="Course Name" onChange={(e) => handleInputChange("name")(e)} />
+            <CourseField
+                value={course.description}
+                type={TYPES.simple}
+                title="Description"
+                onChange={(e) => handleInputChange("description")(e)}
+            />
+            <CourseField
+                value={course.points}
+                type={TYPES.points}
+                title="Points"
+                required={true}
+                onChange={(e) => handleInputChange("points")(e.target.value)}
+            />
             <RegulationTable name="Prerequisites" updateCourse={setCourse} course={course} regulationType={course.prerequisites} />
             <RegulationTable name="Corequisites" updateCourse={setCourse} course={course} regulationType={course.corequisites} />
             <RegulationTable name="Restrictions" updateCourse={setCourse} course={course} regulationType={course.restrictions} />

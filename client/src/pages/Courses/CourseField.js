@@ -8,14 +8,7 @@ const CourseField = ({ type, title, value, onChange, required = false }) => {
     return (
         <Flex height="100%" width="100%" direction="row" paddingTop="2">
             {type === "simple" ? (
-                <InlineEdit
-                    onSubmit={() => console.log("SUBMIT")}
-                    onCancel={() => console.log("CANCEL")}
-                    title={title}
-                    value={value}
-                    placeholder={`Add a ${title}`}
-                    onChange={onChange}
-                />
+                <InlineEdit title={title} value={value} placeholder={`Add a ${title}`} onChange={onChange} />
             ) : (
                 <InLineNumber title={title} value={value} onChange={onChange} />
             )}

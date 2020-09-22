@@ -53,12 +53,17 @@ const useCourses = () => {
             .catch((e) => console.log(e));
     };
 
+    // Calling uni API to get course information
+    const prefillCourse = (subject, courseNumber) => {
+        return CoursePlannerClient.getSpecificCourse(subject, courseNumber);
+    };
+
     useEffect(() => fetchAllCourses(), []);
 
     const columns = useMemo(() => courseTableColumns, []);
     const data = useMemo(() => courses, [courses]);
 
-    return { createCourse, data, columns, updateCourse, deleteCourse, createAllCoursesFromUniAPI };
+    return { createCourse, data, columns, updateCourse, deleteCourse, createAllCoursesFromUniAPI, prefillCourse };
 };
 
 export default useCourses;

@@ -14,7 +14,7 @@ const Courses = () => {
     const [addingCourse, setAddingCourse] = useState(false);
     const [populateFromUniAPI, setPopulateFromUniAPI] = useState(false);
 
-    const { data, columns, updateCourse, deleteCourse, createAllCoursesFromUniAPI } = useCourses();
+    const { data, columns, updateCourse, deleteCourse, createAllCoursesFromUniAPI, prefillCourse } = useCourses();
 
     useEffect(() => {
         setSelectedCourse(data[currRow] || {});
@@ -89,10 +89,10 @@ const Courses = () => {
             {/* Right side of page */}
             <Flex height="100%" width="50%" direction="column">
                 {addingCourse ? (
-                    <CreateCourse />
+                    <CreateCourse prefillCourse={prefillCourse} />
                 ) : (
-                        <ViewCourse course={selectedCourse} updateCourse={updateCourse} deleteCourse={deleteCourse} />
-                    )}
+                    <ViewCourse course={selectedCourse} updateCourse={updateCourse} deleteCourse={deleteCourse} />
+                )}
             </Flex>
         </Flex>
     );

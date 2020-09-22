@@ -24,7 +24,7 @@ const AddAllCourse = ({ isOpen, onClose, confirm, navigateTo }) => {
                     </AlertDialogHeader>
 
                     <AlertDialogBody>
-                        Select Subject to populate courses
+                        Select degree to populate courses
                         <FormControl>
                             <Select id="subject" placeholder="Select Subject" onChange={(e) => setSubject(e.target.value)}>
                                 <option value="SOFTENG">SOFTENG</option>

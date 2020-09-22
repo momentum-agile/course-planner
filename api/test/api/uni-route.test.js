@@ -1,4 +1,3 @@
-
 const bodyParser = require("body-parser");
 const fetch = require("node-fetch");
 const express = require("express");
@@ -29,29 +28,32 @@ beforeEach(() => {
 });
 
 describe("GET /uni/course", () => {
-    it("checks the correct functions are called when the request is given", async () => {
-        const resp = await fetch("http://localhost:8081/uni/course?subject=SOFTENG&courseNbr=750&year=2021", {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        });
-        const respJson = await resp.json();
+    it("checks the correct functions are called when the request is given", () => {
+        jest.setTimeout(async (done) => {
+            const resp = await fetch("http://localhost:8081/uni/course?subject=SOFTENG&courseNbr=750&year=2021", {
+                method: "GET",
+                headers: { "Content-Type": "application/json" },
+            });
+            const respJson = await resp.json();
 
-        expect(resp.status).toBe(200);
-        expect(mockFetchParticularCourse).toBeCalledTimes(1);
-        expect(respJson).toEqual(UNI_API_DATA);
+            expect(resp.status).toBe(200);
+            expect(mockFetchParticularCourse).toBeCalledTimes(1);
+            expect(respJson).toEqual(UNI_API_DATA);
+            done();
+        }, 10000);
     });
 });
 
 describe("GET /uni/programme", () => {
-    it("checks the correct functions are called when the request is given", async () => {
-        jest.setTimeout(async () => {
+    it("checks the correct functions are called when the request is given", () => {
+        jest.setTimeout(async (done) => {
             const resp = await fetch("http://localhost:8081/uni/programme?subject=SOFTENG&year=2021", {
                 method: "GET",
                 headers: { "Content-Type": "application/json" },
             });
             expect(resp.status).toBe(204);
             expect(mockFetchAllCourses).toBeCalledTimes(1);
+            done();
         }, 10000);
-
     });
 });

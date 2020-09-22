@@ -3,7 +3,7 @@ const router = express.Router();
 const LOGGER = require("../common/logger");
 const uni = require("../uni-service");
 const Course = require("../models/course");
-const { parseRequirements } = require("../parser")
+const { parseRequirements } = require("../parser");
 
 // GET all courses for a subject and add it into the db
 /**
@@ -40,13 +40,13 @@ router.get("/programme", async (req, res) => {
 
     if (response.error) {
         LOGGER.error(data.error);
-        res.status(400).json(data.error);
+        return res.status(400).json(data.error);
     }
 
     const { data } = response;
 
-    const mappedData = data.map(course => {
-        const [prerequisites, corequisities, restrictions] = parseRequirements(course.rqrmntDescr || "")
+    const mappedData = data.map((course) => {
+        const [prerequisites, corequisities, restrictions] = parseRequirements(course.rqrmntDescr || "");
         const updatedCourse = {
             name: course.titleLong,
             courseCode: `${course.subject} ${course.catalogNbr}`,
@@ -55,11 +55,11 @@ router.get("/programme", async (req, res) => {
             prerequisites: prerequisites,
             corequisites: corequisities,
             restrictions: restrictions,
-        }
+        };
         return updatedCourse;
-    })
+    });
 
-    mappedData.forEach(course => {
+    mappedData.forEach((course) => {
         Course.findOneAndUpdate({ courseCode: course.courseCode }, course, { upsert: true }, (err, course) => {
             if (err) {
                 LOGGER.error(err);
@@ -69,7 +69,7 @@ router.get("/programme", async (req, res) => {
     });
 
     LOGGER.info(`GET Request Succeeded for /uni/programme?subject=${subject}`);
-    res.status(204).send();
+    return res.status(204).send();
 });
 
 // GET courses for a particular course number
@@ -110,14 +110,37 @@ router.get("/course", async (req, res) => {
     const subject = req.query.subject;
     const catalogNbr = req.query.catalogNbr;
     const year = req.query.year || 2021;
-    const data = await uni.fetchParticularCourse(subject, catalogNbr, year);
-    if (data.error) {
+    const response = await uni.fetchParticularCourse(subject, catalogNbr, year);
+
+    if (response.error) {
         LOGGER.error(data.error);
-        res.status(400).json(data.error);
-    } else {
-        LOGGER.info(`GET Request Suceeded for /uni/course?&subject=${subject}&catalogNbr=${catalogNbr}&year=${year}`);
-        res.status(200).json(data);
+        return res.status(400).json(data.error);
     }
+
+    if (response && response.total === 0) {
+        LOGGER.error("COURSE NOT FOUND");
+        return res.status(404).json({});
+    }
+
+    const { data } = response;
+
+    const course = data[0] || {};
+
+    const [prerequisites, corequisities, restrictions] = parseRequirements(course.rqrmntDescr || "");
+    const updatedCourse = {
+        name: course.titleLong,
+        courseCode: `${course.subject} ${course.catalogNbr}`,
+        points: course.unitsAcadProg,
+        description: course.description,
+        prerequisites: prerequisites,
+        corequisites: corequisities,
+        restrictions: restrictions,
+    };
+
+    console.log(updatedCourse);
+
+    LOGGER.info(`GET Request Suceeded for /uni/course?&subject=${subject}&catalogNbr=${catalogNbr}&year=${year}`);
+    return res.status(200).json(updatedCourse);
 });
 
 module.exports = router;

@@ -5,7 +5,7 @@ const createAllUniApiCourses = (subject) => {
 };
 
 const getSpecificCourse = (subject, courseNbr) => {
-    return ApiClient(`uni/programme?subject=${subject}&courseNbr=${courseNbr}`);
+    return ApiClient(`uni/course?subject=${subject}&catalogNbr=${courseNbr}`);
 };
 
 const UniClient = {
