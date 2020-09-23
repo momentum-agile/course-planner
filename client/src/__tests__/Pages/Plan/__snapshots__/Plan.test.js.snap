@@ -98,12 +98,12 @@ exports[`<Plan /> 1`] = `
               className="programmeRequirements css-chxm8w"
             >
               <p
-                className="css-14ai1qy"
+                className="css-1usq9ww"
               >
                 SOFTENG370
               </p>
               <p
-                className="css-14ai1qy"
+                className="css-1usq9ww"
               >
                 SOFTENG370
               </p>
@@ -160,7 +160,7 @@ exports[`<Plan /> 1`] = `
               className="programmeRequirements css-chxm8w"
             >
               <p
-                className="css-14ai1qy"
+                className="css-1usq9ww"
               >
                 SOFTENG370
               </p>
@@ -239,7 +239,7 @@ exports[`<Plan /> 1`] = `
               className="programmeRequirements css-chxm8w"
             >
               <p
-                className="css-14ai1qy"
+                className="css-1usq9ww"
               >
                 SOFTENG370
               </p>
@@ -333,12 +333,12 @@ exports[`<Plan /> 1`] = `
               className="programmeRequirements css-chxm8w"
             >
               <p
-                className="css-14ai1qy"
+                className="css-1usq9ww"
               >
                 SOFTENG370
               </p>
               <p
-                className="css-14ai1qy"
+                className="css-1usq9ww"
               >
                 SOFTENG370
               </p>
@@ -473,7 +473,7 @@ exports[`<Plan /> 1`] = `
           <p
             className="css-1gwygh1"
           >
-            Student
+            Program
           </p>
         </div>
         <div
@@ -491,328 +491,7 @@ exports[`<Plan /> 1`] = `
     />
     <div
       className="css-1apjpfw"
-    >
-      <div
-        className="css-1kic1uf"
-      >
-        <div
-          className="css-yy05jd"
-        >
-          <p
-            className="css-13i6q8k"
-          >
-            2020
-          </p>
-        </div>
-        <div
-          className="css-wksbmv"
-        >
-          <div
-            className="css-1fqxqkr"
-          >
-            <div
-              className="css-yy05jd"
-            >
-              <p
-                className="css-1donknr"
-              >
-                Semester 1
-              </p>
-            </div>
-            <div
-              className="css-144zrlb"
-              style={
-                Object {
-                  "backgroundColor": "#E2E2E2",
-                }
-              }
-            >
-              <div
-                className="courseContainer css-viqzwr"
-              >
-                <div
-                  className="css-g5w34c"
-                  style={
-                    Object {
-                      "opacity": 1,
-                    }
-                  }
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    Softeng 251
-                  </p>
-                </div>
-                <div
-                  className="css-g5w34c"
-                  style={
-                    Object {
-                      "opacity": 1,
-                    }
-                  }
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    Softeng 252
-                  </p>
-                </div>
-                <div
-                  className="css-g5w34c"
-                  style={
-                    Object {
-                      "opacity": 1,
-                    }
-                  }
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    Softeng 253
-                  </p>
-                </div>
-                <div
-                  className="css-g5w34c"
-                  style={
-                    Object {
-                      "opacity": 1,
-                    }
-                  }
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    Softeng 254
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            className="css-1fqxqkr"
-          >
-            <div
-              className="css-yy05jd"
-            >
-              <p
-                className="css-1donknr"
-              >
-                Semester 2
-              </p>
-            </div>
-            <div
-              className="css-144zrlb"
-              style={
-                Object {
-                  "backgroundColor": "#E2E2E2",
-                }
-              }
-            >
-              <div
-                className="courseContainer css-viqzwr"
-              >
-                <div
-                  className="css-g5w34c"
-                  style={
-                    Object {
-                      "opacity": 1,
-                    }
-                  }
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    Softeng 255
-                  </p>
-                </div>
-                <div
-                  className="css-g5w34c"
-                  style={
-                    Object {
-                      "opacity": 1,
-                    }
-                  }
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    Softeng 256
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className="css-1kic1uf"
-      >
-        <div
-          className="css-yy05jd"
-        >
-          <p
-            className="css-13i6q8k"
-          >
-            2021
-          </p>
-        </div>
-        <div
-          className="css-wksbmv"
-        >
-          <div
-            className="css-1fqxqkr"
-          >
-            <div
-              className="css-yy05jd"
-            >
-              <p
-                className="css-1donknr"
-              >
-                Semester 1
-              </p>
-            </div>
-            <div
-              className="css-144zrlb"
-              style={
-                Object {
-                  "backgroundColor": "#E2E2E2",
-                }
-              }
-            >
-              <div
-                className="courseContainer css-viqzwr"
-              >
-                <div
-                  className="css-g5w34c"
-                  style={
-                    Object {
-                      "opacity": 1,
-                    }
-                  }
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    Softeng 351
-                  </p>
-                </div>
-                <div
-                  className="css-g5w34c"
-                  style={
-                    Object {
-                      "opacity": 1,
-                    }
-                  }
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    Softeng 352
-                  </p>
-                </div>
-                <div
-                  className="css-g5w34c"
-                  style={
-                    Object {
-                      "opacity": 1,
-                    }
-                  }
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    Softeng 353
-                  </p>
-                </div>
-                <div
-                  className="css-g5w34c"
-                  style={
-                    Object {
-                      "opacity": 1,
-                    }
-                  }
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    Softeng 354
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            className="css-1fqxqkr"
-          >
-            <div
-              className="css-yy05jd"
-            >
-              <p
-                className="css-1donknr"
-              >
-                Semester 2
-              </p>
-            </div>
-            <div
-              className="css-144zrlb"
-              style={
-                Object {
-                  "backgroundColor": "#E2E2E2",
-                }
-              }
-            >
-              <div
-                className="courseContainer css-viqzwr"
-              >
-                <div
-                  className="css-g5w34c"
-                  style={
-                    Object {
-                      "opacity": 1,
-                    }
-                  }
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    Softeng 451
-                  </p>
-                </div>
-                <div
-                  className="css-g5w34c"
-                  style={
-                    Object {
-                      "opacity": 1,
-                    }
-                  }
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    Softeng 452
-                  </p>
-                </div>
-                <div
-                  className="css-g5w34c"
-                  style={
-                    Object {
-                      "opacity": 1,
-                    }
-                  }
-                >
-                  <p
-                    className="css-o5909"
-                  >
-                    Softeng 453
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    />
   </div>
 </div>
 `;

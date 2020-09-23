@@ -1,8 +1,36 @@
 import React from "react";
 import { Flex, Text, Stack, Icon } from "@chakra-ui/core";
 import { colors as c } from "../../colors";
+import { useDrag } from "react-dnd";
+import { ItemTypes } from "./ItemTypes";
 
 // TODO: Refactor this to be common with Allen's component from the ProgrammeDegree page
+
+function CourseText({ index, courseName }) {
+    const [, drag] = useDrag({
+        item: { courseName, type: ItemTypes.COURSE_REQUIREMENT_PILL },
+        collect: (monitor) => ({
+            isDragging: monitor.isDragging(),
+        }),
+    });
+
+    return (
+        <Text
+            key={index}
+            height="60%"
+            ref={drag}
+            border="solid"
+            borderColor={c.white}
+            borderRadius="20px"
+            borderWidth="1px"
+            fontSize="12px"
+            padding="3px"
+            margin="2px"
+        >
+            {courseName}
+        </Text>
+    );
+}
 
 const RequirementListItem = ({ index, prefix, points, courses, isSatisfied }) => {
     return (
@@ -33,19 +61,7 @@ const RequirementListItem = ({ index, prefix, points, courses, isSatisfied }) =>
             </Text>
             <Stack className="programmeRequirements" textAlign="left" isInline overflowX="scroll" width="35%">
                 {courses.map((course, index) => (
-                    <Text
-                        key={index}
-                        height="60%"
-                        border="solid"
-                        borderColor={c.white}
-                        borderRadius="20px"
-                        borderWidth="1px"
-                        fontSize="12px"
-                        padding="3px"
-                        margin="2px"
-                    >
-                        {course}
-                    </Text>
+                    <CourseText index={index} courseName={course} />
                 ))}
             </Stack>
             <Flex>{isSatisfied && <Icon name="check" />}</Flex>

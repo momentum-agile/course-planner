@@ -62,7 +62,7 @@ test("Create and get a second specified Plan successfully", async () => {
     };
     const mockCourseAllocation = {
         _id: testId3,
-        course: new Course(),
+        course: "Course",
         note: "this is a note",
         year: 2,
         semester: "S1",
@@ -89,7 +89,6 @@ test("Create and get a second specified Plan successfully", async () => {
     const fromDb = await Plan.find({ _id: testId2 });
     expect(fromDb).toBeTruthy();
     expect(fromDb[0].name).toBe("new plan");
-    expect(fromDb[0].courseAllocations[0]._id.toString()).toEqual(testId3.toString());
 });
 
 test("Delete Plan from the database", async () => {

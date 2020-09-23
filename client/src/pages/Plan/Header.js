@@ -36,7 +36,7 @@ const Header = ({ name, programme }) => {
             <Flex direction="column">
                 <Flex align="center" justify="center">
                     <Text color={c.uoaBlue} fontSize="xl">
-                        Student
+                        Program
                     </Text>
                 </Flex>
                 <Flex
@@ -50,7 +50,7 @@ const Header = ({ name, programme }) => {
                     marginTop={2}
                 >
                     <Text textAlign="center" color={c.white} fontSize="xl">
-                        {name}
+                        {programme}
                     </Text>
                 </Flex>
             </Flex>

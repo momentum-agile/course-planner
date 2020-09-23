@@ -27,7 +27,7 @@ const mongoose = require("mongoose");
  */
 const courseAllocationSchema = {
     course: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         ref: "Course",
         required: true,
     },

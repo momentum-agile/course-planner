@@ -26,6 +26,7 @@ const CourseTile = ({ courseName }) => {
             borderRadius="5px"
             mt="2px"
             ref={drag}
+            cursor="pointer"
         >
             <Text textAlign="center" fontWeight="bold" fontSize="xl" color={c.white}>
                 {courseName}
@@ -36,7 +37,7 @@ const CourseTile = ({ courseName }) => {
 
 const SemesterBox = ({ semester, data, year, updateData }) => {
     const [{ canDrop, isOver }, drop] = useDrop({
-        accept: [ItemTypes.COURSE_PILL, ItemTypes.COURSE_TILE],
+        accept: [ItemTypes.COURSE_PILL, ItemTypes.COURSE_TILE, ItemTypes.COURSE_REQUIREMENT_PILL],
         drop: ({ courseName }, monitor) => {
             const newData = data.filter((x) => x.course !== courseName);
             updateData([...newData, { course: courseName, year: year, semester: semester }]);

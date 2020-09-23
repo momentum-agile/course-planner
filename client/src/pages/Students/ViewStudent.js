@@ -139,7 +139,7 @@ const ViewStudent = ({ student, editStudent, deleteStudent }) => {
                         <Text textAlign="center" fontSize="2xl">
                             Plans
                         </Text>
-                        <Link to={`plan/${upi}/${data.length + 1}`}>
+                        <Link to={`plan/${upi}/DefacedC0ffeeBabeB0b0001`}>
                             <Button variantColor="blue" backgroundColor={c.uoaBlue} marginLeft="20px">
                                 <Text textAlign="center" color={c.white}>
                                     Create Plan

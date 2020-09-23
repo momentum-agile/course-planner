@@ -12,6 +12,7 @@ const App = () => {
                 <Route exact path="/students" component={Students} />
                 <Route exact path="/courses" component={Courses} />
                 <Route exact path="/plan/:studentId/:planId" component={Plan} />
+                <Route exact path="/plan/:planId" component={Plan} />
             </Switch>
         </div>
     );
