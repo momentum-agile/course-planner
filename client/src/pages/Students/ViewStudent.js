@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Flex, Text, Box, Select, Button } from "@chakra-ui/core";
+import { Flex, Text, Button } from "@chakra-ui/core";
 import { InlineEdit } from "../../components";
 import PlanTable from "./PlanTable";
 import { Link } from "react-router-dom";
@@ -42,19 +42,17 @@ const data = [
 ];
 
 const ViewStudent = ({ student, editStudent, deleteStudent }) => {
-    const { name, upi, id, yearLevel } = student;
+    const { name, upi, id } = student;
     const [editName, setEditName] = useState(name);
     const [editUpi, setEditUpi] = useState(upi);
     const [editId, setEditId] = useState(id);
-    const [editYearLevel, setEditYearLevel] = useState(yearLevel);
     const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
 
     useEffect(() => {
         setEditName(name);
         setEditUpi(upi);
         setEditId(id);
-        setEditYearLevel(yearLevel);
-    }, [name, upi, id, yearLevel]);
+    }, [name, upi, id]);
 
     const handleConfirmEdit = (id) => (e) => {
         const newStudent = {
@@ -104,37 +102,9 @@ const ViewStudent = ({ student, editStudent, deleteStudent }) => {
                         onSubmit={(e) => handleConfirmEdit("id")(editId)}
                         onChange={(e) => setEditId(e)}
                     />
-                    <Flex
-                        textAlign="center"
-                        fontSize="2xl"
-                        display="flex"
-                        flexDirection="row"
-                        justifyContent="center"
-                        alignContent="center"
-                        marginTop="8px"
-                    >
-                        <Box>
-                            <Text> Year Level: </Text>
-                        </Box>
-                        <Select
-                            value={editYearLevel}
-                            width="30%"
-                            ml={5}
-                            onChange={(e) => {
-                                setEditYearLevel(Number(e.target.value));
-                                handleConfirmEdit("yearLevel")(Number(e.target.value));
-                            }}
-                        >
-                            <option value={1}>Part 1</option>
-                            <option value={2}>Part 2</option>
-                            <option value={3}>Part 3</option>
-                            <option value={4}>Part 4</option>
-                            <option value={5}>Part 5</option>
-                        </Select>
-                    </Flex>
                 </Flex>
 
-                <Flex p={4} flexDirection="column" marginTop="42px">
+                <Flex p={4} flexDirection="column" marginTop="50px">
                     <Flex flexDirection="row" align="center" justify="center">
                         <Text textAlign="center" fontSize="2xl">
                             Plans

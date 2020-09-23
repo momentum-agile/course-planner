@@ -269,72 +269,9 @@ exports[`Main Students Page 1`] = `
               className="css-0"
             />
           </div>
-          <div
-            className="css-1h3rw7k"
-          >
-            <div
-              className="css-0"
-            >
-              <p
-                className="css-fzcsno"
-              >
-                 Year Level: 
-              </p>
-            </div>
-            <div
-              className="css-x6sard"
-            >
-              <select
-                className="css-16ut77p"
-                onChange={[Function]}
-              >
-                <option
-                  value={1}
-                >
-                  Part 1
-                </option>
-                <option
-                  value={2}
-                >
-                  Part 2
-                </option>
-                <option
-                  value={3}
-                >
-                  Part 3
-                </option>
-                <option
-                  value={4}
-                >
-                  Part 4
-                </option>
-                <option
-                  value={5}
-                >
-                  Part 5
-                </option>
-              </select>
-              <div
-                className="css-1lepn2w"
-              >
-                <svg
-                  aria-hidden="true"
-                  className="css-12c4avn"
-                  focusable="false"
-                  role="presentation"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
         </div>
         <div
-          className="css-cwx5qq"
+          className="css-jd6m6k"
         >
           <div
             className="css-1hyoz7m"
