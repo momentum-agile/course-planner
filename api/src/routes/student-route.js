@@ -42,7 +42,7 @@ router.get("/:upi", async (req, res) => {
                 res.status(404).json({ msg: "Requested object not found" });
             } else {
                 LOGGER.info(`GET Request Succeeded for /student/${req.params.upi}`);
-                LOGGER.info(student);
+                LOGGER.debug(student);
                 res.status(200).json(student);
             }
         }
@@ -80,7 +80,7 @@ router.get("/", async (req, res) => {
                 res.status(404).json({ msg: "Requested objects not found" });
             } else {
                 LOGGER.info(`GET Request Succeeded for /student/`);
-                LOGGER.info(students);
+                LOGGER.debug(students);
                 res.status(200).json(students);
             }
         }
@@ -153,7 +153,7 @@ router.post("/", async (req, res) => {
             res.status(400).json({ msg: err.message });
         } else {
             LOGGER.info("POST Request Succeeded for /student/");
-            LOGGER.info(student);
+            LOGGER.debug(student);
             res.status(201).json(student);
         }
     });

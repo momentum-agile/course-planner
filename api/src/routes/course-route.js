@@ -42,7 +42,7 @@ router.get("/:courseCode", async (req, res) => {
                 res.status(404).json();
             } else {
                 LOGGER.info(`GET Request Succeeded for /course/${req.params.courseCode}`);
-                LOGGER.info(course);
+                LOGGER.debug(course);
                 res.status(200).json(course);
             }
         }
@@ -82,7 +82,7 @@ router.get("/", async (req, res) => {
                 res.status(404).json();
             } else {
                 LOGGER.info("GET Request Succeeded for /course");
-                LOGGER.info(courses);
+                LOGGER.debug(courses);
                 res.status(200).json(courses);
             }
         }
@@ -156,7 +156,7 @@ router.post("/", async (req, res) => {
             res.status(400).json({ msg: err.message });
         } else {
             LOGGER.info("POST Request Succeeded for /Course/");
-            LOGGER.info(course);
+            LOGGER.debug(course);
             res.status(201).json(course);
         }
     });
