@@ -24,6 +24,7 @@ const CourseTile = ({ courseName, courses }) => {
         corequisites.length && tooltipString.push(`Corequisites: ${corequisites} <br />`);
         restrictions.length && tooltipString.push(`Restrictions: ${restrictions} <br />`);
         informalEquivalents.length && tooltipString.push(`Informal Equivalents: ${informalEquivalents} <br />`);
+        !tooltipString.length && tooltipString.push("Course has no regulations");
         return tooltipString.join("");
     };
 
