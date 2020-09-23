@@ -138,37 +138,41 @@ exports[`Existing programmes sub-page  1`] = `
       <div
         className="css-k008qs"
       >
-        <button
-          aria-controls="menu-5"
-          aria-expanded={false}
-          aria-haspopup="menu"
-          className="css-992tcj"
-          id="menubutton-6"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          role="button"
+        <div
+          className="css-k008qs"
         >
-          <svg
-            className="css-11orafl"
-            fill="currentColor"
-            height="1em"
-            stroke="currentColor"
-            strokeWidth="0"
-            style={
-              Object {
-                "color": undefined,
-              }
-            }
-            type="button"
-            viewBox="0 0 24 24"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
+          <button
+            aria-controls="menu-5"
+            aria-expanded={false}
+            aria-haspopup="menu"
+            className="css-992tcj"
+            id="menubutton-6"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            role="button"
           >
-            <path
-              d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S13.1 10 12 10zM18 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S19.1 10 18 10zM6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S7.1 10 6 10z"
-            />
-          </svg>
-        </button>
+            <svg
+              className="css-11orafl"
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              strokeWidth="0"
+              style={
+                Object {
+                  "color": undefined,
+                }
+              }
+              type="button"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S13.1 10 12 10zM18 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S19.1 10 18 10zM6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S7.1 10 6 10z"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>

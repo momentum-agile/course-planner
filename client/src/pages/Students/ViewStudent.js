@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Flex, Text, Button } from "@chakra-ui/core";
-import { InlineEdit } from "../../components";
+import { InlineEdit, MenuWrapper } from "../../components";
 import PlanTable from "./PlanTable";
 import { Link } from "react-router-dom";
-import OptionsMenu from "../../components/OptionsMenu";
 import { colors as c } from "../../colors";
 
 const PlanTableColumns = [
@@ -68,7 +67,7 @@ const ViewStudent = ({ student, editStudent, deleteStudent }) => {
             <Flex height="100%" width="50%" direction="column">
                 <Flex direction="row">
                     <Flex justify="flex-start" align="flex-start" position="absolute" right="50px">
-                        <OptionsMenu
+                        <MenuWrapper
                             item={student}
                             itemType="Student"
                             setOpenConfirmationDialog={setOpenConfirmationDialog}

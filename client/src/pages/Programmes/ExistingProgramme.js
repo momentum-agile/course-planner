@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Flex, Text, Box, IconButton, Stack, Input, Button, Icon } from "@chakra-ui/core";
-import { OutlineButton, ProgrammeRequirementsItem, ConfirmationDialog } from "../../components";
+import { OutlineButton, ProgrammeRequirementsItem, ConfirmationDialog, MenuWrapper } from "../../components";
 import EditRequirementsBox from "./EditRequirementsBox";
 import { useHistory } from "react-router-dom";
 import useProgrammmes from "./useProgrammes";
 import useCourses from "../Courses/useCourses";
-import OptionsMenu from "../../components/OptionsMenu";
+
 import { colors as c } from "../../colors";
 
 const ExistingProgramme = ({ programme, notifyUpdate }) => {
@@ -65,14 +65,13 @@ const ExistingProgramme = ({ programme, notifyUpdate }) => {
                 </Text>
                 <Flex justify="flex-end" align="flex-end" right="50px" position="absolute">
                     {/* Dropdown menu to edit and delete */}
-                    <OptionsMenu
+                    <MenuWrapper
                         item={programmeDegreeInfo}
                         itemType="Programme"
                         setOpenConfirmationDialog={setOpenConfirmationDialog}
                         openConfirmationDialog={openConfirmationDialog}
                         confirm={confirmDelete}
-                        hasEdit={!isEdited}
-                        onEdit={() => setIsEdited(true)}
+                        onEdit={!isEdited ? () => setIsEdited(true) : undefined}
                     />
                 </Flex>
             </Flex>

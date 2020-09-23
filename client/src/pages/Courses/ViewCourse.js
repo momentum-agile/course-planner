@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Flex } from "@chakra-ui/core";
 import CourseField from "./CourseField";
 import SaveCancelButtonSet from "./SaveCancelButtonSet";
-import OptionsMenu from "../../components/OptionsMenu";
 import RegulationTable from "./RegulationTable";
+import { MenuWrapper } from "../../components";
 
 const TYPES = {
     simple: "simple",
@@ -78,7 +78,7 @@ const ViewCourse = ({ course, updateCourse, deleteCourse }) => {
     return (
         <Flex width="100%" align="center" justify="left" marginTop="20px" p={4} direction="column">
             <Flex mt={12} justify="center" align="center">
-                <OptionsMenu
+                <MenuWrapper
                     item={course}
                     itemType="Course"
                     setOpenConfirmationDialog={setOpenConfirmationDialog}
