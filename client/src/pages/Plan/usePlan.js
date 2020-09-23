@@ -52,6 +52,7 @@ const usePlan = () => {
     const [programme, setProgramme] = useState({ regulations });
     const { planId } = useParams();
     const [realCourses, setRealCourses] = useState([]);
+    const [unfilteredRealCourses, setUnfilteredRealCourses] = useState([]);
     const [plan, setPlan] = useState([]);
 
     const initPage = useCallback(async () => {
@@ -66,6 +67,7 @@ const usePlan = () => {
         ])
             .then((values) => {
                 const [realCourses, plan, students, programs] = values;
+                setUnfilteredRealCourses(realCourses);
                 const unique = [...new Set(plan.courseAllocations.map((item) => item.course))];
                 setRealCourses(realCourses.filter((val) => !unique.includes(val.courseCode)));
                 setPlan(plan);
@@ -91,7 +93,7 @@ const usePlan = () => {
         });
     };
 
-    return { student, realCourses, programme, plan, setCourseAllocations };
+    return { student, realCourses, programme, plan, unfilteredRealCourses, setCourseAllocations };
 };
 
 export default usePlan;

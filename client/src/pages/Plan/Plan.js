@@ -19,6 +19,7 @@ const Plan = () => {
         realCourses,
         programme,
         plan: { endYear, startYear, courseAllocations },
+        unfilteredRealCourses,
         setCourseAllocations,
     } = usePlan();
     const [searchTerm, setSearchTerm] = useState("");
@@ -91,7 +92,7 @@ const Plan = () => {
                 <Divider orientation="horizontal" backgroundColor={c.iceBlue} width="100%" height="2px" />
                 <Flex overflowY="scroll" direction="column">
                     {years.map((year) => (
-                        <Year year={year} data={courseAllocations} updateData={setCourseAllocations} />
+                        <Year year={year} data={courseAllocations} updateData={setCourseAllocations} courses={unfilteredRealCourses} />
                     ))}
                 </Flex>
             </Flex>

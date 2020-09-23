@@ -1,16 +1,31 @@
 import React from "react";
-import { Flex, Stack, Text } from "@chakra-ui/core";
+import { Flex, Stack, Text, Icon } from "@chakra-ui/core";
+import ReactTooltip from "react-tooltip";
 import { useDrag, useDrop } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
 import { colors as c } from "../../colors";
 
-const CourseTile = ({ courseName }) => {
+const CourseTile = ({ courseName, courses }) => {
     const [{ isDragging }, drag] = useDrag({
         item: { courseName, type: ItemTypes.COURSE_TILE },
         collect: (monitor) => ({
             isDragging: monitor.isDragging(),
         }),
     });
+
+    const getCourseRegulations = () => {
+        const foundCourses = courses.find((course) => {
+            return course.courseCode === courseName;
+        });
+        if (!foundCourses) return "Course not in database.";
+        const { prerequisites, corequisites, restrictions, informalEquivalents } = foundCourses;
+        const tooltipString = [];
+        prerequisites.length && tooltipString.push(`Prerequisites: ${prerequisites} <br />`);
+        corequisites.length && tooltipString.push(`Corequisites: ${corequisites} <br />`);
+        restrictions.length && tooltipString.push(`Restrictions: ${restrictions} <br />`);
+        informalEquivalents.length && tooltipString.push(`Informal Equivalents: ${informalEquivalents} <br />`);
+        return tooltipString.join("");
+    };
 
     const opacity = isDragging ? 0.4 : 1;
 
@@ -20,6 +35,7 @@ const CourseTile = ({ courseName }) => {
             justify="center"
             style={{ opacity }}
             align="center"
+            flexDirection="row"
             borderWidth="1px"
             width="90%"
             backgroundColor={c.darkGrey}
@@ -28,14 +44,18 @@ const CourseTile = ({ courseName }) => {
             ref={drag}
             cursor="pointer"
         >
-            <Text textAlign="center" fontWeight="bold" fontSize="xl" color={c.white}>
+            <Text flex="1" textAlign="center" fontWeight="bold" fontSize="xl" color={c.white}>
                 {courseName}
             </Text>
+            <ReactTooltip id={courseName} place="right" multiline html>
+                {getCourseRegulations()}
+            </ReactTooltip>
+            <Icon name="info-outline" color={c.white} data-tip data-for={courseName} />
         </Flex>
     );
 };
 
-const SemesterBox = ({ semester, data, year, updateData }) => {
+const SemesterBox = ({ semester, data, year, updateData, courses }) => {
     const [{ canDrop, isOver }, drop] = useDrop({
         accept: [ItemTypes.COURSE_PILL, ItemTypes.COURSE_TILE, ItemTypes.COURSE_REQUIREMENT_PILL],
         drop: ({ courseName }, monitor) => {
@@ -80,7 +100,7 @@ const SemesterBox = ({ semester, data, year, updateData }) => {
                     {data
                         .filter((x) => x.semester === semester && x.year === year)
                         .map((course, idx) => (
-                            <CourseTile key={idx} courseName={course.course} />
+                            <CourseTile key={idx} courseName={course.course} courses={courses} />
                         ))}
                 </Stack>
             </Flex>
@@ -88,7 +108,7 @@ const SemesterBox = ({ semester, data, year, updateData }) => {
     );
 };
 
-const Year = ({ year, data, updateData }) => {
+const Year = ({ year, data, updateData, courses }) => {
     return (
         <Flex direction="column" mt={4}>
             <Flex width="100%" justify="center" align="center" marginTop="20px">
@@ -98,7 +118,7 @@ const Year = ({ year, data, updateData }) => {
             </Flex>
             <Flex width="100%" direction="row" marginTop="5px">
                 {["S1", "S2"].map((semester) => (
-                    <SemesterBox semester={semester} year={year} data={data} updateData={updateData} />
+                    <SemesterBox semester={semester} year={year} data={data} updateData={updateData} courses={courses} />
                 ))}
             </Flex>
         </Flex>
