@@ -2,7 +2,7 @@ import React from "react";
 import { Flex, Text } from "@chakra-ui/core";
 import { colors as c } from "../../colors";
 
-const Header = ({ name, programme }) => {
+const Header = ({ name, programme, planName }) => {
     return (
         <Flex direction="row" p={4} justifyContent="space-around">
             <Flex direction="column">
@@ -29,7 +29,7 @@ const Header = ({ name, programme }) => {
 
             <Flex align="center" justify="center">
                 <Text color={c.uoaBlue} fontSize="5xl" fontWeight="bold">
-                    Plan
+                    {planName}
                 </Text>
             </Flex>
 

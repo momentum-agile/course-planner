@@ -460,9 +460,7 @@ exports[`<Plan /> 1`] = `
       >
         <p
           className="css-137ozra"
-        >
-          Plan
-        </p>
+        />
       </div>
       <div
         className="css-j7qwjs"

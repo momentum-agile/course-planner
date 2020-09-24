@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Flex, Text, Button } from "@chakra-ui/core";
+import React, { useEffect, useState } from "react";
+import { Button, Flex, Select, Text } from "@chakra-ui/core";
 import { InlineEdit, MenuWrapper } from "../../components";
 import PlanTable from "./PlanTable";
-import { Link } from "react-router-dom";
 import { colors as c } from "../../colors";
+import CoursePlannerClient from "../../common/PlansClient";
+import { useHistory } from "react-router-dom";
 
 const PlanTableColumns = [
     {
@@ -40,11 +41,13 @@ const data = [
     },
 ];
 
-const ViewStudent = ({ student, editStudent, deleteStudent }) => {
+const ViewStudent = ({ student, editStudent, deleteStudent, programmes }) => {
+    const history = useHistory();
     const { name, upi, id } = student;
     const [editName, setEditName] = useState(name);
     const [editUpi, setEditUpi] = useState(upi);
     const [editId, setEditId] = useState(id);
+    const [programmeID, setProgrammeID] = useState("");
     const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
 
     useEffect(() => {
@@ -104,17 +107,38 @@ const ViewStudent = ({ student, editStudent, deleteStudent }) => {
                 </Flex>
 
                 <Flex p={4} flexDirection="column" marginTop="50px">
-                    <Flex flexDirection="row" align="center" justify="center">
-                        <Text textAlign="center" fontSize="2xl">
-                            Plans
-                        </Text>
-                        <Link to={`plan/${upi}/DefacedC0ffeeBabeB0b0001`}>
-                            <Button variantColor="blue" backgroundColor={c.uoaBlue} marginLeft="20px">
-                                <Text textAlign="center" color={c.white}>
-                                    Create Plan
-                                </Text>
-                            </Button>
-                        </Link>
+                    <Text textAlign="center" fontSize="2xl">
+                        Plans
+                    </Text>
+                    <Flex flexDirection="row" align="center" marginTop="10px" justify="center">
+                        <Select value={programmeID} ml={5} onChange={(e) => setProgrammeID(e.target.value)}>
+                            <option value={""}>Select a program..</option>
+                            {programmes.map((programme) => (
+                                <option value={programme._id}>{programme.name}</option>
+                            ))}
+                        </Select>
+                        <Button
+                            variantColor="blue"
+                            backgroundColor={c.uoaBlue}
+                            marginLeft="20px"
+                            paddingLeft="30px"
+                            paddingRight="30px"
+                            isDisabled={!programmeID}
+                            onClick={() =>
+                                CoursePlannerClient.createStudentPlan(editUpi, {
+                                    name: `${name}'s ${programmes.find((programme) => programme._id === programmeID).name} plan`,
+                                    student: student._id,
+                                    programmeDegree: programmeID,
+                                    startYear: new Date().getFullYear() + 1,
+                                    endYear: new Date().getFullYear() + 1,
+                                    completed: false,
+                                }).then((res) => history.push(`/plan/${res._id}`))
+                            }
+                        >
+                            <Text textAlign="center" color={c.white}>
+                                Create Plan
+                            </Text>
+                        </Button>
                     </Flex>
                     <PlanTable columns={PlanTableColumns} data={data} />
                 </Flex>

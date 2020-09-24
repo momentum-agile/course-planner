@@ -18,7 +18,7 @@ const Plan = () => {
         student,
         realCourses,
         programme,
-        plan: { endYear, startYear, courseAllocations },
+        plan: { name, endYear, startYear, courseAllocations },
         unfilteredRealCourses,
         setCourseAllocations,
     } = usePlan();
@@ -88,7 +88,7 @@ const Plan = () => {
             </Flex>
 
             <Flex height="100%" width="70%" direction="column">
-                <Header name={student?.name} programme={programme?.name} />
+                <Header name={student?.name} programme={programme?.name} planName={name} />
                 <Divider orientation="horizontal" backgroundColor={c.iceBlue} width="100%" height="2px" />
                 <Flex overflowY="scroll" direction="column">
                     {years.map((year) => (

@@ -11,7 +11,7 @@ const Students = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedStudent, setSelectedStudent] = useState({});
     const [addingStudent, setAddingStudent] = useState(false);
-    const { data, columns, editStudent, deleteStudent, addStudent } = useStudents();
+    const { data, columns, editStudent, deleteStudent, addStudent, programmes } = useStudents();
 
     useEffect(() => {
         setSelectedStudent(data[currRow] || {});
@@ -71,7 +71,12 @@ const Students = () => {
                 {addingStudent ? (
                     <AddStudent addStudent={addStudent} />
                 ) : (
-                    <ViewStudent student={selectedStudent} editStudent={editStudent} deleteStudent={deleteStudent} />
+                    <ViewStudent
+                        student={selectedStudent}
+                        programmes={programmes}
+                        editStudent={editStudent}
+                        deleteStudent={deleteStudent}
+                    />
                 )}
             </Flex>
         </Flex>

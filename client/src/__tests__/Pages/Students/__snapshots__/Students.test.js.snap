@@ -277,29 +277,58 @@ exports[`Main Students Page 1`] = `
         <div
           className="css-jd6m6k"
         >
-          <div
-            className="css-1hyoz7m"
+          <p
+            className="css-u152l3"
           >
-            <p
-              className="css-u152l3"
+            Plans
+          </p>
+          <div
+            className="css-1vkt50j"
+          >
+            <div
+              className="css-1mas0qx"
             >
-              Plans
-            </p>
-            <a
-              href="/plan/undefined/DefacedC0ffeeBabeB0b0001"
-              onClick={[Function]}
-            >
-              <button
-                className="css-abregs"
-                type="button"
+              <select
+                className="css-16ut77p"
+                onChange={[Function]}
+                value=""
               >
-                <p
-                  className="css-168qb02"
+                <option
+                  value=""
                 >
-                  Create Plan
-                </p>
-              </button>
-            </a>
+                  Select a program..
+                </option>
+              </select>
+              <div
+                className="css-1lepn2w"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="css-12c4avn"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+            </div>
+            <button
+              aria-disabled={true}
+              className="css-1ybya2b"
+              disabled={true}
+              onClick={[Function]}
+              type="button"
+            >
+              <p
+                className="css-168qb02"
+              >
+                Create Plan
+              </p>
+            </button>
           </div>
           <div
             className="css-nb2vca"
