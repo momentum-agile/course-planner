@@ -130,7 +130,7 @@ const ViewStudent = ({ student, editStudent, deleteStudent, programmes }) => {
                                     student: student._id,
                                     programmeDegree: programmeID,
                                     startYear: new Date().getFullYear() + 1,
-                                    endYear: new Date().getFullYear() + 1,
+                                    numYears: 1,
                                     completed: false,
                                 }).then((res) => history.push(`/plan/${res._id}`))
                             }

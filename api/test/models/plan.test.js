@@ -35,7 +35,7 @@ beforeEach(async () => {
         courseAllocations: null,
         programmeDegree: new ProgrammeDegree(),
         startYear: 2019,
-        endYear: 2030,
+        numYears: 2030,
         completed: false,
     });
 
@@ -80,7 +80,7 @@ test("Create and get a second specified Plan successfully", async () => {
         courseAllocations: [mockCourseAllocation],
         programmeDegree: new ProgrammeDegree(),
         startYear: 2019,
-        endYear: 2030,
+        numYears: 2030,
         completed: false,
     });
 

@@ -11,20 +11,20 @@ import RequirementsList from "./RequirementsList";
 import { colors as c } from "../../colors";
 
 const reqsToolTip = "Requirements satisfied by the plan will be ticked off and become green";
-const generateYears = (from, to) => (from && to && [...Array(to + 1).keys()].slice(from)) || [];
+const generateYears = (to) => (to && [...Array(to).keys()]) || [];
 
 const Plan = () => {
     const {
         student,
         realCourses,
         programme,
-        plan: { name, endYear, startYear, courseAllocations },
+        plan: { name, numYears, startYear, courseAllocations },
         unfilteredRealCourses,
         setCourseAllocations,
     } = usePlan();
     const [searchTerm, setSearchTerm] = useState("");
     const [note, setNote] = useState("");
-    const years = generateYears(startYear, endYear);
+    const years = generateYears(numYears);
 
     // TODO: The programme variable's requirements should have an attribute to check
 
@@ -92,7 +92,13 @@ const Plan = () => {
                 <Divider orientation="horizontal" backgroundColor={c.iceBlue} width="100%" height="2px" />
                 <Flex overflowY="scroll" direction="column">
                     {years.map((year) => (
-                        <Year year={year} data={courseAllocations} updateData={setCourseAllocations} courses={unfilteredRealCourses} />
+                        <Year
+                            year={year}
+                            startYear={startYear}
+                            data={courseAllocations}
+                            updateData={setCourseAllocations}
+                            courses={unfilteredRealCourses}
+                        />
                     ))}
                 </Flex>
             </Flex>

@@ -52,7 +52,7 @@ const planSchema = mongoose.Schema({
     student: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Student",
-        required: true,
+        required: false,
     },
     courseAllocations: {
         type: [CourseAllocation],
@@ -67,7 +67,7 @@ const planSchema = mongoose.Schema({
         type: Number,
         required: true,
     },
-    endYear: {
+    numYears: {
         type: Number,
         required: true,
     },

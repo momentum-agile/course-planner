@@ -57,7 +57,7 @@ const generatePlan = () =>
         student: "56cb91bdc3464f14678934cb",
         programmeDegree: "56cb91bdc3464f14678934cc",
         startYear: 2020,
-        endYear: 2024,
+        numYears: 2024,
         completed: false,
     });
 
@@ -114,7 +114,7 @@ describe("PUT /plan", () => {
                     student: "56cb91bdc3464f14678934cb",
                     programmeDegree: "56cb91bdc3464f14678934cc",
                     startYear: 2019,
-                    endYear: 2024,
+                    numYears: 2024,
                     completed: false,
                 })
                 .end((_err, res) => {
@@ -178,7 +178,7 @@ describe("/POST plan", () => {
                     expect(res.body).toHaveProperty("name", "BobsPlan");
                     expect(res.body).toHaveProperty("programmeDegree", "56cb91bdc3464f14678934cc");
                     expect(res.body).toHaveProperty("startYear", 2020);
-                    expect(res.body).toHaveProperty("endYear", 2024);
+                    expect(res.body).toHaveProperty("numYears", 2024);
                     expect(res.body).toHaveProperty("completed", false);
                     request(app)
                         .get(`/student/${student.upi}`)
@@ -207,7 +207,7 @@ describe("/POST plan", () => {
                     expect(res.body).toHaveProperty("name", "BobsPlan");
                     expect(res.body).toHaveProperty("programmeDegree", "56cb91bdc3464f14678934cc");
                     expect(res.body).toHaveProperty("startYear", 2020);
-                    expect(res.body).toHaveProperty("endYear", 2024);
+                    expect(res.body).toHaveProperty("numYears", 2024);
                     expect(res.body).toHaveProperty("completed", false);
                     request(app)
                         .get(`/student/${student.upi}`)
@@ -233,7 +233,7 @@ describe("/POST plan", () => {
                     expect(res.body).toHaveProperty("name", "BobsPlan");
                     expect(res.body).toHaveProperty("programmeDegree", "56cb91bdc3464f14678934cc");
                     expect(res.body).toHaveProperty("startYear", 2020);
-                    expect(res.body).toHaveProperty("endYear", 2024);
+                    expect(res.body).toHaveProperty("numYears", 2024);
                     expect(res.body).toHaveProperty("completed", false);
                     request(app)
                         .get(`/programmedegree/${programme._id}`)
@@ -248,28 +248,6 @@ describe("/POST plan", () => {
         })
     });
 
-
-    it("should not POST a plan without student field", async (done) => {
-        const student = generateStudent()
-        student.save((err, planRes) => {
-            request(app)
-                .post(`/plan/student/${student.upi}`)
-                .type("json")
-                .send({
-                    name: "BobsPlan",
-                    programmeDegree: "56cb91bdc3464f14678934cc",
-                    startYear: 2020,
-                    endYear: 2024,
-                    completed: false,
-                })
-                .end((err, res) => {
-                    expect(res.statusCode).toBe(400);
-                    expect(res.body).toMatchObject({msg: "Plan validation failed: student: Path `student` is required."});
-                    done();
-                });
-        });
-    });
-
     it("should not POST a plan without programmeDegree field", async (done) => {
         const student = generateStudent()
         student.save((err, planRes) => {
@@ -280,7 +258,7 @@ describe("/POST plan", () => {
                     name: "BobsPlan",
                     student: "56cb91bdc3464f14678934cb",
                     startYear: 2020,
-                    endYear: 2024,
+                    numYears: 2024,
                     completed: false,
                 })
                 .end((err, res) => {
@@ -300,7 +278,7 @@ describe("/POST plan", () => {
                     name: "BobsPlan",
                     student: "56cb91bdc3464f14678934cb",
                     programmeDegree: "56cb91bdc3464f14678934cc",
-                    endYear: 2024,
+                    numYears: 2024,
                     completed: false,
                 })
                 .end((err, res) => {
@@ -310,7 +288,7 @@ describe("/POST plan", () => {
                 });
         });
     });
-    it("should not POST a plan without endYear field", async (done) => {
+    it("should not POST a plan without numYears field", async (done) => {
         const student = generateStudent()
         student.save((err, planRes) => {
             request(app)
@@ -325,7 +303,7 @@ describe("/POST plan", () => {
                 })
                 .end((err, res) => {
                     expect(res.statusCode).toBe(400);
-                    expect(res.body).toMatchObject({msg: "Plan validation failed: endYear: Path `endYear` is required."});
+                    expect(res.body).toMatchObject({msg: "Plan validation failed: numYears: Path `numYears` is required."});
                     done();
                 });
         });
@@ -342,7 +320,7 @@ describe("/POST plan", () => {
                     student: "56cb91bdc3464f14678934cb",
                     programmeDegree: "56cb91bdc3464f14678934cc",
                     startYear: 2020,
-                    endYear: 2024,
+                    numYears: 2024,
                 })
                 .end((err, res) => {
                     expect(res.statusCode).toBe(400);

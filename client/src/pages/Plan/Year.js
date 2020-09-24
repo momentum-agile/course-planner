@@ -109,12 +109,12 @@ const SemesterBox = ({ semester, data, year, updateData, courses }) => {
     );
 };
 
-const Year = ({ year, data, updateData, courses }) => {
+const Year = ({ year, data, startYear, updateData, courses }) => {
     return (
         <Flex direction="column" mt={4}>
             <Flex width="100%" justify="center" align="center" marginTop="20px">
                 <Text textAlign="center" fontWeight="bold" fontSize="3xl" color={c.darkGrey}>
-                    {year}
+                    {year + startYear}
                 </Text>
             </Flex>
             <Flex width="100%" direction="row" marginTop="5px">
