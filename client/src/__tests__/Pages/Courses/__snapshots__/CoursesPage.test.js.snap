@@ -137,13 +137,13 @@ exports[`<Courses /> 1`] = `
     className="css-mzeyh"
   >
     <div
-      className="css-c110bi"
+      className="css-j7qwjs"
     >
       <div
-        className="css-j1es92"
+        className="css-16k3ty1"
       >
         <div
-          className="css-k008qs"
+          className="css-1bvc4cc"
         >
           <div
             className="css-k008qs"
@@ -181,269 +181,180 @@ exports[`<Courses /> 1`] = `
             </button>
           </div>
         </div>
-      </div>
-      <div
-        className="css-1acuto9"
-      >
         <div
-          className="css-gltekd"
+          className="css-0"
         >
-          <div
-            className="css-0"
+          <p
+            className="css-12gj9wb"
           >
-            <p
-              className="css-fzcsno"
-            >
-               
-              Course Code
-              : 
-            </p>
-          </div>
-          <div
-            className="css-0"
+            Code
+          </p>
+          <p
+            className="css-fzcsno"
           >
-            <span
-              className="css-e4q50o"
-              onFocus={[Function]}
-              tabIndex={0}
-            >
-              Add a Course Code
-            </span>
-          </div>
-          <div
-            className="css-0"
+            
+          </p>
+          <hr
+            className="css-3a2cqr"
           />
         </div>
-      </div>
-      <div
-        className="css-1acuto9"
-      >
         <div
-          className="css-gltekd"
+          className="css-0"
         >
-          <div
-            className="css-0"
+          <p
+            className="css-12gj9wb"
           >
-            <p
-              className="css-fzcsno"
-            >
-               
-              Course Name
-              : 
-            </p>
-          </div>
-          <div
-            className="css-0"
+            Name
+          </p>
+          <p
+            className="css-fzcsno"
           >
-            <span
-              className="css-e4q50o"
-              onFocus={[Function]}
-              tabIndex={0}
-            >
-              Add a Course Name
-            </span>
-          </div>
-          <div
-            className="css-0"
+            
+          </p>
+          <hr
+            className="css-3a2cqr"
           />
         </div>
-      </div>
-      <div
-        className="css-1acuto9"
-      >
         <div
-          className="css-gltekd"
+          className="css-0"
         >
-          <div
-            className="css-0"
+          <p
+            className="css-12gj9wb"
           >
-            <p
-              className="css-fzcsno"
-            >
-               
-              Description
-              : 
-            </p>
-          </div>
-          <div
-            className="css-0"
+            Description
+          </p>
+          <p
+            className="css-fzcsno"
           >
-            <span
-              className="css-e4q50o"
-              onFocus={[Function]}
-              tabIndex={0}
-            >
-              Add a Description
-            </span>
-          </div>
-          <div
-            className="css-0"
+            
+          </p>
+          <hr
+            className="css-3a2cqr"
           />
         </div>
-      </div>
-      <div
-        className="css-1acuto9"
-      >
         <div
-          className="css-hk1yzb"
+          className="css-1md4put"
         >
           <div
-            className="css-0"
+            className="css-j7qwjs"
           >
             <p
-              className="css-fzcsno"
+              className="css-12gj9wb"
             >
-               
-              Points
-              : 
+              Semester:
+            </p>
+            <p
+              className="css-mi3416"
+            >
+              
             </p>
           </div>
           <div
-            className="css-1mas0qx"
+            className="css-j7qwjs"
           >
-            <select
-              className="css-16ut77p"
-              onChange={[Function]}
+            <p
+              className="css-12gj9wb"
             >
-              <option
-                value={15}
-              >
-                15
-                 points
-              </option>
-              <option
-                value={20}
-              >
-                20
-                 points
-              </option>
-              <option
-                value={30}
-              >
-                30
-                 points
-              </option>
-            </select>
+              Points:
+            </p>
+            <p
+              className="css-mi3416"
+            >
+              15
+            </p>
+          </div>
+        </div>
+        <div
+          className="css-15ruxe8"
+        />
+      </div>
+      <div
+        className="css-13v6rjs"
+      >
+        <div
+          className="css-1y73rl6"
+        >
+          <div
+            className="css-rx5yp6"
+          >
             <div
-              className="css-1lepn2w"
+              className="css-1ofqig9"
             >
-              <svg
-                aria-hidden="true"
-                className="css-12c4avn"
-                focusable="false"
-                role="presentation"
-                viewBox="0 0 24 24"
+              <button
+                className="css-132lga7"
+                onClick={[Function]}
+                type="button"
               >
-                <path
-                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                  fill="currentColor"
-                />
-              </svg>
+                <p
+                  className="css-17tlezs"
+                >
+                  Add 
+                  Prerequisites
+                </p>
+              </button>
+            </div>
+          </div>
+          <div
+            className="css-rx5yp6"
+          >
+            <div
+              className="css-1ofqig9"
+            >
+              <button
+                className="css-132lga7"
+                onClick={[Function]}
+                type="button"
+              >
+                <p
+                  className="css-17tlezs"
+                >
+                  Add 
+                  Corequisites
+                </p>
+              </button>
+            </div>
+          </div>
+          <div
+            className="css-rx5yp6"
+          >
+            <div
+              className="css-1ofqig9"
+            >
+              <button
+                className="css-132lga7"
+                onClick={[Function]}
+                type="button"
+              >
+                <p
+                  className="css-17tlezs"
+                >
+                  Add 
+                  Restrictions
+                </p>
+              </button>
+            </div>
+          </div>
+          <div
+            className="css-rx5yp6"
+          >
+            <div
+              className="css-1ofqig9"
+            >
+              <button
+                className="css-132lga7"
+                onClick={[Function]}
+                type="button"
+              >
+                <p
+                  className="css-17tlezs"
+                >
+                  Add 
+                  InformalEquivalents
+                </p>
+              </button>
             </div>
           </div>
         </div>
-      </div>
-      <div
-        className="css-1eqi78m"
-      >
-        <div
-          className="css-1ofqig9"
-        >
-          <button
-            className="css-132lga7"
-            onClick={[Function]}
-            type="button"
-          >
-            <p
-              className="css-17tlezs"
-            >
-              Add 
-              Prerequisites
-            </p>
-          </button>
-        </div>
-      </div>
-      <div
-        className="css-1eqi78m"
-      >
-        <div
-          className="css-1ofqig9"
-        >
-          <button
-            className="css-132lga7"
-            onClick={[Function]}
-            type="button"
-          >
-            <p
-              className="css-17tlezs"
-            >
-              Add 
-              Corequisites
-            </p>
-          </button>
-        </div>
-      </div>
-      <div
-        className="css-1eqi78m"
-      >
-        <div
-          className="css-1ofqig9"
-        >
-          <button
-            className="css-132lga7"
-            onClick={[Function]}
-            type="button"
-          >
-            <p
-              className="css-17tlezs"
-            >
-              Add 
-              Restrictions
-            </p>
-          </button>
-        </div>
-      </div>
-      <div
-        className="css-1eqi78m"
-      >
-        <div
-          className="css-1ofqig9"
-        >
-          <button
-            className="css-132lga7"
-            onClick={[Function]}
-            type="button"
-          >
-            <p
-              className="css-17tlezs"
-            >
-              Add 
-              InformalEquivalents
-            </p>
-          </button>
-        </div>
-      </div>
-      <div
-        className="css-1v2mwz"
-      >
-        <button
-          aria-disabled={true}
-          className="css-thv05u"
-          disabled={true}
-          onClick={[Function]}
-          type="button"
-        >
-          Cancel
-        </button>
-        <button
-          aria-disabled={true}
-          className="css-6cthfa"
-          disabled={true}
-          onClick={[Function]}
-          type="button"
-        >
-          Save
-        </button>
       </div>
     </div>
   </div>

@@ -1,24 +1,41 @@
 import React, { useEffect, useState } from "react";
 import { Flex, Text, Button, Divider } from "@chakra-ui/core";
 import { Table, SearchBar, NavigationMenu } from "../../components";
-import CreateCourse from "./CreateCourse";
-import ViewCourse from "./ViewCourse";
 import useCourses from "./useCourses";
 import { colors as c } from "../../colors";
 import AddAllCourse from "./AddAllCourse";
+import CourseView from "./CourseView";
 
 const Courses = () => {
     const [currRow, setCurrRow] = useState("0");
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCourse, setSelectedCourse] = useState({});
-    const [addingCourse, setAddingCourse] = useState(false);
+    const [isAddingCourse, setIsAddingCourse] = useState(false);
     const [populateFromUniAPI, setPopulateFromUniAPI] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
 
-    const { data, columns, updateCourse, deleteCourse, createAllCoursesFromUniAPI, prefillCourse } = useCourses();
+    const { data, columns, createCourse, updateCourse, deleteCourse, createAllCoursesFromUniAPI, prefillCourse } = useCourses();
 
     useEffect(() => {
-        setSelectedCourse(data[currRow] || {});
-    }, [data, currRow]);
+        setSelectedCourse(isAddingCourse ? {} : data[currRow] || {});
+        setIsEditing(false);
+    }, [data, currRow, isAddingCourse]);
+
+    const cancelCourse = () => {
+        setIsEditing(false);
+        setIsAddingCourse(false);
+    };
+
+    const saveCourse = (toSave) => {
+        if (isAddingCourse) {
+            createCourse(toSave);
+            setIsAddingCourse(false);
+            setCurrRow(currRow + 1);
+            setSelectedCourse(toSave);
+        } else {
+            updateCourse(toSave);
+        }
+    };
 
     return (
         <Flex height="100vh" width="100%" direction="row" backgroundColor={c.whiteGrey}>
@@ -40,7 +57,8 @@ const Courses = () => {
                             backgroundColor={c.lightBlue}
                             onClick={() => {
                                 setCurrRow();
-                                setAddingCourse(true);
+                                setSelectedCourse({});
+                                setIsAddingCourse(true);
                             }}
                         >
                             <Text textAlign="center" color={c.white}>
@@ -72,7 +90,7 @@ const Courses = () => {
                         data={data}
                         getRowProps={(row) => ({
                             onClick: () => {
-                                setAddingCourse(false);
+                                setIsAddingCourse(false);
                                 setCurrRow(row.id);
                             },
                             style: {
@@ -88,11 +106,16 @@ const Courses = () => {
             <Divider orientation="vertical" backgroundColor={c.iceBlue} width="2px" />
             {/* Right side of page */}
             <Flex height="100%" width="50%" direction="column">
-                {addingCourse ? (
-                    <CreateCourse prefillCourse={prefillCourse} />
-                ) : (
-                    <ViewCourse course={selectedCourse} updateCourse={updateCourse} deleteCourse={deleteCourse} />
-                )}
+                <CourseView
+                    course={selectedCourse}
+                    isNew={isAddingCourse}
+                    isEditing={isEditing || isAddingCourse}
+                    onEdit={() => setIsEditing(true)}
+                    onDelete={deleteCourse}
+                    cancelUpdateCourse={cancelCourse}
+                    updateCourse={saveCourse}
+                    prefillCourse={prefillCourse}
+                />
             </Flex>
         </Flex>
     );

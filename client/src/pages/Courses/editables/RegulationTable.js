@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Flex, Stack, Text, Button, useDisclosure, IconButton, Box } from "@chakra-ui/core";
-import RegulationModal from "./RegulationModal";
-import { colors as c } from "../../colors";
+import RegulationModal from "../RegulationModal";
+import { colors as c } from "../../../colors";
 
 const RegulationTable = ({ name, updateCourse, course, regulationType }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -66,7 +66,7 @@ const RegulationTable = ({ name, updateCourse, course, regulationType }) => {
     };
 
     return (
-        <Flex width="80vh" direction="row" paddingTop="3">
+        <Flex width="100%" direction="row" paddingTop="3">
             <RegulationModal
                 isOpen={isOpen}
                 onClose={onClose}

@@ -24,7 +24,7 @@ const InlineEdit = ({ onSubmit, onCancel, onChange, value, title, placeholder })
                 <EditablePreview ml={3} height={10} />
             </Box>
             <Box>
-                <EditableInput ml={3} height={10} />
+                <EditableInput height="100px" ml={3} />
             </Box>
         </Editable>
     );
