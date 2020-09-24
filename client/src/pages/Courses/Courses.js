@@ -3,7 +3,7 @@ import { Flex, Text, Button, Divider } from "@chakra-ui/core";
 import { Table, SearchBar, NavigationMenu } from "../../components";
 import useCourses from "./useCourses";
 import { colors as c } from "../../colors";
-import AddAllCourse from "./AddAllCourse";
+import PopulateAPIModal from "./PopulateAPIModal";
 import CourseView from "./CourseView";
 
 const Courses = () => {
@@ -38,7 +38,7 @@ const Courses = () => {
     };
 
     return (
-        <Flex height="100vh" width="100%" direction="row" backgroundColor={c.whiteGrey}>
+        <Flex height="100%" width="100%" direction="row" backgroundColor={c.whiteGrey}>
             <Flex height="100%" width="50%" direction="column">
                 <Flex left="1px" justify="flex-start">
                     <NavigationMenu />
@@ -76,11 +76,11 @@ const Courses = () => {
                                 + Create From Uni API
                             </Text>
                         </Button>
-                        <AddAllCourse
+                        <PopulateAPIModal
                             isOpen={populateFromUniAPI}
                             onClose={() => setPopulateFromUniAPI(false)}
                             confirm={createAllCoursesFromUniAPI}
-                        ></AddAllCourse>
+                        ></PopulateAPIModal>
                     </Flex>
                 </Flex>
 

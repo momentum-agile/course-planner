@@ -14,7 +14,7 @@ const validCourseCodeRegex = /^([A-Za-z])*(\s?)([1-9][0-9][0-9])([A-Za-z]{0,3})$
 
 /**
  * Component for viewing/editing/creating a course
- * 
+ *
  * @param {object} course The entire course object to display
  * @param {bool} isNew Whether the view should display a new course to create. Setting isNew to true also sets isEditing to true
  * @param {boolean} isEditing Whether the course is being edited. This will render the components as inputs rather than text
@@ -38,7 +38,7 @@ const CourseView = ({ course, isNew, isEditing, onEdit, onDelete, cancelUpdateCo
         name: setName,
         desc: setDesc,
         sem: setSem,
-        pts: setPts
+        pts: setPts,
     };
 
     useEffect(() => {
@@ -49,14 +49,13 @@ const CourseView = ({ course, isNew, isEditing, onEdit, onDelete, cancelUpdateCo
         setDesc(description || "");
         setSem(semester || []);
         setPts(points || 15);
-
-    }, [course])
+    }, [course]);
 
     const isValidCourseCode = validCourseCodeRegex.test(code);
 
     const changeField = (field, value) => {
         setField[field](value);
-    }
+    };
 
     const saveCourse = () => {
         const editedCourse = { ...course };
@@ -67,7 +66,7 @@ const CourseView = ({ course, isNew, isEditing, onEdit, onDelete, cancelUpdateCo
         editedCourse[fields.pts] = pts;
 
         updateCourse(editedCourse);
-    }
+    };
 
     const handlePrefill = () => {
         const courseCodeArr = code.split(/(\d+)/).filter((e) => e !== "");
@@ -82,17 +81,13 @@ const CourseView = ({ course, isNew, isEditing, onEdit, onDelete, cancelUpdateCo
         };
 
         prefillCourse(subject.trim(), courseCode.trim())
-            .then((res) =>
-                updateCourse(res)
-            )
-            .then(() =>
-                toast({ title: "Course created", description: `Successfully auto-generated ${code}`, status: "success" })
-            )
+            .then((res) => updateCourse(res))
+            .then(() => toast({ title: "Course created", description: `Successfully auto-generated ${code}`, status: "success" }))
             .catch(() => toast({ ...toastBase, description: `Course Code: ${code} could not be found on the UoA API` }));
     };
 
     return (
-        <Flex direction="column">
+        <Flex height="100vh" direction="column">
             <FieldsPane
                 code={code}
                 name={name}
@@ -110,18 +105,17 @@ const CourseView = ({ course, isNew, isEditing, onEdit, onDelete, cancelUpdateCo
                 isValidCourseCode={isValidCourseCode}
             />
 
-            {isNew
-                ? (
-                    <Flex justifyContent="center" marginTop="20%">
-                        <Text fontStyle="italic">First Create the course to add requirements</Text>
-                    </Flex>
-                ) : (
-                    <Flex marginTop="15px">
-                        <RequirementsPane course={course} updateCourse={updateCourse} />
-                    </Flex>
-                )}
+            {isNew ? (
+                <Flex justifyContent="center" marginTop="20%">
+                    <Text fontStyle="italic">First Create the course to add requirements</Text>
+                </Flex>
+            ) : (
+                <Flex marginTop="15px">
+                    <RequirementsPane course={course} updateCourse={updateCourse} />
+                </Flex>
+            )}
         </Flex>
     );
-}
+};
 
 export default CourseView;

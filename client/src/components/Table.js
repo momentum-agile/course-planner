@@ -24,7 +24,7 @@ const Table = ({ columns, data, getRowProps = () => ({}), currRow, searchInput }
     }
 
     return (
-        <Box maxHeight="80vh" overflowY="scroll" width="100%">
+        <Box maxHeight="75vh" overflowY="scroll" width="100%">
             <Box as="table" border={1} width="100%" borderStyle="solid" borderSpacing={0} {...getTableProps()}>
                 <Box as="thead">
                     {headerGroups.map((headerGroup) => (

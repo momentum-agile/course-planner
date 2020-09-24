@@ -47,9 +47,9 @@ const useCourses = () => {
             .catch((e) => console.log(e));
     };
 
-    const createAllCoursesFromUniAPI = (subject) => {
-        CoursePlannerClient.createAllUniApiCourses(subject)
-            .then(() => fetchAllCourses())
+    const createAllCoursesFromUniAPI = (subject, overwrite) => {
+        CoursePlannerClient.createAllUniApiCourses(subject, overwrite)
+            .then((r) => fetchAllCourses())
             .catch((e) => console.log(e));
     };
 

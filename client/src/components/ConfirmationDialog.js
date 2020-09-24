@@ -7,11 +7,12 @@ import {
     AlertDialogHeader,
     AlertDialogBody,
     AlertDialogFooter,
+    useToast,
 } from "@chakra-ui/core";
 
 const ConfirmationDialog = ({ isOpen, onClose, confirm, itemType, item, action, navigateTo }) => {
     const cancelRef = React.useRef();
-
+    const toast = useToast();
     return (
         <>
             <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
@@ -50,6 +51,13 @@ const ConfirmationDialog = ({ isOpen, onClose, confirm, itemType, item, action, 
                                         confirm(item);
                                         break;
                                 }
+                                toast({
+                                    title: `${action} ${itemType}  `,
+                                    description: `${action} ${itemType} successful`,
+                                    status: "success",
+                                    duration: 5000,
+                                    isClosable: true,
+                                });
                                 onClose();
                             }}
                             ml={3}

@@ -26,6 +26,12 @@ const { parseRequirements } = require("../parser");
  *            type: string
  *          required: true
  *          description: year for the courses
+ *        - in: query
+ *          name: overwrite
+ *          schema:
+ *            type: string
+ *          required: true
+ *          description: wheter to overwrite courses or not 
  *      responses:
  *        "204":
  *          description: Added to database successfully
@@ -36,8 +42,9 @@ const { parseRequirements } = require("../parser");
 router.get("/programme", async (req, res) => {
     const subject = req.query.subject;
     const year = req.query.year || 2021;
+    const overwrite = req.query.overwrite
+    const updatedCourses = []
     const response = await uni.fetchAllCourses(subject, year);
-
     if (response.error) {
         LOGGER.error(data.error);
         return res.status(400).json(data.error);
@@ -60,14 +67,18 @@ router.get("/programme", async (req, res) => {
     });
 
     mappedData.forEach((course) => {
-        Course.findOneAndUpdate({ courseCode: course.courseCode }, course, { upsert: true }, (err, course) => {
-            if (err) {
-                LOGGER.error(err);
-                res.status(400).json({ msg: err.message });
+        Course.find({ courseCode: course.courseCode }, (err, courses) => {
+            if (overwrite === "true" || (courses.length < 1)) {
+                Course.findOneAndUpdate({ courseCode: course.courseCode }, course, { upsert: true }, (err, updatedCourse) => {
+                    updatedCourses.push(course.courseCode)
+                    if (err) {
+                        LOGGER.error(err);
+                        res.status(400).json({ msg: err.message });
+                    }
+                });
             }
         });
     });
-
     LOGGER.info(`GET Request Succeeded for /uni/programme?subject=${subject}`);
     return res.status(204).send();
 });

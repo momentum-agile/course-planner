@@ -1,7 +1,7 @@
 import ApiClient from "./ApiClient";
 
-const createAllUniApiCourses = (subject) => {
-    return ApiClient(`uni/programme?subject=${subject}`, { method: "GET" });
+const createAllUniApiCourses = (subject, overwrite) => {
+    return ApiClient(`uni/programme?subject=${subject}&overwrite=${overwrite}`, { method: "GET" });
 };
 
 const getSpecificCourse = (subject, courseNbr) => {
