@@ -5,6 +5,7 @@ import { Programmes } from "../../../pages";
 import NewProgramme from "../../../pages/Programmes/NewProgramme";
 import ExistingProgramme from "../../../pages/Programmes/ExistingProgramme";
 import EmptyProgramme from "../../../pages/Programmes/EmptyProgramme";
+import InlineRegulations from "../../../pages/Programmes/InlineRegulations";
 
 test("Main Programmes Page", () => {
     const tree = renderer
@@ -59,6 +60,18 @@ test("Empty programmes sub-page ", () => {
         .create(
             <AppConfiguration>
                 <EmptyProgramme />
+            </AppConfiguration>,
+        )
+        .toJSON();
+
+    expect(tree).toMatchSnapshot();
+});
+
+test("Inline Regulations ", () => {
+    const tree = renderer
+        .create(
+            <AppConfiguration>
+                <InlineRegulations />
             </AppConfiguration>,
         )
         .toJSON();

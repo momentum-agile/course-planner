@@ -22,12 +22,7 @@ code {
 
 /* Handle */
 .programmeRequirements::-webkit-scrollbar-thumb {
-    background: white;
-}
-
-/* Handle on hover */
-.programmeRequirements::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: #d3d3d3;
 }
 
 #modal-regulation-modal {

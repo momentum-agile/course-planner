@@ -26,7 +26,7 @@ exports[`Creating new programmes sub-page  1`] = `
     className="css-1yfye7s"
   >
     <input
-      className="css-frh740"
+      className="css-rifidy"
       onChange={[Function]}
       placeholder="Enter Programme Name"
     />
@@ -127,11 +127,15 @@ exports[`Existing programmes sub-page  1`] = `
   <div
     className="css-1hyoz7m"
   >
-    <p
-      className="css-19i5rf8"
+    <div
+      className="css-1yfye7s"
     >
-      Programme Requirements
-    </p>
+      <b
+        className="css-1eiq96g"
+      >
+        SOFTENG761
+      </b>
+    </div>
     <div
       className="css-qzt8sy"
     >
@@ -176,37 +180,20 @@ exports[`Existing programmes sub-page  1`] = `
       </div>
     </div>
   </div>
-  <div
-    className="css-1yfye7s"
-  >
-    <i
-      className="css-1dbqq24"
-    >
-      Programme Name
-    </i>
-  </div>
-  <div
-    className="css-1yfye7s"
-  >
-    <b
-      className="css-1t9wziz"
-    >
-      SOFTENG761
-    </b>
-  </div>
+  
   <div
     className="css-u6v8er"
   >
-    <i
-      className="css-wa6uae"
+    <p
+      className="css-15uw6ol"
     >
       Requirements
-    </i>
+    </p>
     <div
-      className="css-84cb6a"
+      className="regulationsBox css-1obiqbc"
     >
       <button
-        className="css-1vc2p19"
+        className="css-lcsfhn"
         onClick={[Function]}
         type="button"
       >
@@ -224,63 +211,71 @@ exports[`Existing programmes sub-page  1`] = `
         </svg>
       </button>
       <div
-        className="css-w9aq1j"
+        className="css-dscpp4"
       >
         <div
-          className="css-38umy1"
+          className="css-vipb1e"
           onClick={[Function]}
         >
           <div
             className="css-gmuwbf"
           >
-            <p
-              className="css-7rc2le"
+            <b
+              className="css-1eqa46m"
             >
               1.
-            </p>
+            </b>
             <p
-              className="css-12kv7x2"
+              className="css-zs3z9w"
             >
               At least
             </p>
             <p
-              className="css-12kv7x2"
+              className="css-zs3z9w"
             >
               15 pts
             </p>
             <p
-              className="css-vwuyue"
+              className="css-1vkqwb0"
             >
               FROM
             </p>
             <div
-              className="programmeRequirements css-1aqk8yn"
-            />
-            <button
-              className="css-1h1blff"
-              onClick={[Function]}
-              type="button"
+              className="programmeRequirements css-1jknthz"
             >
-              <svg
-                className="css-1im46kq"
-                focusable={false}
-                role="presentation"
-                viewBox="0 0 16 16"
+              <div
+                className="css-nl7a3z"
+              />
+            </div>
+            <div
+              className="css-1i00gen"
+            >
+              <button
+                className="css-1h1blff"
+                onClick={[Function]}
+                type="button"
               >
-                <path
-                  d="M9.41 8l2.29-2.29c.19-.18.3-.43.3-.71a1.003 1.003 0 0 0-1.71-.71L8 6.59l-2.29-2.3a1.003 1.003 0 0 0-1.42 1.42L6.59 8 4.3 10.29c-.19.18-.3.43-.3.71a1.003 1.003 0 0 0 1.71.71L8 9.41l2.29 2.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71L9.41 8z"
-                  fill="currentColor"
-                  fillRule="evenodd"
-                />
-              </svg>
-            </button>
+                <svg
+                  className="css-1im46kq"
+                  focusable={false}
+                  role="presentation"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M9.41 8l2.29-2.29c.19-.18.3-.43.3-.71a1.003 1.003 0 0 0-1.71-.71L8 6.59l-2.29-2.3a1.003 1.003 0 0 0-1.42 1.42L6.59 8 4.3 10.29c-.19.18-.3.43-.3.71a1.003 1.003 0 0 0 1.71.71L8 9.41l2.29 2.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71L9.41 8z"
+                    fill="currentColor"
+                    fillRule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
   <div
-    className="css-ldo4d5"
+    className="css-1lads1q"
   >
     <a
       href="/programmes/undefined/create-template"
@@ -298,7 +293,290 @@ exports[`Existing programmes sub-page  1`] = `
       </button>
     </a>
   </div>
-  
+</div>
+`;
+
+exports[`Inline Regulations  1`] = `
+<div
+  className="css-1vqyz7j"
+>
+  <div
+    className="css-1lkkk2k"
+  >
+    <div
+      className="css-1myz3ur"
+    >
+      <select
+        className="css-db3xwu"
+        onChange={[Function]}
+        value="EXACTLY"
+      >
+        <option
+          value="EXACTLY"
+        >
+          Exactly
+        </option>
+        <option
+          value="ATLEAST"
+        >
+          At Least
+        </option>
+        <option
+          value="UPTO"
+        >
+          Up to
+        </option>
+      </select>
+      <div
+        className="css-1lepn2w"
+      >
+        <svg
+          aria-hidden="true"
+          className="css-12c4avn"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      className="css-abll83"
+    >
+      <input
+        aria-invalid={false}
+        aria-valuemax={Infinity}
+        aria-valuemin={0}
+        aria-valuenow={15}
+        autoComplete="off"
+        className="css-8r3r98"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        role="spinbutton"
+        type="text"
+        value={15}
+      />
+      <div
+        aria-hidden={true}
+        className="css-1fjocbx"
+      >
+        <div
+          className="css-j3jbfm"
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          role="button"
+        >
+          <svg
+            className="css-1v61v6x"
+            focusable={false}
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12.8,5.4c-0.377-0.504-1.223-0.504-1.6,0l-9,12c-0.228,0.303-0.264,0.708-0.095,1.047 C2.275,18.786,2.621,19,3,19h18c0.379,0,0.725-0.214,0.895-0.553c0.169-0.339,0.133-0.744-0.095-1.047L12.8,5.4z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+        <div
+          className="css-j3jbfm"
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          role="button"
+        >
+          <svg
+            className="css-1v61v6x"
+            focusable={false}
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M21,5H3C2.621,5,2.275,5.214,2.105,5.553C1.937,5.892,1.973,6.297,2.2,6.6l9,12 c0.188,0.252,0.485,0.4,0.8,0.4s0.611-0.148,0.8-0.4l9-12c0.228-0.303,0.264-0.708,0.095-1.047C21.725,5.214,21.379,5,21,5z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <p
+      className="css-1bpicay"
+    >
+      FROM
+    </p>
+    <div
+      className="css-14w3xfh"
+    >
+      <div
+        className=" css-2b097c-container"
+        onKeyDown={[Function]}
+      >
+        <div
+          className=" css-16uwxe8-control"
+          onMouseDown={[Function]}
+          onTouchEnd={[Function]}
+        >
+          <div
+            className=" css-g1d714-ValueContainer"
+          >
+            <div
+              className=" css-1wa3eu0-placeholder"
+            >
+              Search
+            </div>
+            <div
+              className="css-rga2ib-Input"
+            >
+              <div
+                className=""
+                style={
+                  Object {
+                    "display": "inline-block",
+                  }
+                }
+              >
+                <input
+                  aria-autocomplete="list"
+                  autoCapitalize="none"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  disabled={false}
+                  id="react-select-2-input"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  spellCheck="false"
+                  style={
+                    Object {
+                      "background": 0,
+                      "border": 0,
+                      "boxSizing": "content-box",
+                      "color": "inherit",
+                      "fontSize": "inherit",
+                      "label": "input",
+                      "opacity": 1,
+                      "outline": 0,
+                      "padding": 0,
+                      "width": "1px",
+                    }
+                  }
+                  tabIndex="0"
+                  type="text"
+                  value=""
+                />
+                <div
+                  style={
+                    Object {
+                      "height": 0,
+                      "left": 0,
+                      "overflow": "scroll",
+                      "position": "absolute",
+                      "top": 0,
+                      "visibility": "hidden",
+                      "whiteSpace": "pre",
+                    }
+                  }
+                >
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className=" css-1hb7zxy-IndicatorsContainer"
+          >
+            <span
+              className=" css-1okebmr-indicatorSeparator"
+            />
+            <div
+              aria-hidden="true"
+              className=" css-tlfecz-indicatorContainer"
+              onMouseDown={[Function]}
+              onTouchEnd={[Function]}
+            >
+              <svg
+                aria-hidden="true"
+                className="css-6q0nyr-Svg"
+                focusable="false"
+                height={20}
+                viewBox="0 0 20 20"
+                width={20}
+              >
+                <path
+                  d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="programmeRequirements css-133uvjq"
+      />
+      <div
+        className="css-18y9g4n"
+      >
+        <svg
+          className="css-9js0pz"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          strokeWidth="0"
+          style={
+            Object {
+              "color": undefined,
+            }
+          }
+          type="button"
+          viewBox="0 0 1024 1024"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M685.4 354.8c0-4.4-3.6-8-8-8l-66 .3L512 465.6l-99.3-118.4-66.1-.3c-4.4 0-8 3.5-8 8 0 1.9.7 3.7 1.9 5.2l130.1 155L340.5 670a8.32 8.32 0 0 0-1.9 5.2c0 4.4 3.6 8 8 8l66.1-.3L512 564.4l99.3 118.4 66 .3c4.4 0 8-3.5 8-8 0-1.9-.7-3.7-1.9-5.2L553.5 515l130.1-155c1.2-1.4 1.8-3.3 1.8-5.2z"
+          />
+          <path
+            d="M512 65C264.6 65 64 265.6 64 513s200.6 448 448 448 448-200.6 448-448S759.4 65 512 65zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+          />
+        </svg>
+        <svg
+          aria-disabled={true}
+          className="css-1c0ztg6"
+          disabled={true}
+          fill="currentColor"
+          height="1em"
+          onClick={[Function]}
+          stroke="currentColor"
+          strokeWidth="0"
+          style={
+            Object {
+              "color": undefined,
+            }
+          }
+          type="button"
+          viewBox="0 0 1024 1024"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M699 353h-46.9c-10.2 0-19.9 4.9-25.9 13.3L469 584.3l-71.2-98.8c-6-8.3-15.6-13.3-25.9-13.3H325c-6.5 0-10.3 7.4-6.5 12.7l124.6 172.8a31.8 31.8 0 0 0 51.7 0l210.6-292c3.9-5.3.1-12.7-6.4-12.7z"
+          />
+          <path
+            d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
 </div>
 `;
 

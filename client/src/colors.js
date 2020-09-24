@@ -6,6 +6,7 @@ const colors = {
     white: "#FFFFFF",
     black: "#000000",
 
+    greyBlue: "#E9EDF1",
     uoaBlue: "#0F487E",
     darkBlue: "#063B59",
     iceBlue: "#A7C4E0",

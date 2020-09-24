@@ -3,7 +3,7 @@ import { Menu, MenuButton, MenuList, MenuGroup, MenuItem, Icon, Text, Flex, Icon
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { colors as c } from "../colors";
 
-const OptionsMenu = ({ onDelete, onEdit, confirm }) => {
+const OptionsMenu = ({ onDelete, onEdit }) => {
     return (
         <Flex>
             <Menu>
@@ -21,16 +21,16 @@ const OptionsMenu = ({ onDelete, onEdit, confirm }) => {
                         </MenuButton>
                         <MenuList placement="bottom-end" minWidth="160px">
                             <MenuGroup>
-                                <MenuItem onClick={onDelete}>
-                                    <Icon name="delete" mr={3} color={c.red} />
-                                    <Text color={c.red}>Delete</Text>
-                                </MenuItem>
                                 {onEdit && (
                                     <MenuItem onClick={onEdit}>
                                         <Icon name="edit" mr={3} />
                                         <Text>Edit</Text>
                                     </MenuItem>
                                 )}
+                                <MenuItem onClick={onDelete}>
+                                    <Icon name="delete" mr={3} color={c.red} />
+                                    <Text color={c.red}>Delete</Text>
+                                </MenuItem>
                             </MenuGroup>
                         </MenuList>
                     </React.Fragment>

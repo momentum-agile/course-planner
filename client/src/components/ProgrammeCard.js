@@ -18,7 +18,7 @@ const ProgrammeCard = ({ currentID, programme, to }) => {
                     _active={{}}
                     _focus={{ bg: c.lightBlue }}
                 >
-                    <Text textAlign="center" fontSize="2xl" color={c.black}>
+                    <Text textAlign="center" fontSize="2xl" color={programme._id !== currentID ? c.black : c.white}>
                         {programme.name}
                     </Text>
                 </Button>

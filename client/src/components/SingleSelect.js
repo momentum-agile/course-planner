@@ -5,26 +5,28 @@ import { colors as c } from "../colors";
 const customStyles = {
     option: (provided) => ({
         ...provided,
-        backgroundColor: c.darkGrey,
+        backgroundColor: c.white,
         "&:hover": {
             backgroundColor: c.uoaBlue,
-        },
-    }),
-    control: (provided) => ({
-        ...provided,
-        height: "40px",
-        width: "200px",
-        backgroundColor: c.darkGrey,
-        '[type="text"]': {
             color: c.white,
         },
     }),
+    control: (provided) => ({
+        width: "100px",
+        backgroundColor: c.white,
+        '[type="text"]': {
+            color: c.black,
+        },
+        ...provided,
+    }),
     input: (provided) => ({
         ...provided,
-        color: c.white,
+        color: c.black,
     }),
     menuList: (provided) => ({
         ...provided,
+        width: "150px",
+        textAlign: "left",
         paddingTop: 0,
         paddingBottom: 0,
     }),
@@ -42,6 +44,8 @@ const SingleSelect = ({ onChange, data, placeholder }) => {
             }}
             value={selectValue}
             options={data}
+            width="20%"
+            minHeight="20px"
         />
     );
 };
