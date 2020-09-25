@@ -9,13 +9,7 @@ const NewProgramme = ({ notifyAddition }) => {
     const [programmeName, setProgrammeName] = useState();
     const [newProgramme, setNewProgramme] = useState({
         name: "",
-        regulations: [
-            {
-                points: 0,
-                pointRequirement: "UPTO",
-                courses: [],
-            },
-        ],
+        regulations: [],
         defaultPlan: null,
     });
 
@@ -23,12 +17,7 @@ const NewProgramme = ({ notifyAddition }) => {
         setNewProgramme({
             name: programmeName,
             regulations: [
-                {
-                    // TODO: add and change regulations here
-                    points: 0,
-                    pointRequirement: "UPTO",
-                    courses: [],
-                },
+                // TODO: add and change regulations here
             ],
             // TODO: add default plan here
             defaultPlan: null,
