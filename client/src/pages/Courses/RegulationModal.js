@@ -169,8 +169,9 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
                     <ModalBody>
                         <FormControl as="fieldset">
                             <Flex align="center">
-                                <Switch id="course-note-switch" m="2" onChange={handleToggleChange} isChecked={toggleInput} />
-                                <FormLabel m="2">{toggleInput ? "Add course regulation" : "Add note"}</FormLabel>
+                                <FormLabel m="2" textAlign="center" px="0">Note</FormLabel>
+                                <Switch id="course-note-switch" color="#CBD5E0" onChange={handleToggleChange} isChecked={toggleInput} />
+                                <FormLabel m="2" textAlign="center" px="0">Courses</FormLabel>
                             </Flex>
                             {toggleInput ? (
                                 <>
@@ -274,32 +275,34 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
                             )}
                         </FormControl>
 
-                        <ButtonGroup m="2" spacing={4}>
-                            <Button
-                                variantColor="teal"
-                                variant="solid"
-                                onClick={handleAnd}
-                                isDisabled={
-                                    outputRegulation.length <= 0 ||
-                                    outputRegulation[outputRegulation.length - 1] === "OR" ||
-                                    outputRegulation[outputRegulation.length - 1] === "AND"
-                                }
-                            >
-                                AND
-                            </Button>
-                            <Button
-                                variantColor="teal"
-                                variant="solid"
-                                onClick={handleOr}
-                                isDisabled={
-                                    outputRegulation.length <= 0 ||
-                                    outputRegulation[outputRegulation.length - 1] === "OR" ||
-                                    outputRegulation[outputRegulation.length - 1] === "AND"
-                                }
-                            >
-                                OR
-                            </Button>
-                        </ButtonGroup>
+                        <Flex justify="flex-end">
+                            <ButtonGroup m="2" spacing={4}>
+                                <Button
+                                    variantColor="teal"
+                                    variant="solid"
+                                    onClick={handleAnd}
+                                    isDisabled={
+                                        outputRegulation.length <= 0 ||
+                                        outputRegulation[outputRegulation.length - 1] === "OR" ||
+                                        outputRegulation[outputRegulation.length - 1] === "AND"
+                                    }
+                                >
+                                    AND
+                                </Button>
+                                <Button
+                                    variantColor="teal"
+                                    variant="solid"
+                                    onClick={handleOr}
+                                    isDisabled={
+                                        outputRegulation.length <= 0 ||
+                                        outputRegulation[outputRegulation.length - 1] === "OR" ||
+                                        outputRegulation[outputRegulation.length - 1] === "AND"
+                                    }
+                                >
+                                    OR
+                                </Button>
+                            </ButtonGroup>
+                        </Flex>
                         <Stack
                             id="reg-stack"
                             spacing={4}
