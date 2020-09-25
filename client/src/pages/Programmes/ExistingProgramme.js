@@ -17,6 +17,7 @@ const ExistingProgramme = ({ programme, notifyUpdate }) => {
     const [editRequirements, setEditRequirements] = useState(-1);
     const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
     const [openConfirmationDeleteRegulation, setOpenConfirmationDeleteRegulation] = useState(false);
+    const [regulationtoDelete, setRegulationToDelete] = useState({});
     const [regulationInEdit, setRegulationInEdit] = useState(undefined);
     const [isEdited, setIsEdited] = useState(false);
     const [name, setName] = useState("");
@@ -50,6 +51,11 @@ const ExistingProgramme = ({ programme, notifyUpdate }) => {
     };
 
     const deleteRegulation = (regulation) => {
+        setRegulationToDelete(regulation);
+        setOpenConfirmationDeleteRegulation(true);
+    };
+
+    const confirmDeleteRegulation = (regulation) => {
         const updatedRegulations = programme.regulations.filter((r) => r._id !== regulation._id);
         const updatedProgramme = { ...programme, regulations: updatedRegulations };
         updateProgramme(updatedProgramme, notifyUpdate);
@@ -151,17 +157,9 @@ const ExistingProgramme = ({ programme, notifyUpdate }) => {
                                             bg="none"
                                             align="flex-reverse"
                                             justify="flex-end"
-                                            onClick={() => setOpenConfirmationDeleteRegulation(true)}
+                                            onClick={() => deleteRegulation(regulation)}
                                         >
                                             <Icon name="small-close" />
-                                            <ConfirmationDialog
-                                                item={regulation}
-                                                itemType={"Regulation"}
-                                                action={"Delete"}
-                                                isOpen={openConfirmationDeleteRegulation}
-                                                onClose={() => setOpenConfirmationDeleteRegulation(false)}
-                                                confirm={deleteRegulation}
-                                            />
                                         </Button>
                                     }
                                 />
@@ -175,6 +173,14 @@ const ExistingProgramme = ({ programme, notifyUpdate }) => {
                             ),
                         )}
                     </Stack>
+                    <ConfirmationDialog
+                        item={regulationtoDelete}
+                        itemType={"Regulation"}
+                        action={"Delete"}
+                        isOpen={openConfirmationDeleteRegulation}
+                        onClose={() => setOpenConfirmationDeleteRegulation(false)}
+                        confirm={confirmDeleteRegulation}
+                    />
                 </Box>
             </Flex>
 
