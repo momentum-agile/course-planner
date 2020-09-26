@@ -8,7 +8,7 @@ const ProgrammeCard = ({ currentID, programme, to }) => {
         <Link to={`/programmes/${to}`} style={{ textDecoration: "none" }}>
             {programme ? (
                 <Button
-                    backgroundColor={programme._id !== currentID ? c.white : c.lightBlue}
+                    backgroundColor={programme._id !== currentID ? c.white : c.iceBlue}
                     border="none"
                     rounded="20px"
                     width="300px"
@@ -16,9 +16,9 @@ const ProgrammeCard = ({ currentID, programme, to }) => {
                     marginTop="20px"
                     _hover={{ bg: c.whiteGrey, transform: "scale(1.05, 1.05)" }}
                     _active={{}}
-                    _focus={{ bg: c.lightBlue }}
+                    _focus={{ bg: c.iceBlue }}
                 >
-                    <Text textAlign="center" fontSize="2xl" color={programme._id !== currentID ? c.black : c.white}>
+                    <Text textAlign="center" fontSize="2xl" color={programme._id !== currentID ? c.black : c.midnightBlue}>
                         {programme.name}
                     </Text>
                 </Button>
@@ -33,7 +33,7 @@ const ProgrammeCard = ({ currentID, programme, to }) => {
                     // TODO (Dins & Vee): change highlight color
                     _hover={{ transform: "scale(1.05, 1.05)" }}
                     _active={{}}
-                    _focus={{ bg: c.lightBlue }}
+                    _focus={{ bg: c.iceBlue }}
                 >
                     <Text textAlign="center" fontSize="2xl" color={c.white}>
                         <Icon name="add" color={c.white} />

@@ -54,14 +54,18 @@ exports[`Creating new programmes sub-page  1`] = `
       onClick={[Function]}
     >
       <button
-        className="css-1qyfpt9"
+        className="css-rshclt"
         type="button"
       >
-        <p
-          className="css-hw1cjb"
+        <div
+          className="css-gmuwbf"
         >
-          Define Template
-        </p>
+          <p
+            className="css-fdblai"
+          >
+            Define Template
+          </p>
+        </div>
       </button>
     </a>
   </div>
@@ -73,15 +77,19 @@ exports[`Creating new programmes sub-page  1`] = `
       onClick={[Function]}
     >
       <button
-        className="css-e4s8y4"
+        className="css-1iv2qey"
         onClick={[Function]}
         type="button"
       >
-        <p
-          className="css-hw1cjb"
+        <div
+          className="css-gmuwbf"
         >
-          Cancel
-        </p>
+          <p
+            className="css-fdblai"
+          >
+            Cancel
+          </p>
+        </div>
       </button>
     </a>
     <a
@@ -89,15 +97,19 @@ exports[`Creating new programmes sub-page  1`] = `
       onClick={[Function]}
     >
       <button
-        className="css-e4s8y4"
+        className="css-1iv2qey"
         onClick={[Function]}
         type="button"
       >
-        <p
-          className="css-hw1cjb"
+        <div
+          className="css-gmuwbf"
         >
-          Save
-        </p>
+          <p
+            className="css-fdblai"
+          >
+            Save
+          </p>
+        </div>
       </button>
     </a>
   </div>
@@ -282,14 +294,18 @@ exports[`Existing programmes sub-page  1`] = `
       onClick={[Function]}
     >
       <button
-        className="css-1qyfpt9"
+        className="css-rshclt"
         type="button"
       >
-        <p
-          className="css-hw1cjb"
+        <div
+          className="css-gmuwbf"
         >
-          Define Template
-        </p>
+          <p
+            className="css-fdblai"
+          >
+            Define Template
+          </p>
+        </div>
       </button>
     </a>
   </div>
@@ -687,7 +703,7 @@ exports[`Main Programmes Page 1`] = `
           }
         >
           <button
-            className="css-1adnlmn"
+            className="css-2xsvi7"
             type="button"
           >
             <p

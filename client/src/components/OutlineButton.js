@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Button } from "@chakra-ui/core";
+import { Text, Button, Flex } from "@chakra-ui/core";
 import { Link, useLocation } from "react-router-dom";
 import { colors as c } from "../colors";
 
@@ -9,17 +9,23 @@ const OutlineButton = ({ text, to, width, height, onClick }) => {
     return (
         <Link to={to || location.pathname}>
             <Button
-                backgroundColor={c.whiteGrey}
-                border={`2px solid ${c.uoaBlue}`}
-                rounded="35px"
-                width={width || "320px"}
-                height={height || "90px"}
+                backgroundColor={c.white}
+                borderLeft={`2px solid ${c.greyBlue}`}
+                rounded="0px"
+                width={width}
+                height={height || "60px"}
                 marginTop="50px"
                 onClick={onClick}
+                color={c.uoaBlue}
+                _hover={{
+                    borderLeft: `5px solid ${c.gold}`,
+                }}
             >
-                <Text textAlign="center" fontSize="2xl" color={c.uoaBlue}>
-                    {text}
-                </Text>
+                <Flex justify="center" align="center">
+                    <Text textAlign="center" fontSize="3xl">
+                        {text}
+                    </Text>
+                </Flex>
             </Button>
         </Link>
     );

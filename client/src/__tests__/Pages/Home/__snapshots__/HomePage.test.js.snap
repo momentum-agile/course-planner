@@ -5,7 +5,7 @@ exports[`<Home /> 1`] = `
   className="css-qxc4md"
 >
   <div
-    className="css-uxy78k"
+    className="css-1vz1faf"
   >
     <div
       className="css-1u9fuhx"
@@ -45,86 +45,108 @@ exports[`<Home /> 1`] = `
       </button>
     </div>
     <div
-      className="css-1lads1q"
+      className="css-1e6ma0l"
     >
       <img
         alt="Homepage Image of Course Planner's screeshots"
         className="css-1phd9a0"
-        height="400px"
-        width="1000px"
+        height="600px"
+        width="1200px"
       />
     </div>
   </div>
   <div
-    className="css-gqkmby"
+    className="css-1gole1x"
   >
     <div
       className="css-trwzgo"
     >
       <div
-        className="css-gmuwbf"
+        className="css-1pt4eqb"
       >
-        <img
-          className="css-0"
-        />
-      </div>
-      <div
-        className="css-1orkoap"
-      >
-        <p
-          className="css-19i5rf8"
+        <b
+          className="css-e20acs"
         >
           Course Planner
+        </b>
+        <p
+          className="css-au9xxt"
+        >
+          Course plans made easy.
         </p>
       </div>
       <div
-        className="css-u6v8er"
+        className="css-1uj7abw"
       >
-        <a
-          href="/students"
-          onClick={[Function]}
+        <div
+          className="css-10uqoqr"
         >
-          <button
-            className="css-zvqurx"
-            type="button"
+          <a
+            href="/students"
+            onClick={[Function]}
           >
-            <p
-              className="css-hw1cjb"
+            <button
+              className="css-rshclt"
+              type="button"
             >
-              Students
-            </p>
-          </button>
-        </a>
-        <a
-          href="/courses"
-          onClick={[Function]}
-        >
-          <button
-            className="css-zvqurx"
-            type="button"
+              <div
+                className="css-gmuwbf"
+              >
+                <p
+                  className="css-fdblai"
+                >
+                  Students
+                </p>
+              </div>
+            </button>
+          </a>
+          <a
+            href="/courses"
+            onClick={[Function]}
           >
-            <p
-              className="css-hw1cjb"
+            <button
+              className="css-rshclt"
+              type="button"
             >
-              Courses
-            </p>
-          </button>
-        </a>
-        <a
-          href="/programmes"
-          onClick={[Function]}
-        >
-          <button
-            className="css-zvqurx"
-            type="button"
+              <div
+                className="css-gmuwbf"
+              >
+                <p
+                  className="css-fdblai"
+                >
+                  Courses
+                </p>
+              </div>
+            </button>
+          </a>
+          <a
+            href="/programmes"
+            onClick={[Function]}
           >
-            <p
-              className="css-hw1cjb"
+            <button
+              className="css-rshclt"
+              type="button"
             >
-              Programmes
-            </p>
-          </button>
-        </a>
+              <div
+                className="css-gmuwbf"
+              >
+                <p
+                  className="css-fdblai"
+                >
+                  Programmes
+                </p>
+              </div>
+            </button>
+          </a>
+        </div>
+      </div>
+      <div
+        className="css-15blmw4"
+      >
+        <img
+          alt="UoA Logo"
+          className="css-12121j2"
+        />
       </div>
     </div>
   </div>
