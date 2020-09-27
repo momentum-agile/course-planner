@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Text, Stack, Checkbox } from "@chakra-ui/core";
+import { Checkbox, Flex, Stack, Text } from "@chakra-ui/core";
 import { colors as c } from "../../../colors";
 
 const semMapping = ["S1", "S2", "SS"];
@@ -18,9 +18,7 @@ const SemesterField = ({ value, isEditing, onChange }) => {
         const semesters = [];
 
         // Determine which semester strings are checked
-        sems.forEach((sem, idx) =>
-            sem && semesters.push(semMapping[idx])
-        );
+        sems.forEach((sem, idx) => sem && semesters.push(semMapping[idx]));
 
         onChange("sem", semesters);
     };
@@ -36,14 +34,14 @@ const SemesterField = ({ value, isEditing, onChange }) => {
                     {value.join(", ")}
                 </Text>
             ) : (
-                    <Stack spacing={10} isInline>
-                        {semMapping.map((sem, idx) => (
-                            <Checkbox borderColor={c.lightBlue} isChecked={checkedSems[idx]} onChange={() => updateSem(idx)}>
-                                {sem}
-                            </Checkbox>
-                        ))}
-                    </Stack>
-                )}
+                <Stack spacing={10} isInline>
+                    {semMapping.map((sem, idx) => (
+                        <Checkbox borderColor={c.lightBlue} key={idx} isChecked={checkedSems[idx]} onChange={() => updateSem(idx)}>
+                            {sem}
+                        </Checkbox>
+                    ))}
+                </Stack>
+            )}
         </Flex>
     );
 };

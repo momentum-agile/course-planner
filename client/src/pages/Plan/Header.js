@@ -1,8 +1,9 @@
 import React from "react";
 import { Flex, Text } from "@chakra-ui/core";
 import { colors as c } from "../../colors";
+import { InlineEdit } from "../../components";
 
-const Header = ({ name, programme, planName }) => {
+const Header = ({ name, programme, planName, setPlanName }) => {
     return (
         <Flex direction="row" p={4} justifyContent="space-around">
             <Flex direction="column">
@@ -28,9 +29,7 @@ const Header = ({ name, programme, planName }) => {
             </Flex>
 
             <Flex align="center" justify="center">
-                <Text color={c.uoaBlue} fontSize="5xl" fontWeight="bold">
-                    {planName}
-                </Text>
+                <InlineEdit title="Plan name" value={planName} onChange={(e) => setPlanName(e)} />
             </Flex>
 
             <Flex direction="column">

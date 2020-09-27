@@ -6,42 +6,26 @@ import { colors as c } from "../../colors";
 import CoursePlannerClient from "../../common/PlansClient";
 import { useHistory } from "react-router-dom";
 
-const PlanTableColumns = [
-    {
-        Header: "Name",
-        accessor: "name",
-    },
-    {
-        Header: "Programme",
-        accessor: "programmeName",
-    },
-    {
-        Header: "Start Year",
-        accessor: "startYear",
-    },
+const ViewStudent = ({ student, editStudent, deleteStudent, programmes, plans }) => {
+    const PlanTableColumns = [
+        {
+            Header: "Name",
+            accessor: "name",
+        },
+        {
+            Header: "Programme",
+            accessor: "programmeName",
+        },
+        {
+            Header: "Start Year",
+            accessor: "startYear",
+        },
 
-    {
-        Header: "End Year",
-        accessor: "endYear",
-    },
-];
-
-const data = [
-    {
-        name: "Plan1",
-        programmeName: "BE (Hons) SE",
-        startYear: 2018,
-        endYear: 2020,
-    },
-    {
-        name: "Plan2",
-        programmeName: "BE (Hone) SE",
-        startYear: 2018,
-        endYear: 2020,
-    },
-];
-
-const ViewStudent = ({ student, editStudent, deleteStudent, programmes }) => {
+        {
+            Header: "End Year",
+            accessor: (d) => d.startYear + d.numYears - 1,
+        },
+    ];
     const history = useHistory();
     const { name, upi, id } = student;
     const [editName, setEditName] = useState(name);
@@ -64,7 +48,17 @@ const ViewStudent = ({ student, editStudent, deleteStudent, programmes }) => {
 
         editStudent(newStudent);
     };
-
+    const studentPlans = () =>
+        student && student.plans && plans.length
+            ? student.plans
+                  .map((id) => plans && plans.find((plan) => plan._id === id))
+                  .map((plan) => ({
+                      ...plan,
+                      programmeName:
+                          programmes.find((programme) => programme._id === plan.programmeDegree) &&
+                          programmes.find((programme) => programme._id === plan.programmeDegree).name,
+                  }))
+            : [];
     return (
         <Flex width="100%" align="center" justify="center" marginTop="20px" p={4}>
             <Flex height="100%" width="50%" direction="column">
@@ -113,8 +107,10 @@ const ViewStudent = ({ student, editStudent, deleteStudent, programmes }) => {
                     <Flex flexDirection="row" align="center" marginTop="10px" justify="center">
                         <Select value={programmeID} ml={5} onChange={(e) => setProgrammeID(e.target.value)}>
                             <option value={""}>Select a program..</option>
-                            {programmes.map((programme) => (
-                                <option value={programme._id}>{programme.name}</option>
+                            {programmes.map((programme, idx) => (
+                                <option key={idx} value={programme._id}>
+                                    {programme.name}
+                                </option>
                             ))}
                         </Select>
                         <Button
@@ -140,7 +136,7 @@ const ViewStudent = ({ student, editStudent, deleteStudent, programmes }) => {
                             </Text>
                         </Button>
                     </Flex>
-                    <PlanTable columns={PlanTableColumns} data={data} />
+                    <PlanTable columns={PlanTableColumns} data={studentPlans()} />
                 </Flex>
             </Flex>
         </Flex>

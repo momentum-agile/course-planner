@@ -458,9 +458,35 @@ exports[`<Plan /> 1`] = `
       <div
         className="css-gmuwbf"
       >
-        <p
-          className="css-137ozra"
-        />
+        <div
+          className="css-gltekd"
+        >
+          <div
+            className="css-0"
+          >
+            <p
+              className="css-fzcsno"
+            >
+               
+              Plan name
+              : 
+            </p>
+          </div>
+          <div
+            className="css-0"
+          >
+            <span
+              className="css-e4q50o"
+              onFocus={[Function]}
+              tabIndex={0}
+            >
+              Click to edit...
+            </span>
+          </div>
+          <div
+            className="css-0"
+          />
+        </div>
       </div>
       <div
         className="css-j7qwjs"
@@ -489,7 +515,79 @@ exports[`<Plan /> 1`] = `
     />
     <div
       className="css-1apjpfw"
-    />
+    >
+      <div
+        className="css-ldo4d5"
+      >
+        <button
+          aria-disabled={true}
+          className="css-p3002b"
+          disabled={true}
+          onClick={[Function]}
+          type="button"
+        >
+          <p
+            className="css-13w9t4w"
+          >
+            Remove Previous Year
+          </p>
+        </button>
+        <button
+          className="css-p3002b"
+          onClick={[Function]}
+          type="button"
+        >
+          <p
+            className="css-13w9t4w"
+          >
+            Add Previous Year
+          </p>
+        </button>
+      </div>
+      <div
+        className="css-ldo4d5"
+      >
+        <button
+          aria-disabled={true}
+          className="css-p3002b"
+          disabled={true}
+          onClick={[Function]}
+          type="button"
+        >
+          <p
+            className="css-13w9t4w"
+          >
+            Remove Year
+          </p>
+        </button>
+        <button
+          className="css-p3002b"
+          onClick={[Function]}
+          type="button"
+        >
+          <p
+            className="css-13w9t4w"
+          >
+            Add Year
+          </p>
+        </button>
+      </div>
+      <div
+        className="css-ldo4d5"
+      >
+        <button
+          className="css-1x770bt"
+          onClick={[Function]}
+          type="button"
+        >
+          <p
+            className="css-13w9t4w"
+          >
+            Save
+          </p>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 `;

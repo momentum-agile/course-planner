@@ -61,7 +61,7 @@ const RequirementListItem = ({ index, prefix, points, courses, isSatisfied }) =>
             </Text>
             <Stack className="programmeRequirements" textAlign="left" isInline overflowX="scroll" width="35%">
                 {courses.map((course, index) => (
-                    <CourseText index={index} courseName={course} />
+                    <CourseText index={index} key={index} courseName={course} />
                 ))}
             </Stack>
             <Flex>{isSatisfied && <Icon name="check" />}</Flex>

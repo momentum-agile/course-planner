@@ -2,8 +2,10 @@ import React from "react";
 import { useTable } from "react-table";
 import { Box, Text } from "@chakra-ui/core";
 import { colors as c } from "../../colors";
+import { useHistory } from "react-router-dom";
 
 const PlanTable = ({ columns, data }) => {
+    const history = useHistory();
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
         columns,
         data,
@@ -44,7 +46,7 @@ const PlanTable = ({ columns, data }) => {
                     {rows.map((row, i) => {
                         prepareRow(row);
                         return (
-                            <Box as="tr" {...row.getRowProps()}>
+                            <Box as="tr" {...row.getRowProps()} onClick={() => history.push(`/plan/${row.original._id}`)}>
                                 {row.cells.map((cell) => {
                                     return (
                                         <Box

@@ -1,11 +1,12 @@
 import React from "react";
-import { Flex, Stack, Text, Icon } from "@chakra-ui/core";
+import { Flex, Icon, Stack, Text } from "@chakra-ui/core";
 import ReactTooltip from "react-tooltip";
 import { useDrag, useDrop } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
 import { colors as c } from "../../colors";
+import { InlineEdit } from "../../components";
 
-const CourseTile = ({ courseName, courses }) => {
+const CourseTile = ({ courseName, courses, updateData, data }) => {
     const [{ isDragging }, drag] = useDrag({
         item: { courseName, type: ItemTypes.COURSE_TILE },
         collect: (monitor) => ({
@@ -52,6 +53,7 @@ const CourseTile = ({ courseName, courses }) => {
                 {getCourseRegulations()}
             </ReactTooltip>
             <Icon name="info-outline" color={c.white} data-tip data-for={courseName} />
+            <Icon name="small-close" color={c.white} onClick={() => updateData(data.filter((data) => data.course !== courseName))} />
         </Flex>
     );
 };
@@ -101,7 +103,7 @@ const SemesterBox = ({ semester, data, year, updateData, courses }) => {
                     {data
                         .filter((x) => x.semester === semester && x.year === year)
                         .map((course, idx) => (
-                            <CourseTile key={idx} courseName={course.course} courses={courses} />
+                            <CourseTile updateData={updateData} data={data} key={idx} courseName={course.course} courses={courses} />
                         ))}
                 </Stack>
             </Flex>
@@ -109,13 +111,15 @@ const SemesterBox = ({ semester, data, year, updateData, courses }) => {
     );
 };
 
-const Year = ({ year, data, startYear, updateData, courses }) => {
+const Year = ({ year, data, startYear, updateData, courses, setStartYear }) => {
     return (
         <Flex direction="column" mt={4}>
             <Flex width="100%" justify="center" align="center" marginTop="20px">
-                <Text textAlign="center" fontWeight="bold" fontSize="3xl" color={c.darkGrey}>
-                    {year + startYear}
-                </Text>
+                <InlineEdit
+                    title="Year"
+                    value={startYear + year}
+                    onChange={(e) => new RegExp("^[0-9]+$").test(e) && setStartYear(e - year)}
+                />
             </Flex>
             <Flex width="100%" direction="row" marginTop="5px">
                 {["S1", "S2"].map((semester) => (

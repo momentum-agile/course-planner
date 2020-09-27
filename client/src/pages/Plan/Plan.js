@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Divider, Flex, Icon, Text, Textarea, Tooltip } from "@chakra-ui/core";
+import { Button, Divider, Flex, Icon, Text, Textarea, Tooltip } from "@chakra-ui/core";
 import usePlan from "./usePlan";
 import Header from "./Header";
 import HomeIcon from "./HomeIcon";
@@ -13,18 +13,51 @@ import { colors as c } from "../../colors";
 const reqsToolTip = "Requirements satisfied by the plan will be ticked off and become green";
 const generateYears = (to) => (to && [...Array(to).keys()]) || [];
 
+const PlanButton = ({ text, onClick, isDisabled, bottomRight }) => {
+    return (
+        <Button
+            backgroundColor={c.whiteGrey}
+            border={`2px solid ${c.uoaBlue}`}
+            rounded="35px"
+            width={!bottomRight && "250px"}
+            position={bottomRight && "absolute"}
+            right={bottomRight && 10}
+            bottom={bottomRight && 8}
+            height={"45px"}
+            margin="10px"
+            onClick={onClick}
+            isDisabled={isDisabled}
+        >
+            <Text textAlign="center" fontSize="xl" color={c.uoaBlue}>
+                {text}
+            </Text>
+        </Button>
+    );
+};
+
 const Plan = () => {
     const {
         student,
         realCourses,
         programme,
-        plan: { name, numYears, startYear, courseAllocations },
-        unfilteredRealCourses,
+        name,
+        numYears,
+        startYear,
+        courseAllocations,
         setCourseAllocations,
+        setName,
+        setNumYears,
+        setStartYear,
+        savePlan,
     } = usePlan();
     const [searchTerm, setSearchTerm] = useState("");
     const [note, setNote] = useState("");
-    const years = generateYears(numYears);
+
+    const filteredCourses = () => {
+        const unique = [...new Set(courseAllocations?.map((item) => item.course))];
+        return realCourses.filter((val) => !unique.includes(val.courseCode));
+    };
+    const years = () => generateYears(numYears);
 
     // TODO: The programme variable's requirements should have an attribute to check
 
@@ -63,8 +96,8 @@ const Plan = () => {
                             maxHeight="200px"
                             overflowY="scroll"
                         >
-                            {realCourses &&
-                                filter(realCourses, { courseCode: searchTerm }).map(({ courseCode }, idx) => (
+                            {filteredCourses() &&
+                                filter(filteredCourses(), { courseCode: searchTerm }).map(({ courseCode }, idx) => (
                                     <CoursePill key={idx} courseName={courseCode} />
                                 ))}
                         </Flex>
@@ -88,18 +121,68 @@ const Plan = () => {
             </Flex>
 
             <Flex height="100%" width="70%" direction="column">
-                <Header name={student?.name} programme={programme?.name} planName={name} />
+                <Header name={student?.name} programme={programme?.name} planName={name} setPlanName={setName} />
                 <Divider orientation="horizontal" backgroundColor={c.iceBlue} width="100%" height="2px" />
                 <Flex overflowY="scroll" direction="column">
-                    {years.map((year) => (
+                    <Flex justify="center" width="100%">
+                        <PlanButton
+                            text="Remove Previous Year"
+                            onClick={() => {
+                                setCourseAllocations(
+                                    courseAllocations.map((courseAllocation) => ({
+                                        // forEach iterates through an array
+                                        ...courseAllocation,
+                                        year: courseAllocation.year - 1,
+                                    })),
+                                );
+                                setNumYears(numYears - 1);
+                                setStartYear(startYear + 1);
+                            }}
+                            isDisabled={!numYears || courseAllocations.filter((courseAllocation) => courseAllocation.year === 0).length}
+                            height="60px"
+                        />
+                        <PlanButton
+                            text="Add Previous Year"
+                            onClick={() => {
+                                setCourseAllocations(
+                                    courseAllocations.map((courseAllocation) => ({
+                                        // forEach iterates through an array
+                                        ...courseAllocation,
+                                        year: courseAllocation.year + 1,
+                                    })),
+                                );
+                                setNumYears(numYears + 1);
+                                setStartYear(startYear - 1);
+                            }}
+                            height="60px"
+                        />
+                    </Flex>
+                    {years().map((year, idx) => (
                         <Year
                             year={year}
+                            key={idx}
+                            setStartYear={setStartYear}
                             startYear={startYear}
                             data={courseAllocations}
                             updateData={setCourseAllocations}
-                            courses={unfilteredRealCourses}
+                            courses={realCourses}
                         />
                     ))}
+
+                    <Flex justify="center" width="100%">
+                        <PlanButton
+                            text="Remove Year"
+                            onClick={() => setNumYears(numYears - 1)}
+                            isDisabled={
+                                !numYears || courseAllocations.filter((courseAllocation) => courseAllocation.year === numYears - 1).length
+                            }
+                            height="60px"
+                        />
+                        <PlanButton text="Add Year" onClick={() => setNumYears(numYears + 1)} height="60px" />
+                    </Flex>
+                    <Flex justify="center" width="100%">
+                        <PlanButton text="Save" onClick={savePlan} bottomRight />
+                    </Flex>
                 </Flex>
             </Flex>
         </Flex>

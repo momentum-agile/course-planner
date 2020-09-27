@@ -19,6 +19,7 @@ const courseTableColumns = [
 const useStudents = () => {
     const [students, setStudents] = useState([]);
     const [programmes, setProgrammes] = useState([]);
+    const [plans, setPlans] = useState([]);
 
     const addStudent = (student) => {
         CoursePlannerClient.addStudent(student)
@@ -48,16 +49,22 @@ const useStudents = () => {
             .then((res) => setProgrammes(res))
             .catch((e) => console.error(e));
     };
+    const fetchAllPlans = () => {
+        CoursePlannerClient.getPlans()
+            .then((res) => setPlans(res))
+            .catch((e) => console.error(e));
+    };
 
     useEffect(() => {
         fetchAllStudents();
         fetchAllPrograms();
+        fetchAllPlans();
     }, []);
 
     const columns = useMemo(() => courseTableColumns, []);
     const data = useMemo(() => students, [students]);
 
-    return { data, columns, programmes, editStudent, deleteStudent, addStudent };
+    return { data, columns, programmes, plans, editStudent, deleteStudent, addStudent };
 };
 
 export default useStudents;

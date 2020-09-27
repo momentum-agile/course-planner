@@ -52,8 +52,12 @@ const usePlan = () => {
     const [programme, setProgramme] = useState({ regulations });
     const { planId } = useParams();
     const [realCourses, setRealCourses] = useState([]);
-    const [unfilteredRealCourses, setUnfilteredRealCourses] = useState([]);
     const [plan, setPlan] = useState([]);
+
+    const [numYears, setNumYears] = useState(0);
+    const [startYear, setStartYear] = useState(0);
+    const [name, setName] = useState("");
+    const [courseAllocations, setCourseAllocations] = useState([]);
 
     const initPage = useCallback(async () => {
         // Promise.all because we are going to have a lot of API calls
@@ -67,10 +71,15 @@ const usePlan = () => {
         ])
             .then((values) => {
                 const [realCourses, plan, students, programs] = values;
-                setUnfilteredRealCourses(realCourses);
-                const unique = [...new Set(plan.courseAllocations.map((item) => item.course))];
-                setRealCourses(realCourses.filter((val) => !unique.includes(val.courseCode)));
+                setRealCourses(realCourses);
                 setPlan(plan);
+
+                const { name, numYears, startYear, courseAllocations } = plan;
+                setName(name);
+                setNumYears(numYears);
+                setStartYear(startYear);
+                setCourseAllocations(courseAllocations);
+
                 setStudent(students.filter((s) => s._id === plan.student)[0]);
                 const programme = programs.filter((s) => s._id === plan.programmeDegree)[0];
                 setProgramme(programme);
@@ -85,15 +94,26 @@ const usePlan = () => {
         initPage();
     }, [initPage]);
 
-    const setCourseAllocations = (newAlloc) => {
-        CoursePlannerClient.updatePlan({ ...plan, courseAllocations: newAlloc }).then((res) => {
-            const unique = [...new Set(res.courseAllocations.map((item) => item.course))];
-            setRealCourses(realCourses.filter((val) => !unique.includes(val.courseCode)));
+    const savePlan = () => {
+        CoursePlannerClient.updatePlan({ ...plan, courseAllocations, name, numYears, startYear }).then((res) => {
             setPlan(res);
         });
     };
 
-    return { student, realCourses, programme, plan, unfilteredRealCourses, setCourseAllocations };
+    return {
+        student,
+        realCourses,
+        programme,
+        name,
+        numYears,
+        startYear,
+        courseAllocations,
+        setCourseAllocations,
+        setName,
+        setNumYears,
+        setStartYear,
+        savePlan,
+    };
 };
 
 export default usePlan;

@@ -3,7 +3,7 @@ import { Text, Button, Flex } from "@chakra-ui/core";
 import { Link, useLocation } from "react-router-dom";
 import { colors as c } from "../colors";
 
-const OutlineButton = ({ text, to, width, height, onClick }) => {
+const OutlineButton = ({ text, to, width, height, onClick, isDisabled }) => {
     const location = useLocation();
 
     return (
@@ -15,6 +15,7 @@ const OutlineButton = ({ text, to, width, height, onClick }) => {
                 width={width}
                 height={height || "60px"}
                 marginTop="50px"
+                isDisabled={isDisabled}
                 onClick={onClick}
                 color={c.uoaBlue}
                 _hover={{

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Text, Button, Divider } from "@chakra-ui/core";
-import { Table, SearchBar, NavigationMenu } from "../../components";
+import { Button, Divider, Flex, Text } from "@chakra-ui/core";
+import { NavigationMenu, SearchBar, Table } from "../../components";
 import useStudents from "./useStudents";
 import ViewStudent from "./ViewStudent";
 import AddStudent from "./AddStudent";
@@ -11,7 +11,7 @@ const Students = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedStudent, setSelectedStudent] = useState({});
     const [addingStudent, setAddingStudent] = useState(false);
-    const { data, columns, editStudent, deleteStudent, addStudent, programmes } = useStudents();
+    const { data, columns, editStudent, deleteStudent, addStudent, programmes, plans } = useStudents();
 
     useEffect(() => {
         setSelectedStudent(data[currRow] || {});
@@ -76,6 +76,7 @@ const Students = () => {
                         programmes={programmes}
                         editStudent={editStudent}
                         deleteStudent={deleteStudent}
+                        plans={plans}
                     />
                 )}
             </Flex>
