@@ -43,6 +43,11 @@ const CourseAllocation = require("./course-allocation");
  *          completed:
  *            type: boolean
  *            description: if this plan has been completed
+ *          notes:
+ *            type: array
+ *            items:
+ *              type: string
+ *            description: notes for this plan
  */
 const planSchema = mongoose.Schema({
     name: {
@@ -75,6 +80,10 @@ const planSchema = mongoose.Schema({
         type: Boolean,
         required: true,
     },
+    notes: {
+        type: [String],
+        required: false
+    }
 });
 
 module.exports = mongoose.model("Plan", planSchema);

@@ -14,9 +14,6 @@ const mongoose = require("mongoose");
  *            type: Course
  *            $ref: '#/components/schemas/Course'
  *            description: course for this allocation
- *          note:
- *            type: string
- *            description: note for this course assignment
  *          year:
  *            type: integer
  *            description: year this course is assigned to
@@ -30,10 +27,6 @@ const courseAllocationSchema = {
         type: String,
         ref: "Course",
         required: true,
-    },
-    note: {
-        type: String,
-        required: false,
     },
     year: {
         type: Number,

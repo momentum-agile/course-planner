@@ -59,6 +59,7 @@ const generatePlan = () =>
         startYear: 2020,
         numYears: 2024,
         completed: false,
+        notes: ["this is a note", "this is the second note"]
     });
 
 const generateStudent = () =>
@@ -116,6 +117,7 @@ describe("PUT /plan", () => {
                     startYear: 2019,
                     numYears: 2024,
                     completed: false,
+                    notes: ["this is a note", "this is the second note"]
                 })
                 .end((_err, res) => {
                     expect(res.statusCode).toBe(200);
@@ -180,6 +182,7 @@ describe("/POST plan", () => {
                     expect(res.body).toHaveProperty("startYear", 2020);
                     expect(res.body).toHaveProperty("numYears", 2024);
                     expect(res.body).toHaveProperty("completed", false);
+                    expect(res.body).toHaveProperty("notes", ["this is a note", "this is the second note"])
                     request(app)
                         .get(`/student/${student.upi}`)
                         .type("json")
@@ -214,7 +217,7 @@ describe("/POST plan", () => {
                         .type("json")
                         .end((_err, studentRes) => {
                             expect(studentRes.statusCode).toBe(200);
-                            expect(studentRes.body).toHaveProperty("plans", [newPlanId,res.body._id]);
+                            expect(studentRes.body).toHaveProperty("plans", [newPlanId, res.body._id]);
                             done();
                         });
                 });
@@ -263,7 +266,7 @@ describe("/POST plan", () => {
                 })
                 .end((err, res) => {
                     expect(res.statusCode).toBe(400);
-                    expect(res.body).toMatchObject({msg: "Plan validation failed: programmeDegree: Path `programmeDegree` is required."});
+                    expect(res.body).toMatchObject({ msg: "Plan validation failed: programmeDegree: Path `programmeDegree` is required." });
                     done();
                 });
         });
@@ -283,7 +286,7 @@ describe("/POST plan", () => {
                 })
                 .end((err, res) => {
                     expect(res.statusCode).toBe(400);
-                    expect(res.body).toMatchObject({msg: "Plan validation failed: startYear: Path `startYear` is required."});
+                    expect(res.body).toMatchObject({ msg: "Plan validation failed: startYear: Path `startYear` is required." });
                     done();
                 });
         });
@@ -303,7 +306,7 @@ describe("/POST plan", () => {
                 })
                 .end((err, res) => {
                     expect(res.statusCode).toBe(400);
-                    expect(res.body).toMatchObject({msg: "Plan validation failed: numYears: Path `numYears` is required."});
+                    expect(res.body).toMatchObject({ msg: "Plan validation failed: numYears: Path `numYears` is required." });
                     done();
                 });
         });
@@ -324,7 +327,7 @@ describe("/POST plan", () => {
                 })
                 .end((err, res) => {
                     expect(res.statusCode).toBe(400);
-                    expect(res.body).toMatchObject({msg: "Plan validation failed: completed: Path `completed` is required."});
+                    expect(res.body).toMatchObject({ msg: "Plan validation failed: completed: Path `completed` is required." });
                     done();
                 });
         });
