@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Divider, Flex, Icon, Text, Textarea, Tooltip } from "@chakra-ui/core";
+import { Divider, Flex, Icon, Text, Textarea, Tooltip } from "@chakra-ui/core";
 import usePlan from "./usePlan";
 import Header from "./Header";
 import HomeIcon from "./HomeIcon";
@@ -9,6 +9,7 @@ import { SearchBar } from "../../components";
 import filter from "@mcabreradev/filter";
 import RequirementsList from "./RequirementsList";
 import { colors as c } from "../../colors";
+import Button from "@chakra-ui/core/dist/Button";
 
 const reqsToolTip = "Requirements satisfied by the plan will be ticked off and become green";
 const generateYears = (to) => (to && [...Array(to).keys()]) || [];
@@ -66,20 +67,22 @@ const Plan = () => {
             <Flex height="100%" width="30%" direction="column" backgroundColor={c.darkGrey}>
                 <HomeIcon />
 
-                <Flex direction="column" justify="center" align="center">
-                    <Flex direction="row" align="center">
-                        <Text textAlign="center" fontSize="5xl" color={c.white}>
-                            Requirements
-                        </Text>
-                        <Tooltip label={reqsToolTip} placement="bottom" bg={c.uoaBlue}>
-                            <Icon name="question" color={c.white} marginLeft="5px" />
-                        </Tooltip>
-                    </Flex>
+                {student && (
+                    <Flex direction="column" justify="center" align="center">
+                        <Flex direction="row" align="center">
+                            <Text textAlign="center" fontSize="5xl" color={c.white}>
+                                Requirements
+                            </Text>
+                            <Tooltip label={reqsToolTip} placement="bottom" bg={c.uoaBlue}>
+                                <Icon name="question" color={c.white} marginLeft="5px" />
+                            </Tooltip>
+                        </Flex>
 
-                    <Flex align="center" justify="center" width="100%">
-                        <RequirementsList programme={programme} />
+                        <Flex align="center" justify="center" width="100%">
+                            <RequirementsList programme={programme} />
+                        </Flex>
                     </Flex>
-                </Flex>
+                )}
 
                 <Flex direction="column" width="100%">
                     <Text textAlign="center" fontSize="5xl" color={c.white}>
@@ -93,7 +96,7 @@ const Plan = () => {
                             padding="0 0 10px 10px"
                             background={c.white}
                             marginTop="20px"
-                            maxHeight="200px"
+                            maxHeight={!student ? "600px" : "200px"}
                             overflowY="scroll"
                         >
                             {filteredCourses() &&
@@ -103,20 +106,24 @@ const Plan = () => {
                         </Flex>
                     </Flex>
 
-                    <Text textAlign="center" fontSize="5xl" color={c.white}>
-                        Notes
-                    </Text>
-                    <Flex align="center" justify="center">
-                        <Flex width="80%" background={c.white}>
-                            <Textarea
-                                placeholder="Add your note here"
-                                size="sm"
-                                height="200px"
-                                value={note}
-                                onChange={(e) => setNote(e.target.value)}
-                            />
-                        </Flex>
-                    </Flex>
+                    {student && (
+                        <>
+                            <Text textAlign="center" fontSize="5xl" color={c.white}>
+                                Notes
+                            </Text>
+                            <Flex align="center" justify="center">
+                                <Flex width="80%" background={c.white}>
+                                    <Textarea
+                                        placeholder="Add your note here"
+                                        size="sm"
+                                        height="200px"
+                                        value={note}
+                                        onChange={(e) => setNote(e.target.value)}
+                                    />
+                                </Flex>
+                            </Flex>
+                        </>
+                    )}
                 </Flex>
             </Flex>
 

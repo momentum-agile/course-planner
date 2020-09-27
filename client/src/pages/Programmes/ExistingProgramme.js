@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Text, Box, IconButton, Stack, Input, Button, Icon } from "@chakra-ui/core";
-import { OutlineButton, ProgrammeRequirementsItem, ConfirmationDialog, MenuWrapper } from "../../components";
+import { Box, Button, Flex, Icon, IconButton, Input, Stack, Text } from "@chakra-ui/core";
+import { ConfirmationDialog, MenuWrapper, OutlineButton, ProgrammeRequirementsItem } from "../../components";
 import { useHistory } from "react-router-dom";
 import useProgrammmes from "./useProgrammes";
 import useCourses from "../Courses/useCourses";
@@ -10,7 +10,7 @@ import SaveCancelButtonSet from "../Courses/editables/SaveCancelButtonSet";
 
 const ExistingProgramme = ({ programme, notifyUpdate }) => {
     const history = useHistory();
-    const { deleteProgramme, updateProgramme } = useProgrammmes();
+    const { deleteProgramme, updateProgramme, createProgrammeDegreePlan } = useProgrammmes();
     const { data } = useCourses();
     const [programmeDegreeInfo, setProgrammeDegreeInfo] = useState({});
     const [createNewRequirements, setCreateNewRequirements] = useState(false);
@@ -185,11 +185,14 @@ const ExistingProgramme = ({ programme, notifyUpdate }) => {
             </Flex>
 
             <Flex align="center" justify="center" width="100%">
-                {/* TODO: redefine routing for template plans because they interefere with GET requests with URL */}
                 {programmeDegreeInfo.defaultPlan ? (
-                    <OutlineButton text="View Template" to={`/programmes/${programmeDegreeInfo._id}/template`} height="60px" />
+                    <OutlineButton text="View Template" to={`/plan/${programmeDegreeInfo.defaultPlan}`} height="60px" />
                 ) : (
-                    <OutlineButton text="Define Template" to={`/programmes/${programmeDegreeInfo._id}/create-template`} height="60px" />
+                    <OutlineButton
+                        text="Define Template"
+                        onClick={() => createProgrammeDegreePlan(programme).then((res) => history.push(`/plan/${res._id}`))}
+                        height="60px"
+                    />
                 )}
             </Flex>
         </Flex>

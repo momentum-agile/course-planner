@@ -20,6 +20,15 @@ const useProgrammes = () => {
             .catch((e) => console.error(e));
     };
 
+    const createProgrammeDegreePlan = (programme) =>
+        CoursePlannerClient.createProgrammePlan(programme._id, {
+            name: `Default plan`,
+            programmeDegree: programme._id,
+            startYear: 1,
+            numYears: 1,
+            completed: false,
+        });
+
     const fetchAllProgrammes = () => {
         CoursePlannerClient.getProgrammes()
             .then((res) => setProgrammeDegrees(res))
@@ -34,7 +43,14 @@ const useProgrammes = () => {
 
     useEffect(() => fetchAllProgrammes(), []);
 
-    return { programmeDegrees, fetchAllProgrammes, createProgramme, deleteProgramme, updateProgramme };
+    return {
+        programmeDegrees,
+        fetchAllProgrammes,
+        createProgramme,
+        deleteProgramme,
+        updateProgramme,
+        createProgrammeDegreePlan,
+    };
 };
 
 export default useProgrammes;

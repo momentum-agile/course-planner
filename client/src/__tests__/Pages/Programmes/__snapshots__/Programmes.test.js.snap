@@ -290,11 +290,12 @@ exports[`Existing programmes sub-page  1`] = `
     className="css-1lads1q"
   >
     <a
-      href="/programmes/undefined/create-template"
+      href="/"
       onClick={[Function]}
     >
       <button
         className="css-rshclt"
+        onClick={[Function]}
         type="button"
       >
         <div
