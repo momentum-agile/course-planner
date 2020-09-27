@@ -8,9 +8,11 @@ const SaveCancelButtonSet = ({ onCancel, onSave, isActive }) => {
         <Flex width="100%" direction="row" justifyContent="center">
             <Button width="65px"
                 marginRight="10px"
-                color={c.lightBlue}
-                bg={c.darkBlue}
-                _hover={{ bg: c.red, color: c.white }}
+                color={c.midnightBlue}
+                bg={c.whiteGrey}
+                border="2px"
+                borderColor={c.midnightBlue}
+                _hover={{ bg: c.red, color: c.white, borderColor: c.red }}
                 onClick={onCancel}
             >
                 Cancel
@@ -18,9 +20,11 @@ const SaveCancelButtonSet = ({ onCancel, onSave, isActive }) => {
 
             <Button width="65px"
                 marginLeft="10px"
-                color={c.lightBlue}
-                bg={c.darkBlue}
-                _hover={isActive && { bg: c.green, color: c.white }}
+                color={c.midnightBlue}
+                bg={c.whiteGrey}
+                border="2px"
+                borderColor={c.midnightBlue}
+                _hover={isActive && { bg: c.green, color: c.white, borderColor: c.green }}
                 isDisabled={!isActive}
                 onClick={onSave}
             >

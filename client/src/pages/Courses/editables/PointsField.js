@@ -1,18 +1,24 @@
 import React from "react";
-import { Flex, Text, Select } from "@chakra-ui/core";
+import { Flex, Text, Select, Tag } from "@chakra-ui/core";
 import { colors as c } from "../../../colors";
 
-const points = [15, 20, 30];
+const points = [15, 20, 30, 45, 60];
 
 const PointsField = ({ value, isEditing, onChange }) => {
 
     return (
         <Flex direction="column">
-            <Text color={c.darkBlue} fontWeight="bold">Points:</Text>
+            <Text color={c.darkBlue} fontWeight="bold">
+                Points
+            </Text>
 
             {!isEditing
                 ? (
-                    <Text textAlign="center" fontSize="large">{value}</Text>
+                    <Flex justify="center">
+                        <Tag size="md" rounded="full" variant="solid" variantColor="teal">
+                            {value}
+                        </Tag>
+                    </Flex>
                 ) : (
                     <Select value={value} onChange={e => onChange("pts", e.target.value)}>
                         {points.map((val, i) => (

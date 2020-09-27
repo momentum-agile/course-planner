@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Checkbox, Flex, Stack, Text } from "@chakra-ui/core";
+import { Flex, Text, Stack, Checkbox, Tag } from "@chakra-ui/core";
 import { colors as c } from "../../../colors";
 
 const semMapping = ["S1", "S2", "SS"];
@@ -25,23 +25,28 @@ const SemesterField = ({ value, isEditing, onChange }) => {
 
     return (
         <Flex direction="column">
-            <Text color={c.darkBlue} fontWeight="bold">
-                Semester:
+            <Text textAlign="center" color={c.darkBlue} fontWeight="bold">
+                Semester(s)
             </Text>
 
-            {!isEditing ? (
-                <Text textAlign="center" fontSize="large">
-                    {value.join(", ")}
-                </Text>
-            ) : (
-                <Stack spacing={10} isInline>
-                    {semMapping.map((sem, idx) => (
-                        <Checkbox borderColor={c.lightBlue} key={idx} isChecked={checkedSems[idx]} onChange={() => updateSem(idx)}>
-                            {sem}
-                        </Checkbox>
-                    ))}
-                </Stack>
-            )}
+            {!isEditing
+                ? (
+                    <Flex justify="center">
+                        {value.map((sem, idx) =>
+                            <Tag size="md" key={idx} rounded="full" variant="solid" variantColor="teal" mr={1}>
+                                {sem}
+                            </Tag>
+                        )}
+                    </Flex>
+                ) : (
+                    <Stack spacing={10} isInline pt="10px">
+                        {semMapping.map((sem, idx) => (
+                            <Checkbox key={idx} borderColor={c.lightBlue} isChecked={checkedSems[idx]} onChange={() => updateSem(idx)}>
+                                {sem}
+                            </Checkbox>
+                        ))}
+                    </Stack>
+                )}
         </Flex>
     );
 };

@@ -12,7 +12,7 @@ const courseTableColumns = [
     },
     {
         Header: "Semester",
-        accessor: "semester",
+        accessor: d => d.semester.join(", "),
     },
     {
         Header: "Points",

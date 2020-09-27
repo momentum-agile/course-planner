@@ -1,9 +1,25 @@
 import React, { useState } from "react";
-import { Flex, Stack, Text, Button, useDisclosure, IconButton, Box } from "@chakra-ui/core";
+import { Flex, Stack, Text, Button, useDisclosure, Tag, TagLabel, Tooltip } from "@chakra-ui/core";
+import { OptionsMenu } from "../../../components";
 import RegulationModal from "../RegulationModal";
 import { colors as c } from "../../../colors";
 
-const RegulationTable = ({ name, updateCourse, course, regulationType }) => {
+const regMap = {
+    "Prerequisites": {
+        button: "Prequisites", tooltip: "Requirements or courses that must be completed prior to taking this one"
+    },
+    "Corequisites": {
+        button: "Corequisites", tooltip: "Requirements or courses that must be completed prior to or at the same time as this one"
+    },
+    "Restrictions": {
+        button: "Restrictions", tooltip: "Courses that cannot be started if this one is taken, and vice versa"
+    },
+    "InformalEquivalents": {
+        button: "Equivalent Courses", tooltip: "Courses that, if taken, are essentially 'equivalent' to taking this one"
+    }
+}
+
+const RegulationTable = ({ name, updateCourse, course, regulationList }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [regulation, setRegulation] = useState([]);
 
@@ -65,8 +81,15 @@ const RegulationTable = ({ name, updateCourse, course, regulationType }) => {
         onOpen();
     };
 
+    const splitRegulation = (reg) => {
+        // const validCourseCodeRegex = /^([A-Za-z])*(\s?)([1-9][0-9][0-9])([A-Za-z]{0,3})$/;
+        // TODO: Change this to make each course code a separate bubble?
+        // Could use validCourseCodeRegex (defined above)
+        return [reg];
+    }
+
     return (
-        <Flex width="100%" direction="row" paddingTop="3">
+        <Flex width="100%" direction="row" pt="1" pb="1">
             <RegulationModal
                 isOpen={isOpen}
                 onClose={onClose}
@@ -75,30 +98,54 @@ const RegulationTable = ({ name, updateCourse, course, regulationType }) => {
                 course={course}
                 editReg={regulation}
             ></RegulationModal>
+
             <Stack w="100%">
-                <Button
-                    variantColor="blue"
-                    backgroundColor={c.uoaBlue}
-                    onClick={handleOpen}
-                    isDisabled={regulationType && regulationType.length > 0 ? true : false}
-                >
-                    <Text textAlign="center" color="white">
-                        Add {name}
-                    </Text>
-                </Button>
-                {regulationType && regulationType.length > 0 ? (
-                    <Flex p={1} shadow="md" borderWidth="1px" flex="1" rounded="md" justify="space-between" direction="row">
-                        <Text>{regulationType.map((reg) => `${reg} `)}</Text>
-                        <Box>
-                            <IconButton icon="edit" size="sm" onClick={() => handleRegTableEditClick(regulationType)} />
-                            <IconButton icon="delete" size="sm" onClick={() => handleRegTableDeleteClick(regulationType)} />
-                        </Box>
-                    </Flex>
-                ) : (
-                    <></>
-                )}
+                {regulationList && regulationList.length > 0
+                    ? (
+                        <Flex direction="column" bg={c.whiteGrey} p={1} shadow="md" flex="1" rounded="md">
+                            <Flex direction="row" pb="2px">
+                                <Tooltip hasArrow label={regMap[name].tooltip} placement="bottom" bg={c.whiteGrey} color={c.midnightBlue}>
+                                    <Text width="96.5%" textAlign="center" fontWeight="bold" color={c.midnightBlue}>
+                                        {regMap[name].button}
+                                    </Text>
+                                </Tooltip>
+                                <Flex>
+                                    <OptionsMenu onEdit={() => handleRegTableEditClick(regulationList)} onDelete={() => handleRegTableDeleteClick(regulationList)} />
+                                </Flex>
+                            </Flex>
+
+                            <Flex direction="row" pb="5px" pl="5px">
+                                {regulationList.map((reg) => (
+                                    splitRegulation(reg).map((item, idx) => (
+                                        item.toLowerCase() === "and" || item.toLowerCase() === "or"
+                                            ? (
+                                                <Tag size="sm" key={idx} rounded="full" variant="solid" variantColor="gray" mr={1}>
+                                                    {item}
+                                                </Tag>
+                                            ) : (
+                                                <Tag size="sm" key={idx} rounded="full" variant="solid" variantColor="cyan" mr={1}>
+                                                    <TagLabel>{item}</TagLabel>
+                                                </Tag>
+                                            )
+                                    ))
+                                ))}
+                            </Flex>
+                        </Flex>
+
+                    ) : (
+                        <Tooltip hasArrow label={regMap[name].tooltip} placement="bottom" bg={c.whiteGrey} color={c.midnightBlue}>
+                            <Button
+                                variantColor="blue"
+                                backgroundColor={c.midnightBlue}
+                                onClick={handleOpen}
+                                _hover={{ bg: c.lightBlue }}
+                            >
+                                + Add {regMap[name].button}
+                            </Button>
+                        </Tooltip>
+                    )}
             </Stack>
-        </Flex>
+        </Flex >
     );
 };
 

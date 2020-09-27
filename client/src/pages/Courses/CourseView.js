@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Text, useToast } from "@chakra-ui/core";
+import { Flex, Text } from "@chakra-ui/core";
 import { FieldsPane, RequirementsPane } from "./editables";
+import { colors as c } from "../../colors";
 
 const fields = {
     code: "courseCode",
@@ -9,8 +10,6 @@ const fields = {
     sem: "semester",
     pts: "points",
 };
-
-const validCourseCodeRegex = /^([A-Za-z])*(\s?)([1-9][0-9][0-9])([A-Za-z]{0,3})$/;
 
 /**
  * Component for viewing/editing/creating a course
@@ -24,8 +23,7 @@ const validCourseCodeRegex = /^([A-Za-z])*(\s?)([1-9][0-9][0-9])([A-Za-z]{0,3})$
  * @param {function} updateCourse Callback function to call when a course is 'saved' after being edited
  * @param {function} prefillCourse Callback function to call when trying to auto-generate a course from the code
  */
-const CourseView = ({ course, isNew, isEditing, onEdit, onDelete, cancelUpdateCourse, updateCourse, prefillCourse }) => {
-    const toast = useToast();
+const CourseView = ({ course, isNew, isEditing, onEdit, onDelete, cancelUpdateCourse, updateCourse, prefillCourse, setPrefill }) => {
 
     const [code, setCode] = useState("");
     const [name, setName] = useState("");
@@ -51,8 +49,6 @@ const CourseView = ({ course, isNew, isEditing, onEdit, onDelete, cancelUpdateCo
         setPts(points || 15);
     }, [course]);
 
-    const isValidCourseCode = validCourseCodeRegex.test(code);
-
     const changeField = (field, value) => {
         setField[field](value);
     };
@@ -68,26 +64,12 @@ const CourseView = ({ course, isNew, isEditing, onEdit, onDelete, cancelUpdateCo
         updateCourse(editedCourse);
     };
 
-    const handlePrefill = () => {
-        const courseCodeArr = code.split(/(\d+)/).filter((e) => e !== "");
-        const subject = courseCodeArr[0];
-        const courseCode = courseCodeArr.length === 2 ? courseCodeArr[1] : `${courseCodeArr[1]}${courseCodeArr[2]}`;
-
-        const toastBase = {
-            title: `Error 404 Course Code Not Found`,
-            status: "error",
-            duration: 9000,
-            isClosable: true,
-        };
-
-        prefillCourse(subject.trim(), courseCode.trim())
-            .then((res) => updateCourse(res))
-            .then(() => toast({ title: "Course created", description: `Successfully auto-generated ${code}`, status: "success" }))
-            .catch(() => toast({ ...toastBase, description: `Course Code: ${code} could not be found on the UoA API` }));
-    };
+    const setCoursePrefill = (prefill) => {
+        setPrefill({ ...prefill, _id: course._id });
+    }
 
     return (
-        <Flex height="100vh" direction="column">
+        <Flex height="100vh" direction="column" pt="30px" pr="10px">
             <FieldsPane
                 code={code}
                 name={name}
@@ -101,19 +83,19 @@ const CourseView = ({ course, isNew, isEditing, onEdit, onDelete, cancelUpdateCo
                 onDelete={onDelete}
                 onCancel={cancelUpdateCourse}
                 onSave={saveCourse}
-                prefillCourse={handlePrefill}
-                isValidCourseCode={isValidCourseCode}
+                prefillCourse={prefillCourse}
+                setPrefill={setCoursePrefill}
             />
 
             {isNew ? (
-                <Flex justifyContent="center" marginTop="20%">
+                <Flex justifyContent="center" marginTop="20%" color={c.whiteGrey}>
                     <Text fontStyle="italic">First Create the course to add requirements</Text>
                 </Flex>
             ) : (
-                <Flex marginTop="15px">
-                    <RequirementsPane course={course} updateCourse={updateCourse} />
-                </Flex>
-            )}
+                    <Flex mt="10px">
+                        <RequirementsPane course={course} updateCourse={updateCourse} />
+                    </Flex>
+                )}
         </Flex>
     );
 };

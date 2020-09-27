@@ -1,9 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useTable, useGlobalFilter } from "react-table";
-import { Box, Text } from "@chakra-ui/core";
+import { PseudoBox, Box, Text } from "@chakra-ui/core";
 import { colors as c } from "../colors";
 
-const Table = ({ columns, data, getRowProps = () => ({}), currRow, searchInput }) => {
+const Table = ({ columns, data, getRowProps = () => ({}), currRow, searchInput, rowHover }) => {
+    const [dataLength, setDataLength] = useState(null);
+    const endRef = useRef(null);
+
+    const scrollToBottom = () => {
+        endRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+
+    useEffect(() => {
+        if (dataLength && dataLength < data.length) {
+            scrollToBottom();
+        }
+
+        setDataLength(data.length);
+    }, [data, dataLength]);
+
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, setGlobalFilter } = useTable(
         {
             columns,
@@ -16,66 +31,74 @@ const Table = ({ columns, data, getRowProps = () => ({}), currRow, searchInput }
         setGlobalFilter(searchInput);
     }, [searchInput, setGlobalFilter]);
 
-    if (rows.length === 0) {
-        return (
-            // Make a nice error component :(
-            <p> No Courses Found</p>
-        );
-    }
-
     return (
-        <Box maxHeight="75vh" overflowY="scroll" width="100%">
-            <Box as="table" border={1} width="100%" borderStyle="solid" borderSpacing={0} {...getTableProps()}>
+        <Box height="75vh" overflowY="scroll" width="100%" className="table">
+            <Box as="table" width="100%" {...getTableProps()}>
+
                 <Box as="thead">
-                    {headerGroups.map((headerGroup) => (
-                        <Box as="tr" {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column) => (
-                                <Box
-                                    as="th"
-                                    m={0}
-                                    p="0.5rem"
-                                    borderBottomColor={c.darkBlue}
-                                    borderBottom={1}
-                                    borderBottomStyle="solid"
-                                    {...column.getHeaderProps()}
-                                >
-                                    <Text textAlign="center" fontSize="m" color={c.nightBlue}>
-                                        {column.render("Header")}
-                                    </Text>
-                                </Box>
-                            ))}
-                        </Box>
+                    {headerGroups.map((headerGroup, idx) => (
+                        <TableHeader key={idx} headerGroup={headerGroup} />
                     ))}
                 </Box>
+
                 <Box as="tbody" {...getTableBodyProps()}>
-                    {rows.map((row, i) => {
+                    {rows.map((row, idx) => {
                         prepareRow(row);
                         return (
-                            <Box as="tr" {...row.getRowProps(getRowProps(row))}>
-                                {row.cells.map((cell) => {
-                                    return (
-                                        <Box
-                                            as="td"
-                                            m={0}
-                                            p="0.5rem"
-                                            borderBottomColor={c.uoaBlue}
-                                            borderBottom={1}
-                                            borderBottomStyle="solid"
-                                            {...cell.getCellProps()}
-                                        >
-                                            <Text textAlign="center" fontSize="2xl" color={row.id !== currRow ? c.uoaBlue : c.white}>
-                                                {cell.render("Cell")}
-                                            </Text>
-                                        </Box>
-                                    );
-                                })}
-                            </Box>
+                            <TableRow key={idx} row={row} currRow={currRow} getRowProps={getRowProps} rowHover={rowHover} />
                         );
                     })}
+                    <div ref={endRef} />
                 </Box>
+
             </Box>
+
+            {rows.length === 0 &&
+                <Box align="center" justify="center" width="100%" mt="20%">
+                    <Text fontStyle="italic" color={c.white} textAlign="center">No data found</Text>
+                </Box>}
         </Box>
     );
 };
+
+const TableHeader = ({ headerGroup }) => {
+    return (
+        <Box as="tr" {...headerGroup.getHeaderGroupProps()} color={c.lightBlue}>
+            {headerGroup.headers.map(column => (
+                <Box
+                    as="th"
+                    m={0}
+                    p="0.5rem"
+                    {...column.getHeaderProps()}
+                >
+                    <Text textAlign="left">
+                        {column.render("Header")}
+                    </Text>
+                </Box>
+            ))}
+        </Box>
+    );
+}
+
+const TableRow = ({ row, getRowProps, rowHover }) => {
+    return (
+        <PseudoBox as="tr" {...row.getRowProps(getRowProps(row))} _hover={rowHover}>
+            {row.cells.map((cell) => {
+                return (
+                    <Box
+                        as="td"
+                        m={0}
+                        p="0.5rem"
+                        {...cell.getCellProps()}
+                    >
+                        <Text>
+                            {cell.render("Cell")}
+                        </Text>
+                    </Box>
+                );
+            })}
+        </PseudoBox>
+    );
+}
 
 export default Table;

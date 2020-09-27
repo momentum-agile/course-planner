@@ -33,6 +33,18 @@ code {
     -ms-overflow-style: none; /* Internet Explorer 10+ */
     scrollbar-width: none; /* Firefox */
 }
+
 .courseContainer::-webkit-scrollbar {
     display: none; /* Safari and Chrome */
+}
+
+/* width */
+.table::-webkit-scrollbar {
+    height: 3px;
+    width: 5px;
+}
+
+/* Handle */
+.table::-webkit-scrollbar-thumb {
+    background: #d3d3d3;
 }

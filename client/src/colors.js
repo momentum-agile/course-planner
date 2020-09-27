@@ -13,10 +13,13 @@ const colors = {
     lightBlue: "#3DAFDB",
     nightBlue: "#0E3B54",
     midnightBlue: "#072333",
+    lightMidnightBlue: "#092e43",
+    teal: "#008080",
 
     grey: "#C4C4C4",
     whiteGrey: "#F0F0F0",
     lightGrey: "#D3D3D3",
+    medGrey: "#BBBBBB",
     darkGrey: "#303030",
 
     gold: "#FFCA2F",

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Text, Button, Divider } from "@chakra-ui/core";
+import { Flex, Heading, Button, useToast } from "@chakra-ui/core";
 import { Table, SearchBar, NavigationMenu } from "../../components";
 import useCourses from "./useCourses";
 import { colors as c } from "../../colors";
@@ -7,6 +7,8 @@ import PopulateAPIModal from "./PopulateAPIModal";
 import CourseView from "./CourseView";
 
 const Courses = () => {
+    const toast = useToast();
+
     const [currRow, setCurrRow] = useState("0");
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCourse, setSelectedCourse] = useState({});
@@ -23,66 +25,80 @@ const Courses = () => {
 
     const cancelCourse = () => {
         setIsEditing(false);
+        setSelectedCourse(selectedCourse === {} ? data[parseInt(currRow)] : { ...selectedCourse });
         setIsAddingCourse(false);
     };
 
     const saveCourse = (toSave) => {
         if (isAddingCourse) {
+            // Don't allow creating a course when the courseCode already exists
+            if (data.find(d => d.courseCode === toSave.courseCode)) {
+                toast({ isClosable: true, duration: 9000, title: "Could Not Create Course", description: `Course with code '${toSave.courseCode}' already exists`, status: "error" });
+                return;
+            }
+
             createCourse(toSave);
             setIsAddingCourse(false);
-            setCurrRow(currRow + 1);
+            setCurrRow(data.length.toString());
             setSelectedCourse(toSave);
+            toast({ isClosable: true, duration: 9000, title: "Course Created", description: `Course '${toSave.courseCode}' has been successfully created`, status: "success" });
         } else {
             updateCourse(toSave);
         }
     };
 
     return (
-        <Flex height="100%" width="100%" direction="row" backgroundColor={c.whiteGrey}>
-            <Flex height="100%" width="50%" direction="column">
+        <Flex direction="row" bg={c.midnightBlue}>
+
+            {/* Left side of page */}
+            <Flex width="50%" direction="column">
                 <Flex left="1px" justify="flex-start">
                     <NavigationMenu />
                 </Flex>
-                <Flex width="100%" align="center" justify="center" marginTop="20px" p={4}>
-                    <Text textAlign="center" fontSize="4xl" color={c.uoaBlue}>
+
+                <Flex align="center" justify="center">
+                    <Heading textAlign="center" color={c.white} fontWeight="bold">
                         Courses
-                    </Text>
+                    </Heading>
                 </Flex>
 
-                <Flex width="100%" align="center" justify="center" direction="row">
-                    <SearchBar searchCategory="Courses" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-                    <Flex p={2} marginLeft={2}>
-                        <Button
-                            variantColor="blue"
-                            backgroundColor={c.lightBlue}
-                            onClick={() => {
-                                setCurrRow();
-                                setSelectedCourse({});
-                                setIsAddingCourse(true);
-                            }}
-                        >
-                            <Text textAlign="center" color={c.white}>
-                                + Add Course
-                            </Text>
-                        </Button>
-                        <Button
-                            variantColor="blue"
-                            backgroundColor="#162971"
-                            onClick={() => {
-                                setPopulateFromUniAPI(true);
-                            }}
-                        >
-                            <Text textAlign="center" color="white">
-                                + Create From Uni API
-                            </Text>
-                        </Button>
-                        <PopulateAPIModal
-                            isOpen={populateFromUniAPI}
-                            onClose={() => setPopulateFromUniAPI(false)}
-                            confirm={createAllCoursesFromUniAPI}
-                        ></PopulateAPIModal>
-                    </Flex>
+                <Flex justify="flex-end" direction="row" p={2} mr="4%">
+                    <Button
+                        color={c.white}
+                        bg={c.midnightBlue}
+                        border="1px"
+                        borderColor={c.white}
+                        _hover={{ bg: c.lightBlue, borderColor: c.lightBlue }}
+                        onClick={() => {
+                            setSelectedCourse({});
+                            setIsAddingCourse(true);
+                        }}
+                        mr="10px"
+                    >
+                        + Create
+                    </Button>
+
+                    <Button
+                        color={c.white}
+                        bg={c.midnightBlue}
+                        border="1px"
+                        borderColor={c.white}
+                        _hover={{ bg: c.lightBlue, borderColor: c.lightBlue }}
+                        onClick={() => {
+                            setPopulateFromUniAPI(true);
+                        }}
+                    >
+                        + Populate From Uni API
+                    </Button>
+
+                    <PopulateAPIModal
+                        isOpen={populateFromUniAPI}
+                        onClose={() => setPopulateFromUniAPI(false)}
+                        confirm={createAllCoursesFromUniAPI}
+                    />
                 </Flex>
+
+                <SearchBar searchCategory="Courses" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
 
                 <Flex p={4}>
                     <Table
@@ -95,26 +111,29 @@ const Courses = () => {
                             },
                             style: {
                                 cursor: "pointer",
-                                background: row.id === currRow ? c.uoaBlue : null,
+                                background: row.id === currRow ? c.lightGrey : null,
+                                color: row.id === currRow ? c.darkBlue : c.white,
                             },
                         })}
+                        rowHover={{ bg: c.lightMidnightBlue }}
                         currRow={currRow}
                         searchInput={searchTerm}
                     />
                 </Flex>
             </Flex>
-            <Divider orientation="vertical" backgroundColor={c.iceBlue} width="2px" />
+
             {/* Right side of page */}
-            <Flex height="100%" width="50%" direction="column">
+            <Flex height="100%" width="50%" direction="column" >
                 <CourseView
                     course={selectedCourse}
                     isNew={isAddingCourse}
                     isEditing={isEditing || isAddingCourse}
-                    onEdit={() => setIsEditing(true)}
+                    onEdit={() => setIsEditing(!isEditing)}
                     onDelete={deleteCourse}
                     cancelUpdateCourse={cancelCourse}
                     updateCourse={saveCourse}
                     prefillCourse={prefillCourse}
+                    setPrefill={setSelectedCourse}
                 />
             </Flex>
         </Flex>

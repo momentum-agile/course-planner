@@ -14,7 +14,7 @@ exports[`Main Students Page 1`] = `
         aria-controls="menu-1"
         aria-expanded={false}
         aria-haspopup="menu"
-        className="css-wk9st5"
+        className="css-1qn6x93"
         id="menubutton-2"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -60,7 +60,7 @@ exports[`Main Students Page 1`] = `
         className="css-9jn3o8"
       >
         <div
-          className="css-yh0f2e"
+          className="css-1brfyz3"
         >
           <div
             className="css-1lads1q"
@@ -86,7 +86,7 @@ exports[`Main Students Page 1`] = `
               <input
                 className="css-n5gi9c"
                 onChange={[Function]}
-                placeholder="Search Students"
+                placeholder="Search for Students"
                 type="search"
                 value=""
               />
@@ -113,9 +113,72 @@ exports[`Main Students Page 1`] = `
     <div
       className="css-nc95w2"
     >
-      <p>
-         No Courses Found
-      </p>
+      <div
+        className="table css-1bdzjts"
+      >
+        <table
+          className="css-8atqhb"
+          role="table"
+        >
+          <thead
+            className="css-0"
+          >
+            <tr
+              className="css-1f81fq5"
+              role="row"
+            >
+              <th
+                className="css-11dd6zr"
+                colSpan={1}
+                role="columnheader"
+              >
+                <p
+                  className="css-7woomv"
+                >
+                  Name
+                </p>
+              </th>
+              <th
+                className="css-11dd6zr"
+                colSpan={1}
+                role="columnheader"
+              >
+                <p
+                  className="css-7woomv"
+                >
+                  UPI
+                </p>
+              </th>
+              <th
+                className="css-11dd6zr"
+                colSpan={1}
+                role="columnheader"
+              >
+                <p
+                  className="css-7woomv"
+                >
+                  ID
+                </p>
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            className="css-0"
+            role="rowgroup"
+          >
+            <div />
+          </tbody>
+        </table>
+        <div
+          className="css-ol8uv0"
+        >
+          <p
+            className="css-1mg9g8m"
+          >
+            No data found
+          </p>
+        </div>
+      </div>
     </div>
   </div>
   <hr

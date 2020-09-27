@@ -2,10 +2,10 @@
 
 exports[`<Courses /> 1`] = `
 <div
-  className="css-1o1h7jz"
+  className="css-c70k8d"
 >
   <div
-    className="css-mzeyh"
+    className="css-il7sii"
   >
     <div
       className="css-1u9fuhx"
@@ -14,7 +14,7 @@ exports[`<Courses /> 1`] = `
         aria-controls="menu-1"
         aria-expanded={false}
         aria-haspopup="menu"
-        className="css-wk9st5"
+        className="css-1qn6x93"
         id="menubutton-2"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -45,102 +45,160 @@ exports[`<Courses /> 1`] = `
       </button>
     </div>
     <div
-      className="css-1qd02q1"
+      className="css-gmuwbf"
     >
-      <p
-        className="css-19i5rf8"
+      <h2
+        className="css-1n3wmrq"
       >
         Courses
-      </p>
+      </h2>
     </div>
     <div
-      className="css-1evpibw"
+      className="css-1kh8xrj"
+    >
+      <button
+        className="css-y6x91b"
+        onClick={[Function]}
+        type="button"
+      >
+        + Create
+      </button>
+      <button
+        className="css-whzvt6"
+        onClick={[Function]}
+        type="button"
+      >
+        + Populate From Uni API
+      </button>
+    </div>
+    <div
+      className="css-9jn3o8"
     >
       <div
-        className="css-9jn3o8"
+        className="css-1brfyz3"
       >
         <div
-          className="css-yh0f2e"
+          className="css-1lads1q"
         >
           <div
-            className="css-1lads1q"
+            className="css-aetr73"
           >
             <div
-              className="css-aetr73"
+              className="css-k6882c"
             >
-              <div
-                className="css-k6882c"
+              <svg
+                className="css-1xb1rov"
+                focusable={false}
+                role="presentation"
+                viewBox="0 0 24 24"
               >
-                <svg
-                  className="css-1xb1rov"
-                  focusable={false}
-                  role="presentation"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M23.384,21.619,16.855,15.09a9.284,9.284,0,1,0-1.768,1.768l6.529,6.529a1.266,1.266,0,0,0,1.768,0A1.251,1.251,0,0,0,23.384,21.619ZM2.75,9.5a6.75,6.75,0,1,1,6.75,6.75A6.758,6.758,0,0,1,2.75,9.5Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </div>
-              <input
-                className="css-n5gi9c"
-                onChange={[Function]}
-                placeholder="Search Courses"
-                type="search"
-                value=""
-              />
+                <path
+                  d="M23.384,21.619,16.855,15.09a9.284,9.284,0,1,0-1.768,1.768l6.529,6.529a1.266,1.266,0,0,0,1.768,0A1.251,1.251,0,0,0,23.384,21.619ZM2.75,9.5a6.75,6.75,0,1,1,6.75,6.75A6.758,6.758,0,0,1,2.75,9.5Z"
+                  fill="currentColor"
+                />
+              </svg>
             </div>
+            <input
+              className="css-n5gi9c"
+              onChange={[Function]}
+              placeholder="Search by Course Code, Name, Semester or Points"
+              type="search"
+              value=""
+            />
           </div>
         </div>
-      </div>
-      <div
-        className="css-jeup5m"
-      >
-        <button
-          className="css-jyhka6"
-          onClick={[Function]}
-          type="button"
-        >
-          <p
-            className="css-168qb02"
-          >
-            + Add Course
-          </p>
-        </button>
-        <button
-          className="css-vvaeh6"
-          onClick={[Function]}
-          type="button"
-        >
-          <p
-            className="css-17tlezs"
-          >
-            + Create From Uni API
-          </p>
-        </button>
       </div>
     </div>
     <div
       className="css-nc95w2"
     >
-      <p>
-         No Courses Found
-      </p>
+      <div
+        className="table css-1bdzjts"
+      >
+        <table
+          className="css-8atqhb"
+          role="table"
+        >
+          <thead
+            className="css-0"
+          >
+            <tr
+              className="css-1f81fq5"
+              role="row"
+            >
+              <th
+                className="css-11dd6zr"
+                colSpan={1}
+                role="columnheader"
+              >
+                <p
+                  className="css-7woomv"
+                >
+                  Course Code
+                </p>
+              </th>
+              <th
+                className="css-11dd6zr"
+                colSpan={1}
+                role="columnheader"
+              >
+                <p
+                  className="css-7woomv"
+                >
+                  Course Name
+                </p>
+              </th>
+              <th
+                className="css-11dd6zr"
+                colSpan={1}
+                role="columnheader"
+              >
+                <p
+                  className="css-7woomv"
+                >
+                  Semester
+                </p>
+              </th>
+              <th
+                className="css-11dd6zr"
+                colSpan={1}
+                role="columnheader"
+              >
+                <p
+                  className="css-7woomv"
+                >
+                  Points
+                </p>
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            className="css-0"
+            role="rowgroup"
+          >
+            <div />
+          </tbody>
+        </table>
+        <div
+          className="css-ol8uv0"
+        >
+          <p
+            className="css-1mg9g8m"
+          >
+            No data found
+          </p>
+        </div>
+      </div>
     </div>
   </div>
-  <hr
-    aria-orientation="vertical"
-    className="css-lcuxz7"
-  />
   <div
     className="css-mzeyh"
   >
     <div
-      className="css-s92abg"
+      className="css-1q8a4ef"
     >
       <div
-        className="css-16k3ty1"
+        className="css-bdpb5i"
       >
         <div
           className="css-1bvc4cc"
@@ -184,52 +242,59 @@ exports[`<Courses /> 1`] = `
         <div
           className="css-0"
         >
-          <p
-            className="css-12gj9wb"
+          <div
+            className="css-16xxis1"
           >
-            Code
-          </p>
-          <p
-            className="css-fzcsno"
-          >
-            
-          </p>
+            <p
+              className="css-p81l6k"
+            >
+              
+            </p>
+          </div>
           <hr
-            className="css-3a2cqr"
+            className="css-16wsuox"
           />
         </div>
         <div
           className="css-0"
         >
-          <p
-            className="css-12gj9wb"
+          <div
+            className="css-0"
           >
-            Name
-          </p>
-          <p
-            className="css-fzcsno"
-          >
-            
-          </p>
+            <p
+              className="css-12gj9wb"
+            >
+              Name
+            </p>
+            <p
+              className="css-1hontzn"
+            >
+              
+            </p>
+          </div>
           <hr
-            className="css-3a2cqr"
+            className="css-16wsuox"
           />
         </div>
         <div
           className="css-0"
         >
-          <p
-            className="css-12gj9wb"
+          <div
+            className="css-0"
           >
-            Description
-          </p>
-          <p
-            className="css-fzcsno"
-          >
-            
-          </p>
+            <p
+              className="css-12gj9wb"
+            >
+              Description
+            </p>
+            <p
+              className="css-1hontzn"
+            >
+              
+            </p>
+          </div>
           <hr
-            className="css-3a2cqr"
+            className="css-16wsuox"
           />
         </div>
         <div
@@ -239,15 +304,13 @@ exports[`<Courses /> 1`] = `
             className="css-j7qwjs"
           >
             <p
-              className="css-12gj9wb"
+              className="css-1jnltol"
             >
-              Semester:
+              Semester(s)
             </p>
-            <p
-              className="css-mi3416"
-            >
-              
-            </p>
+            <div
+              className="css-1l4w6pd"
+            />
           </div>
           <div
             className="css-j7qwjs"
@@ -255,13 +318,17 @@ exports[`<Courses /> 1`] = `
             <p
               className="css-12gj9wb"
             >
-              Points:
+              Points
             </p>
-            <p
-              className="css-mi3416"
+            <div
+              className="css-1l4w6pd"
             >
-              15
-            </p>
+              <div
+                className="css-ws075s"
+              >
+                15
+              </div>
+            </div>
           </div>
         </div>
         <div
@@ -269,88 +336,88 @@ exports[`<Courses /> 1`] = `
         />
       </div>
       <div
-        className="css-13v6rjs"
+        className="css-1hprwxc"
       >
         <div
-          className="css-1y73rl6"
+          className="css-15pplr6"
         >
           <div
-            className="css-rx5yp6"
+            className="css-1hxuavr"
           >
             <div
               className="css-1ofqig9"
             >
               <button
-                className="css-132lga7"
+                className="css-19fczei"
+                onBlur={[Function]}
                 onClick={[Function]}
+                onFocus={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
                 type="button"
               >
-                <p
-                  className="css-17tlezs"
-                >
-                  Add 
-                  Prerequisites
-                </p>
+                + Add 
+                Prequisites
               </button>
             </div>
           </div>
           <div
-            className="css-rx5yp6"
+            className="css-1hxuavr"
           >
             <div
               className="css-1ofqig9"
             >
               <button
-                className="css-132lga7"
+                className="css-19fczei"
+                onBlur={[Function]}
                 onClick={[Function]}
+                onFocus={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
                 type="button"
               >
-                <p
-                  className="css-17tlezs"
-                >
-                  Add 
-                  Corequisites
-                </p>
+                + Add 
+                Corequisites
               </button>
             </div>
           </div>
           <div
-            className="css-rx5yp6"
+            className="css-1hxuavr"
           >
             <div
               className="css-1ofqig9"
             >
               <button
-                className="css-132lga7"
+                className="css-19fczei"
+                onBlur={[Function]}
                 onClick={[Function]}
+                onFocus={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
                 type="button"
               >
-                <p
-                  className="css-17tlezs"
-                >
-                  Add 
-                  Restrictions
-                </p>
+                + Add 
+                Restrictions
               </button>
             </div>
           </div>
           <div
-            className="css-rx5yp6"
+            className="css-1hxuavr"
           >
             <div
               className="css-1ofqig9"
             >
               <button
-                className="css-132lga7"
+                className="css-19fczei"
+                onBlur={[Function]}
                 onClick={[Function]}
+                onFocus={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
                 type="button"
               >
-                <p
-                  className="css-17tlezs"
-                >
-                  Add 
-                  InformalEquivalents
-                </p>
+                + Add 
+                Equivalent Courses
               </button>
             </div>
           </div>

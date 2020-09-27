@@ -367,7 +367,7 @@ exports[`<Plan /> 1`] = `
         className="css-9jn3o8"
       >
         <div
-          className="css-yh0f2e"
+          className="css-1brfyz3"
         >
           <div
             className="css-1lads1q"
@@ -393,7 +393,7 @@ exports[`<Plan /> 1`] = `
               <input
                 className="css-n5gi9c"
                 onChange={[Function]}
-                placeholder="Search Courses"
+                placeholder="Search by Course Code, Name, Semester or Points"
                 type="search"
                 value=""
               />

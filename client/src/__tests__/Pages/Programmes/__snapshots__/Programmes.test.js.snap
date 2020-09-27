@@ -610,7 +610,7 @@ exports[`Main Programmes Page 1`] = `
         aria-controls="menu-1"
         aria-expanded={false}
         aria-haspopup="menu"
-        className="css-wk9st5"
+        className="css-1qn6x93"
         id="menubutton-2"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -653,7 +653,7 @@ exports[`Main Programmes Page 1`] = `
       className="css-9jn3o8"
     >
       <div
-        className="css-yh0f2e"
+        className="css-1brfyz3"
       >
         <div
           className="css-1lads1q"
@@ -679,7 +679,7 @@ exports[`Main Programmes Page 1`] = `
             <input
               className="css-n5gi9c"
               onChange={[Function]}
-              placeholder="Search Programmes"
+              placeholder=""
               type="search"
               value=""
             />
