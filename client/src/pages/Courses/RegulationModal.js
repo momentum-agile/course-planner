@@ -26,8 +26,10 @@ import {
     FormLabel,
     ButtonGroup,
 } from "@chakra-ui/core";
+import CreatableSelect from "react-select/creatable";
 import ReactTooltip from "react-tooltip";
 import { colors as c } from "../../colors";
+import useCourses from "../Courses/useCourses";
 
 const defaultReg = {
     type: "POINTS",
@@ -35,15 +37,41 @@ const defaultReg = {
     courses: [],
 };
 
+const customStyles = {
+    option: (provided) => ({
+        ...provided,
+        backgroundColor: c.white,
+        "&:hover": {
+            backgroundColor: c.uoaBlue,
+            color: c.white,
+        },
+        flex: 1,
+    }),
+    control: (provided) => ({
+        width: "100%",
+        backgroundColor: c.white,
+        '[type="text"]': {
+            color: c.black,
+        },
+        flex: 1,
+        ...provided,
+    }),
+    container: (provided) => ({
+        ...provided,
+        flex: 1,
+    }),
+};
+
 const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg }) => {
     const [currentReg, setCurrentReg] = useState(defaultReg);
     // Text fields
-    const [courseTextValue, setCourseTextValue] = useState("");
     const [noteValue, setNoteValue] = useState("");
 
     const [outputRegulation, setOutputRegulation] = useState([]);
 
     const addToolTip = "Please add an AND or OR statement before adding another course";
+
+    const { data } = useCourses();
 
     useEffect(() => {
         if (editReg) {
@@ -77,24 +105,27 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
         setCurrentReg(newReg);
     };
 
-    const handleCourseChange = (event) => setCourseTextValue(event.target.value);
     const handleNoteChange = (event) => setNoteValue(event.target.value);
 
-    // Adds course to the current regulation (down button)
-    const handleCourseClick = () => {
-        if (!courseTextValue) {
-            return;
+    const handleSelectChange = (newValue, actionMeta) => {
+        if (actionMeta.action === "select-option") {
+            const latestCourses = newValue.map((x) => x.label);
+            handleCourseSelect(latestCourses);
         }
 
-        console.log(courseTextValue);
-        updateReg("courses")([...currentReg.courses, courseTextValue], "POINTS");
-        setCourseTextValue("");
+        if (actionMeta.action === "pop-value" || actionMeta.action === "remove-value" || actionMeta.action === "clear") {
+            if (newValue === null) {
+                updateReg("courses")([], "POINTS");
+            } else {
+                const latestCourses = newValue.map((x) => x.label);
+                handleCourseSelect(latestCourses);
+            }
+        }
     };
 
-    // Removes a course tag
-    const handleCourseTagCloseClick = (course) => {
-        const currentRegsArray = currentReg.courses.filter((i) => i !== course);
-        updateReg("courses")(currentRegsArray, "POINTS");
+    // // Adds course to the current regulation (down button)
+    const handleCourseSelect = (latestCourses) => {
+        updateReg("courses")(latestCourses, "POINTS");
     };
 
     /** Toggle input between adding courses and a note
@@ -150,7 +181,6 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
         onClose();
         setCurrentReg(defaultReg);
         setNoteValue("");
-        setCourseTextValue("");
     };
 
     const isAddDisabled =
@@ -169,36 +199,23 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
                     <ModalBody>
                         <FormControl as="fieldset">
                             <Flex align="center">
-                                <FormLabel m="2" textAlign="center" px="0">Note</FormLabel>
+                                <FormLabel m="2" textAlign="center" px="0">
+                                    Note
+                                </FormLabel>
                                 <Switch id="course-note-switch" color="#CBD5E0" onChange={handleToggleChange} isChecked={toggleInput} />
-                                <FormLabel m="2" textAlign="center" px="0">Courses</FormLabel>
+                                <FormLabel m="2" textAlign="center" px="0">
+                                    Courses
+                                </FormLabel>
                             </Flex>
                             {toggleInput ? (
                                 <>
-                                    <Flex m="2">
-                                        <Input
-                                            id="courses"
-                                            placeholder="Courses"
-                                            onChange={handleCourseChange}
-                                            value={courseTextValue}
-                                            onKeyPress={(ev) => {
-                                                if (ev.key === "Enter") {
-                                                    handleCourseClick();
-                                                }
-                                            }}
-                                        />
-                                        <IconButton
-                                            aria-label="Add input"
-                                            icon="arrow-down"
-                                            onClick={handleCourseClick}
-                                            isDisabled={!courseTextValue}
-                                        />
-                                    </Flex>
-                                    <Flex m="2">
+                                    <Flex m="2" flex="1">
                                         <NumberInput
-                                            size="lg"
+                                            size="md"
                                             defaultValue={15}
                                             min={10}
+                                            height="40px"
+                                            width="13%"
                                             onChange={(value) => updateReg("points")(value, "POINTS")}
                                             value={currentReg.points}
                                             step={5}
@@ -210,23 +227,15 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
                                             </NumberInputStepper>
                                         </NumberInput>
                                         <Text mx="1">points from</Text>
-                                        <Stack
-                                            id="courses-stack"
-                                            spacing={4}
-                                            isInline
-                                            borderWidth="2px"
-                                            p={2}
-                                            h="48px"
-                                            w="100%"
-                                            bg={currentReg.courses.length > 0 ? c.white : "gray.100"}
-                                        >
-                                            {currentReg.courses.map((course, idx) => (
-                                                <Tag size="sm" key={idx} rounded="full" variant="solid" variantColor="cyan">
-                                                    <TagLabel>{course}</TagLabel>
-                                                    <TagCloseButton onClick={() => handleCourseTagCloseClick(course)} />
-                                                </Tag>
-                                            ))}
-                                        </Stack>
+                                        <CreatableSelect
+                                            isMulti
+                                            onChange={handleSelectChange}
+                                            options={data.map((course) => ({ value: course, label: course.courseCode }))}
+                                            placeholder="Courses"
+                                            formatCreateLabel={(userInput) => `Add Ghost Course: ${userInput}`}
+                                            styles={customStyles}
+                                            autoSize={true}
+                                        />
                                         <IconButton
                                             aria-label="Add input"
                                             icon="add"
