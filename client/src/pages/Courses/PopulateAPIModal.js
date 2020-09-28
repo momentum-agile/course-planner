@@ -146,7 +146,6 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
                                 setSubject("");
                                 setData([]);
                             }}
-                            disabled={data.length === 0}
                         >
                             Cancel
                         </Button>

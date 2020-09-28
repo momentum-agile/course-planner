@@ -57,6 +57,7 @@ const Courses = () => {
         } else {
             updateCourse(toSave);
         }
+        setSearchTerm("");
     };
 
     return (
@@ -105,7 +106,10 @@ const Courses = () => {
                     <PopulateAPIModal
                         isOpen={populateFromUniAPI}
                         onClose={() => setPopulateFromUniAPI(false)}
-                        confirm={createCoursesFromUniApi}
+                        confirm={(subject, data, toast) => {
+                            createCoursesFromUniApi(subject, data, toast);
+                            setSearchTerm("");
+                        }}
                     />
                 </Flex>
 
@@ -140,7 +144,10 @@ const Courses = () => {
                     isNew={isAddingCourse}
                     isEditing={isEditing || isAddingCourse}
                     onEdit={() => setIsEditing(!isEditing)}
-                    onDelete={deleteCourse}
+                    onDelete={(courseCode) => {
+                        deleteCourse(courseCode);
+                        setSearchTerm("");
+                    }}
                     cancelUpdateCourse={cancelCourse}
                     updateCourse={saveCourse}
                     prefillCourse={prefillCourse}
