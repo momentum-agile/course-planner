@@ -5,14 +5,14 @@ const uni = require("../uni-service");
 const Course = require("../models/course");
 const { parseRequirements } = require("../parser");
 
-// GET all courses for a subject and add it into the db
+// Client posts the courses they want and then only those are saved in the database
 /**
  * @swagger
  * path:
  *  /uni/programme:
- *    get:
+ *    post:
  *      tags: [Uni]
- *      summary: Get a plan by plan code
+ *      summary: Receives list of courses the client wants and saves them into database
  *      parameters:
  *        - in: query
  *          name: subject
@@ -26,12 +26,12 @@ const { parseRequirements } = require("../parser");
  *            type: string
  *          required: true
  *          description: year for the courses
- *        - in: query
- *          name: overwrite
+ *        - in: body
+ *          name: data
  *          schema:
- *            type: string
+ *            type: array of courses objects
  *          required: true
- *          description: wheter to overwrite courses or not 
+ *          description: array of course objects
  *      responses:
  *        "204":
  *          description: Added to database successfully
@@ -39,48 +39,127 @@ const { parseRequirements } = require("../parser");
  *          description: Error message
  *
  */
+router.post("/programme", async (req, res) => {
+    const subject = req.query.subject;
+    const year = req.query.year || 2021;
+    const response = await uni.fetchAllCourses(subject, year);
+
+    if (response.error) {
+        LOGGER.error(response.error);
+        return res.status(400).json(response.error);
+    }
+
+    const { data: clientData } = req.body;
+    const { data: universityData } = response;
+
+    // Make array of courses the client wants
+    const coursesToPopulateFromClient = clientData.reduce((acc, curr) => {
+        const { inDatabase, checked, courseCode, overwrite } = curr;
+
+        // If course is not in database and the client ticked then we want to add to db
+        if (!inDatabase && checked) {
+            acc.push(courseCode);
+            return acc;
+        }
+
+        // If course is in database, and client ticked the course and they want to overwrite
+        if (inDatabase && checked && overwrite) {
+            acc.push(courseCode);
+            return acc;
+        }
+
+        return acc;
+    }, []);
+
+    // Go through university data, filter the courses that the client wants and then prepare the course object for the database
+    const mappedData = universityData
+        .filter((course) => coursesToPopulateFromClient.includes(`${course.subject} ${course.catalogNbr}`))
+        .map((course) => {
+            const [prerequisites, corequisities, restrictions] = parseRequirements(course.rqrmntDescr || "");
+            const updatedCourse = {
+                name: course.titleLong,
+                courseCode: `${course.subject} ${course.catalogNbr}`,
+                points: course.unitsAcadProg,
+                description: course.description,
+                prerequisites: prerequisites,
+                corequisites: corequisities,
+                restrictions: restrictions,
+            };
+            return updatedCourse;
+        });
+
+    // Go through each course and make or update
+    mappedData.forEach((course) => {
+        Course.findOneAndUpdate({ courseCode: course.courseCode }, course, { upsert: true }, (err, updatedCourse) => {
+            if (err) {
+                LOGGER.error(err);
+                res.status(400).json({ msg: err.message });
+            }
+        });
+    });
+
+    LOGGER.info(`POST Request Succeeded for /uni/programme?subject=${subject}`);
+    return res.status(204).send();
+});
+
+/**
+ * @swagger
+ * path:
+ *  /uni/programme:
+ *    get:
+ *      tags: [Uni]
+ *      summary: Gets courses for a certain programme
+ *      parameters:
+ *        - in: query
+ *          name: subject
+ *          schema:
+ *            type: string
+ *          required: true
+ *          description: subject of the courses
+ *        - in: query
+ *          name: year
+ *          schema:
+ *            type: string
+ *          required: true
+ *          description: year for the courses
+ *      responses:
+ *        "200":
+ *          description: Array of course objects
+ *        "400":
+ *          description: Error message
+ *
+ */
 router.get("/programme", async (req, res) => {
     const subject = req.query.subject;
     const year = req.query.year || 2021;
-    const overwrite = req.query.overwrite
-    const updatedCourses = []
+
     const response = await uni.fetchAllCourses(subject, year);
+
     if (response.error) {
-        LOGGER.error(data.error);
-        return res.status(400).json(data.error);
+        LOGGER.error(response.error);
+        return res.status(400).json(response.error);
     }
 
-    const { data } = response;
+    const { data: universityData } = response;
 
-    const mappedData = data.map((course) => {
-        const [prerequisites, corequisities, restrictions] = parseRequirements(course.rqrmntDescr || "");
+    // Since we are using an async function in map, this will give us a Array of promises
+    const promisedMappedData = universityData.map(async (course) => {
+        const courseCode = `${course.subject} ${course.catalogNbr}`;
+        const inDatabase = await Course.findOne({ courseCode });
         const updatedCourse = {
-            name: course.titleLong,
-            courseCode: `${course.subject} ${course.catalogNbr}`,
-            points: course.unitsAcadProg,
-            description: course.description,
-            prerequisites: prerequisites,
-            corequisites: corequisities,
-            restrictions: restrictions,
+            courseCode,
+            inDatabase: !!inDatabase,
+            checked: false,
+            overwrite: false,
         };
         return updatedCourse;
     });
 
-    mappedData.forEach((course) => {
-        Course.find({ courseCode: course.courseCode }, (err, courses) => {
-            if (overwrite === "true" || (courses.length < 1)) {
-                Course.findOneAndUpdate({ courseCode: course.courseCode }, course, { upsert: true }, (err, updatedCourse) => {
-                    updatedCourses.push(course.courseCode)
-                    if (err) {
-                        LOGGER.error(err);
-                        res.status(400).json({ msg: err.message });
-                    }
-                });
-            }
-        });
-    });
+    // Wait for all promises to be resolved
+    const mappedData = await Promise.all(promisedMappedData);
+
     LOGGER.info(`GET Request Succeeded for /uni/programme?subject=${subject}`);
-    return res.status(204).send();
+    return res.status(200).send(mappedData);
 });
 
 // GET courses for a particular course number
@@ -90,7 +169,7 @@ router.get("/programme", async (req, res) => {
  *  /uni/course:
  *    get:
  *      tags: [Uni]
- *      summary: Get a plan by plan code
+ *      summary: Get a course for course number
  *      parameters:
  *        - in: query
  *          name: subject
@@ -124,8 +203,8 @@ router.get("/course", async (req, res) => {
     const response = await uni.fetchParticularCourse(subject, catalogNbr, year);
 
     if (response.error) {
-        LOGGER.error(data.error);
-        return res.status(400).json(data.error);
+        LOGGER.error(response.error);
+        return res.status(400).json(response.error);
     }
 
     if (response && response.total === 0) {

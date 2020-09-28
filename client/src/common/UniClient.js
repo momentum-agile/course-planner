@@ -1,7 +1,11 @@
 import ApiClient from "./ApiClient";
 
-const createAllUniApiCourses = (subject, overwrite) => {
-    return ApiClient(`uni/programme?subject=${subject}&overwrite=${overwrite}`, { method: "GET" });
+const createAllUniApiCourses = (subject, data) => {
+    return ApiClient(`uni/programme?subject=${subject}`, { body: { data }, method: "POST" });
+};
+
+const getUniCoursesForDegree = (degree) => {
+    return ApiClient(`uni/programme?subject=${degree}`);
 };
 
 const getSpecificCourse = (subject, courseNbr) => {
@@ -10,6 +14,7 @@ const getSpecificCourse = (subject, courseNbr) => {
 
 const UniClient = {
     createAllUniApiCourses,
+    getUniCoursesForDegree,
     getSpecificCourse,
 };
 

@@ -16,7 +16,7 @@ const Courses = () => {
     const [populateFromUniAPI, setPopulateFromUniAPI] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
 
-    const { data, columns, createCourse, updateCourse, deleteCourse, createAllCoursesFromUniAPI, prefillCourse } = useCourses();
+    const { data, columns, createCourse, updateCourse, deleteCourse, createCoursesFromUniApi, prefillCourse } = useCourses();
 
     useEffect(() => {
         setSelectedCourse(isAddingCourse ? {} : data[currRow] || {});
@@ -32,8 +32,14 @@ const Courses = () => {
     const saveCourse = (toSave) => {
         if (isAddingCourse) {
             // Don't allow creating a course when the courseCode already exists
-            if (data.find(d => d.courseCode === toSave.courseCode)) {
-                toast({ isClosable: true, duration: 9000, title: "Could Not Create Course", description: `Course with code '${toSave.courseCode}' already exists`, status: "error" });
+            if (data.find((d) => d.courseCode === toSave.courseCode)) {
+                toast({
+                    isClosable: true,
+                    duration: 9000,
+                    title: "Could Not Create Course",
+                    description: `Course with code '${toSave.courseCode}' already exists`,
+                    status: "error",
+                });
                 return;
             }
 
@@ -41,7 +47,13 @@ const Courses = () => {
             setIsAddingCourse(false);
             setCurrRow(data.length.toString());
             setSelectedCourse(toSave);
-            toast({ isClosable: true, duration: 9000, title: "Course Created", description: `Course '${toSave.courseCode}' has been successfully created`, status: "success" });
+            toast({
+                isClosable: true,
+                duration: 9000,
+                title: "Course Created",
+                description: `Course '${toSave.courseCode}' has been successfully created`,
+                status: "success",
+            });
         } else {
             updateCourse(toSave);
         }
@@ -49,7 +61,6 @@ const Courses = () => {
 
     return (
         <Flex direction="row" bg={c.midnightBlue}>
-
             {/* Left side of page */}
             <Flex width="50%" direction="column">
                 <Flex left="1px" justify="flex-start">
@@ -94,7 +105,7 @@ const Courses = () => {
                     <PopulateAPIModal
                         isOpen={populateFromUniAPI}
                         onClose={() => setPopulateFromUniAPI(false)}
-                        confirm={createAllCoursesFromUniAPI}
+                        confirm={createCoursesFromUniApi}
                     />
                 </Flex>
 
@@ -123,7 +134,7 @@ const Courses = () => {
             </Flex>
 
             {/* Right side of page */}
-            <Flex height="100%" width="50%" direction="column" >
+            <Flex height="100%" width="50%" direction="column">
                 <CourseView
                     course={selectedCourse}
                     isNew={isAddingCourse}

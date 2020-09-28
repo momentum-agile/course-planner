@@ -12,7 +12,7 @@ const courseTableColumns = [
     },
     {
         Header: "Semester",
-        accessor: d => d.semester.join(", "),
+        accessor: (d) => d.semester.join(", "),
     },
     {
         Header: "Points",
@@ -47,10 +47,27 @@ const useCourses = () => {
             .catch((e) => console.log(e));
     };
 
-    const createAllCoursesFromUniAPI = (subject, overwrite) => {
-        CoursePlannerClient.createAllUniApiCourses(subject, overwrite)
-            .then((r) => fetchAllCourses())
-            .catch((e) => console.log(e));
+    const createCoursesFromUniApi = (subject, data, toast) => {
+        CoursePlannerClient.createAllUniApiCourses(subject, data)
+            .then(() => fetchAllCourses())
+            .then(() => {
+                toast({
+                    title: "Courses Added",
+                    description: `Courses successfully imported from the University Courses API`,
+                    status: "success",
+                    duration: 5000,
+                    isClosable: true,
+                });
+            })
+            .catch((e) => {
+                toast({
+                    isClosable: true,
+                    duration: 9000,
+                    title: `Error: ${e}`,
+                    description: `Error happened when trying to import courses from the University Courses API`,
+                    status: "error",
+                });
+            });
     };
 
     // Calling uni API to get course information
@@ -63,7 +80,7 @@ const useCourses = () => {
     const columns = useMemo(() => courseTableColumns, []);
     const data = useMemo(() => courses, [courses]);
 
-    return { createCourse, data, columns, updateCourse, deleteCourse, createAllCoursesFromUniAPI, prefillCourse };
+    return { createCourse, data, columns, updateCourse, deleteCourse, createCoursesFromUniApi, prefillCourse };
 };
 
 export default useCourses;

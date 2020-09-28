@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     Button,
     AlertDialog,
@@ -8,17 +8,58 @@ import {
     AlertDialogBody,
     AlertDialogFooter,
     Checkbox,
+    CheckboxGroup,
+    Flex,
     FormControl,
     Select,
     Text,
     useToast,
 } from "@chakra-ui/core";
+import { SearchBar } from "../../components";
+import { CoursePlannerClient } from "../../common";
+import filter from "@mcabreradev/filter";
 
 const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
     const cancelRef = React.useRef();
     const [subject, setSubject] = useState("");
-    const [overwrite, setOverwrite] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [data, setData] = useState([]);
     const toast = useToast();
+
+    useEffect(() => {
+        if (subject.length === 0) return;
+        CoursePlannerClient.getUniCoursesForDegree(subject)
+            .then((res) => setData(res))
+            .catch((err) => console.log(err));
+    }, [subject]);
+
+    const handleOnCheck = (key) => (index) => {
+        const newData = [...data];
+        newData[index] = {
+            ...data[index],
+            [key]: !data[index][key],
+        };
+
+        // When course and overwrite are checked, when you uncheck the course, this will then also uncheck the overwrite
+        if (key === "checked" && data[index]["overwrite"]) {
+            newData[index] = {
+                ...newData[index],
+                overwrite: false,
+            };
+        }
+
+        setData(newData);
+    };
+
+    const handleAll = (selected) => {
+        const newData = data.map((course) => ({
+            ...course,
+            checked: selected,
+            overwrite: course.inDatabase ? selected : false,
+        }));
+
+        setData(newData);
+    };
 
     return (
         <>
@@ -44,9 +85,57 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
                                 <option value="MECHENG">MECHENG</option>
                             </Select>
                         </FormControl>
-                        <Checkbox paddingTop={"10px"} defaultIsChecked={false} onChange={(e) => setOverwrite(e.target.checked)}>
-                            Overwrite courses with the same course code?
-                        </Checkbox>
+
+                        {data.length > 0 && (
+                            <Flex direction="column">
+                                <SearchBar
+                                    value={searchTerm}
+                                    searchCategory="Populate"
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    width="100%"
+                                />
+                                <Flex direction="row" p={2} width="100%">
+                                    <Flex width="70%" justify="flex-start">
+                                        <Button size="xs" onClick={() => handleAll(true)}>
+                                            Select All
+                                        </Button>
+                                        <Button size="xs" ml={2} onClick={() => handleAll(false)}>
+                                            Deselect All
+                                        </Button>
+                                    </Flex>
+                                    <Flex width="30%">
+                                        <Text> Overwrite? </Text>
+                                    </Flex>
+                                </Flex>
+                                <CheckboxGroup variantColor="blue" maxHeight="500px" overflowY="scroll" ml={2} mt={2}>
+                                    {filter(data, { courseCode: searchTerm }).map(({ courseCode, inDatabase, checked, overwrite }, idx) => (
+                                        <Flex direction="row" justifyContent="around" ml={4} key={idx}>
+                                            <Flex width="50%">
+                                                <Checkbox
+                                                    key={idx}
+                                                    value={courseCode}
+                                                    isChecked={checked}
+                                                    onChange={(e) => handleOnCheck("checked")(idx)}
+                                                >
+                                                    {courseCode}
+                                                </Checkbox>
+                                            </Flex>
+                                            <Flex ml={16}>
+                                                {inDatabase && (
+                                                    <Checkbox
+                                                        key={`${idx}-${inDatabase}`}
+                                                        value={courseCode}
+                                                        isChecked={overwrite}
+                                                        isDisabled={!checked}
+                                                        onChange={(e) => handleOnCheck("overwrite")(idx)}
+                                                    />
+                                                )}
+                                            </Flex>
+                                        </Flex>
+                                    ))}
+                                </CheckboxGroup>
+                            </Flex>
+                        )}
                     </AlertDialogBody>
 
                     <AlertDialogFooter>
@@ -55,8 +144,9 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
                             onClick={() => {
                                 onClose();
                                 setSubject("");
-                                setOverwrite(false);
+                                setData([]);
                             }}
+                            disabled={data.length === 0}
                         >
                             Cancel
                         </Button>
@@ -64,17 +154,10 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
                             isDisabled={subject === ""}
                             variantColor="blue"
                             onClick={() => {
-                                confirm(subject, overwrite);
-                                toast({
-                                    title: "Courses Added",
-                                    description: `${subject} courses successfully imported from the University Courses API`,
-                                    status: "success",
-                                    duration: 5000,
-                                    isClosable: true,
-                                });
+                                confirm(subject, data, toast);
                                 onClose();
                                 setSubject("");
-                                setOverwrite(false);
+                                setData([]);
                             }}
                             ml={3}
                         >
