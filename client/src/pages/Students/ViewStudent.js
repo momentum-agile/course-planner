@@ -25,6 +25,10 @@ const ViewStudent = ({ student, editStudent, deleteStudent, programmes, plans })
             Header: "End Year",
             accessor: (d) => d.startYear + d.numYears - 1,
         },
+        {
+            Header: "Created",
+            accessor: (d) => new Date(d.createdAt).toISOString().substring(0, 10),
+        },
     ];
     const toast = useToast();
     const history = useHistory();

@@ -1,4 +1,4 @@
-const faker = require('faker');
+const faker = require("faker");
 
 const generatePlans = (amount, programs, students) => {
     const plans = [];
@@ -9,28 +9,28 @@ const generatePlans = (amount, programs, students) => {
 
     return plans;
 };
-const getRandomNumberInRange = (tic, toc) => Math.floor(Math.random() * (toc - tic - +1)) + tic
+const getRandomNumberInRange = (tic, toc) => Math.floor(Math.random() * (toc - tic - +1)) + tic;
 const getPlanID = (i) => {
     return {
-        "$oid": i.toString().padStart(24, 'DefacedC0ffeeBabeB0b0000')
-    }
-}
+        $oid: i.toString().padStart(24, "DefacedC0ffeeBabeB0b0000"),
+    };
+};
 const getCourseID = () => {
     return {
-        "$oid": getRandomNumberInRange(0, 39).toString(16).padStart(24, 'DefacedC0ffeeBabeB0b3000')
-    }
-}
-const semesters = ["S1", "S2", "SS"]
+        $oid: getRandomNumberInRange(0, 39).toString(16).padStart(24, "DefacedC0ffeeBabeB0b3000"),
+    };
+};
+const semesters = ["S1", "S2", "SS"];
 
-getRandomElement = (array) => array[Math.floor(Math.random() * array.length)]
+getRandomElement = (array) => array[Math.floor(Math.random() * array.length)];
 
 const createCourseAllocation = () => {
     return {
         course: getCourseID(),
         note: faker.lorem.paragraph(),
         year: getRandomNumberInRange(2020, 2035),
-        semester: getRandomElement(semesters)
-    }
+        semester: getRandomElement(semesters),
+    };
 };
 
 const createPlan = (i, program, student) => {
@@ -43,8 +43,10 @@ const createPlan = (i, program, student) => {
         startYear: getRandomNumberInRange(2019, 2024),
         endYear: getRandomNumberInRange(2025, 2050),
         completed: false,
+        createdAt: new Date().toISOString(),
+        updatedAT: new Date().toISOString(),
     };
-    student.plans = [getPlanID(i)]
+    student.plans = [getPlanID(i)];
     return newPlan;
 };
 

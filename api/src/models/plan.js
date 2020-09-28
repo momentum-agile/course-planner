@@ -49,41 +49,46 @@ const CourseAllocation = require("./course-allocation");
  *              type: string
  *            description: notes for this plan
  */
-const planSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
+const planSchema = mongoose.Schema(
+    {
+        name: {
+            type: String,
+            required: true,
+        },
+        student: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Student",
+            required: false,
+        },
+        courseAllocations: {
+            type: [CourseAllocation],
+            required: false,
+        },
+        programmeDegree: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "ProgrammeDegree",
+            required: true,
+        },
+        startYear: {
+            type: Number,
+            required: true,
+        },
+        numYears: {
+            type: Number,
+            required: true,
+        },
+        completed: {
+            type: Boolean,
+            required: true,
+        },
+        notes: {
+            type: [String],
+            required: false,
+        },
     },
-    student: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Student",
-        required: false,
+    {
+        timestamps: true,
     },
-    courseAllocations: {
-        type: [CourseAllocation],
-        required: false,
-    },
-    programmeDegree: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "ProgrammeDegree",
-        required: true,
-    },
-    startYear: {
-        type: Number,
-        required: true,
-    },
-    numYears: {
-        type: Number,
-        required: true,
-    },
-    completed: {
-        type: Boolean,
-        required: true,
-    },
-    notes: {
-        type: [String],
-        required: false
-    }
-});
+);
 
 module.exports = mongoose.model("Plan", planSchema);
