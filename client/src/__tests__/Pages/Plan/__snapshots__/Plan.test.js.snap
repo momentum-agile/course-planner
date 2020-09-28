@@ -135,7 +135,7 @@ exports[`<Plan /> 1`] = `
       >
         <button
           aria-disabled={true}
-          className="css-p3002b"
+          className="css-1bdzbzo"
           disabled={true}
           onClick={[Function]}
           type="button"
@@ -147,7 +147,7 @@ exports[`<Plan /> 1`] = `
           </p>
         </button>
         <button
-          className="css-p3002b"
+          className="css-1bdzbzo"
           onClick={[Function]}
           type="button"
         >
@@ -163,7 +163,7 @@ exports[`<Plan /> 1`] = `
       >
         <button
           aria-disabled={true}
-          className="css-p3002b"
+          className="css-1bdzbzo"
           disabled={true}
           onClick={[Function]}
           type="button"
@@ -175,7 +175,7 @@ exports[`<Plan /> 1`] = `
           </p>
         </button>
         <button
-          className="css-p3002b"
+          className="css-1bdzbzo"
           onClick={[Function]}
           type="button"
         >
@@ -183,21 +183,6 @@ exports[`<Plan /> 1`] = `
             className="css-13w9t4w"
           >
             Add Year
-          </p>
-        </button>
-      </div>
-      <div
-        className="css-ldo4d5"
-      >
-        <button
-          className="css-1x770bt"
-          onClick={[Function]}
-          type="button"
-        >
-          <p
-            className="css-13w9t4w"
-          >
-            Save
           </p>
         </button>
       </div>

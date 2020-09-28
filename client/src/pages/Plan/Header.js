@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Flex, Text } from "@chakra-ui/core";
 import { colors as c } from "../../colors";
 import { InlineEdit } from "../../components";
+import formatDistance from "date-fns/formatDistance";
 
-const Header = ({ name, programme, planName, setPlanName }) => {
+const Header = ({ name, programme, lastSaveDate, planName, setPlanName }) => {
+    const [editPlanName, setEditPlanName] = useState(planName);
+    const [timeNow, setTimeNow] = useState(new Date());
+
+    useEffect(() => {
+        setEditPlanName(planName);
+        const interval = setInterval(() => {
+            setTimeNow(new Date());
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [planName]);
+
     return (
         <Flex direction="row" p={4} justifyContent="space-around">
             {name && (
@@ -31,8 +43,21 @@ const Header = ({ name, programme, planName, setPlanName }) => {
             )}
 
             {name && (
-                <Flex align="center" justify="center">
-                    <InlineEdit title="Plan name" value={planName} onChange={(e) => setPlanName(e)} />
+                <Flex align="center" justify="center" direction={"column"}>
+                    <InlineEdit
+                        title="Plan name"
+                        value={editPlanName}
+                        onSubmit={() => setPlanName(editPlanName)}
+                        onChange={(e) => setEditPlanName(e)}
+                    />
+                    <Text>
+                        {" "}
+                        Last saved{" "}
+                        {formatDistance(lastSaveDate, timeNow, {
+                            addSuffix: true,
+                            includeSeconds: true,
+                        })}
+                    </Text>
                 </Flex>
             )}
 

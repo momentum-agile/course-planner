@@ -70,7 +70,9 @@ const useCourses = () => {
         return CoursePlannerClient.getSpecificCourse(subject, courseNumber);
     };
 
-    useEffect(() => fetchAllCourses(), []);
+    useEffect(() => {
+        fetchAllCourses();
+    }, []);
 
     const columns = useMemo(() => courseTableColumns, []);
     const data = useMemo(() => courses, [courses]);

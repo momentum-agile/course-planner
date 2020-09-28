@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Flex, Icon, Stack, Text } from "@chakra-ui/core";
 import ReactTooltip from "react-tooltip";
 import { useDrag, useDrop } from "react-dnd";
@@ -121,13 +121,18 @@ const SemesterBox = ({ semester, data, year, updateData, courses }) => {
 };
 
 const Year = ({ year, data, startYear, updateData, courses, setStartYear }) => {
+    const [editStartYear, setEditStartYear] = useState(startYear);
+    useEffect(() => {
+        setEditStartYear(startYear);
+    }, [startYear]);
     return (
         <Flex direction="column" mt={4}>
             <Flex width="100%" justify="center" align="center" marginTop="20px">
                 <InlineEdit
                     title="Year"
-                    value={startYear + year}
-                    onChange={(e) => new RegExp("^[0-9]+$").test(e) && setStartYear(e - year)}
+                    value={editStartYear + year}
+                    onSubmit={() => setStartYear(editStartYear)}
+                    onChange={(e) => new RegExp("^[0-9]+$").test(e) && setEditStartYear(e - year)}
                 />
             </Flex>
             <Flex width="100%" direction="row" marginTop="5px">

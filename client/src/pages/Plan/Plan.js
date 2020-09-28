@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Divider, Flex, Icon, Text, Textarea, Tooltip } from "@chakra-ui/core";
+import { Divider, Flex, Icon, Text, Textarea, Tooltip, useToast } from "@chakra-ui/core";
 import usePlan from "./usePlan";
 import Header from "./Header";
 import HomeIcon from "./HomeIcon";
@@ -10,20 +10,17 @@ import filter from "@mcabreradev/filter";
 import RequirementsList from "./RequirementsList";
 import { colors as c } from "../../colors";
 import Button from "@chakra-ui/core/dist/Button";
+import { useHotkeys } from "react-hotkeys-hook";
 
 const reqsToolTip = "Requirements satisfied by the plan will be ticked off and become green";
 const generateYears = (to) => (to && [...Array(to).keys()]) || [];
 
-const PlanButton = ({ text, onClick, isDisabled, bottomRight }) => {
+const PlanButton = ({ text, onClick, isDisabled }) => {
     return (
         <Button
             backgroundColor={c.whiteGrey}
             border={`2px solid ${c.uoaBlue}`}
             rounded="35px"
-            width={!bottomRight && "250px"}
-            position={bottomRight && "absolute"}
-            right={bottomRight && 10}
-            bottom={bottomRight && 8}
             height={"45px"}
             margin="10px"
             onClick={onClick}
@@ -41,18 +38,31 @@ const Plan = () => {
         student,
         realCourses,
         programme,
-        name,
-        numYears,
-        startYear,
-        courseAllocations,
         setCourseAllocations,
         setName,
         setNumYears,
         setStartYear,
         savePlan,
+        plan,
+        lastSaveDate,
     } = usePlan();
+
+    const { name, numYears, startYear, courseAllocations } = plan;
+
     const [searchTerm, setSearchTerm] = useState("");
     const [note, setNote] = useState("");
+    const toast = useToast();
+
+    useHotkeys("cmd+s, ctrl+s", (e) => {
+        e.preventDefault();
+        toast({
+            title: `Plan already saved.`,
+            description: `Course-planner auto-saves your work, so you don't have to.`,
+            status: "success",
+            duration: 1000,
+            isClosable: true,
+        });
+    });
 
     const filteredCourses = () => {
         const unique = [...new Set(courseAllocations?.map((item) => item.course))];
@@ -128,39 +138,47 @@ const Plan = () => {
             </Flex>
 
             <Flex height="100%" width="70%" direction="column">
-                <Header name={student?.name} programme={programme?.name} planName={name} setPlanName={setName} />
+                <Header
+                    name={student?.name}
+                    programme={programme?.name}
+                    lastSaveDate={lastSaveDate}
+                    planName={name}
+                    setPlanName={setName}
+                />
                 <Divider orientation="horizontal" backgroundColor={c.iceBlue} width="100%" height="2px" />
                 <Flex overflowY="scroll" direction="column">
                     <Flex justify="center" width="100%">
                         <PlanButton
                             text="Remove Previous Year"
-                            onClick={() => {
-                                setCourseAllocations(
+                            onClick={() =>
+                                savePlan(
                                     courseAllocations.map((courseAllocation) => ({
                                         // forEach iterates through an array
                                         ...courseAllocation,
                                         year: courseAllocation.year - 1,
                                     })),
-                                );
-                                setNumYears(numYears - 1);
-                                setStartYear(startYear + 1);
-                            }}
+                                    name,
+                                    numYears - 1,
+                                    startYear + 1,
+                                )
+                            }
                             isDisabled={!numYears || courseAllocations.filter((courseAllocation) => courseAllocation.year === 0).length}
                             height="60px"
                         />
                         <PlanButton
                             text="Add Previous Year"
-                            onClick={() => {
-                                setCourseAllocations(
+                            onClick={() =>
+                                savePlan(
                                     courseAllocations.map((courseAllocation) => ({
                                         // forEach iterates through an array
                                         ...courseAllocation,
                                         year: courseAllocation.year + 1,
                                     })),
-                                );
-                                setNumYears(numYears + 1);
-                                setStartYear(startYear - 1);
-                            }}
+                                    name,
+                                    numYears + 1,
+                                    startYear - 1,
+                                )
+                            }
                             height="60px"
                         />
                     </Flex>
@@ -186,9 +204,6 @@ const Plan = () => {
                             height="60px"
                         />
                         <PlanButton text="Add Year" onClick={() => setNumYears(numYears + 1)} height="60px" />
-                    </Flex>
-                    <Flex justify="center" width="100%">
-                        <PlanButton text="Save" onClick={savePlan} bottomRight />
                     </Flex>
                 </Flex>
             </Flex>

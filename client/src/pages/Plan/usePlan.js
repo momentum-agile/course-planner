@@ -53,11 +53,7 @@ const usePlan = () => {
     const { planId } = useParams();
     const [realCourses, setRealCourses] = useState([]);
     const [plan, setPlan] = useState([]);
-
-    const [numYears, setNumYears] = useState(0);
-    const [startYear, setStartYear] = useState(0);
-    const [name, setName] = useState("");
-    const [courseAllocations, setCourseAllocations] = useState([]);
+    const [lastSaveDate, setLastSaveDate] = useState(new Date());
 
     const initPage = useCallback(async () => {
         // Promise.all because we are going to have a lot of API calls
@@ -74,12 +70,6 @@ const usePlan = () => {
                 setRealCourses(realCourses);
                 setPlan(plan);
 
-                const { name, numYears, startYear, courseAllocations } = plan;
-                setName(name);
-                setNumYears(numYears);
-                setStartYear(startYear);
-                setCourseAllocations(courseAllocations);
-
                 setStudent(students.filter((s) => s._id === plan.student)[0]);
                 const programme = programs.filter((s) => s._id === plan.programmeDegree)[0];
                 setProgramme(programme);
@@ -94,25 +84,33 @@ const usePlan = () => {
         initPage();
     }, [initPage]);
 
-    const savePlan = () => {
-        CoursePlannerClient.updatePlan({ ...plan, courseAllocations, name, numYears, startYear }).then((res) => {
-            setPlan(res);
-        });
+    const updatePlan = (res) => {
+        setPlan(res);
+        setLastSaveDate(new Date());
     };
+
+    const savePlan = (courseAllocations, name, numYears, startYear) =>
+        CoursePlannerClient.updatePlan({ ...plan, courseAllocations, name, numYears, startYear }).then(updatePlan);
+
+    const setCourseAllocations = (courseAllocations) => CoursePlannerClient.updatePlan({ ...plan, courseAllocations }).then(updatePlan);
+
+    const setName = (name) => CoursePlannerClient.updatePlan({ ...plan, name }).then(updatePlan);
+
+    const setStartYear = (startYear) => CoursePlannerClient.updatePlan({ ...plan, startYear }).then(updatePlan);
+
+    const setNumYears = (numYears) => CoursePlannerClient.updatePlan({ ...plan, numYears }).then(updatePlan);
 
     return {
         student,
         realCourses,
         programme,
-        name,
-        numYears,
-        startYear,
-        courseAllocations,
+        plan,
         setCourseAllocations,
         setName,
         setNumYears,
         setStartYear,
         savePlan,
+        lastSaveDate,
     };
 };
 
