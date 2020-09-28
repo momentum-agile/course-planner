@@ -35,7 +35,6 @@ const CourseTile = ({ courseName, courses, updateData, data }) => {
         <Flex
             p={2}
             justify="center"
-            style={{ opacity }}
             align="center"
             flexDirection="row"
             borderWidth="1px"
@@ -43,17 +42,27 @@ const CourseTile = ({ courseName, courses, updateData, data }) => {
             backgroundColor={c.darkGrey}
             borderRadius="5px"
             mt="2px"
-            ref={drag}
-            cursor="pointer"
         >
-            <Text flex="1" textAlign="center" fontWeight="bold" fontSize="xl" color={c.white}>
-                {courseName}
-            </Text>
-            <ReactTooltip id={courseName} place="right" multiline html>
-                {getCourseRegulations()}
-            </ReactTooltip>
-            <Icon name="info-outline" color={c.white} data-tip data-for={courseName} />
-            <Icon name="small-close" color={c.white} onClick={() => updateData(data.filter((data) => data.course !== courseName))} />
+            <Flex ref={drag} cursor="pointer" style={{ opacity }} width="100%" direction="row" justify="center" align="center">
+                <Flex>
+                    <Text flex="1" textAlign="center" fontWeight="bold" fontSize="xl" color={c.white}>
+                        {courseName}
+                    </Text>
+                </Flex>
+            </Flex>
+            <Flex>
+                <Icon
+                    mr={4}
+                    name="small-close"
+                    color={c.white}
+                    cursor="pointer"
+                    onClick={() => updateData(data.filter((data) => data.course !== courseName))}
+                />
+                <Icon name="info-outline" color={c.white} data-tip data-for={courseName} />
+                <ReactTooltip id={courseName} place="right" multiline html>
+                    {getCourseRegulations()}
+                </ReactTooltip>
+            </Flex>
         </Flex>
     );
 };
