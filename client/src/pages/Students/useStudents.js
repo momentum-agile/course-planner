@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import CoursePlannerClient from "../../common/CoursePlannerClient";
 
 const courseTableColumns = [
@@ -25,6 +25,31 @@ const useStudents = () => {
         CoursePlannerClient.addStudent(student)
             .then(() => fetchAllStudents())
             .catch((e) => console.error(e));
+    };
+
+    const createPlanForStudent = (student, programme) => {
+        const { defaultPlan, name: programmeName, _id: programmeID } = programme;
+        const { name, upi, _id: studentID } = student;
+        return defaultPlan
+            ? CoursePlannerClient.getPlan(defaultPlan).then((res) =>
+                  CoursePlannerClient.createStudentPlan(upi, {
+                      name: `${name}'s ${programmeName} plan`,
+                      student: studentID,
+                      programmeDegree: programmeID,
+                      courseAllocations: res.courseAllocations,
+                      startYear: new Date().getFullYear() + 1,
+                      numYears: res.numYears,
+                      completed: false,
+                  }),
+              )
+            : CoursePlannerClient.createStudentPlan(upi, {
+                  name: `${name}'s ${programmeName} plan`,
+                  student: studentID,
+                  programmeDegree: programmeID,
+                  startYear: new Date().getFullYear() + 1,
+                  numYears: 1,
+                  completed: false,
+              });
     };
 
     const editStudent = (student) => {
@@ -64,7 +89,7 @@ const useStudents = () => {
     const columns = useMemo(() => courseTableColumns, []);
     const data = useMemo(() => students, [students]);
 
-    return { data, columns, programmes, plans, editStudent, deleteStudent, addStudent };
+    return { data, columns, programmes, plans, editStudent, deleteStudent, addStudent, createPlanForStudent };
 };
 
 export default useStudents;

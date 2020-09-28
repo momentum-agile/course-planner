@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Button, Flex, Select, Text } from "@chakra-ui/core";
+import { Button, Flex, Select, Text, useToast } from "@chakra-ui/core";
 import { InlineEdit, MenuWrapper } from "../../components";
 import PlanTable from "./PlanTable";
 import { colors as c } from "../../colors";
-import CoursePlannerClient from "../../common/PlansClient";
 import { useHistory } from "react-router-dom";
+import useStudents from "./useStudents";
 
 const ViewStudent = ({ student, editStudent, deleteStudent, programmes, plans }) => {
     const PlanTableColumns = [
@@ -26,11 +26,13 @@ const ViewStudent = ({ student, editStudent, deleteStudent, programmes, plans })
             accessor: (d) => d.startYear + d.numYears - 1,
         },
     ];
+    const toast = useToast();
     const history = useHistory();
     const { name, upi, id } = student;
     const [editName, setEditName] = useState(name);
     const [editUpi, setEditUpi] = useState(upi);
     const [editId, setEditId] = useState(id);
+    const { createPlanForStudent } = useStudents();
     const [programmeID, setProgrammeID] = useState("");
     const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
 
@@ -120,16 +122,21 @@ const ViewStudent = ({ student, editStudent, deleteStudent, programmes, plans })
                             paddingLeft="30px"
                             paddingRight="30px"
                             isDisabled={!programmeID}
-                            onClick={() =>
-                                CoursePlannerClient.createStudentPlan(editUpi, {
-                                    name: `${name}'s ${programmes.find((programme) => programme._id === programmeID).name} plan`,
-                                    student: student._id,
-                                    programmeDegree: programmeID,
-                                    startYear: new Date().getFullYear() + 1,
-                                    numYears: 1,
-                                    completed: false,
-                                }).then((res) => history.push(`/plan/${res._id}`))
-                            }
+                            onClick={() => {
+                                const programme = programmes.find(({ _id }) => _id === programmeID);
+                                createPlanForStudent(student, programme)
+                                    .then((res) => history.push(`/plan/${res._id}`))
+                                    .then(
+                                        programme.defaultPlan &&
+                                            toast({
+                                                title: `Default plan applied`,
+                                                description: `The default plan for the ${programme.name} programme has been applied`,
+                                                status: "success",
+                                                duration: 5000,
+                                                isClosable: true,
+                                            }),
+                                    );
+                            }}
                         >
                             <Text textAlign="center" color={c.white}>
                                 Create Plan
