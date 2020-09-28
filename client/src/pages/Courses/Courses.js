@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Heading, Button, useToast } from "@chakra-ui/core";
-import { Table, SearchBar, NavigationMenu } from "../../components";
+import { Button, Flex, Heading, useToast } from "@chakra-ui/core";
+import { NavigationMenu, SearchBar, Table } from "../../components";
 import useCourses from "./useCourses";
 import { colors as c } from "../../colors";
 import PopulateAPIModal from "./PopulateAPIModal";
 import CourseView from "./CourseView";
+import { useHistory, useParams } from "react-router-dom";
+import EmptyCourse from "./EmptyCourse";
 
 const Courses = () => {
     const toast = useToast();
@@ -16,12 +18,29 @@ const Courses = () => {
     const [populateFromUniAPI, setPopulateFromUniAPI] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
 
-    const { data, columns, createCourse, updateCourse, deleteCourse, createCoursesFromUniApi, prefillCourse } = useCourses();
+    const {
+        data,
+        columns,
+        createCourse,
+        updateCourse,
+        deleteCourse,
+        fetchAllCourses,
+        createCoursesFromUniApi,
+        prefillCourse,
+    } = useCourses();
+    const history = useHistory();
+    const { courseId } = useParams();
 
     useEffect(() => {
         setSelectedCourse(isAddingCourse ? {} : data[currRow] || {});
         setIsEditing(false);
     }, [data, currRow, isAddingCourse]);
+
+    useEffect(() => {
+        const rowID = data.findIndex((course) => course._id === courseId);
+        setCurrRow(rowID.toString());
+        setIsAddingCourse(courseId === "new");
+    }, [data, courseId]);
 
     const cancelCourse = () => {
         setIsEditing(false);
@@ -43,7 +62,7 @@ const Courses = () => {
                 return;
             }
 
-            createCourse(toSave);
+            createCourse(toSave).then((res) => fetchAllCourses().then((r) => history.push(`/courses/${res._id}`)));
             setIsAddingCourse(false);
             setCurrRow(data.length.toString());
             setSelectedCourse(toSave);
@@ -84,6 +103,7 @@ const Courses = () => {
                         onClick={() => {
                             setSelectedCourse({});
                             setIsAddingCourse(true);
+                            history.push("/courses/new");
                         }}
                         mr="10px"
                     >
@@ -123,6 +143,7 @@ const Courses = () => {
                             onClick: () => {
                                 setIsAddingCourse(false);
                                 setCurrRow(row.id);
+                                history.push(`/courses/${row.original._id}`);
                             },
                             style: {
                                 cursor: "pointer",
@@ -139,20 +160,24 @@ const Courses = () => {
 
             {/* Right side of page */}
             <Flex height="100%" width="50%" direction="column">
-                <CourseView
-                    course={selectedCourse}
-                    isNew={isAddingCourse}
-                    isEditing={isEditing || isAddingCourse}
-                    onEdit={() => setIsEditing(!isEditing)}
+                {courseId === "new" || data.find((course) => course._id === courseId) ? (
+                    <CourseView
+                        course={selectedCourse}
+                        isNew={isAddingCourse}
+                        isEditing={isEditing || isAddingCourse}
+                        onEdit={() => setIsEditing(!isEditing)}
                     onDelete={(courseCode) => {
                         deleteCourse(courseCode);
                         setSearchTerm("");
                     }}
-                    cancelUpdateCourse={cancelCourse}
-                    updateCourse={saveCourse}
-                    prefillCourse={prefillCourse}
-                    setPrefill={setSelectedCourse}
-                />
+                        cancelUpdateCourse={cancelCourse}
+                        updateCourse={saveCourse}
+                        prefillCourse={prefillCourse}
+                        setPrefill={setSelectedCourse}
+                    />
+                ) : (
+                    <EmptyCourse />
+                )}
             </Flex>
         </Flex>
     );

@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import CoursePlannerClient from "../../common/CoursePlannerClient";
 
 const courseTableColumns = [
@@ -23,17 +23,12 @@ const courseTableColumns = [
 const useCourses = () => {
     const [courses, setCourses] = useState([]);
 
-    const createCourse = (course) => {
-        CoursePlannerClient.createCourse(course)
-            .then(() => fetchAllCourses())
-            .catch((e) => console.error(e));
-    };
+    const createCourse = (course) => CoursePlannerClient.createCourse(course).catch((e) => console.error(e));
 
-    const fetchAllCourses = () => {
+    const fetchAllCourses = () =>
         CoursePlannerClient.getCourses()
             .then((res) => setCourses(res))
             .catch((e) => console.log(e));
-    };
 
     const updateCourse = (course) => {
         CoursePlannerClient.updateCourse(course)
@@ -80,7 +75,16 @@ const useCourses = () => {
     const columns = useMemo(() => courseTableColumns, []);
     const data = useMemo(() => courses, [courses]);
 
-    return { createCourse, data, columns, updateCourse, deleteCourse, createCoursesFromUniApi, prefillCourse };
+    return {
+        createCourse,
+        data,
+        columns,
+        fetchAllCourses,
+        updateCourse,
+        deleteCourse,
+        createCoursesFromUniApi,
+        prefillCourse,
+    };
 };
 
 export default useCourses;
