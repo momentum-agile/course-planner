@@ -1,9 +1,8 @@
 import React from "react";
-import { Menu, MenuButton, MenuList, MenuGroup, MenuItem, Icon, Text, Flex, IconButton } from "@chakra-ui/core";
-import { BiDotsHorizontalRounded } from "react-icons/bi";
+import { Menu, MenuButton, MenuList, MenuGroup, MenuItem, Text, Flex, IconButton } from "@chakra-ui/core";
 import { colors as c } from "../colors";
 
-const OptionsMenu = ({ onDelete, onEdit }) => {
+const ExportMenu = ({ onExportMarkdown, onExportPDF }) => {
     return (
         <Flex>
             <Menu>
@@ -11,7 +10,7 @@ const OptionsMenu = ({ onDelete, onEdit }) => {
                     <React.Fragment>
                         <MenuButton>
                             <IconButton
-                                as={BiDotsHorizontalRounded}
+                                icon="download"
                                 size="xs"
                                 _active={{ bg: c.darkBlue, color: c.whiteGrey }}
                                 _hover={isOpen ? { bg: c.darkBlue, color: c.whiteGrey } : { bg: c.lightGrey, color: c.black }}
@@ -21,16 +20,14 @@ const OptionsMenu = ({ onDelete, onEdit }) => {
                         </MenuButton>
                         <MenuList placement="bottom-end" minWidth="160px">
                             <MenuGroup>
-                                {onEdit && (
-                                    <MenuItem onClick={onEdit}>
-                                        <Icon name="edit" mr={3} />
-                                        <Text>Edit</Text>
+                                {onExportMarkdown && (
+                                    <MenuItem onClick={onExportMarkdown}>
+                                        <Text>Export to Markdown</Text>
                                     </MenuItem>
                                 )}
-                                {onDelete && (
-                                    <MenuItem onClick={onDelete}>
-                                        <Icon name="delete" mr={3} color={c.red} />
-                                        <Text color={c.red}>Delete</Text>
+                                {onExportPDF && (
+                                    <MenuItem onClick={onExportPDF}>
+                                        <Text>Export to PDF</Text>
                                     </MenuItem>
                                 )}
                             </MenuGroup>
@@ -42,4 +39,4 @@ const OptionsMenu = ({ onDelete, onEdit }) => {
     );
 };
 
-export default OptionsMenu;
+export default ExportMenu;

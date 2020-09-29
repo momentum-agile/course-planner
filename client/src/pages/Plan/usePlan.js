@@ -75,7 +75,7 @@ const usePlan = () => {
                 setProgramme(programme);
 
                 //TODO remove regubelow once regulations populated ( Below is dummy data)
-                setProgramme({ ...programme, regulations: regulations });
+                setProgramme({ ...programme });
             })
             .catch((e) => console.log(e));
     }, [planId]);

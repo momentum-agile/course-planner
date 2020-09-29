@@ -1,7 +1,8 @@
 import React from "react";
 import { useDrag } from "react-dnd";
-import { Box, Text } from "@chakra-ui/core";
+import { Box, Flex, Text } from "@chakra-ui/core";
 import { ItemTypes } from "./ItemTypes";
+import { colors as c } from "../../colors";
 
 const CoursePill = ({ courseName }) => {
     const [{ isDragging }, drag] = useDrag({
@@ -14,21 +15,12 @@ const CoursePill = ({ courseName }) => {
     const opacity = isDragging ? 0.4 : 1;
 
     return (
-        <Box
-            flex="1 1 25%"
-            height="100%"
-            background="gray"
-            borderRadius="10px"
-            borderRight="solid white"
-            maxWidth="25%"
-            marginTop="10px"
-            ref={drag}
-            style={{ opacity }}
-            cursor="pointer"
-        >
-            <Text textAlign="center" color="white">
-                {courseName}
-            </Text>
+        <Box flex="0 0 100%" borderRadius="10px" borderRight="solid white" maxWidth="33%" marginTop="10px" style={{ opacity }}>
+            <Flex p={2} cursor="pointer" width="90%" backgroundColor={c.midnightBlue} borderRadius="8px" ref={drag}>
+                <Text flex="1" textAlign="center" fontSize="xs" color={c.greyBlue} as="b">
+                    {courseName}
+                </Text>
+            </Flex>
         </Box>
     );
 };

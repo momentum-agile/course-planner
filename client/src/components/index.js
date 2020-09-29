@@ -11,6 +11,7 @@ import SingleSelect from "./SingleSelect";
 import NavigationMenu from "./NavigationMenu";
 import MenuWrapper from "./MenuWrapper";
 import OptionsMenu from "./OptionsMenu";
+import ExportMenu from "./ExportMenu";
 
 export {
     AppConfiguration,
@@ -26,4 +27,5 @@ export {
     NavigationMenu,
     OptionsMenu,
     MenuWrapper,
+    ExportMenu,
 };

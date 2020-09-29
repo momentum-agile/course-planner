@@ -1,49 +1,104 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Plan /> 1`] = `
+exports[`<Header /> 1`] = `
 <div
-  className="css-m5hsxh"
+  className="css-1f5pj3i"
 >
   <div
-    className="css-lbicpo"
+    className="css-1hnpd1e"
+  >
+    <b
+      className="css-2qtyv9"
+    >
+      HongShi
+    </b>
+    <div
+      className="css-1krwpde"
+    >
+      <div
+        className="css-j7qwjs"
+      >
+        <div
+          className="css-12ki1bh"
+        >
+          <p
+            className="css-erfz49"
+          >
+            Nisarag
+          </p>
+        </div>
+      </div>
+      <div
+        className="css-okpiwk"
+      >
+        <p
+          className="css-erfz49"
+        >
+          SOFTENG 701
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    className="css-546wq"
   >
     <div
-      className="css-k008qs"
+      className="css-1vp8jwk"
     >
-      <a
-        href="/"
-        onClick={[Function]}
-      >
-        <svg
-          className="css-1tqsd30"
-          fill="currentColor"
-          height="1em"
-          stroke="currentColor"
-          strokeWidth="0"
-          style={
-            Object {
-              "color": undefined,
-            }
-          }
-          type="button"
-          viewBox="0 0 1024 1024"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M946.5 505L534.6 93.4a31.93 31.93 0 0 0-45.2 0L77.5 505c-12 12-18.8 28.3-18.8 45.3 0 35.3 28.7 64 64 64h43.4V908c0 17.7 14.3 32 32 32H448V716h112v224h265.9c17.7 0 32-14.3 32-32V614.3h43.4c17 0 33.3-6.7 45.3-18.8 24.9-25 24.9-65.5-.1-90.5z"
-          />
-        </svg>
-      </a>
+      <div
+        className="css-1wqs3cb"
+      />
     </div>
-    <div
-      className="css-1ofqig9"
+    <p
+      className="css-m1hr3h"
     >
-      <p
-        className="css-1g1e9sz"
+       
+      Last saved
+       
+      less than 5 seconds ago
+      .
+    </p>
+  </div>
+</div>
+`;
+
+exports[`<Plan /> 1`] = `
+<div
+  className="css-i8hwud"
+>
+  <div
+    className="css-1gthsur"
+  >
+    <button
+      className="css-1cm2bz5"
+      onClick={[Function]}
+      type="button"
+    >
+      <svg
+        aria-hidden={true}
+        className="css-1im46kq"
+        focusable="false"
+        role="presentation"
+        viewBox="0 0 24 24"
       >
-        Courses
-      </p>
+        <path
+          d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+    <div
+      className="css-ul1sgz"
+    >
+      <div
+        className="css-u4p24i"
+      >
+        <p
+          className="css-1owbezk"
+        >
+          Courses
+        </p>
+      </div>
       <div
         className="css-9jn3o8"
       >
@@ -83,11 +138,17 @@ exports[`<Plan /> 1`] = `
         </div>
       </div>
       <div
-        className="css-gmuwbf"
+        className="css-1e6ma0l"
       >
         <div
-          className="css-oe0uxb"
-        />
+          className="css-1vkv7y0"
+        >
+          <p
+            className="css-o39uab"
+          >
+            No courses found.
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -95,95 +156,178 @@ exports[`<Plan /> 1`] = `
     className="css-tq7xf1"
   >
     <div
-      className="css-1sqeryc"
+      className="css-1f5pj3i"
     >
       <div
-        className="css-j7qwjs"
+        className="css-546wq"
       >
         <div
-          className="css-gmuwbf"
+          className="css-1vp8jwk"
         >
-          <p
-            className="css-1gwygh1"
+          <div
+            className="css-1wqs3cb"
           >
-            Program
-          </p>
+            <div
+              className="css-k008qs"
+            >
+              <button
+                aria-controls="menu-1"
+                aria-expanded={false}
+                aria-haspopup="menu"
+                className="css-992tcj"
+                id="menubutton-2"
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                role="button"
+              >
+                <button
+                  className="css-11orafl"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden={true}
+                    className="css-1im46kq"
+                    focusable="false"
+                    role="presentation"
+                    viewBox="0 0 14 14"
+                  >
+                    <path
+                      d="M11.2857,6.05714 L10.08571,4.85714 L7.85714,7.14786 L7.85714,1 L6.14286,1 L6.14286,7.14786 L3.91429,4.85714 L2.71429,6.05714 L7,10.42857 L11.2857,6.05714 Z M1,11.2857 L1,13 L13,13 L13,11.2857 L1,11.2857 Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </button>
+              </button>
+            </div>
+          </div>
         </div>
+        <p
+          className="css-m1hr3h"
+        >
+           
+          Last saved
+           
+          less than 5 seconds ago
+          .
+        </p>
+      </div>
+      <div
+        className="css-1hnpd1e"
+      >
+        <b
+          className="css-2qtyv9"
+        >
+          Default Plan Template
+        </b>
         <div
-          className="css-5l6ak"
+          className="css-okpiwk"
         >
           <p
             className="css-erfz49"
           />
         </div>
       </div>
-      <p
-        className="css-137ozra"
-      >
-        Default Plan
-      </p>
     </div>
-    <hr
-      aria-orientation="horizontal"
-      className="css-1gi9ej6"
-    />
     <div
-      className="css-1apjpfw"
+      className="css-1sdqtdv"
     >
       <div
-        className="css-ldo4d5"
+        className="css-1idh37p"
       >
         <button
           aria-disabled={true}
-          className="css-1bdzbzo"
+          className="css-1wf4v31"
           disabled={true}
           onClick={[Function]}
           type="button"
         >
-          <p
-            className="css-13w9t4w"
+          <svg
+            aria-hidden={true}
+            className="css-1im46kq"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
           >
-            Remove Previous Year
-          </p>
+            <g
+              fill="currentColor"
+            >
+              <rect
+                height="4"
+                width="20"
+                x="2"
+                y="10"
+              />
+            </g>
+          </svg>
         </button>
         <button
-          className="css-1bdzbzo"
+          className="css-1wf4v31"
           onClick={[Function]}
           type="button"
         >
-          <p
-            className="css-13w9t4w"
+          <svg
+            aria-hidden={true}
+            className="css-1im46kq"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
           >
-            Add Previous Year
-          </p>
+            <path
+              d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"
+              fill="currentColor"
+            />
+          </svg>
         </button>
       </div>
       <div
-        className="css-ldo4d5"
+        className="css-1mi3tt8"
+      />
+      <div
+        className="css-c2exoy"
       >
         <button
           aria-disabled={true}
-          className="css-1bdzbzo"
+          className="css-1wf4v31"
           disabled={true}
           onClick={[Function]}
           type="button"
         >
-          <p
-            className="css-13w9t4w"
+          <svg
+            aria-hidden={true}
+            className="css-1im46kq"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
           >
-            Remove Year
-          </p>
+            <g
+              fill="currentColor"
+            >
+              <rect
+                height="4"
+                width="20"
+                x="2"
+                y="10"
+              />
+            </g>
+          </svg>
         </button>
         <button
-          className="css-1bdzbzo"
+          className="css-1wf4v31"
           onClick={[Function]}
           type="button"
         >
-          <p
-            className="css-13w9t4w"
+          <svg
+            aria-hidden={true}
+            className="css-1im46kq"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
           >
-            Add Year
-          </p>
+            <path
+              d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"
+              fill="currentColor"
+            />
+          </svg>
         </button>
       </div>
     </div>

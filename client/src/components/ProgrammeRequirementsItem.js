@@ -1,8 +1,29 @@
 import React from "react";
-import { Flex, Text, Stack, PseudoBox, Tag, TagLabel } from "@chakra-ui/core";
+import { Flex, Text, Stack, PseudoBox, Tag, TagLabel, Box } from "@chakra-ui/core";
 import { colors as c } from "../colors";
+import { useDrag } from "react-dnd";
+import { ItemTypes } from "../pages/Plan/ItemTypes";
 
-const ProgrammeRequirementsItem = ({ itemNumber, pointRequirement, points, courseList, onDelete, onEdit, deleteButton }) => {
+function DraggableCourseText({ index, courseName }) {
+    const [, drag] = useDrag({
+        item: { courseName, type: ItemTypes.COURSE_REQUIREMENT_PILL },
+        collect: (monitor) => ({
+            isDragging: monitor.isDragging(),
+        }),
+    });
+
+    // TODO(Nisa + Vee): Make this DND actually work in requirements list
+
+    return (
+        <Box ref={drag}>
+            <Tag size="sm" key={index} rounded="full" variant="solid" variantColor="cyan" mr={1}>
+                <TagLabel>{courseName}</TagLabel>
+            </Tag>
+        </Box>
+    );
+}
+
+const ProgrammeRequirementsItem = ({ itemNumber, pointRequirement, points, courseList, onDelete, onEdit, deleteButton, isDrag }) => {
     const pointRequirementMap = {
         EXACTLY: "Exactly",
         ATLEAST: "At least",
@@ -29,30 +50,33 @@ const ProgrammeRequirementsItem = ({ itemNumber, pointRequirement, points, cours
             }}
             onClick={onEdit}
         >
-            <Flex justify="center" align="center">
+            <Flex justify="center" align="center" height="100%">
                 <Text textAlign="right" width="5%" mr={3} as="b" color={c.iceBlue}>
                     {itemNumber}
                 </Text>
-                <Text textAlign="left" width="13%" align="flex-start" color={c.darkBlue}>
+                <Text textAlign="left" width={!isDrag ? "13%" : "20%"} align="flex-start" color={c.darkBlue}>
                     {pointRequirementMap[pointRequirement] || ""}
                 </Text>
-                <Text textAlign="left" width="13%" color={c.darkBlue}>
+                <Text textAlign="left" width={!isDrag ? "13%" : "20%"} color={c.darkBlue}>
                     {`${points} pts`}
                 </Text>
                 <Text textAlign="left" width="8%" fontSize="10px" color={c.darkBlue}>
                     FROM
                 </Text>
-                <Stack className="programmeRequirements" textAlign="left" isInline overflowX="scroll" width="70%">
+                <Stack className="programmeRequirements" textAlign="left" isInline overflowX="scroll" width="70%" ml={isDrag && 2}>
                     <Flex mb={courseList.length > 2 ? 1 : 0}>
-                        {courseList.reverse().map((course, index) => (
-                            <Tag size="sm" key={course._id} rounded="full" variant="solid" variantColor="cyan" mr={1}>
-                                <TagLabel>{course.courseCode}</TagLabel>
-                            </Tag>
-                        ))}
+                        {courseList.reverse().map((course, index) =>
+                            isDrag ? (
+                                <DraggableCourseText index={index} courseName={course} />
+                            ) : (
+                                <Tag size="sm" key={course._id} rounded="full" variant="solid" variantColor="cyan" mr={1}>
+                                    <TagLabel>{course.courseCode}</TagLabel>
+                                </Tag>
+                            ),
+                        )}
                     </Flex>
                 </Stack>
-                {/* Buttons to be refactored  */}
-                <Flex width="7%">{deleteButton}</Flex>
+                {!isDrag && <Flex width="7%">{deleteButton}</Flex>}
             </Flex>
         </PseudoBox>
     );

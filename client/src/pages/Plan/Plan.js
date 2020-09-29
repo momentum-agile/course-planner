@@ -1,35 +1,30 @@
 import React, { useState } from "react";
-import { Divider, Flex, Icon, Text, Textarea, Tooltip, useToast } from "@chakra-ui/core";
+import { Flex, IconButton, Icon, Text, Textarea, Tooltip, useToast } from "@chakra-ui/core";
 import usePlan from "./usePlan";
 import Header from "./Header";
-import HomeIcon from "./HomeIcon";
 import Year from "./Year";
 import CoursePill from "./CoursePill";
-import { SearchBar } from "../../components";
+import { ExportMenu, MenuWrapper, SearchBar } from "../../components";
 import filter from "@mcabreradev/filter";
 import RequirementsList from "./RequirementsList";
 import { colors as c } from "../../colors";
-import Button from "@chakra-ui/core/dist/Button";
 import { useHotkeys } from "react-hotkeys-hook";
+import { useHistory } from "react-router-dom";
 
 const reqsToolTip = "Requirements satisfied by the plan will be ticked off and become green";
 const generateYears = (to) => (to && [...Array(to).keys()]) || [];
 
-const PlanButton = ({ text, onClick, isDisabled }) => {
+const PlanOptions = ({ plan, setOpenConfirmationDialog, openConfirmationDialog, onDelete, onEditName, onExport }) => {
     return (
-        <Button
-            backgroundColor={c.whiteGrey}
-            border={`2px solid ${c.uoaBlue}`}
-            rounded="35px"
-            height={"45px"}
-            margin="10px"
-            onClick={onClick}
-            isDisabled={isDisabled}
-        >
-            <Text textAlign="center" fontSize="xl" color={c.uoaBlue}>
-                {text}
-            </Text>
-        </Button>
+        <MenuWrapper
+            item={plan}
+            itemType="Plan"
+            setOpenConfirmationDialog={setOpenConfirmationDialog}
+            openConfirmationDialog={openConfirmationDialog}
+            confirm={onDelete}
+            onEdit={onEditName}
+            onExport={onExport}
+        />
     );
 };
 
@@ -48,21 +43,32 @@ const Plan = () => {
     } = usePlan();
 
     const { name, numYears, startYear, courseAllocations } = plan;
-
     const [searchTerm, setSearchTerm] = useState("");
     const [note, setNote] = useState("");
+    const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
+    const [isPlanNameEdited, setIsPlanNameEdited] = useState(false);
     const toast = useToast();
+    const history = useHistory();
 
     useHotkeys("cmd+s, ctrl+s", (e) => {
         e.preventDefault();
         toast({
-            title: `Plan already saved.`,
+            title: `Plan already saved 😎`,
             description: `Course-planner auto-saves your work, so you don't have to.`,
             status: "success",
-            duration: 1000,
+            duration: 2000,
             isClosable: true,
         });
     });
+
+    // TODO: Export Functions
+    const exportToMarkdown = (plan) => {
+        console.log("Exporting to Markdown");
+    };
+
+    const exportToPDF = (plan) => {
+        console.log("Exporting to PDF");
+    };
 
     const filteredCourses = () => {
         const unique = [...new Set(courseAllocations?.map((item) => item.course))];
@@ -73,70 +79,133 @@ const Plan = () => {
     // TODO: The programme variable's requirements should have an attribute to check
 
     return (
-        <Flex height="100vh" width="100%" direction="row" backgroundColor={c.whiteGrey}>
-            <Flex height="100%" width="30%" direction="column" backgroundColor={c.darkGrey}>
-                <HomeIcon />
+        <Flex height="100vh" width="100%" direction="row" backgroundColor={c.white}>
+            {/* LHS of Plans Page */}
+            <Flex height="100%" width="30%" direction="column" backgroundColor={c.midnightBlue} align="center">
+                <IconButton
+                    icon="arrow-back"
+                    onClick={() => history.goBack()}
+                    size="sm"
+                    position="fixed"
+                    left={3}
+                    top={1}
+                    cursor="pointer"
+                    color={c.white}
+                    bg={c.midnightBlue}
+                    _hover={{
+                        bg: c.nightBlue,
+                    }}
+                    _active={{
+                        bg: c.iceBlue,
+                    }}
+                />
 
                 {student && (
-                    <Flex direction="column" justify="center" align="center">
+                    <Flex
+                        direction="column"
+                        bg={c.nightBlue}
+                        p={5}
+                        mt={10}
+                        shadow="md"
+                        rounded="md"
+                        width="90%"
+                        height="100%"
+                        align="center"
+                        justify="center"
+                    >
                         <Flex direction="row" align="center">
-                            <Text textAlign="center" fontSize="5xl" color={c.white}>
+                            <Text width="90%" textAlign="center" fontWeight="bold" color={c.whiteGrey} fontSize="xl">
                                 Requirements
                             </Text>
-                            <Tooltip label={reqsToolTip} placement="bottom" bg={c.uoaBlue}>
-                                <Icon name="question" color={c.white} marginLeft="5px" />
+                            <Tooltip label={reqsToolTip} placement="bottom" bg={c.greyBlue} color={c.darkBlue}>
+                                <Icon name="question-outline" color={c.white} marginLeft="5px" align="center" justify="center" />
                             </Tooltip>
                         </Flex>
-
-                        <Flex align="center" justify="center" width="100%">
+                        <Flex align="center" jusatify="center" width="100%" height="100%">
                             <RequirementsList programme={programme} />
                         </Flex>
                     </Flex>
                 )}
 
-                <Flex direction="column" width="100%">
-                    <Text textAlign="center" fontSize="5xl" color={c.white}>
-                        Courses
-                    </Text>
+                <Flex
+                    direction="column"
+                    bg={c.nightBlue}
+                    p={5}
+                    mt={student ? 5 : 10}
+                    mb={student ? 0 : 5}
+                    shadow="md"
+                    rounded="md"
+                    width="90%"
+                    align="center"
+                    justify="center"
+                    height="100%"
+                >
+                    <Flex direction="row" align="center">
+                        <Text width="90%" textAlign="center" fontWeight="bold" color={c.whiteGrey} fontSize="xl">
+                            Courses
+                        </Text>
+                    </Flex>
                     <SearchBar searchCategory="Courses" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-                    <Flex align="center" justify="center">
+                    <Flex align="center" justify="center" width="100%" height="100%">
                         <Flex
-                            width="80%"
+                            height="100%"
+                            width="90%"
+                            whiteSpace="nowrap"
                             flexWrap="wrap"
                             padding="0 0 10px 10px"
                             background={c.white}
                             marginTop="20px"
                             maxHeight={!student ? "600px" : "200px"}
                             overflowY="scroll"
+                            justify="flex-start"
+                            align="flex-start"
                         >
-                            {filteredCourses() &&
+                            {filteredCourses() && filter(filteredCourses(), { courseCode: searchTerm }).length !== 0 ? (
                                 filter(filteredCourses(), { courseCode: searchTerm }).map(({ courseCode }, idx) => (
                                     <CoursePill key={idx} courseName={courseCode} />
-                                ))}
+                                ))
+                            ) : (
+                                <Text color={c.grey} fontSize="md" justifySelf="center" alignSelf="center">
+                                    No courses found.
+                                </Text>
+                            )}
                         </Flex>
                     </Flex>
+                </Flex>
 
-                    {student && (
-                        <>
-                            <Text textAlign="center" fontSize="5xl" color={c.white}>
+                {student && (
+                    <Flex
+                        direction="column"
+                        bg={c.nightBlue}
+                        p={5}
+                        mt={5}
+                        mb={5}
+                        shadow="md"
+                        rounded="md"
+                        width="90%"
+                        align="center"
+                        justify="center"
+                        height="100%"
+                    >
+                        <Flex direction="row" align="center">
+                            <Text width="90%" textAlign="center" fontWeight="bold" color={c.whiteGrey} fontSize="xl">
                                 Notes
                             </Text>
-                            <Flex align="center" justify="center">
-                                <Flex width="80%" background={c.white}>
-                                    <Textarea
-                                        placeholder="Add your note here"
-                                        size="sm"
-                                        height="200px"
-                                        value={note}
-                                        onChange={(e) => setNote(e.target.value)}
-                                    />
-                                </Flex>
-                            </Flex>
-                        </>
-                    )}
-                </Flex>
+                        </Flex>
+                        <Flex align="center" justify="center" width="100%" height="100%">
+                            <Textarea
+                                placeholder="Add a note to this plan."
+                                size="sm"
+                                value={note}
+                                onChange={(e) => setNote(e.target.value)}
+                                resize="none"
+                            />
+                        </Flex>
+                    </Flex>
+                )}
             </Flex>
 
+            {/* RHS of Plans Page */}
             <Flex height="100%" width="70%" direction="column">
                 <Header
                     name={student?.name}
@@ -144,12 +213,24 @@ const Plan = () => {
                     lastSaveDate={lastSaveDate}
                     planName={name}
                     setPlanName={setName}
+                    isEdited={isPlanNameEdited}
+                    setIsEdited={setIsPlanNameEdited}
+                    exportMenu={<ExportMenu onExportMarkdown={() => exportToMarkdown(plan)} onExportPDF={() => exportToPDF(plan)} />}
+                    optionsMenu={
+                        <PlanOptions
+                            plan={plan}
+                            setOpenConfirmationDialog={setOpenConfirmationDialog}
+                            openConfirmationDialog={openConfirmationDialog}
+                            onExport={() => console.log("Export")}
+                            onDelete={() => console.log("Delete")}
+                            onEditName={() => setIsPlanNameEdited(true)}
+                        />
+                    }
                 />
-                <Divider orientation="horizontal" backgroundColor={c.iceBlue} width="100%" height="2px" />
-                <Flex overflowY="scroll" direction="column">
-                    <Flex justify="center" width="100%">
-                        <PlanButton
-                            text="Remove Previous Year"
+                <Flex overflowY="scroll" direction="column" bg={c.lightMidnightBlue} height="100%" width="100%" align="center">
+                    <Flex justify="space-around" width="10%" align="center" mt={10}>
+                        <IconButton
+                            icon="minus"
                             onClick={() =>
                                 savePlan(
                                     courseAllocations.map((courseAllocation) => ({
@@ -163,10 +244,9 @@ const Plan = () => {
                                 )
                             }
                             isDisabled={!numYears || courseAllocations.filter((courseAllocation) => courseAllocation.year === 0).length}
-                            height="60px"
                         />
-                        <PlanButton
-                            text="Add Previous Year"
+                        <IconButton
+                            icon="add"
                             onClick={() =>
                                 savePlan(
                                     courseAllocations.map((courseAllocation) => ({
@@ -179,31 +259,31 @@ const Plan = () => {
                                     startYear - 1,
                                 )
                             }
-                            height="60px"
                         />
                     </Flex>
-                    {years().map((year, idx) => (
-                        <Year
-                            year={year}
-                            key={idx}
-                            setStartYear={setStartYear}
-                            startYear={startYear}
-                            data={courseAllocations}
-                            updateData={setCourseAllocations}
-                            courses={realCourses}
-                        />
-                    ))}
+                    <Flex direction="column" width="100%" align="center">
+                        {years().map((year, idx) => (
+                            <Year
+                                year={year}
+                                key={idx}
+                                setStartYear={setStartYear}
+                                startYear={startYear}
+                                data={courseAllocations}
+                                updateData={setCourseAllocations}
+                                courses={realCourses}
+                            />
+                        ))}
+                    </Flex>
 
-                    <Flex justify="center" width="100%">
-                        <PlanButton
-                            text="Remove Year"
+                    <Flex justify="space-around" width="10%" align="center" mt={10} mb={5}>
+                        <IconButton
+                            icon="minus"
                             onClick={() => setNumYears(numYears - 1)}
                             isDisabled={
                                 !numYears || courseAllocations.filter((courseAllocation) => courseAllocation.year === numYears - 1).length
                             }
-                            height="60px"
                         />
-                        <PlanButton text="Add Year" onClick={() => setNumYears(numYears + 1)} height="60px" />
+                        <IconButton icon="add" onClick={() => setNumYears(numYears + 1)} />
                     </Flex>
                 </Flex>
             </Flex>
