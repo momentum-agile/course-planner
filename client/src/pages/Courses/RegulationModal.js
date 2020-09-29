@@ -64,10 +64,10 @@ const customStyles = {
 
 const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg }) => {
     const [currentReg, setCurrentReg] = useState(defaultReg);
-    // Text fields
-    const [noteValue, setNoteValue] = useState("");
-
     const [outputRegulation, setOutputRegulation] = useState([]);
+
+    // Text field
+    const [noteValue, setNoteValue] = useState("");
 
     const addToolTip = "Please add an AND or OR statement before adding another course";
 
@@ -84,7 +84,7 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
         if (type === "POINTS") {
             setOutputRegulation([...outputRegulation, `${currentReg.points} points from ${currentReg.courses.join(", ")}`]);
         } else if (noteValue.length > 0 && type === "NOTE") {
-            setOutputRegulation([...outputRegulation, currentReg.courses.join(", ")]);
+            setOutputRegulation([...outputRegulation, currentReg.courses[0]]);
             setNoteValue("");
         }
         setCurrentReg(defaultReg);
@@ -105,7 +105,10 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
         setCurrentReg(newReg);
     };
 
-    const handleNoteChange = (event) => setNoteValue(event.target.value);
+    const handleNoteChange = (event) => {
+        setNoteValue(event.target.value);
+        updateReg("courses")([event.target.value], "NOTE");
+    };
 
     const handleSelectChange = (newValue, actionMeta) => {
         if (actionMeta.action === "select-option") {
@@ -189,6 +192,7 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
             : outputRegulation.length > 0 &&
               outputRegulation[outputRegulation.length - 1] !== "OR" &&
               outputRegulation[outputRegulation.length - 1] !== "AND";
+
     return (
         <>
             <Modal id="regulation-modal" isOpen={isOpen} onClose={handleClose} size="full">
@@ -196,7 +200,9 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
                 <ModalContent>
                     <ModalHeader>Add {title}</ModalHeader>
                     <ModalCloseButton />
+
                     <ModalBody>
+                        {/* Course/Note toggle */}
                         <FormControl as="fieldset">
                             <Flex align="center">
                                 <FormLabel m="2" textAlign="center" px="0">
@@ -207,8 +213,10 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
                                     Courses
                                 </FormLabel>
                             </Flex>
+
                             {toggleInput ? (
                                 <>
+                                    {/* Courses input */}
                                     <Flex m="2" flex="1">
                                         <NumberInput
                                             size="md"
@@ -250,6 +258,7 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
                                     </Flex>
                                 </>
                             ) : (
+                                // Notes input
                                 <Flex m="2">
                                     <Input
                                         id="text"
@@ -284,6 +293,7 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
                             )}
                         </FormControl>
 
+                        {/* AND/OR buttons */}
                         <Flex justify="flex-end">
                             <ButtonGroup m="2" spacing={4}>
                                 <Button
@@ -312,6 +322,8 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
                                 </Button>
                             </ButtonGroup>
                         </Flex>
+
+                        {/* Final list of regulations */}
                         <Stack
                             id="reg-stack"
                             spacing={4}
