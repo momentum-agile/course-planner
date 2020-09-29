@@ -165,9 +165,7 @@ exports[`Main Students Page 1`] = `
           <tbody
             className="css-0"
             role="rowgroup"
-          >
-            <div />
-          </tbody>
+          />
         </table>
         <div
           className="css-ol8uv0"
