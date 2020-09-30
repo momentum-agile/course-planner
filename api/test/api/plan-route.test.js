@@ -45,16 +45,16 @@ const mockPlan = {
     name: "mockPlan",
 };
 
-const programmeDegree = new ProgrammeDegree({
+const generateProgrammeDegree = () => new ProgrammeDegree({
+    _id:"56cb91bdc3464f14678934cc",
     name: "Be Hons Software Engineering",
     regulations: [newRegulation],
-    defaultPlan: mockPlan,
+    defaultPlan: "56cb91bdc3464f14678934cb",
 });
 
 const generatePlan = () =>
     new Plan({
         name: "BobsPlan",
-        student: "56cb91bdc3464f14678934cb",
         programmeDegree: "56cb91bdc3464f14678934cc",
         startYear: 2020,
         numYears: 2024,
@@ -78,17 +78,32 @@ const generateProgramme = () =>
     })
 
 describe("DELETE /plan/:id", () => {
-    it("should delete a plan given the name", async (done) => {
-        const plan = generatePlan();
-        plan.save((err, planRes) => {
-            request(app)
-                .delete(`/plan/${plan._id}`)
-                .type("json")
-                .end((_err, res) => {
-                    expect(res.statusCode).toBe(200);
-                    expect(res.body._id.toString()).toEqual(planRes._id.toString());
-                    done();
-                });
+    it("should delete a plan given the id", async (done) => {
+        const programmeDegree = new ProgrammeDegree({
+            _id:mongoose.Types.ObjectId(),
+            name: "Be Hons Software Engineering",
+            regulations: [newRegulation],
+        });
+        const plan =  new Plan({
+            _id: mongoose.Types.ObjectId(),
+            name: "BobsPlan",
+            programmeDegree: programmeDegree._id,
+            startYear: 2020,
+            numYears: 2024,
+            completed: false,
+            notes: ["this is a note", "this is the second note"]
+        });
+        programmeDegree.save((err,progRes) => {
+            plan.save((err, planRes) => {
+                request(app)
+                    .delete(`/plan/${planRes._id}`)
+                    .type("json")
+                    .end((_err, res) => {
+                        expect(res.statusCode).toBe(200);
+                        expect(res.body._id.toString()).toEqual(planRes._id.toString());
+                        done();
+                    });
+            });
         });
     });
     it("should give 404 error if the id does not exist when deleting", async (done) => {

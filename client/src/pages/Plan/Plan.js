@@ -14,13 +14,14 @@ import { useHistory } from "react-router-dom";
 const reqsToolTip = "Requirements satisfied by the plan will be ticked off and become green";
 const generateYears = (to) => (to && [...Array(to).keys()]) || [];
 
-const PlanOptions = ({ plan, setOpenConfirmationDialog, openConfirmationDialog, onDelete, onEditName, onExport }) => {
+const PlanOptions = ({ plan, setOpenConfirmationDialog, openConfirmationDialog, onDelete, onEditName, onExport, onClear }) => {
     return (
         <MenuWrapper
             item={plan}
             itemType="Plan"
             setOpenConfirmationDialog={setOpenConfirmationDialog}
             openConfirmationDialog={openConfirmationDialog}
+            onClear={onClear}
             confirm={onDelete}
             onEdit={onEditName}
             onExport={onExport}
@@ -31,7 +32,7 @@ const PlanOptions = ({ plan, setOpenConfirmationDialog, openConfirmationDialog, 
 const Plan = () => {
     const {
         student,
-        realCourses,
+        courses,
         programme,
         setCourseAllocations,
         setName,
@@ -39,6 +40,7 @@ const Plan = () => {
         setStartYear,
         savePlan,
         plan,
+        deletePlan,
         lastSaveDate,
     } = usePlan();
 
@@ -78,7 +80,8 @@ const Plan = () => {
 
     const filteredCourses = () => {
         const unique = [...new Set(courseAllocations?.map((item) => item.course))];
-        return realCourses.filter((val) => !unique.includes(val.courseCode)).concat(createElectivePlaceholder());
+        return courses.filter((val) => !unique.includes(val.courseCode)).concat(createElectivePlaceholder());
+
     };
     const years = () => generateYears(numYears);
 
@@ -225,11 +228,12 @@ const Plan = () => {
                     optionsMenu={
                         <PlanOptions
                             plan={plan}
+                            onClear={() => setCourseAllocations([])}
                             setOpenConfirmationDialog={setOpenConfirmationDialog}
                             openConfirmationDialog={openConfirmationDialog}
                             onExport={() => console.log("Export")}
-                            onDelete={() => console.log("Delete")}
-                            onEditName={() => setIsPlanNameEdited(true)}
+                            onDelete={() => deletePlan(student, programme)}
+                            onEditName={student ? () => setIsPlanNameEdited(true) : false}
                         />
                     }
                 />
@@ -276,7 +280,7 @@ const Plan = () => {
                                 startYear={startYear}
                                 data={courseAllocations}
                                 updateData={setCourseAllocations}
-                                courses={realCourses}
+                                courses={courses}
                             />
                         ))}
                     </Flex>

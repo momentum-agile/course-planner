@@ -265,18 +265,55 @@ router.post("/programmedegree/:id", async (req, res) => {
  */
 router.delete("/:id", async (req, res) => {
     Plan.findOneAndDelete({_id: req.params.id}, (err, plan) => {
-        if (err) {
-            LOGGER.error(err);
-            res.status(400).json({msg: err.message});
-        } else {
-            if (plan === null) {
-                LOGGER.error("Plan does not exist");
-                res.status(404).json({msg: "Requested object not found"});
+            if (err) {
+                LOGGER.error(err);
+                res.status(400).json({msg: err.message});
             } else {
-                LOGGER.info("DELETE request succeeded for /Plan/${req.params.id}");
-                res.status(200).json(plan);
+                if (plan === null) {
+                    LOGGER.error("Plan does not exist");
+                    res.status(404).json({msg: "Requested object not found"});
+                } else {
+                    if (plan.student) {
+                        Student.findOne({_id: plan.student}, (err, student) => {
+                                if (err) {
+                                    LOGGER.error(err);
+                                    res.status(400).json({msg: err.message});
+                                } else if (student === null) {
+                                    LOGGER.info(`No student found for /student/${req.params.upi}`);
+                                    res.status(404).json({msg: "Requested object not found"});
+                                } else {
+                                    student.plans.remove(plan._id)
+                                    LOGGER.info(student.plans)
+                                    student.save( (err, student) => {
+                                        LOGGER.info(`DELETE request succeeded for /Plan/${req.params.id}`);
+                                        res.status(200).json(plan);
+                                    });
+                                }
+                            }
+                        )
+                    } else {
+                        ProgrammeDegree.findOne({_id: plan.programmeDegree}, (err, program) => {
+                                if (err) {
+                                    LOGGER.error(err);
+                                    res.status(400).json({msg: err.message});
+                                } else if (program === null) {
+                                    LOGGER.info(`No program found for ${plan.programmeDegree}`);
+                                    res.status(404).json({msg: "Requested object not found"});
+                                } else {
+                                    program.defaultPlan = undefined
+                                    program.save( (err, program) => {
+                                        LOGGER.info(`DELETE request succeeded for /Plan/${req.params.id}`);
+                                        res.status(200).json(plan);
+                                    });
+                                }
+                            }
+                        )
+                    }
+                }
             }
         }
-    });
-});
+    )
+    ;
+})
+;
 module.exports = router;

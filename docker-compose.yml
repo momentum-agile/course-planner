@@ -26,7 +26,7 @@ services:
   mongo:
     image: "mongo:latest"
     ports:
-      - "27017:27017"
+      - "27018:27017"
     volumes:
       - mongodb:/data/db # persist database between restarts
     logging:

@@ -85,7 +85,7 @@ const Header = ({ name, programme, lastSaveDate, planName, setPlanName, optionsM
             <Flex direction="column" justify="space-between" height="100%" width="15%" align="flex-end" position="fixed" right={5}>
                 <Flex direction="row" justify="center">
                     <Flex mr={1}>{exportMenu}</Flex>
-                    {name && optionsMenu}
+                    {optionsMenu}
                 </Flex>
 
                 <Text justify="center" height="100%" textAlign="right" mt={20} color={c.grey} fontSize="sm">

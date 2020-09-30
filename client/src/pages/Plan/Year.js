@@ -165,8 +165,7 @@ const Year = ({ year, data, startYear, updateData, courses, setStartYear }) => {
                                 width="70%"
                                 size="lg"
                                 value={editStartYear + year}
-                                // TODO (Dalton): Add editing functionality to years
-                                // onChange={(e) => new RegExp("^[0-9]+$").test(e) && setEditStartYear(e - year)}
+                                onChange={(e) => new RegExp("^[0-9]{0,4}$").test(e.target.value) && setEditStartYear(e.target.value - year)}
                                 mb={2}
                             />
                             <Flex direction="column" ml={5}>

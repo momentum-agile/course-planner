@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import CoursePlannerClient from "../../common/CoursePlannerClient";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 const regulations = [
     {
@@ -51,7 +51,7 @@ const usePlan = () => {
     const [student, setStudent] = useState();
     const [programme, setProgramme] = useState({ regulations });
     const { planId } = useParams();
-    const [realCourses, setRealCourses] = useState([]);
+    const [courses, setCourses] = useState([]);
     const [plan, setPlan] = useState([]);
     const [lastSaveDate, setLastSaveDate] = useState(new Date());
 
@@ -66,8 +66,8 @@ const usePlan = () => {
             CoursePlannerClient.getProgrammes(),
         ])
             .then((values) => {
-                const [realCourses, plan, students, programs] = values;
-                setRealCourses(realCourses);
+                const [courses, plan, students, programs] = values;
+                setCourses(courses);
                 setPlan(plan);
 
                 setStudent(students.filter((s) => s._id === plan.student)[0]);
@@ -99,10 +99,17 @@ const usePlan = () => {
     const setStartYear = (startYear) => CoursePlannerClient.updatePlan({ ...plan, startYear }).then(updatePlan);
 
     const setNumYears = (numYears) => CoursePlannerClient.updatePlan({ ...plan, numYears }).then(updatePlan);
+    const history = useHistory();
 
+    //TODo implement routing for student
+    const deletePlan = (student, programme) =>
+        CoursePlannerClient.deletePlan(plan._id).then(() =>
+            student ? history.push(`/students`) : history.push(`/programmes/${programme._id}`),
+        );
     return {
         student,
-        realCourses,
+        deletePlan,
+        courses,
         programme,
         plan,
         setCourseAllocations,

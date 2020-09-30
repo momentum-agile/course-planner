@@ -2,10 +2,11 @@ import React from "react";
 import { Flex, Text } from "@chakra-ui/core";
 import { colors as c } from "../../colors";
 import { ProgrammeRequirementsItem } from "../../components";
+import usePlan from "./usePlan";
 
 const RequirementsList = ({ programme }) => {
     const regulations = programme.regulations;
-
+    const { courses } = usePlan();
     return (
         <Flex
             direction="column"
@@ -23,7 +24,7 @@ const RequirementsList = ({ programme }) => {
                         itemNumber={i + 1}
                         pointRequirement={reg.pointRequirement}
                         points={reg.points}
-                        courseList={reg.courses}
+                        courseList={courses.filter((course) => reg.courses.includes(course._id)).map((course) => course.courseCode)}
                         isDrag={true}
                     />
                 ))

@@ -55,12 +55,13 @@ const ViewStudent = ({ student, editStudent, deleteStudent, programmes, plans })
         editStudent(newStudent);
     };
     const studentPlans = () =>
-        student && student.plans && plans.length
+        student && student.plans && plans.length > 0
             ? student.plans
                   .map((id) => plans && plans.find((plan) => plan._id === id))
                   .map((plan) => ({
                       ...plan,
                       programmeName:
+                          plan &&
                           programmes.find((programme) => programme._id === plan.programmeDegree) &&
                           programmes.find((programme) => programme._id === plan.programmeDegree).name,
                   }))
