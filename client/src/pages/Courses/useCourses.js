@@ -11,7 +11,7 @@ const courseTableColumns = [
         accessor: "name",
     },
     {
-        Header: "Semester",
+        Header: "Semester(s)",
         accessor: (d) => d.semester.join(", "),
     },
     {

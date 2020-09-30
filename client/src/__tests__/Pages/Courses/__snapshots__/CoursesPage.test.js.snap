@@ -2,7 +2,7 @@
 
 exports[`<Courses /> 1`] = `
 <div
-  className="css-c70k8d"
+  className="css-bulmef"
 >
   <div
     className="css-il7sii"
@@ -156,7 +156,7 @@ exports[`<Courses /> 1`] = `
                 <p
                   className="css-7woomv"
                 >
-                  Semester
+                  Semester(s)
                 </p>
               </th>
               <th
@@ -195,11 +195,11 @@ exports[`<Courses /> 1`] = `
     <div
       className="css-lt6aye"
     >
-      <i
+      <p
         className="css-1fwnx19"
       >
-        Create or select a Course to view its information here.
-      </i>
+        Create or select a Course to view its information here
+      </p>
     </div>
   </div>
 </div>

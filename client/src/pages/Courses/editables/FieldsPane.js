@@ -1,10 +1,9 @@
 import React from "react";
 import { Flex, Text } from '@chakra-ui/core';
-import { OptionsMenu } from "../../../components"
+import { OptionsMenu, SaveCancelButtonSet } from "../../../components"
 import TextField from './TextField';
 import SemesterField from './SemesterField';
 import PointsField from './PointsField';
-import SaveCancelButtonSet from "./SaveCancelButtonSet";
 import { colors as c } from "../../../colors";
 
 

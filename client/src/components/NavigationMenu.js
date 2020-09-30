@@ -13,7 +13,7 @@ const NavigationMenu = () => {
 
     return (
         <Menu>
-            <MenuButton as={IconButton} icon={GiHamburgerMenu} bg="transparent" color={path === "" || path === "students" ? c.darkBlue : c.lightBlue} />
+            <MenuButton as={IconButton} icon={GiHamburgerMenu} bg="transparent" color={path === "" ? c.darkBlue : c.lightBlue} />
 
             <MenuList bg={c.darkBlue}>
                 <Text paddingLeft="10px" paddingBottom="10px" fontWeight="bold" color={c.lightBlue}>

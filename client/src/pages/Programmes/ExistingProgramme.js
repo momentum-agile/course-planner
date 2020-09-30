@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button, Flex, Icon, IconButton, Input, Stack, Text } from "@chakra-ui/core";
-import { ConfirmationDialog, MenuWrapper, OutlineButton, ProgrammeRequirementsItem } from "../../components";
+import { ConfirmationDialog, MenuWrapper, OutlineButton, ProgrammeRequirementsItem, SaveCancelButtonSet } from "../../components";
 import { useHistory } from "react-router-dom";
 import useProgrammmes from "./useProgrammes";
 import useCourses from "../Courses/useCourses";
 import { colors as c } from "../../colors";
 import InlineRegulations from "./InlineRegulations";
-import SaveCancelButtonSet from "../Courses/editables/SaveCancelButtonSet";
 
 const ExistingProgramme = ({ programme, notifyUpdate }) => {
     const history = useHistory();

@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex, Button } from "@chakra-ui/core";
-import { colors as c } from "../../../colors";
+import { colors as c } from "../colors";
 
 const SaveCancelButtonSet = ({ onCancel, onSave, isActive }) => {
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { useTable } from "react-table";
 import { Box, Text } from "@chakra-ui/core";
-import { colors as c } from "../../colors";
+import { colors as c } from "../../../colors";
 import { useHistory } from "react-router-dom";
 
 const PlanTable = ({ columns, data }) => {

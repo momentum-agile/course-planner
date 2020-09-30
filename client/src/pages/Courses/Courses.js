@@ -9,14 +9,17 @@ import { useHistory, useParams } from "react-router-dom";
 import EmptyCourse from "./EmptyCourse";
 
 const Courses = () => {
+    const history = useHistory();
+    const { courseId } = useParams();
     const toast = useToast();
 
     const [currRow, setCurrRow] = useState("0");
+    const [prevRow, setPrevRow] = useState("0");
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCourse, setSelectedCourse] = useState({});
     const [isAddingCourse, setIsAddingCourse] = useState(false);
-    const [populateFromUniAPI, setPopulateFromUniAPI] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
+    const [populateFromUniAPI, setPopulateFromUniAPI] = useState(false);
 
     const {
         data,
@@ -28,8 +31,6 @@ const Courses = () => {
         createCoursesFromUniApi,
         prefillCourse,
     } = useCourses();
-    const history = useHistory();
-    const { courseId } = useParams();
 
     useEffect(() => {
         setSelectedCourse(isAddingCourse ? {} : data[currRow] || {});
@@ -46,6 +47,7 @@ const Courses = () => {
         setIsEditing(false);
         setSelectedCourse(selectedCourse === {} ? data[parseInt(currRow)] : { ...selectedCourse });
         setIsAddingCourse(false);
+        history.push(`/courses/${data.length > 1 ? data[prevRow]._id : ""}`);
     };
 
     const saveCourse = (toSave) => {
@@ -76,11 +78,18 @@ const Courses = () => {
         } else {
             updateCourse(toSave);
         }
+
         setSearchTerm("");
     };
 
+    const onDelete = (courseCode) => {
+        deleteCourse(courseCode);
+        setSearchTerm("");
+        history.push("/courses");
+    };
+
     return (
-        <Flex direction="row" bg={c.midnightBlue}>
+        <Flex bg={c.midnightBlue}>
             {/* Left side of page */}
             <Flex width="50%" direction="column">
                 <Flex left="1px" justify="flex-start">
@@ -143,6 +152,7 @@ const Courses = () => {
                             onClick: () => {
                                 setIsAddingCourse(false);
                                 setCurrRow(row.id);
+                                setPrevRow(row.id);
                                 history.push(`/courses/${row.original._id}`);
                             },
                             style: {
@@ -166,10 +176,7 @@ const Courses = () => {
                         isNew={isAddingCourse}
                         isEditing={isEditing || isAddingCourse}
                         onEdit={() => setIsEditing(!isEditing)}
-                    onDelete={(courseCode) => {
-                        deleteCourse(courseCode);
-                        setSearchTerm("");
-                    }}
+                        onDelete={onDelete}
                         cancelUpdateCourse={cancelCourse}
                         updateCourse={saveCourse}
                         prefillCourse={prefillCourse}

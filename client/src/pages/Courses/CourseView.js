@@ -24,7 +24,6 @@ const fields = {
  * @param {function} prefillCourse Callback function to call when trying to auto-generate a course from the code
  */
 const CourseView = ({ course, isNew, isEditing, onEdit, onDelete, cancelUpdateCourse, updateCourse, prefillCourse, setPrefill }) => {
-
     const [code, setCode] = useState("");
     const [name, setName] = useState("");
     const [desc, setDesc] = useState("");

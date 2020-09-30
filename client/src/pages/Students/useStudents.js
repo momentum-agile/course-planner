@@ -21,19 +21,18 @@ const useStudents = () => {
     const [programmes, setProgrammes] = useState([]);
     const [plans, setPlans] = useState([]);
 
-    const addStudent = (student) => {
+    const createStudent = (student) =>
         CoursePlannerClient.addStudent(student)
             .then(() => fetchAllStudents())
             .catch((e) => console.error(e));
-    };
 
-    const createPlanForStudent = (student, programme) => {
-        const { defaultPlan, name: programmeName, _id: programmeID } = programme;
-        const { name, upi, _id: studentID } = student;
+    const createPlanForStudent = (student, planName, programme) => {
+        const { defaultPlan, _id: programmeID } = programme;
+        const { upi, _id: studentID } = student;
         return defaultPlan
             ? CoursePlannerClient.getPlan(defaultPlan).then((res) =>
                   CoursePlannerClient.createStudentPlan(upi, {
-                      name: `${name}'s ${programmeName} plan`,
+                      name: planName,
                       student: studentID,
                       programmeDegree: programmeID,
                       courseAllocations: res.courseAllocations,
@@ -43,7 +42,7 @@ const useStudents = () => {
                   }),
               )
             : CoursePlannerClient.createStudentPlan(upi, {
-                  name: `${name}'s ${programmeName} plan`,
+                  name: planName,
                   student: studentID,
                   programmeDegree: programmeID,
                   startYear: new Date().getFullYear() + 1,
@@ -52,14 +51,14 @@ const useStudents = () => {
               });
     };
 
-    const editStudent = (student) => {
+    const updateStudent = (student) => {
         CoursePlannerClient.editStudent(student)
             .then(() => fetchAllStudents())
             .catch((e) => console.error(e));
     };
 
     const deleteStudent = (upi) => {
-        CoursePlannerClient.deleteStudent(upi)
+        return CoursePlannerClient.deleteStudent(upi)
             .then(() => fetchAllStudents())
             .catch((e) => console.error(e));
     };
@@ -67,7 +66,7 @@ const useStudents = () => {
     const fetchAllStudents = () => {
         CoursePlannerClient.getStudents()
             .then((res) => setStudents(res))
-            .catch((e) => console.error(e));
+            .catch((e) => (e.msg === "Requested objects not found" ? setStudents([]) : console.error(e.msg)));
     };
     const fetchAllPrograms = () => {
         CoursePlannerClient.getProgrammes()
@@ -89,7 +88,7 @@ const useStudents = () => {
     const columns = useMemo(() => courseTableColumns, []);
     const data = useMemo(() => students, [students]);
 
-    return { data, columns, programmes, plans, editStudent, deleteStudent, addStudent, createPlanForStudent };
+    return { data, columns, programmes, plans, updateStudent, deleteStudent, createStudent, createPlanForStudent };
 };
 
 export default useStudents;

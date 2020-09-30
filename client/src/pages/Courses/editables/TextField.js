@@ -35,79 +35,77 @@ const TextField = ({ isRequired = false, name, title, value, isEditing, onChange
     };
 
 
-    return (
+    return (!isEditing
+        ? (
+            <Box>
+                {name === "code"
+                    ? (
+                        <Flex justify="center" pt="10px" pb="3px">
+                            <Text fontSize="25px" color={c.white} bg={c.teal} p="8px" borderRadius="20px">
+                                {value}
+                            </Text>
+                        </Flex>
+                    ) : (
+                        <Box>
+                            <Text color={c.darkBlue} fontWeight="bold">
+                                {title[0].toUpperCase() + title.substring(1)}
+                            </Text>
+                            <Text p="8px">
+                                {value}
+                            </Text>
+                        </Box>
+                    )}
 
-        !isEditing
-            ? (
-                <Box>
-                    {name === "code"
+                <Divider borderColor={c.grey} />
+            </Box>
+        ) : (
+            <FormControl isRequired={isRequired} pt="4px">
+                <FormLabel color={c.darkBlue} fontWeight="bold">
+                    {title[0].toUpperCase() + title.substring(1)}
+                </FormLabel>
+
+                <Flex>
+                    {name === "desc"
                         ? (
-                            <Flex justify="center" pt="10px" pb="3px">
-                                <Text fontSize="25px" color={c.white} bg={c.teal} p="8px" borderRadius="20px">
-                                    {value}
-                                </Text>
-                            </Flex>
+                            <Textarea
+                                overflowWrap="break-word"
+                                placeholder={placeholders[title]}
+                                value={value}
+                                onChange={e => onChange(name, e.target.value)}
+                                maxWidth={name === "code" ? "50%" : null}
+                            />
                         ) : (
-                            <Box>
-                                <Text color={c.darkBlue} fontWeight="bold">
-                                    {title[0].toUpperCase() + title.substring(1)}
-                                </Text>
-                                <Text p="8px">
-                                    {value}
-                                </Text>
-                            </Box>
+                            <Input
+                                overflowWrap="break-word"
+                                placeholder={placeholders[title]}
+                                value={value}
+                                onChange={e => onChange(name, e.target.value)}
+                                maxWidth={name === "code" ? "50%" : null}
+                            />
                         )}
 
-                    <Divider borderColor={c.grey} />
-                </Box>
-            ) : (
-                <FormControl isRequired={isRequired} pt="4px">
-                    <FormLabel color={c.darkBlue} fontWeight="bold">
-                        {title[0].toUpperCase() + title.substring(1)}
-                    </FormLabel>
-
-                    <Flex>
-                        {name === "desc"
-                            ? (
-                                <Textarea
-                                    overflowWrap="break-word"
-                                    placeholder={placeholders[title]}
-                                    value={value}
-                                    onChange={e => onChange(name, e.target.value)}
-                                    maxWidth={name === "code" ? "50%" : null}
-                                />
-                            ) : (
-                                <Input
-                                    overflowWrap="break-word"
-                                    placeholder={placeholders[title]}
-                                    value={value}
-                                    onChange={e => onChange(name, e.target.value)}
-                                    maxWidth={name === "code" ? "50%" : null}
-                                />
-                            )}
-
-                        {name === "code" && (
-                            <Flex>
-                                <Button
-                                    isDisabled={!value || !isValidCourseCode}
-                                    onClick={handlePrefill}
-                                    ml="10px"
-                                    bg={c.midnightBlue}
-                                    color={c.whiteGrey}
-                                    _hover={{ bg: !value || !isValidCourseCode ? null : c.lightBlue }}
-                                >
-                                    Auto-Fill Course
+                    {name === "code" && (
+                        <Flex>
+                            <Button
+                                isDisabled={!value || !isValidCourseCode}
+                                onClick={handlePrefill}
+                                ml="10px"
+                                bg={c.midnightBlue}
+                                color={c.whiteGrey}
+                                _hover={{ bg: !value || !isValidCourseCode ? null : c.lightBlue }}
+                            >
+                                Auto-Fill Course
                                 </Button>
-                                <Flex ml="4px" >
-                                    <Tooltip hasArrow label={autoGenerateToolTip} bg={c.lightGrey} color={c.midnightBlue} placement="bottom">
-                                        <Icon name="question-outline" color={c.midnightBlue} />
-                                    </Tooltip>
-                                </Flex>
+                            <Flex ml="4px" >
+                                <Tooltip hasArrow label={autoGenerateToolTip} bg={c.lightGrey} color={c.midnightBlue} placement="bottom">
+                                    <Icon name="question-outline" color={c.midnightBlue} />
+                                </Tooltip>
                             </Flex>
-                        )}
-                    </Flex>
-                </FormControl>
-            )
+                        </Flex>
+                    )}
+                </Flex>
+            </FormControl>
+        )
     );
 }
 

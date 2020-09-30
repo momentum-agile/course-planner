@@ -6,7 +6,7 @@ import { colors as c } from "../../../colors";
 
 const regMap = {
     "Prerequisites": {
-        button: "Prequisites", tooltip: "Requirements or courses that must be completed prior to taking this one"
+        button: "Prerequisites", tooltip: "Requirements or courses that must be completed prior to taking this one"
     },
     "Corequisites": {
         button: "Corequisites", tooltip: "Requirements or courses that must be completed prior to or at the same time as this one"
@@ -97,7 +97,7 @@ const RegulationTable = ({ name, updateCourse, course, regulationList }) => {
                 updateCourse={updateCourse}
                 course={course}
                 editReg={regulation}
-            ></RegulationModal>
+            />
 
             <Stack w="100%">
                 {regulationList && regulationList.length > 0

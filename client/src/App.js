@@ -10,6 +10,7 @@ const App = () => {
                 <Route exact path="/programmes/" component={Programmes} />
                 <Route path="/programmes/:id" component={Programmes} />
                 <Route exact path="/students" component={Students} />
+                <Route exact path="/students/:upi" component={Students} />
                 <Route exact path="/courses" component={Courses} />
                 <Route exact path="/courses/:courseId" component={Courses} />
                 <Route exact path="/plan/:studentId/:planId" component={Plan} />
