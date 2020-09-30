@@ -59,7 +59,7 @@ const CourseTile = ({ courseName, courses, updateData, data }) => {
             <Flex ref={drag} cursor="pointer" style={{ opacity }} width="100%" direction="row" justify="center" align="center">
                 <Flex>
                     <Text flex="1" textAlign="center" fontWeight="bold" fontSize="xl" color={c.greyBlue}>
-                        {courseName}
+                        {!isNaN(courseName) ? "Placeholder" : courseName}
                     </Text>
                 </Flex>
             </Flex>

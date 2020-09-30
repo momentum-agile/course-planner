@@ -18,7 +18,7 @@ const CoursePill = ({ courseName }) => {
         <Box flex="0 0 100%" borderRadius="10px" borderRight="solid white" maxWidth="33%" marginTop="10px" style={{ opacity }}>
             <Flex p={2} cursor="pointer" width="90%" backgroundColor={c.midnightBlue} borderRadius="8px" ref={drag}>
                 <Text flex="1" textAlign="center" fontSize="xs" color={c.greyBlue} as="b">
-                    {courseName}
+                    {!isNaN(courseName) ? "Placeholder" : courseName}
                 </Text>
             </Flex>
         </Box>

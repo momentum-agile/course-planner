@@ -61,6 +61,12 @@ const Plan = () => {
         });
     });
 
+    const createElectivePlaceholder = () => {
+        const electivePlaceholders = courseAllocations?.filter((courseAllocation) => !isNaN(courseAllocation.course));
+        const code = Math.max(electivePlaceholders?.length ? electivePlaceholders?.map((elective) => parseInt(elective.course)) : [0]) + 1;
+        return { courseCode: code };
+    };
+
     // TODO: Export Functions
     const exportToMarkdown = (plan) => {
         console.log("Exporting to Markdown");
@@ -72,7 +78,7 @@ const Plan = () => {
 
     const filteredCourses = () => {
         const unique = [...new Set(courseAllocations?.map((item) => item.course))];
-        return realCourses.filter((val) => !unique.includes(val.courseCode));
+        return realCourses.filter((val) => !unique.includes(val.courseCode)).concat(createElectivePlaceholder());
     };
     const years = () => generateYears(numYears);
 
