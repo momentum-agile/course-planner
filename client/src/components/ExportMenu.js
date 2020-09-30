@@ -2,7 +2,7 @@ import React from "react";
 import { Menu, MenuButton, MenuList, MenuGroup, MenuItem, Text, Flex, IconButton } from "@chakra-ui/core";
 import { colors as c } from "../colors";
 
-const ExportMenu = ({ onExportMarkdown, onExportPDF }) => {
+const ExportMenu = ({ onExportMarkdown, onExportJson }) => {
     return (
         <Flex>
             <Menu>
@@ -25,9 +25,9 @@ const ExportMenu = ({ onExportMarkdown, onExportPDF }) => {
                                         <Text>Export to Markdown</Text>
                                     </MenuItem>
                                 )}
-                                {onExportPDF && (
-                                    <MenuItem onClick={onExportPDF}>
-                                        <Text>Export to PDF</Text>
+                                {onExportJson && (
+                                    <MenuItem onClick={onExportJson}>
+                                        <Text>Export to JSON</Text>
                                     </MenuItem>
                                 )}
                             </MenuGroup>

@@ -10,6 +10,9 @@ import RequirementsList from "./RequirementsList";
 import { colors as c } from "../../colors";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useHistory } from "react-router-dom";
+import json2md from "json2md";
+import { parsePlanWithStudent } from "./JsonCustomConverter";
+import fileDownload from "js-file-download";
 
 const reqsToolTip = "Requirements satisfied by the plan will be ticked off and become green";
 const generateYears = (to) => (to && [...Array(to).keys()]) || [];
@@ -69,19 +72,18 @@ const Plan = () => {
         return { courseCode: code };
     };
 
-    // TODO: Export Functions
-    const exportToMarkdown = (plan) => {
-        console.log("Exporting to Markdown");
+    const exportToMarkdown = () => {
+        const customPlan = parsePlanWithStudent(plan, student, programme, startYear);
+        fileDownload(json2md(customPlan), `${student.name}-${plan.name}.md`);
     };
 
-    const exportToPDF = (plan) => {
-        console.log("Exporting to PDF");
+    const exportToJSON = async () => {
+        fileDownload(JSON.stringify(plan), `${student.name}-${plan.name}.json`);
     };
 
     const filteredCourses = () => {
         const unique = [...new Set(courseAllocations?.map((item) => item.course))];
         return courses.filter((val) => !unique.includes(val.courseCode)).concat(createElectivePlaceholder());
-
     };
     const years = () => generateYears(numYears);
 
@@ -224,7 +226,9 @@ const Plan = () => {
                     setPlanName={setName}
                     isEdited={isPlanNameEdited}
                     setIsEdited={setIsPlanNameEdited}
-                    exportMenu={<ExportMenu onExportMarkdown={() => exportToMarkdown(plan)} onExportPDF={() => exportToPDF(plan)} />}
+                    exportMenu={
+                        student && <ExportMenu onExportMarkdown={() => exportToMarkdown(plan)} onExportJson={() => exportToJSON(plan)} />
+                    }
                     optionsMenu={
                         <PlanOptions
                             plan={plan}

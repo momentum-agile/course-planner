@@ -34,10 +34,10 @@ const ProgrammeDegree = require("../models/programme-degree");
  *
  */
 router.get("/:id", async (req, res) => {
-    Plan.findOne({_id: req.params.id}, (err, plan) => {
+    Plan.findOne({ _id: req.params.id }, (err, plan) => {
         if (err) {
             LOGGER.error(err);
-            res.status(400).json({msg: err.message});
+            res.status(400).json({ msg: err.message });
         } else {
             if (plan === null) {
                 LOGGER.info(`No plan found for /plan/${req.params.id}`);
@@ -50,6 +50,7 @@ router.get("/:id", async (req, res) => {
         }
     });
 });
+
 // GET All Plans
 /**
  * @swagger
@@ -77,7 +78,7 @@ router.get("/", async (req, res) => {
     Plan.find({}, (err, plans) => {
         if (err) {
             LOGGER.error(err);
-            res.status(400).json({msg: err.message});
+            res.status(400).json({ msg: err.message });
         } else {
             if (plans.length <= 0) {
                 LOGGER.info("No plans found");
@@ -116,10 +117,10 @@ router.get("/", async (req, res) => {
  *          description: Database error
  */
 router.put("/", async (req, res) => {
-    Plan.findByIdAndUpdate(req.body._id, req.body, {upsert: "true"}, (err, plan) => {
+    Plan.findByIdAndUpdate(req.body._id, req.body, { upsert: "true" }, (err, plan) => {
         if (err) {
             LOGGER.error(err);
-            res.status(400).json({msg: err.message});
+            res.status(400).json({ msg: err.message });
         } else {
             //change to send the updated plan, rather than the old plan
             Plan.findById(plan._id, (err, updatedPlan) => {
@@ -153,29 +154,29 @@ router.put("/", async (req, res) => {
  *          description: No student found
  */
 router.post("/student/:upi", async (req, res) => {
-    Student.findOne({upi: req.params.upi}, (err, student) => {
+    Student.findOne({ upi: req.params.upi }, (err, student) => {
         if (err) {
             LOGGER.error(err);
-            res.status(400).json({msg: err.message});
+            res.status(400).json({ msg: err.message });
         } else {
             if (student === null) {
                 LOGGER.info(`No student found for /student/${req.params.upi}`);
-                res.status(404).json({msg: "Requested object not found"});
+                res.status(404).json({ msg: "Requested object not found" });
             } else {
                 const newPlan = new Plan(req.body);
                 newPlan.save((err, plan) => {
                     if (err) {
                         LOGGER.error(err);
-                        res.status(400).json({msg: err.message});
+                        res.status(400).json({ msg: err.message });
                     } else {
                         LOGGER.info("POST request succeeded for /Plan/student");
                         LOGGER.debug(plan);
 
                         // Create plan array if it doesnt exist
-                        const plans = student.plans || []
-                        const updatedPlans = plans.concat(plan._id)
-                        student.plans = updatedPlans
-                        Student.findByIdAndUpdate(student._id, student, {upsert: "true"}, (err, student) => {
+                        const plans = student.plans || [];
+                        const updatedPlans = plans.concat(plan._id);
+                        student.plans = updatedPlans;
+                        Student.findByIdAndUpdate(student._id, student, { upsert: "true" }, (err, student) => {
                             res.status(201).json(plan);
                         });
                     }
@@ -207,26 +208,26 @@ router.post("/student/:upi", async (req, res) => {
  *          description: No programme found
  */
 router.post("/programmedegree/:id", async (req, res) => {
-    ProgrammeDegree.findOne({_id: req.params.id}, (err, programmedegree) => {
-        console.log(programmedegree)
+    ProgrammeDegree.findOne({ _id: req.params.id }, (err, programmedegree) => {
+        console.log(programmedegree);
         if (err) {
             LOGGER.error(err);
-            res.status(400).json({msg: err.message});
+            res.status(400).json({ msg: err.message });
         } else {
             if (programmedegree === null) {
                 LOGGER.info(`No programmedegree found for /programmedegree/${req.params.id}`);
-                res.status(404).json({msg: "Requested object not found"});
+                res.status(404).json({ msg: "Requested object not found" });
             } else {
                 const newPlan = new Plan(req.body);
                 newPlan.save((err, plan) => {
                     if (err) {
                         LOGGER.error(err);
-                        res.status(400).json({msg: err.message});
+                        res.status(400).json({ msg: err.message });
                     } else {
                         LOGGER.info("POST request succeeded for /Plan/programmedegree");
                         LOGGER.debug(plan);
-                        programmedegree.defaultPlan = plan._id
-                        ProgrammeDegree.findByIdAndUpdate(programmedegree._id, programmedegree, {upsert: "true"}, (err, programme) => {
+                        programmedegree.defaultPlan = plan._id;
+                        ProgrammeDegree.findByIdAndUpdate(programmedegree._id, programmedegree, { upsert: "true" }, (err, programme) => {
                             res.status(201).json(plan);
                         });
                     }
@@ -264,56 +265,51 @@ router.post("/programmedegree/:id", async (req, res) => {
  *          description: Database error (internal)
  */
 router.delete("/:id", async (req, res) => {
-    Plan.findOneAndDelete({_id: req.params.id}, (err, plan) => {
-            if (err) {
-                LOGGER.error(err);
-                res.status(400).json({msg: err.message});
+    Plan.findOneAndDelete({ _id: req.params.id }, (err, plan) => {
+        if (err) {
+            LOGGER.error(err);
+            res.status(400).json({ msg: err.message });
+        } else {
+            if (plan === null) {
+                LOGGER.error("Plan does not exist");
+                res.status(404).json({ msg: "Requested object not found" });
             } else {
-                if (plan === null) {
-                    LOGGER.error("Plan does not exist");
-                    res.status(404).json({msg: "Requested object not found"});
+                if (plan.student) {
+                    Student.findOne({ _id: plan.student }, (err, student) => {
+                        if (err) {
+                            LOGGER.error(err);
+                            res.status(400).json({ msg: err.message });
+                        } else if (student === null) {
+                            LOGGER.info(`No student found for /student/${req.params.upi}`);
+                            res.status(404).json({ msg: "Requested object not found" });
+                        } else {
+                            student.plans.remove(plan._id);
+                            LOGGER.info(student.plans);
+                            student.save((err, student) => {
+                                LOGGER.info(`DELETE request succeeded for /Plan/${req.params.id}`);
+                                res.status(200).json(plan);
+                            });
+                        }
+                    });
                 } else {
-                    if (plan.student) {
-                        Student.findOne({_id: plan.student}, (err, student) => {
-                                if (err) {
-                                    LOGGER.error(err);
-                                    res.status(400).json({msg: err.message});
-                                } else if (student === null) {
-                                    LOGGER.info(`No student found for /student/${req.params.upi}`);
-                                    res.status(404).json({msg: "Requested object not found"});
-                                } else {
-                                    student.plans.remove(plan._id)
-                                    LOGGER.info(student.plans)
-                                    student.save( (err, student) => {
-                                        LOGGER.info(`DELETE request succeeded for /Plan/${req.params.id}`);
-                                        res.status(200).json(plan);
-                                    });
-                                }
-                            }
-                        )
-                    } else {
-                        ProgrammeDegree.findOne({_id: plan.programmeDegree}, (err, program) => {
-                                if (err) {
-                                    LOGGER.error(err);
-                                    res.status(400).json({msg: err.message});
-                                } else if (program === null) {
-                                    LOGGER.info(`No program found for ${plan.programmeDegree}`);
-                                    res.status(404).json({msg: "Requested object not found"});
-                                } else {
-                                    program.defaultPlan = undefined
-                                    program.save( (err, program) => {
-                                        LOGGER.info(`DELETE request succeeded for /Plan/${req.params.id}`);
-                                        res.status(200).json(plan);
-                                    });
-                                }
-                            }
-                        )
-                    }
+                    ProgrammeDegree.findOne({ _id: plan.programmeDegree }, (err, program) => {
+                        if (err) {
+                            LOGGER.error(err);
+                            res.status(400).json({ msg: err.message });
+                        } else if (program === null) {
+                            LOGGER.info(`No program found for ${plan.programmeDegree}`);
+                            res.status(404).json({ msg: "Requested object not found" });
+                        } else {
+                            program.defaultPlan = undefined;
+                            program.save((err, program) => {
+                                LOGGER.info(`DELETE request succeeded for /Plan/${req.params.id}`);
+                                res.status(200).json(plan);
+                            });
+                        }
+                    });
                 }
             }
         }
-    )
-    ;
-})
-;
+    });
+});
 module.exports = router;
