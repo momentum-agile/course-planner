@@ -41,7 +41,7 @@ const createPlan = (i, program, student) => {
         courseAllocations: [createCourseAllocation()],
         programmeDegree: program._id,
         startYear: getRandomNumberInRange(2019, 2024),
-        endYear: getRandomNumberInRange(2025, 2050),
+        numYears: getRandomNumberInRange(1, 3),
         completed: false,
         createdAt: new Date().toISOString(),
         updatedAT: new Date().toISOString(),

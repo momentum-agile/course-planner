@@ -116,7 +116,7 @@ const PlanesPane = ({ student, programmes, plans }) => {
     );
 };
 
-const PlansTableItem = ({ plan, programme }) => {
+const PlansTableItem = ({ plan: { _id, name, numYears, startYear }, programme }) => {
     const history = useHistory();
 
     return (
@@ -137,12 +137,12 @@ const PlansTableItem = ({ plan, programme }) => {
                 bg: c.greyBlue,
                 cursor: "pointer",
             }}
-            onClick={() => history.push("/plan/" + plan._id)}
+            onClick={() => history.push("/plan/" + _id)}
             boxShadow="md"
         >
             <Flex justify="center" align="center">
                 <Text textAlign="left" width="40%" mr="3px" overflow={true}>
-                    {plan.name}
+                    {name}
                 </Text>
                 <Flex justify="center" align="center" width="30%" mr="3px">
                     <Tag
@@ -159,10 +159,10 @@ const PlansTableItem = ({ plan, programme }) => {
                     </Tag>
                 </Flex>
                 <Text textAlign="center" width="15%" mr="3px">
-                    {plan.startYear}
+                    {startYear}
                 </Text>
                 <Text textAlign="center" width="15%" mr="3px">
-                    {plan.endYear}
+                    {startYear + numYears}
                 </Text>
             </Flex>
         </PseudoBox>
