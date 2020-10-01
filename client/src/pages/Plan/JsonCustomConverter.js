@@ -47,7 +47,6 @@ const parseCourseAllocations = (courseAllocations, startYear) => {
         if (!acc[year]) {
             acc[year] = [];
         }
-
         acc[year] = [...acc[year], { course, semester }];
 
         return acc;
@@ -59,7 +58,7 @@ const parseCourseAllocations = (courseAllocations, startYear) => {
         const courses = preliminary[curr];
         const mappedCourses = courses
             .map(({ course, semester }) => ({
-                Course: course,
+                Course: !isNaN(course) ? "Placeholder" : course,
                 Semester: semester,
             }))
             .sort((a, b) => {

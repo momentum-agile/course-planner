@@ -68,7 +68,9 @@ const Plan = () => {
 
     const createElectivePlaceholder = () => {
         const electivePlaceholders = courseAllocations?.filter((courseAllocation) => !isNaN(courseAllocation.course));
-        const code = Math.max(electivePlaceholders?.length ? electivePlaceholders?.map((elective) => parseInt(elective.course)) : [0]) + 1;
+        const code =
+            Math.max.apply(Math, electivePlaceholders?.length ? electivePlaceholders?.map((elective) => parseInt(elective.course)) : [0]) +
+            1;
         return { courseCode: code };
     };
 
@@ -78,7 +80,13 @@ const Plan = () => {
     };
 
     const exportToJSON = async () => {
-        fileDownload(JSON.stringify(plan), `${student.name}-${plan.name}.json`);
+        const exportPlan = {
+            ...plan,
+            courseAllocations: plan.courseAllocations.map((allocation) =>
+                isNaN(allocation.course) ? allocation : { ...allocation, course: "Placeholder" },
+            ),
+        };
+        fileDownload(JSON.stringify(exportPlan), `${student.name}-${plan.name}.json`);
     };
 
     const filteredCourses = () => {
