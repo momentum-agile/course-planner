@@ -5,6 +5,7 @@ import { useDrag, useDrop } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
 import { colors as c } from "../../colors";
 import { OptionsMenu } from "../../components";
+import usePlan from "./usePlan";
 
 const CourseTile = ({ courseName, courses, updateData, data }) => {
     const [isHovered, setIsHovered] = useState(false);
@@ -138,6 +139,7 @@ const SemesterBox = ({ semester, data, year, updateData, courses }) => {
 const Year = ({ year, data, startYear, updateData, courses, setStartYear }) => {
     const [isEditingYear, setIsEditingYear] = useState(false);
     const [editStartYear, setEditStartYear] = useState(startYear);
+    const { student } = usePlan();
 
     const saveYearName = () => {
         setStartYear(editStartYear);
@@ -180,7 +182,7 @@ const Year = ({ year, data, startYear, updateData, courses, setStartYear }) => {
                     )}
                 </Flex>
                 <Flex justify="flex-end" width="0%">
-                    <OptionsMenu onEdit={() => setIsEditingYear(true)} />
+                    {student && <OptionsMenu onEdit={() => setIsEditingYear(true)} />}
                 </Flex>
             </Flex>
             <Flex width="100%" direction="row" marginTop="5px">
