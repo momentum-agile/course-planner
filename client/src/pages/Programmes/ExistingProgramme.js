@@ -88,6 +88,7 @@ const ExistingProgramme = ({ programme, notifyUpdate }) => {
                     {/* Dropdown menu to edit and delete */}
                     <MenuWrapper
                         item={programmeDegreeInfo}
+                        detail={name}
                         itemType="Programme"
                         setOpenConfirmationDialog={setOpenConfirmationDialog}
                         openConfirmationDialog={openConfirmationDialog}

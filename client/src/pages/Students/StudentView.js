@@ -75,6 +75,7 @@ const StudentView = ({ student, programmes, allPlans, isNew, isEditing, onEdit, 
     return (
         <Flex height="100vh" direction="column" pt="30px" pr="10px">
             <FieldsPane
+                item={student}
                 name={name}
                 upi={upi}
                 id={id}

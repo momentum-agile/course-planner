@@ -1,24 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { Flex, Text } from "@chakra-ui/core";
-import { OptionsMenu, SaveCancelButtonSet } from "../../../components";
-import TextField from './TextField';
+import { MenuWrapper, SaveCancelButtonSet } from "../../../components";
+import TextField from "./TextField";
 import { colors as c } from "../../../colors";
 
-const FieldsPane = ({ name, upi, id, isNew, isEditing, onEdit, onChange, onDelete, onCancel, onSave }) => {
-
+const FieldsPane = ({ item, name, upi, id, isNew, isEditing, onEdit, onChange, onDelete, onCancel, onSave }) => {
+    const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
     return (
         <Flex direction="column" margin="5px" padding="10px" borderRadius="5px" bg={c.whiteGrey} boxShadow="md">
-            {isNew
-                ? (
-                    <Flex direction="column" justifyContent="center">
-                        <Text textAlign="center" fontSize="40px" fontWeight="bold" color={c.darkBlue}>Create a new student</Text>
-                    </Flex>
-                ) : (
-                    <Flex justifyContent="flex-end">
-                        <OptionsMenu onEdit={onEdit} onDelete={() => onDelete(upi)} />
-                    </Flex>
-                )
-            }
+            {isNew ? (
+                <Flex direction="column" justifyContent="center">
+                    <Text textAlign="center" fontSize="40px" fontWeight="bold" color={c.darkBlue}>
+                        Create a new student
+                    </Text>
+                </Flex>
+            ) : (
+                <Flex justifyContent="flex-end">
+                    <MenuWrapper
+                        item={item}
+                        detail={upi}
+                        itemType="Student"
+                        onEdit={onEdit}
+                        setOpenConfirmationDialog={setOpenConfirmationDialog}
+                        openConfirmationDialog={openConfirmationDialog}
+                        confirm={() => onDelete(upi)}
+                    />
+                </Flex>
+            )}
 
             <Flex justify="center">
                 <TextField isRequired title="name" value={name} isEditing={isEditing} onChange={onChange} />

@@ -65,11 +65,12 @@ const CourseView = ({ course, isNew, isEditing, onEdit, onDelete, cancelUpdateCo
 
     const setCoursePrefill = (prefill) => {
         setPrefill({ ...prefill, _id: course._id });
-    }
+    };
 
     return (
         <Flex height="100vh" direction="column" pt="30px" pr="10px">
             <FieldsPane
+                item={course}
                 code={code}
                 name={name}
                 desc={desc}
@@ -91,10 +92,10 @@ const CourseView = ({ course, isNew, isEditing, onEdit, onDelete, cancelUpdateCo
                     <Text fontStyle="italic">First Create the course to add requirements</Text>
                 </Flex>
             ) : (
-                    <Flex mt="10px">
-                        <RequirementsPane course={course} updateCourse={updateCourse} />
-                    </Flex>
-                )}
+                <Flex mt="10px">
+                    <RequirementsPane course={course} updateCourse={updateCourse} />
+                </Flex>
+            )}
         </Flex>
     );
 };

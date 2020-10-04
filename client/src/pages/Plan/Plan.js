@@ -17,10 +17,11 @@ import fileDownload from "js-file-download";
 const reqsToolTip = "To complete the chosen programme, this plan should satisfy all of these regulations.";
 const generateYears = (to) => (to && [...Array(to).keys()]) || [];
 
-const PlanOptions = ({ plan, setOpenConfirmationDialog, openConfirmationDialog, onDelete, onEditName, onExport, onClear }) => {
+const PlanOptions = ({ plan, detail, setOpenConfirmationDialog, openConfirmationDialog, onDelete, onEditName, onExport, onClear }) => {
     return (
         <MenuWrapper
             item={plan}
+            detail={detail}
             itemType="Plan"
             setOpenConfirmationDialog={setOpenConfirmationDialog}
             openConfirmationDialog={openConfirmationDialog}
@@ -237,6 +238,7 @@ const Plan = () => {
                     optionsMenu={
                         <PlanOptions
                             plan={plan}
+                            detail={name}
                             onClear={() => setCourseAllocations([])}
                             setOpenConfirmationDialog={setOpenConfirmationDialog}
                             openConfirmationDialog={openConfirmationDialog}

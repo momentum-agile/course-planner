@@ -10,7 +10,7 @@ import {
     useToast,
 } from "@chakra-ui/core";
 
-const ConfirmationDialog = ({ isOpen, onClose, confirm, itemType, item, action, navigateTo }) => {
+const ConfirmationDialog = ({ isOpen, onClose, confirm, itemType, item, detail, action, navigateTo }) => {
     const cancelRef = React.useRef();
     const toast = useToast();
     return (
@@ -23,8 +23,7 @@ const ConfirmationDialog = ({ isOpen, onClose, confirm, itemType, item, action, 
                     </AlertDialogHeader>
 
                     <AlertDialogBody>
-                        Are you sure you want to {action && action.toLowerCase()} {item.name || "this"}? You can't undo this action
-                        afterwards.
+                        Are you sure you want to {action && action.toLowerCase()} {detail || "this"}? You can't undo this action afterwards.
                     </AlertDialogBody>
 
                     <AlertDialogFooter>
@@ -53,7 +52,9 @@ const ConfirmationDialog = ({ isOpen, onClose, confirm, itemType, item, action, 
                                 }
                                 toast({
                                     title: `${action} ${itemType}  `,
-                                    description: `${action} ${itemType} successful`,
+                                    description: `${itemType}${
+                                        detail ? ` '${detail}' ` : " "
+                                    }has been successfully ${action.toLowerCase()}d`,
                                     status: "success",
                                     duration: 5000,
                                     isClosable: true,
