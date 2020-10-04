@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Text, SimpleGrid } from "@chakra-ui/core";
+import { Flex, Text, SimpleGrid, Button, Icon } from "@chakra-ui/core";
 import { useParams } from "react-router-dom";
 import { SearchBar, ProgrammeCard, NavigationMenu } from "../../components";
 import ExistingProgramme from "./ExistingProgramme";
 import EmptyProgramme from "./EmptyProgramme";
-import NewProgramme from "./NewProgramme";
+import NewProgrammeModal from "./NewProgrammeModal";
 import useProgrammmes from "./useProgrammes";
 import filter from "@mcabreradev/filter";
 import { colors as c } from "../../colors";
@@ -14,6 +14,7 @@ const Programmes = () => {
     const { programmeDegrees, fetchAllProgrammes } = useProgrammmes();
     const [numOfProgrammes, setNumOfProgrammes] = useState(programmeDegrees.length);
     const [searchTerm, setSearchTerm] = useState("");
+    const [isCreatingProgramme, setIsCreatingProgramme] = useState(false);
 
     useEffect(fetchAllProgrammes, [numOfProgrammes]);
 
@@ -45,7 +46,24 @@ const Programmes = () => {
                 {/* TODO: style scrollbar */}
                 <Flex width="100%" justify="center" align="flex-start" overflowY="auto" marginTop="15px" marginBottom="15px" height="100%">
                     <SimpleGrid columns={2} spacingX="50px">
-                        <ProgrammeCard to="new" />
+                        {/* Create new Programme Button */}
+                        <Button
+                            backgroundColor={c.nightBlue}
+                            border="none"
+                            rounded="20px"
+                            width="300px"
+                            height="150px"
+                            marginTop="20px"
+                            _hover={{ transform: "scale(1.05, 1.05)" }}
+                            _active={{}}
+                            onClick={() => setIsCreatingProgramme(true)}
+                        >
+                            <Text textAlign="center" fontSize="2xl" color={c.white}>
+                                <Icon name="add" color={c.white} />
+                            </Text>
+                        </Button>
+
+                        {/* List of Programmes */}
                         {filter(programmeDegrees, { name: searchTerm }).map((programme) => (
                             <ProgrammeCard currentID={location.id} to={programme._id} programme={programme} />
                         ))}
@@ -54,8 +72,9 @@ const Programmes = () => {
             </Flex>
             {/* RHS of the page */}
             <Flex width="50%" backgroundColor={c.whiteGrey}>
+                <NewProgrammeModal notifyAddition={updateList} isOpen={isCreatingProgramme} onClose={() => setIsCreatingProgramme(false)} />
                 <Flex width="100%" direction="column" marginTop="60px">
-                    {location.id === "new" ? <NewProgramme notifyAddition={updateList} /> : renderProgramme(location)}
+                    {renderProgramme(location)}
                 </Flex>
             </Flex>
         </Flex>

@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import { AppConfiguration } from "../../../components";
 import { Programmes } from "../../../pages";
-import NewProgramme from "../../../pages/Programmes/NewProgramme";
+import NewProgrammeModal from "../../../pages/Programmes/NewProgrammeModal";
 import ExistingProgramme from "../../../pages/Programmes/ExistingProgramme";
 import EmptyProgramme from "../../../pages/Programmes/EmptyProgramme";
 import InlineRegulations from "../../../pages/Programmes/InlineRegulations";
@@ -19,11 +19,11 @@ test("Main Programmes Page", () => {
     expect(tree).toMatchSnapshot();
 });
 
-test("Creating new programmes sub-page ", () => {
+test("Creating programmes should be hidden unless acted on", () => {
     const tree = renderer
         .create(
             <AppConfiguration>
-                <NewProgramme />
+                <NewProgrammeModal />
             </AppConfiguration>,
         )
         .toJSON();

@@ -109,7 +109,7 @@ const ExistingProgramme = ({ programme, notifyUpdate }) => {
             {/* PROGRAMME REGULATIONS */}
             <Flex align="center" justify="center" direction="column">
                 <Text textAlign="center" fontSize="md" color={c.nightBlue} mt={5}>
-                    Requirements
+                    Regulations
                 </Text>
                 <Box bg={c.whiteGrey} width="75%" textAlign="center" padding="5px" marginTop="10px" className="regulationsBox">
                     {/* Add Regulations Button to activate Component via createNewRequirements */}

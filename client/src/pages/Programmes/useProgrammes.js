@@ -4,11 +4,15 @@ import CoursePlannerClient from "../../common/CoursePlannerClient";
 const useProgrammes = () => {
     const [programmeDegrees, setProgrammeDegrees] = useState([]);
 
-    const createProgramme = (programme, updateList) => {
-        CoursePlannerClient.createProgramme(programme)
-            .then(() => updateList())
-            .then(() => fetchAllProgrammes())
-            .catch((e) => console.error(e));
+    const createProgramme = async (programme, updateList) => {
+        try {
+            const newProgramme = await CoursePlannerClient.createProgramme(programme);
+            updateList();
+            fetchAllProgrammes();
+            return newProgramme;
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     const deleteProgramme = (id, history, notifyUpdate) => {

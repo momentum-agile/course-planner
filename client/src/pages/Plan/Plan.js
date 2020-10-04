@@ -14,7 +14,7 @@ import json2md from "json2md";
 import { parsePlanWithStudent } from "./JsonCustomConverter";
 import fileDownload from "js-file-download";
 
-const reqsToolTip = "Requirements satisfied by the plan will be ticked off and become green";
+const reqsToolTip = "To complete the chosen programme, this plan should satisfy all of these regulations.";
 const generateYears = (to) => (to && [...Array(to).keys()]) || [];
 
 const PlanOptions = ({ plan, setOpenConfirmationDialog, openConfirmationDialog, onDelete, onEditName, onExport, onClear }) => {
@@ -118,39 +118,36 @@ const Plan = () => {
                         bg: c.iceBlue,
                     }}
                 />
-
-                {student && (
-                    <Flex
-                        direction="column"
-                        bg={c.nightBlue}
-                        p={5}
-                        mt={10}
-                        shadow="md"
-                        rounded="md"
-                        width="90%"
-                        height="100%"
-                        align="center"
-                        justify="center"
-                    >
-                        <Flex direction="row" align="center">
-                            <Text width="90%" textAlign="center" fontWeight="bold" color={c.whiteGrey} fontSize="xl">
-                                Requirements
-                            </Text>
-                            <Tooltip label={reqsToolTip} placement="bottom" bg={c.greyBlue} color={c.darkBlue}>
-                                <Icon name="question-outline" color={c.white} marginLeft="5px" align="center" justify="center" />
-                            </Tooltip>
-                        </Flex>
-                        <Flex align="center" jusatify="center" width="100%" height="100%">
-                            <RequirementsList programme={programme} />
-                        </Flex>
+                <Flex
+                    direction="column"
+                    bg={c.nightBlue}
+                    p={5}
+                    mt={10}
+                    shadow="md"
+                    rounded="md"
+                    width="90%"
+                    height="100%"
+                    align="center"
+                    justify="center"
+                >
+                    <Flex direction="row" align="center">
+                        <Text width="90%" textAlign="center" fontWeight="bold" color={c.whiteGrey} fontSize="xl">
+                            Regulations
+                        </Text>
+                        <Tooltip label={reqsToolTip} placement="bottom" bg={c.greyBlue} color={c.darkBlue}>
+                            <Icon name="question-outline" color={c.white} marginLeft="5px" align="center" justify="center" />
+                        </Tooltip>
                     </Flex>
-                )}
+                    <Flex align="center" jusatify="center" width="100%" height="100%">
+                        <RequirementsList programme={programme} />
+                    </Flex>
+                </Flex>
 
                 <Flex
                     direction="column"
                     bg={c.nightBlue}
                     p={5}
-                    mt={student ? 5 : 10}
+                    mt={5}
                     mb={student ? 0 : 5}
                     shadow="md"
                     rounded="md"
@@ -174,7 +171,7 @@ const Plan = () => {
                             padding="0 0 10px 10px"
                             background={c.white}
                             marginTop="20px"
-                            maxHeight={!student ? "600px" : "200px"}
+                            maxHeight={!student ? "500px" : "200px"}
                             overflowY="scroll"
                             justify="flex-start"
                             align="flex-start"

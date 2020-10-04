@@ -88,7 +88,272 @@ exports[`<Plan /> 1`] = `
       </svg>
     </button>
     <div
-      className="css-ul1sgz"
+      className="css-4f6up1"
+    >
+      <div
+        className="css-u4p24i"
+      >
+        <p
+          className="css-1owbezk"
+        >
+          Regulations
+        </p>
+        <svg
+          className="css-rw24u3"
+          focusable={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <g
+            stroke="currentColor"
+            strokeWidth="1.5"
+          >
+            <path
+              d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+              fill="none"
+              strokeLinecap="full"
+            />
+            <path
+              d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+              fill="none"
+              strokeLinecap="full"
+            />
+            <circle
+              cx="12"
+              cy="12"
+              fill="none"
+              r="11.25"
+              strokeMiterlimit="10"
+            />
+          </g>
+        </svg>
+      </div>
+      <div
+        className="css-1x1v05p"
+      >
+        <div
+          className="css-1sx9tg8"
+        >
+          <div
+            className="css-vipb1e"
+          >
+            <div
+              className="css-tkevr6"
+            >
+              <b
+                className="css-1eqa46m"
+              >
+                1
+              </b>
+              <p
+                className="css-1xoz3lw"
+              >
+                Exactly
+              </p>
+              <p
+                className="css-1xoz3lw"
+              >
+                40 pts
+              </p>
+              <p
+                className="css-1vkqwb0"
+              >
+                FROM
+              </p>
+              <div
+                className="programmeRequirements css-t1zj10"
+              >
+                <div
+                  className="css-nl7a3z"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className="css-vipb1e"
+          >
+            <div
+              className="css-tkevr6"
+            >
+              <b
+                className="css-1eqa46m"
+              >
+                2
+              </b>
+              <p
+                className="css-1xoz3lw"
+              >
+                At least
+              </p>
+              <p
+                className="css-1xoz3lw"
+              >
+                0 pts
+              </p>
+              <p
+                className="css-1vkqwb0"
+              >
+                FROM
+              </p>
+              <div
+                className="programmeRequirements css-t1zj10"
+              >
+                <div
+                  className="css-nl7a3z"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className="css-vipb1e"
+          >
+            <div
+              className="css-tkevr6"
+            >
+              <b
+                className="css-1eqa46m"
+              >
+                3
+              </b>
+              <p
+                className="css-1xoz3lw"
+              >
+                Exactly
+              </p>
+              <p
+                className="css-1xoz3lw"
+              >
+                15 pts
+              </p>
+              <p
+                className="css-1vkqwb0"
+              >
+                FROM
+              </p>
+              <div
+                className="programmeRequirements css-t1zj10"
+              >
+                <div
+                  className="css-nl7a3z"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className="css-vipb1e"
+          >
+            <div
+              className="css-tkevr6"
+            >
+              <b
+                className="css-1eqa46m"
+              >
+                4
+              </b>
+              <p
+                className="css-1xoz3lw"
+              >
+                At least
+              </p>
+              <p
+                className="css-1xoz3lw"
+              >
+                30 pts
+              </p>
+              <p
+                className="css-1vkqwb0"
+              >
+                FROM
+              </p>
+              <div
+                className="programmeRequirements css-t1zj10"
+              >
+                <div
+                  className="css-nl7a3z"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className="css-vipb1e"
+          >
+            <div
+              className="css-tkevr6"
+            >
+              <b
+                className="css-1eqa46m"
+              >
+                5
+              </b>
+              <p
+                className="css-1xoz3lw"
+              >
+                Exactly
+              </p>
+              <p
+                className="css-1xoz3lw"
+              >
+                15 pts
+              </p>
+              <p
+                className="css-1vkqwb0"
+              >
+                FROM
+              </p>
+              <div
+                className="programmeRequirements css-t1zj10"
+              >
+                <div
+                  className="css-nl7a3z"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className="css-vipb1e"
+          >
+            <div
+              className="css-tkevr6"
+            >
+              <b
+                className="css-1eqa46m"
+              >
+                6
+              </b>
+              <p
+                className="css-1xoz3lw"
+              >
+                Up to
+              </p>
+              <p
+                className="css-1xoz3lw"
+              >
+                40 pts
+              </p>
+              <p
+                className="css-1vkqwb0"
+              >
+                FROM
+              </p>
+              <div
+                className="programmeRequirements css-t1zj10"
+              >
+                <div
+                  className="css-nl7a3z"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="css-4tpqq4"
     >
       <div
         className="css-u4p24i"
@@ -141,7 +406,7 @@ exports[`<Plan /> 1`] = `
         className="css-1e6ma0l"
       >
         <div
-          className="css-1vkv7y0"
+          className="css-1xugch4"
         >
           <div
             className="css-j6isw0"
@@ -187,11 +452,11 @@ exports[`<Plan /> 1`] = `
               className="css-k008qs"
             >
               <button
-                aria-controls="menu-1"
+                aria-controls="menu-2"
                 aria-expanded={false}
                 aria-haspopup="menu"
                 className="css-992tcj"
-                id="menubutton-2"
+                id="menubutton-3"
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="button"
