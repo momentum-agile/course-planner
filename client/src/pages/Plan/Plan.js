@@ -105,7 +105,7 @@ const Plan = () => {
                 <IconButton
                     icon="arrow-back"
                     onClick={() => history.goBack()}
-                    size="sm"
+                    size="md"
                     position="fixed"
                     left={3}
                     top={1}
@@ -123,7 +123,7 @@ const Plan = () => {
                     direction="column"
                     bg={c.nightBlue}
                     p={5}
-                    mt={10}
+                    mt={50}
                     shadow="md"
                     rounded="md"
                     width="90%"

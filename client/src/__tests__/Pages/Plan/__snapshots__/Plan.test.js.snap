@@ -70,7 +70,7 @@ exports[`<Plan /> 1`] = `
     className="css-1gthsur"
   >
     <button
-      className="css-1cm2bz5"
+      className="css-1x57hs7"
       onClick={[Function]}
       type="button"
     >
@@ -88,7 +88,7 @@ exports[`<Plan /> 1`] = `
       </svg>
     </button>
     <div
-      className="css-4f6up1"
+      className="css-3vpdv2"
     >
       <div
         className="css-u4p24i"

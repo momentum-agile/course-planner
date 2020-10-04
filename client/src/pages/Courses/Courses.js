@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Button, Flex, Heading, useToast } from "@chakra-ui/core";
-import { NavigationMenu, SearchBar, Table } from "../../components";
+import { SearchBar, Table } from "../../components";
 import useCourses from "./useCourses";
 import { colors as c } from "../../colors";
 import PopulateAPIModal from "./PopulateAPIModal";
 import CourseView from "./CourseView";
 import { useHistory, useParams } from "react-router-dom";
 import EmptyCourse from "./EmptyCourse";
+import HomeButton from "../../components/HomeButton";
 
 const Courses = () => {
     const history = useHistory();
@@ -93,7 +94,7 @@ const Courses = () => {
             {/* Left side of page */}
             <Flex width="50%" direction="column">
                 <Flex left="1px" justify="flex-start">
-                    <NavigationMenu />
+                    <HomeButton />
                 </Flex>
 
                 <Flex align="center" justify="center">

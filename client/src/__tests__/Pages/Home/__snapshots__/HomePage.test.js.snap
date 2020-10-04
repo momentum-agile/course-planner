@@ -8,43 +8,6 @@ exports[`<Home /> 1`] = `
     className="css-1vz1faf"
   >
     <div
-      className="css-1u9fuhx"
-    >
-      <button
-        aria-controls="menu-1"
-        aria-expanded={false}
-        aria-haspopup="menu"
-        className="css-1qn6x93"
-        id="menubutton-2"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        type="button"
-      >
-        <svg
-          aria-hidden={true}
-          className="css-thzv76"
-          fill="currentColor"
-          focusable="false"
-          height="1em"
-          stroke="currentColor"
-          strokeWidth="0"
-          style={
-            Object {
-              "color": undefined,
-            }
-          }
-          viewBox="0 0 512 512"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M32 96v64h448V96H32zm0 128v64h448v-64H32zm0 128v64h448v-64H32z"
-          />
-        </svg>
-      </button>
-    </div>
-    <div
       className="css-1e6ma0l"
     >
       <img
