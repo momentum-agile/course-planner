@@ -18,6 +18,7 @@ import {
 import { SearchBar } from "../../components";
 import { CoursePlannerClient } from "../../common";
 import filter from "@mcabreradev/filter";
+import _ from "lodash";
 
 const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
     const cancelRef = useRef();
@@ -29,7 +30,7 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
     useEffect(() => {
         if (subject.length === 0) return;
         CoursePlannerClient.getUniCoursesForDegree(subject)
-            .then((res) => setData(res))
+            .then((res) => setData(_.sortBy(res, "courseCode")))
             .catch((err) => console.log(err));
     }, [subject]);
 

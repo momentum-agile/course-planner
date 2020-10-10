@@ -121,45 +121,73 @@ exports[`<Courses /> 1`] = `
               <th
                 className="css-11dd6zr"
                 colSpan={1}
+                onClick={[Function]}
                 role="columnheader"
+                style={
+                  Object {
+                    "cursor": "pointer",
+                  }
+                }
+                title="Toggle SortBy"
               >
                 <p
                   className="css-7woomv"
                 >
-                  Course Code
+                  Course Code 
                 </p>
               </th>
               <th
                 className="css-11dd6zr"
                 colSpan={1}
+                onClick={[Function]}
                 role="columnheader"
+                style={
+                  Object {
+                    "cursor": "pointer",
+                  }
+                }
+                title="Toggle SortBy"
               >
                 <p
                   className="css-7woomv"
                 >
-                  Course Name
+                  Course Name 
                 </p>
               </th>
               <th
                 className="css-11dd6zr"
                 colSpan={1}
+                onClick={[Function]}
                 role="columnheader"
+                style={
+                  Object {
+                    "cursor": "pointer",
+                  }
+                }
+                title="Toggle SortBy"
               >
                 <p
                   className="css-7woomv"
                 >
-                  Semester(s)
+                  Semester(s) 
                 </p>
               </th>
               <th
                 className="css-11dd6zr"
                 colSpan={1}
+                onClick={[Function]}
                 role="columnheader"
+                style={
+                  Object {
+                    "cursor": "pointer",
+                  }
+                }
+                title="Toggle SortBy"
               >
                 <p
                   className="css-7woomv"
                 >
-                  Points
+                  Points 
                 </p>
               </th>
             </tr>
