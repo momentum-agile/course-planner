@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
     Button,
     AlertDialog,
@@ -20,7 +20,7 @@ import { CoursePlannerClient } from "../../common";
 import filter from "@mcabreradev/filter";
 
 const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
-    const cancelRef = React.useRef();
+    const cancelRef = useRef();
     const [subject, setSubject] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
     const [data, setData] = useState([]);
@@ -33,17 +33,26 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
             .catch((err) => console.log(err));
     }, [subject]);
 
-    const handleOnCheck = (key) => (index) => {
+    const handleModalClose = () => {
+        onClose();
+        setSubject("");
+        setSearchTerm("");
+        setData([]);
+    };
+
+    const handleOnCheck = (key) => (courseCode) => {
         const newData = [...data];
-        newData[index] = {
-            ...data[index],
-            [key]: !data[index][key],
+        const courseIdx = newData.findIndex((course) => course.courseCode === courseCode);
+
+        newData[courseIdx] = {
+            ...data[courseIdx],
+            [key]: !data[courseIdx][key],
         };
 
         // When course and overwrite are checked, when you uncheck the course, this will then also uncheck the overwrite
-        if (key === "checked" && data[index]["overwrite"]) {
-            newData[index] = {
-                ...newData[index],
+        if (key === "checked" && data[courseIdx]["overwrite"]) {
+            newData[courseIdx] = {
+                ...newData[courseIdx],
                 overwrite: false,
             };
         }
@@ -63,7 +72,7 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
 
     return (
         <>
-            <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
+            <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={handleModalClose}>
                 <AlertDialogOverlay />
                 <AlertDialogContent>
                     <AlertDialogHeader fontSize="lg" fontWeight="bold">
@@ -115,7 +124,7 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
                                                     key={idx}
                                                     value={courseCode}
                                                     isChecked={checked}
-                                                    onChange={(e) => handleOnCheck("checked")(idx)}
+                                                    onChange={(e) => handleOnCheck("checked")(courseCode)}
                                                 >
                                                     {courseCode}
                                                 </Checkbox>
@@ -127,7 +136,7 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
                                                         value={courseCode}
                                                         isChecked={overwrite}
                                                         isDisabled={!checked}
-                                                        onChange={(e) => handleOnCheck("overwrite")(idx)}
+                                                        onChange={(e) => handleOnCheck("overwrite")(courseCode)}
                                                     />
                                                 )}
                                             </Flex>
@@ -139,14 +148,7 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
                     </AlertDialogBody>
 
                     <AlertDialogFooter>
-                        <Button
-                            ref={cancelRef}
-                            onClick={() => {
-                                onClose();
-                                setSubject("");
-                                setData([]);
-                            }}
-                        >
+                        <Button ref={cancelRef} onClick={handleModalClose}>
                             Cancel
                         </Button>
                         <Button
@@ -154,9 +156,7 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
                             variantColor="blue"
                             onClick={() => {
                                 confirm(subject, data, toast);
-                                onClose();
-                                setSubject("");
-                                setData([]);
+                                handleModalClose();
                             }}
                             ml={3}
                         >
