@@ -17,6 +17,10 @@ const deleteProgramme = (id) => {
     });
 };
 
+const getProgramme = (id) => {
+    return ApiClient(`programmedegree/${id}`);
+};
+
 const updateProgramme = (programme) => {
     return ApiClient(`programmedegree`, {
         body: programme,
@@ -26,6 +30,7 @@ const updateProgramme = (programme) => {
 
 const ProgrammesClient = {
     getProgrammes,
+    getProgramme,
     createProgramme,
     deleteProgramme,
     updateProgramme,

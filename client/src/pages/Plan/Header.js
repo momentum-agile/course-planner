@@ -75,7 +75,7 @@ const Header = ({ name, programme, lastSaveDate, planName, setPlanName, optionsM
 
                         <Flex height="50px" backgroundColor={c.lightBlue} borderRadius="10px" align="center" justify="center" p={5} mt={2}>
                             <Text textAlign="center" color={c.white} fontSize="xl">
-                                {programme}
+                                {programme || "Programme could not be found"}
                             </Text>
                         </Flex>
                     </Flex>

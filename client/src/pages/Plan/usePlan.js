@@ -2,54 +2,9 @@ import { useCallback, useEffect, useState } from "react";
 import CoursePlannerClient from "../../common/CoursePlannerClient";
 import { useHistory, useParams } from "react-router-dom";
 
-const regulations = [
-    {
-        courses: ["SOFTENG370", "SOFTENG370", "SOFTENG370"],
-        _id: "5f62d3e1ee8b1a00279706fe",
-        points: 40,
-        pointRequirement: "EXACTLY",
-        isSatisfied: true,
-    },
-    {
-        courses: ["SOFTENG370", "SOFTENG370"],
-        _id: "5f62d578c127820027cd731d",
-        points: 0,
-        pointRequirement: "ATLEAST",
-        isSatisfied: false,
-    },
-    {
-        courses: ["SOFTENG370"],
-        _id: "5f62d585c127820027cd7320",
-        points: 15,
-        pointRequirement: "EXACTLY",
-        isSatisfied: false,
-    },
-    {
-        courses: ["SOFTENG370", "SOFTENG370"],
-        _id: "5f62d585c127820027cd7320",
-        points: 30,
-        pointRequirement: "ATLEAST",
-        isSatisfied: true,
-    },
-    {
-        courses: ["SOFTENG370"],
-        _id: "5f62d585c127820027cd7320",
-        points: 15,
-        pointRequirement: "EXACTLY",
-        isSatisfied: false,
-    },
-    {
-        courses: ["SOFTENG370", "SOFTENG370", "SOFTENG370"],
-        _id: "5f62d3e1ee8b1a00279706fe",
-        points: 40,
-        pointRequirement: "UPTO",
-        isSatisfied: false,
-    },
-];
-
 const usePlan = () => {
     const [student, setStudent] = useState();
-    const [programme, setProgramme] = useState({ regulations });
+    const [programme, setProgramme] = useState({});
     const { planId } = useParams();
     const [courses, setCourses] = useState([]);
     const [plan, setPlan] = useState([]);
@@ -58,24 +13,12 @@ const usePlan = () => {
     const initPage = useCallback(async () => {
         // Promise.all because we are going to have a lot of API calls
         // once requirements/cousres/notes come in !
-        // TODO: Add API call to get the specific ProgrammeDegree (programme) for the plan
-        Promise.all([
-            CoursePlannerClient.getCourses(),
-            CoursePlannerClient.getPlan(planId),
-            CoursePlannerClient.getStudents(),
-            CoursePlannerClient.getProgrammes(),
-        ])
-            .then((values) => {
-                const [courses, plan, students, programs] = values;
+        Promise.all([CoursePlannerClient.getCourses(), CoursePlannerClient.getPlan(planId)])
+            .then(([courses, plan]) => {
                 setCourses(courses);
                 setPlan(plan);
-
-                setStudent(students.filter((s) => s._id === plan.student)[0]);
-                const programme = programs.filter((s) => s._id === plan.programmeDegree)[0];
-                setProgramme(programme);
-
-                //TODO remove regubelow once regulations populated ( Below is dummy data)
-                setProgramme({ ...programme });
+                CoursePlannerClient.getProgramme(plan.programmeDegree).then((res) => setProgramme(res));
+                CoursePlannerClient.getStudentById(plan.student).then((res) => setStudent(res));
             })
             .catch((e) => console.log(e));
     }, [planId]);
@@ -101,10 +44,9 @@ const usePlan = () => {
     const setNumYears = (numYears) => CoursePlannerClient.updatePlan({ ...plan, numYears }).then(updatePlan);
     const history = useHistory();
 
-    //TODo implement routing for student
     const deletePlan = (student, programme) =>
         CoursePlannerClient.deletePlan(plan._id).then(() =>
-            student ? history.push(`/students`) : history.push(`/programmes/${programme._id}`),
+            student ? history.push(`/students/${student.upi}`) : history.push(`/programmes/${programme._id}`),
         );
     return {
         student,

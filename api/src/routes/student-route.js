@@ -48,6 +48,51 @@ router.get("/:upi", async (req, res) => {
         }
     });
 });
+// GET a single student by id
+/**
+ * @swagger
+ * path:
+ *  /student/id/{id}:
+ *    get:
+ *      tags: [Student]
+ *      summary: Get a student by id
+ *      parameters:
+ *        - in: path
+ *          name: id
+ *          schema:
+ *            type: string
+ *          required: true
+ *          description: id of student
+ *      responses:
+ *        "200":
+ *          description: Single student object
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/Student'
+ *        "404":
+ *          description: No student found for given id
+ *        "400":
+ *          description: Error message
+ *
+ */
+router.get("/id/:id", async (req, res) => {
+    Student.findOne({_id: req.params.id}, (err, student) => {
+        if (err) {
+            LOGGER.error(err);
+            res.status(400).json({msg: err.message});
+        } else {
+            if (student === null) {
+                LOGGER.info(`No student found for /student/${req.params.id}`);
+                res.status(404).json({msg: "Requested object not found"});
+            } else {
+                LOGGER.info(`GET Request Succeeded for /student/${req.params.id}`);
+                LOGGER.debug(student);
+                res.status(200).json(student);
+            }
+        }
+    });
+});
 // GET all student
 /**
  * @swagger

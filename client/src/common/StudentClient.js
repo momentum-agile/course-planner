@@ -28,10 +28,15 @@ const getStudent = (upi) => {
     return ApiClient(`student/${upi}`);
 };
 
+const getStudentByID = (id) => {
+    return ApiClient(`student/id/${id}`);
+};
+
 const StudentClient = {
     getStudent,
     getStudents,
     editStudent,
+    getStudentById: getStudentByID,
     deleteStudent,
     addStudent,
 };

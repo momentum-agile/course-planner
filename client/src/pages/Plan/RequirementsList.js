@@ -5,7 +5,7 @@ import { ProgrammeRequirementsItem } from "../../components";
 import usePlan from "./usePlan";
 
 const RequirementsList = ({ programme }) => {
-    const regulations = programme.regulations;
+    const regulations = (programme && programme.regulations) || [];
     const { courses } = usePlan();
     return (
         <Flex

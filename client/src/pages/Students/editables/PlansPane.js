@@ -149,10 +149,10 @@ const PlansTableItem = ({ plan: { _id, name, numYears, startYear }, programme })
                         color={programme ? c.lightBlue : c.red}
                         rounded="10px"
                         onClick={(e) => {
-                            e.stopPropagation();
-                            window.open(`/programmes/${programme._id}`, "_blank");
+                            programme && e.stopPropagation();
+                            programme && window.open(`/programmes/${programme._id}`, "_blank");
                         }}
-                        _hover={{ bg: c.lightBlue, color: c.white }}
+                        _hover={programme && { bg: c.lightBlue, color: c.white }}
                     >
                         <TagLabel>{programme ? programme.name : "Not Found"}</TagLabel>
                         {programme && <Icon name="external-link" pl="4px" />}
