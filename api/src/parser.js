@@ -1,14 +1,3 @@
-const insertAnds = (str) => {
-    return str.split("and").reduce((acc, curr, idx) => {
-        if (idx > 0) {
-            return [...acc, "AND", curr];
-        } else {
-            return [...acc, curr]
-        }
-    }, []).filter(r => r !== "").map(r => r.trim().replace(/(^,)|(,$)/g, ""))
-}
-
-
 const parseRequirements = (requirementsStr) => {
 
 
@@ -24,10 +13,9 @@ const parseRequirements = (requirementsStr) => {
     const resReqStr = cleanRequirements.filter(r => r.includes('Restriction')).map(r => r.replace('Restriction: ', ''))[0] || ""
     const notesStr = cleanRequirements.filter(r => !r.includes('Prerequisite') && !r.includes('Corequisite') && !r.includes('Restriction'))[0] || ""
 
-    const prerequisites = insertAnds(preReqStr)
-    const corequisities = insertAnds(coReqStr)
-    const restrictions = [...insertAnds(resReqStr), notesStr].filter(r => r !== "")
-
+    const prerequisites = (preReqStr.length > 0 ? preReqStr : null)
+    const corequisities = (coReqStr.length > 0 ? coReqStr : null)
+    const restrictions = [resReqStr, notesStr].filter(r => r !== "")
 
     return [
         prerequisites,
