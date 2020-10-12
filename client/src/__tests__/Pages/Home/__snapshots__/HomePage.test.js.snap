@@ -5,18 +5,22 @@ exports[`<Home /> 1`] = `
   className="css-qxc4md"
 >
   <div
-    className="css-1vz1faf"
+    className="css-1ccyl9"
   >
     <div
       className="css-1e6ma0l"
     >
       <img
-        alt="Homepage Image of Course Planner's screeshots"
+        alt="Homepage image of Calendar/Tile Placer from Canva"
         className="css-1phd9a0"
         height="600px"
         width="1200px"
       />
     </div>
+    <img
+      alt="Team Momentum Logo"
+      className="css-1x2895q"
+    />
   </div>
   <div
     className="css-1gole1x"
@@ -107,8 +111,8 @@ exports[`<Home /> 1`] = `
         className="css-15blmw4"
       >
         <img
-          alt="UoA Logo"
-          className="css-12121j2"
+          alt="University of Auckland Logo"
+          className="css-wexduy"
         />
       </div>
     </div>
