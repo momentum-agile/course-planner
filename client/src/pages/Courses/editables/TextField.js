@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Box, Text, FormControl, FormLabel, Input, Textarea, Divider, Button, useToast, Tooltip, Icon } from "@chakra-ui/core";
+import { Flex, Box, Text, FormControl, FormLabel, Input, Textarea, Divider, Button, useToast } from "@chakra-ui/core";
 import { colors as c } from "../../../colors";
 
 const placeholders = {
@@ -8,13 +8,8 @@ const placeholders = {
     description: "A longer description of the course",
 };
 
-const validCourseCodeRegex = /^([A-Za-z])*(\s?)([1-9][0-9][0-9])([A-Za-z]{0,3})$/;
-const autoGenerateToolTip = "Enter a valid course code, e.g. SOFTENG 281, and click to get course data from the UoA API";
-
 const TextField = ({ isRequired = false, name, title, value, isEditing, onChange, prefillCourse, setPrefill }) => {
     const toast = useToast();
-
-    const isValidCourseCode = validCourseCodeRegex.test(value);
 
     const handlePrefill = () => {
         const courseCodeArr = value.split(/(\d+)/).filter((e) => e !== "");
@@ -88,20 +83,15 @@ const TextField = ({ isRequired = false, name, title, value, isEditing, onChange
                 {name === "code" && (
                     <Flex>
                         <Button
-                            isDisabled={!value || !isValidCourseCode}
+                            isDisabled={!value}
                             onClick={handlePrefill}
                             ml="10px"
                             bg={c.midnightBlue}
                             color={c.whiteGrey}
-                            _hover={{ bg: !value || !isValidCourseCode ? null : c.lightBlue }}
+                            _hover={{ bg: !value ? null : c.lightBlue }}
                         >
                             Update from UoA API
                         </Button>
-                        <Flex ml="4px">
-                            <Tooltip hasArrow label={autoGenerateToolTip} bg={c.lightGrey} color={c.midnightBlue} placement="bottom">
-                                <Icon name="question-outline" color={c.midnightBlue} />
-                            </Tooltip>
-                        </Flex>
                     </Flex>
                 )}
             </Flex>

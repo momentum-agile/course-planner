@@ -50,6 +50,9 @@ const CourseRegulaton = require("./course-regulation");
  *          description:
  *            type: string
  *            description: description for the course
+ *          isPlaceholder:
+ *            type: boolean
+ *            description: determines if the course is a real course or placeholder
  */
 const courseSchema = mongoose.Schema({
     name: {
@@ -88,6 +91,10 @@ const courseSchema = mongoose.Schema({
     },
     description: {
         type: String,
+        required: false,
+    },
+    isPlaceholder: {
+        type: Boolean,
         required: false,
     },
 });

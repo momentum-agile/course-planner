@@ -9,6 +9,7 @@ const fields = {
     desc: "description",
     sem: "semester",
     pts: "points",
+    placeholder: "isPlaceholder",
 };
 
 /**
@@ -29,6 +30,7 @@ const CourseView = ({ course, isNew, isEditing, onEdit, onDelete, cancelUpdateCo
     const [desc, setDesc] = useState("");
     const [sem, setSem] = useState([]);
     const [pts, setPts] = useState(15);
+    const [placeholder, setPlaceholder] = useState(false);
 
     const setField = {
         code: setCode,
@@ -36,16 +38,18 @@ const CourseView = ({ course, isNew, isEditing, onEdit, onDelete, cancelUpdateCo
         desc: setDesc,
         sem: setSem,
         pts: setPts,
+        placeholder: setPlaceholder,
     };
 
     useEffect(() => {
-        const { points, semester, description, courseCode, name } = course;
+        const { points, semester, description, courseCode, name, isPlaceholder } = course;
 
         setCode(courseCode || "");
         setName(name || "");
         setDesc(description || "");
         setSem(semester || []);
         setPts(points || 15);
+        setPlaceholder(isPlaceholder || false);
     }, [course]);
 
     const changeField = (field, value) => {
@@ -59,6 +63,7 @@ const CourseView = ({ course, isNew, isEditing, onEdit, onDelete, cancelUpdateCo
         editedCourse[fields.desc] = desc;
         editedCourse[fields.sem] = sem;
         editedCourse[fields.pts] = pts;
+        editedCourse[fields.placeholder] = placeholder;
 
         updateCourse(editedCourse);
     };
@@ -76,6 +81,7 @@ const CourseView = ({ course, isNew, isEditing, onEdit, onDelete, cancelUpdateCo
                 desc={desc}
                 sem={sem}
                 pts={pts}
+                placeholder={placeholder}
                 isNew={isNew}
                 isEditing={isEditing}
                 onChange={changeField}

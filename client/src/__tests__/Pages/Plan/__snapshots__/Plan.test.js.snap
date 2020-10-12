@@ -203,24 +203,11 @@ exports[`<Plan /> 1`] = `
         <div
           className="css-1xugch4"
         >
-          <div
-            className="css-j6isw0"
-            style={
-              Object {
-                "opacity": 1,
-              }
-            }
+          <p
+            className="css-o39uab"
           >
-            <div
-              className="css-1lnyvqv"
-            >
-              <b
-                className="css-4za8c9"
-              >
-                Placeholder
-              </b>
-            </div>
-          </div>
+            No courses found.
+          </p>
         </div>
       </div>
     </div>

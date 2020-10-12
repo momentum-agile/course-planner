@@ -58,7 +58,7 @@ const parseCourseAllocations = (courseAllocations, startYear) => {
         const courses = preliminary[curr];
         const mappedCourses = courses
             .map(({ course, semester }) => ({
-                Course: !isNaN(course) ? "Placeholder" : course,
+                Course: course,
                 Semester: semester,
             }))
             .sort((a, b) => {

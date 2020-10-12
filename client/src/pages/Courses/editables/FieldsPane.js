@@ -4,6 +4,7 @@ import { MenuWrapper, SaveCancelButtonSet } from "../../../components";
 import TextField from "./TextField";
 import SemesterField from "./SemesterField";
 import PointsField from "./PointsField";
+import IsPlaceholderField from "./IsPlaceholderField";
 import { colors as c } from "../../../colors";
 
 const FieldsPane = ({
@@ -13,6 +14,7 @@ const FieldsPane = ({
     desc,
     sem,
     pts,
+    placeholder,
     isNew,
     isEditing,
     onChange,
@@ -24,7 +26,6 @@ const FieldsPane = ({
     setPrefill,
 }) => {
     const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
-
     return (
         <Flex direction="column" margin="5px" padding="10px" borderRadius="5px" bg={c.whiteGrey} boxShadow="md">
             {isNew ? (
@@ -64,6 +65,7 @@ const FieldsPane = ({
             <Flex justify="space-around" marginTop="15px">
                 <SemesterField value={sem} isEditing={isEditing} onChange={onChange} />
                 <PointsField value={pts} isEditing={isEditing} onChange={onChange} />
+                <IsPlaceholderField value={placeholder} isEditing={isEditing} onChange={onChange} />
             </Flex>
 
             <Flex direction="row" marginTop="30px">

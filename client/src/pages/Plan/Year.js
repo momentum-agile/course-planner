@@ -7,10 +7,10 @@ import { colors as c } from "../../colors";
 import { OptionsMenu } from "../../components";
 import usePlan from "./usePlan";
 
-const CourseTile = ({ courseName, courses, updateData, data }) => {
+const CourseTile = ({ allocationId, courseName, courses, updateData, data, isPlaceholder }) => {
     const [isHovered, setIsHovered] = useState(false);
     const [{ isDragging }, drag] = useDrag({
-        item: { courseName, type: ItemTypes.COURSE_TILE },
+        item: { isPlaceholder, courseName, allocationId, type: ItemTypes.COURSE_TILE },
         collect: (monitor) => ({
             isDragging: monitor.isDragging(),
         }),
@@ -60,7 +60,7 @@ const CourseTile = ({ courseName, courses, updateData, data }) => {
             <Flex ref={drag} cursor="pointer" style={{ opacity }} width="100%" direction="row" justify="center" align="center">
                 <Flex>
                     <Text flex="1" textAlign="center" fontWeight="bold" fontSize="xl" color={c.greyBlue}>
-                        {!isNaN(courseName) ? "Placeholder" : courseName}
+                        {courseName}
                     </Text>
                 </Flex>
             </Flex>
@@ -72,7 +72,7 @@ const CourseTile = ({ courseName, courses, updateData, data }) => {
                             name="small-close"
                             color={c.white}
                             cursor="pointer"
-                            onClick={() => updateData(data.filter((data) => data.course !== courseName))}
+                            onClick={() => updateData(data.filter((data) => data._id !== allocationId))}
                         />
                     </Flex>
                 ) : (
@@ -86,8 +86,8 @@ const CourseTile = ({ courseName, courses, updateData, data }) => {
 const SemesterBox = ({ semester, data, year, updateData, courses }) => {
     const [{ canDrop, isOver }, drop] = useDrop({
         accept: [ItemTypes.COURSE_PILL, ItemTypes.COURSE_TILE, ItemTypes.COURSE_REQUIREMENT_PILL],
-        drop: ({ courseName }, monitor) => {
-            const newData = data.filter((x) => x.course !== courseName);
+        drop: ({ isPlaceholder, allocationId, courseName }, monitor) => {
+            const newData = data.filter((x) => x._id !== allocationId || isPlaceholder);
             updateData([...newData, { course: courseName, year: year, semester: semester }]);
             return { name: "Dustbin" };
         },
@@ -128,7 +128,15 @@ const SemesterBox = ({ semester, data, year, updateData, courses }) => {
                     {data
                         .filter((x) => x.semester === semester && x.year === year)
                         .map((course, idx) => (
-                            <CourseTile updateData={updateData} data={data} key={idx} courseName={course.course} courses={courses} />
+                            <CourseTile
+                                allocationId={course._id}
+                                updateData={updateData}
+                                data={data}
+                                key={idx}
+                                courseName={course.course}
+                                courses={courses}
+                                isPlaceholder={course.isPlaceholder}
+                            />
                         ))}
                 </Stack>
             </Flex>

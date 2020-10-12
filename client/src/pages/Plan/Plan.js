@@ -55,7 +55,6 @@ const Plan = () => {
     const [isPlanNameEdited, setIsPlanNameEdited] = useState(false);
     const toast = useToast();
     const history = useHistory();
-
     useHotkeys("cmd+s, ctrl+s", (e) => {
         e.preventDefault();
         toast({
@@ -67,32 +66,18 @@ const Plan = () => {
         });
     });
 
-    const createElectivePlaceholder = () => {
-        const electivePlaceholders = courseAllocations?.filter((courseAllocation) => !isNaN(courseAllocation.course));
-        const code =
-            Math.max.apply(Math, electivePlaceholders?.length ? electivePlaceholders?.map((elective) => parseInt(elective.course)) : [0]) +
-            1;
-        return { courseCode: code };
-    };
-
     const exportToMarkdown = () => {
         const customPlan = parsePlanWithStudent(plan, student, programme, startYear);
         fileDownload(json2md(customPlan), `${student.name}-${plan.name}.md`);
     };
 
     const exportToJSON = async () => {
-        const exportPlan = {
-            ...plan,
-            courseAllocations: plan.courseAllocations.map((allocation) =>
-                isNaN(allocation.course) ? allocation : { ...allocation, course: "Placeholder" },
-            ),
-        };
-        fileDownload(JSON.stringify(exportPlan), `${student.name}-${plan.name}.json`);
+        fileDownload(JSON.stringify(plan), `${student.name}-${plan.name}.json`);
     };
 
     const filteredCourses = () => {
         const unique = [...new Set(courseAllocations?.map((item) => item.course))];
-        return courses.filter((val) => !unique.includes(val.courseCode)).concat(createElectivePlaceholder());
+        return courses.filter((val) => !unique.includes(val.courseCode) || val.isPlaceholder);
     };
     const years = () => generateYears(numYears);
 
@@ -178,8 +163,8 @@ const Plan = () => {
                             align="flex-start"
                         >
                             {filteredCourses() && filter(filteredCourses(), { courseCode: searchTerm }).length !== 0 ? (
-                                filter(filteredCourses(), { courseCode: searchTerm }).map(({ courseCode }, idx) => (
-                                    <CoursePill key={idx} courseName={courseCode} />
+                                filter(filteredCourses(), { courseCode: searchTerm }).map(({ courseCode, isPlaceholder }, idx) => (
+                                    <CoursePill key={idx} courseName={courseCode} isPlaceholder={isPlaceholder} />
                                 ))
                             ) : (
                                 <Text color={c.grey} fontSize="md" justifySelf="center" alignSelf="center">
