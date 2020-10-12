@@ -12,6 +12,7 @@ import {
     Flex,
     FormControl,
     Select,
+    Spinner,
     Text,
     useToast,
 } from "@chakra-ui/core";
@@ -25,14 +26,37 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
     const [subject, setSubject] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
     const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
+
     const toast = useToast();
 
     useEffect(() => {
-        if (subject.length === 0) return;
+        setLoading(true);
+
+        if (subject.length === 0) {
+            setLoading(false);
+            return;
+        }
+
         CoursePlannerClient.getUniCoursesForDegree(subject)
-            .then((res) => setData(_.sortBy(res, "courseCode")))
-            .catch((err) => console.log(err));
-    }, [subject]);
+            .then((res) => {
+                setData(_.sortBy(res, "courseCode"));
+                setLoading(false);
+            })
+            .catch((err) => {
+                if (_.isEmpty(err)) {
+                    toast({
+                        isClosable: true,
+                        duration: 9000,
+                        title: `Error`,
+                        description: `University API is down 😞`,
+                        status: "error",
+                    });
+                }
+
+                setLoading(false);
+            });
+    }, [subject, toast]);
 
     const handleModalClose = () => {
         onClose();
@@ -95,8 +119,14 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
                                 <option value="MECHENG">MECHENG</option>
                             </Select>
                         </FormControl>
-
-                        {data.length > 0 && (
+                        {loading && (
+                            <Flex direction="column" width="100%" justifyContent="center" alignContent="center">
+                                <Flex width="100%" justifyContent="center" alignContent="center" marginTop="25px">
+                                    <Spinner size="xl" />
+                                </Flex>
+                            </Flex>
+                        )}
+                        {!loading && data.length > 0 && (
                             <Flex direction="column">
                                 <SearchBar
                                     value={searchTerm}

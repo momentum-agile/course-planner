@@ -44,7 +44,11 @@ router.post("/programme", async (req, res) => {
     const year = req.query.year || 2021;
     const response = await uni.fetchAllCourses(subject, year);
 
-    if (response.error) {
+    if (!response) {
+        return res.status(500).send()
+    }
+
+    if (response && response.error) {
         LOGGER.error(response.error);
         return res.status(400).json(response.error);
     }
@@ -135,7 +139,11 @@ router.get("/programme", async (req, res) => {
 
     const response = await uni.fetchAllCourses(subject, year);
 
-    if (response.error) {
+    if (!response) {
+        return res.status(500).send()
+    }
+
+    if (response && response.error) {
         LOGGER.error(response.error);
         return res.status(400).json(response.error);
     }
@@ -200,9 +208,15 @@ router.get("/course", async (req, res) => {
     const subject = req.query.subject;
     const catalogNbr = req.query.catalogNbr;
     const year = req.query.year || 2021;
+
+
     const response = await uni.fetchParticularCourse(subject, catalogNbr, year);
 
-    if (response.error) {
+    if (!response) {
+        return res.status(500).send();
+    }
+
+    if (response && response.error) {
         LOGGER.error(response.error);
         return res.status(400).json(response.error);
     }
