@@ -44,7 +44,7 @@ const createPlan = (i, program, student) => {
         numYears: getRandomNumberInRange(1, 3),
         completed: false,
         createdAt: new Date().toISOString(),
-        updatedAT: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
     };
     student.plans = [getPlanID(i)];
     return newPlan;

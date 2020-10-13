@@ -19,6 +19,8 @@ import useCourses from "../Courses/useCourses";
 import useProgrammes from "./useProgrammes";
 import { SingleSelect } from "../../components";
 import { colors as c } from "../../colors";
+import { useHorizontalScroll} from "./scrollHook"
+
 
 const InlineRegulations = ({ closeEdit, programme, notifyUpdate, regulation, heading }) => {
     const { data } = useCourses();
@@ -68,6 +70,8 @@ const InlineRegulations = ({ closeEdit, programme, notifyUpdate, regulation, hea
         }
     }, [regulation, data]);
 
+    const scrollRef = useHorizontalScroll();
+    
     return (
         <PseudoBox
             height="50px"
@@ -134,6 +138,7 @@ const InlineRegulations = ({ closeEdit, programme, notifyUpdate, regulation, hea
                         padding="5px"
                         direction="row"
                         ml={2}
+                        ref={scrollRef}
                     >
                         {courses.reverse().map((course) => (
                             <Flex>

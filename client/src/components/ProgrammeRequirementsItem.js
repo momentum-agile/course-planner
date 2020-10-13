@@ -3,6 +3,7 @@ import { Flex, Text, Stack, PseudoBox, Tag, TagLabel, Box } from "@chakra-ui/cor
 import { colors as c } from "../colors";
 import { useDrag } from "react-dnd";
 import { ItemTypes } from "../pages/Plan/ItemTypes";
+import { useHorizontalScroll} from "../pages/Programmes/scrollHook"
 
 function DraggableCourseText({ index, courseName }) {
     const [, drag] = useDrag({
@@ -22,13 +23,15 @@ function DraggableCourseText({ index, courseName }) {
         </Box>
     );
 }
-
 const ProgrammeRequirementsItem = ({ itemNumber, pointRequirement, points, courseList, onDelete, onEdit, deleteButton, isDrag }) => {
     const pointRequirementMap = {
         EXACTLY: "Exactly",
         ATLEAST: "At least",
         UPTO: "Up to",
     };
+    
+    const scrollRef = useHorizontalScroll();
+
 
     return (
         <PseudoBox
@@ -63,7 +66,7 @@ const ProgrammeRequirementsItem = ({ itemNumber, pointRequirement, points, cours
                 <Text textAlign="left" width="8%" fontSize="10px" color={c.darkBlue}>
                     FROM
                 </Text>
-                <Stack className="programmeRequirements" textAlign="left" isInline overflowX="scroll" width="70%" ml={isDrag && 2}>
+                <Stack ref={scrollRef} className="programmeRequirements" textAlign="left" isInline overflowX="scroll" width="70%" ml={isDrag && 2}>
                     <Flex mb={courseList.length > 2 ? 1 : 0}>
                         {courseList.reverse().map((course, index) =>
                             isDrag ? (
