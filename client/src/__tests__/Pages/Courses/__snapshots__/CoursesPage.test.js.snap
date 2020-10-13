@@ -224,3 +224,19 @@ exports[`<Courses /> 1`] = `
   </div>
 </div>
 `;
+
+exports[`Empty Courses 1`] = `
+<div
+  className="css-lt6aye"
+>
+  <p
+    className="css-1fwnx19"
+  >
+    Create or select a Course to view its information here
+  </p>
+</div>
+`;
+
+exports[`Modal to add Regulations for Courses 1`] = `null`;
+
+exports[`UoA API Populate Courses Modal 1`] = `null`;

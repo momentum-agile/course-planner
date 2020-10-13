@@ -85,11 +85,19 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
         setData(newData);
     };
 
-    const handleAll = (selected) => {
+    const handleAllCourses = (selected) => {
         const newData = data.map((course) => ({
             ...course,
             checked: selected,
-            overwrite: course.inDatabase ? selected : false,
+        }));
+
+        setData(newData);
+    };
+
+    const handleOverWrite = (selected) => {
+        const newData = data.map((course) => ({
+            ...course,
+            overwrite: course.inDatabase && course.checked ? selected : false,
         }));
 
         setData(newData);
@@ -135,16 +143,33 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
                                     width="100%"
                                 />
                                 <Flex direction="row" p={2} width="100%">
-                                    <Flex width="70%" justify="flex-start">
-                                        <Button size="xs" onClick={() => handleAll(true)}>
-                                            Select All
-                                        </Button>
-                                        <Button size="xs" ml={2} onClick={() => handleAll(false)}>
-                                            Deselect All
-                                        </Button>
+                                    <Flex width="50%" direction="column" justify="center">
+                                        <Text textAlign="center" mb={1} as="b">
+                                            {" "}
+                                            Courses{" "}
+                                        </Text>
+                                        <Flex width="100%" justify="center">
+                                            <Button size="xs" onClick={() => handleAllCourses(true)}>
+                                                Select All
+                                            </Button>
+                                            <Button size="xs" ml={2} onClick={() => handleAllCourses(false)}>
+                                                Deselect All
+                                            </Button>
+                                        </Flex>
                                     </Flex>
-                                    <Flex width="30%">
-                                        <Text> Overwrite? </Text>
+                                    <Flex width="50%" direction="column" justify="center">
+                                        <Text textAlign="center" mb={1} as="b">
+                                            {" "}
+                                            Overwrite?{" "}
+                                        </Text>
+                                        <Flex width="100%" justify="center">
+                                            <Button size="xs" onClick={() => handleOverWrite(true)}>
+                                                Select All
+                                            </Button>
+                                            <Button size="xs" ml={2} onClick={() => handleOverWrite(false)}>
+                                                Deselect All
+                                            </Button>
+                                        </Flex>
                                     </Flex>
                                 </Flex>
                                 <CheckboxGroup variantColor="blue" maxHeight="500px" overflowY="scroll" ml={2} mt={2}>
@@ -160,7 +185,7 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
                                                     {courseCode}
                                                 </Checkbox>
                                             </Flex>
-                                            <Flex ml={16}>
+                                            <Flex ml={20}>
                                                 {inDatabase && (
                                                     <Checkbox
                                                         key={`${idx}-${inDatabase}`}
