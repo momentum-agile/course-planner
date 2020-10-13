@@ -59,7 +59,7 @@ const generatePlan = () =>
         startYear: 2020,
         numYears: 2024,
         completed: false,
-        notes: ["this is a note", "this is the second note"]
+        notes: "this is a note"
     });
 
 const generateStudent = () =>
@@ -91,7 +91,7 @@ describe("DELETE /plan/:id", () => {
             startYear: 2020,
             numYears: 2024,
             completed: false,
-            notes: ["this is a note", "this is the second note"]
+            notes: "this is a note"
         });
         programmeDegree.save((err,progRes) => {
             plan.save((err, planRes) => {
@@ -132,7 +132,7 @@ describe("PUT /plan", () => {
                     startYear: 2019,
                     numYears: 2024,
                     completed: false,
-                    notes: ["this is a note", "this is the second note"]
+                    notes: "this is a note"
                 })
                 .end((_err, res) => {
                     expect(res.statusCode).toBe(200);
@@ -197,7 +197,7 @@ describe("/POST plan", () => {
                     expect(res.body).toHaveProperty("startYear", 2020);
                     expect(res.body).toHaveProperty("numYears", 2024);
                     expect(res.body).toHaveProperty("completed", false);
-                    expect(res.body).toHaveProperty("notes", ["this is a note", "this is the second note"])
+                    expect(res.body).toHaveProperty("notes", "this is a note")
                     request(app)
                         .get(`/student/${student.upi}`)
                         .type("json")

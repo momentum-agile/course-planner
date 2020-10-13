@@ -82,7 +82,7 @@ const planSchema = mongoose.Schema(
             required: true,
         },
         notes: {
-            type: [String],
+            type: String,
             required: false,
         },
     },

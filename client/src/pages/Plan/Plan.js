@@ -13,6 +13,7 @@ import { useHistory } from "react-router-dom";
 import json2md from "json2md";
 import { parsePlanWithStudent } from "./JsonCustomConverter";
 import fileDownload from "js-file-download";
+import { DebounceInput } from "react-debounce-input";
 
 const reqsToolTip = "To complete the chosen programme, this plan should satisfy all of these regulations.";
 const generateYears = (to) => (to && [...Array(to).keys()]) || [];
@@ -46,11 +47,11 @@ const Plan = () => {
         plan,
         deletePlan,
         lastSaveDate,
+        setNotes,
     } = usePlan();
 
-    const { name, numYears, startYear, courseAllocations } = plan;
+    const { name, numYears, startYear, courseAllocations, notes } = plan;
     const [searchTerm, setSearchTerm] = useState("");
-    const [note, setNote] = useState("");
     const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
     const [isPlanNameEdited, setIsPlanNameEdited] = useState(false);
     const toast = useToast();
@@ -195,12 +196,14 @@ const Plan = () => {
                             </Text>
                         </Flex>
                         <Flex align="center" justify="center" width="100%" height="100%">
-                            <Textarea
-                                placeholder="Add a note to this plan."
+                            <DebounceInput
+                                minLength={2}
+                                debounceTimeout={600}
+                                onChange={(e) => setNotes(e.target.value)}
+                                element={Textarea}
+                                placeholder="Add a note to this plan"
+                                value={notes}
                                 size="sm"
-                                value={note}
-                                onChange={(e) => setNote(e.target.value)}
-                                resize="none"
                             />
                         </Flex>
                     </Flex>

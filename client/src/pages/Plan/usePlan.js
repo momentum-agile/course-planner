@@ -32,10 +32,12 @@ const usePlan = () => {
         setLastSaveDate(new Date());
     };
 
-    const savePlan = (courseAllocations, name, numYears, startYear) =>
-        CoursePlannerClient.updatePlan({ ...plan, courseAllocations, name, numYears, startYear }).then(updatePlan);
+    const savePlan = (courseAllocations, name, numYears, startYear, notes) =>
+        CoursePlannerClient.updatePlan({ ...plan, courseAllocations, name, numYears, startYear, notes }).then(updatePlan);
 
     const setCourseAllocations = (courseAllocations) => CoursePlannerClient.updatePlan({ ...plan, courseAllocations }).then(updatePlan);
+
+    const setNotes = (notes) => CoursePlannerClient.updatePlan({ ...plan, notes }).then(updatePlan);
 
     const setName = (name) => CoursePlannerClient.updatePlan({ ...plan, name }).then(updatePlan);
 
@@ -60,6 +62,7 @@ const usePlan = () => {
         setStartYear,
         savePlan,
         lastSaveDate,
+        setNotes,
     };
 };
 
