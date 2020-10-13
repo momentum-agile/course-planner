@@ -65,7 +65,7 @@ const FieldsPane = ({
             <Flex justify="space-around" marginTop="15px">
                 <SemesterField value={sem} isEditing={isEditing} onChange={onChange} />
                 <PointsField value={pts} isEditing={isEditing} onChange={onChange} />
-                <IsPlaceholderField value={placeholder} isEditing={isEditing} onChange={onChange} />
+                {(placeholder || isEditing) && <IsPlaceholderField value={placeholder} isEditing={isEditing} onChange={onChange} />}
             </Flex>
 
             <Flex direction="row" marginTop="30px">

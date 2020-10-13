@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Box, Text, FormControl, FormLabel, Input, Textarea, Divider, Button, useToast } from "@chakra-ui/core";
+import { Flex, Box, Text, FormControl, FormLabel, Input, Textarea, Divider, Button, useToast, Icon } from "@chakra-ui/core";
 import { colors as c } from "../../../colors";
 
 const placeholders = {
@@ -90,6 +90,7 @@ const TextField = ({ isRequired = false, name, title, value, isEditing, onChange
                             color={c.whiteGrey}
                             _hover={{ bg: !value ? null : c.lightBlue }}
                         >
+                            <Icon name="download" pr="5px" />
                             Update from UoA API
                         </Button>
                     </Flex>

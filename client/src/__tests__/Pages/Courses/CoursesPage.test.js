@@ -2,10 +2,9 @@ import React from "react";
 import renderer from "react-test-renderer";
 import { AppConfiguration } from "../../../components";
 import { Courses } from "../../../pages";
-import CourseView from "../../../pages/Courses/CourseView";
 import EmptyCourse from "../../../pages/Courses/EmptyCourse";
 import PopulateAPIModal from "../../../pages/Courses/PopulateAPIModal";
-import RegulationModal from "../../../pages/Courses/RegulationModal";
+import RegulationModal from "../../../pages/Courses/editables/RegulationModal";
 
 test("<Courses />", () => {
     const tree = renderer
