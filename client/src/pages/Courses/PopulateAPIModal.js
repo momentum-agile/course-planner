@@ -1,17 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
-    Button,
     AlertDialog,
-    AlertDialogOverlay,
-    AlertDialogContent,
-    AlertDialogHeader,
     AlertDialogBody,
+    AlertDialogContent,
     AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogOverlay,
+    Button,
     Checkbox,
     CheckboxGroup,
     Flex,
     FormControl,
-    Select,
     Spinner,
     Text,
     useToast,
@@ -19,51 +18,56 @@ import {
 import { SearchBar } from "../../components";
 import { CoursePlannerClient } from "../../common";
 import filter from "@mcabreradev/filter";
-import _ from "lodash";
+import _, { debounce } from "lodash";
+import Input from "@chakra-ui/core/dist/Input";
+import { colors } from "../../colors";
 
 const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
     const cancelRef = useRef();
-    const [subject, setSubject] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [APISearchTerm, setAPISearchTerm] = useState("");
 
     const toast = useToast();
 
-    useEffect(() => {
-        setLoading(true);
-
-        if (subject.length === 0) {
-            setLoading(false);
-            return;
-        }
-
-        CoursePlannerClient.getUniCoursesForDegree(subject)
-            .then((res) => {
-                setData(_.sortBy(res, "courseCode"));
-                setLoading(false);
-            })
-            .catch((err) => {
-                if (_.isEmpty(err)) {
-                    toast({
-                        isClosable: true,
-                        duration: 9000,
-                        title: `Error`,
-                        description: `University API is down 😞`,
-                        status: "error",
-                    });
-                }
-
-                setLoading(false);
-            });
-    }, [subject, toast]);
-
     const handleModalClose = () => {
         onClose();
-        setSubject("");
+        setAPISearchTerm("");
         setSearchTerm("");
         setData([]);
     };
+
+    const callUniAPI = () => {
+        APISearchTerm
+            ? CoursePlannerClient.getUniCoursesForDegree(APISearchTerm)
+                  .then((res) => {
+                      setData(_.sortBy(res, "courseCode"));
+                      setLoading(false);
+                  })
+                  .catch((err) => {
+                      if (_.isEmpty(err)) {
+                          toast({
+                              isClosable: true,
+                              duration: 9000,
+                              title: `Error`,
+                              description: `University API is down 😞`,
+                              status: "error",
+                          });
+                      }
+
+                      setLoading(false);
+                  })
+            : setLoading(false);
+    };
+
+    const delayedCallUniAPI = useCallback(debounce(callUniAPI, 500), [APISearchTerm]);
+
+    useEffect(() => {
+        delayedCallUniAPI();
+
+        return delayedCallUniAPI.cancel;
+    }, [APISearchTerm, delayedCallUniAPI]);
 
     const handleOnCheck = (key) => (courseCode) => {
         const newData = [...data];
@@ -103,6 +107,11 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
         setData(newData);
     };
 
+    const handleAPISearch = (e) => {
+        setAPISearchTerm(e.target.value.toUpperCase());
+        setLoading(true);
+    };
+
     return (
         <>
             <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={handleModalClose}>
@@ -114,18 +123,10 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
 
                     <AlertDialogBody>
                         <Text paddingBottom="10px" fontSize="xl">
-                            Select degree to populate courses
+                            Search subject to populate courses for
                         </Text>
                         <FormControl>
-                            <Select id="subject" placeholder="Select Subject" onChange={(e) => setSubject(e.target.value)}>
-                                <option value="SOFTENG">SOFTENG</option>
-                                <option value="COMPSCI">COMPSCI</option>
-                                <option value="ENGGEN">ENGGEN</option>
-                                <option value="ENGSCI">ENGSCI</option>
-                                <option value="ELECTENG">ELECTENG</option>
-                                <option value="COMPSYS">COMPSYS</option>
-                                <option value="MECHENG">MECHENG</option>
-                            </Select>
+                            <Input onChange={handleAPISearch} value={APISearchTerm} placeholder={"e.g SOFTENG"} />
                         </FormControl>
                         {loading && (
                             <Flex direction="column" width="100%" justifyContent="center" alignContent="center">
@@ -134,11 +135,16 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
                                 </Flex>
                             </Flex>
                         )}
+                        {!loading && !data.length && APISearchTerm && (
+                            <Text paddingBottom="10px" fontSize="sm" color={colors.red} textAlign="center" mt={5}>
+                                Subject '{APISearchTerm}' could not be found.
+                            </Text>
+                        )}
                         {!loading && data.length > 0 && (
                             <Flex direction="column">
                                 <SearchBar
                                     value={searchTerm}
-                                    searchCategory="Populate"
+                                    placeholderText={`Search by Course Code within ${APISearchTerm}`}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                     width="100%"
                                 />
@@ -208,10 +214,10 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
                             Cancel
                         </Button>
                         <Button
-                            isDisabled={subject === ""}
+                            isDisabled={loading || !data.length}
                             variantColor="blue"
                             onClick={() => {
-                                confirm(subject, data, toast);
+                                confirm(APISearchTerm, data, toast);
                                 handleModalClose();
                             }}
                             ml={3}

@@ -114,10 +114,7 @@ const RegulationTable = ({ name, updateCourse, course, regulationList }) => {
                             </Tooltip>
                             <Flex>
                                 <OptionsMenu
-                                    onEdit={() => {
-                                        console.log(regulationList);
-                                        handleRegTableEditClick(regulationList);
-                                    }}
+                                    onEdit={() => handleRegTableEditClick(regulationList)}
                                     onDelete={() => handleRegTableDeleteClick(regulationList)}
                                 />
                             </Flex>
