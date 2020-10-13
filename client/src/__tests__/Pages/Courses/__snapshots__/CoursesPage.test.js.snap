@@ -130,11 +130,44 @@ exports[`<Courses /> 1`] = `
                 }
                 title="Toggle SortBy"
               >
-                <p
-                  className="css-7woomv"
+                <div
+                  className="css-1ik4laa"
                 >
-                  Course Code 
-                </p>
+                  <p
+                    className="css-7woomv"
+                  >
+                    Course Code
+                  </p>
+                  <div
+                    className="css-50atwj"
+                    focusable={false}
+                    role="presentation"
+                    viewBox="0 0 24 24"
+                  >
+                    <g
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    >
+                      <path
+                        d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+                        fill="none"
+                        strokeLinecap="full"
+                      />
+                      <path
+                        d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+                        fill="none"
+                        strokeLinecap="full"
+                      />
+                      <circle
+                        cx="12"
+                        cy="12"
+                        fill="none"
+                        r="11.25"
+                        strokeMiterlimit="10"
+                      />
+                    </g>
+                  </div>
+                </div>
               </th>
               <th
                 className="css-11dd6zr"
@@ -148,11 +181,44 @@ exports[`<Courses /> 1`] = `
                 }
                 title="Toggle SortBy"
               >
-                <p
-                  className="css-7woomv"
+                <div
+                  className="css-1ik4laa"
                 >
-                  Course Name 
-                </p>
+                  <p
+                    className="css-7woomv"
+                  >
+                    Course Name
+                  </p>
+                  <div
+                    className="css-50atwj"
+                    focusable={false}
+                    role="presentation"
+                    viewBox="0 0 24 24"
+                  >
+                    <g
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    >
+                      <path
+                        d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+                        fill="none"
+                        strokeLinecap="full"
+                      />
+                      <path
+                        d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+                        fill="none"
+                        strokeLinecap="full"
+                      />
+                      <circle
+                        cx="12"
+                        cy="12"
+                        fill="none"
+                        r="11.25"
+                        strokeMiterlimit="10"
+                      />
+                    </g>
+                  </div>
+                </div>
               </th>
               <th
                 className="css-11dd6zr"
@@ -166,11 +232,44 @@ exports[`<Courses /> 1`] = `
                 }
                 title="Toggle SortBy"
               >
-                <p
-                  className="css-7woomv"
+                <div
+                  className="css-1ik4laa"
                 >
-                  Semester(s) 
-                </p>
+                  <p
+                    className="css-7woomv"
+                  >
+                    Semester(s)
+                  </p>
+                  <div
+                    className="css-50atwj"
+                    focusable={false}
+                    role="presentation"
+                    viewBox="0 0 24 24"
+                  >
+                    <g
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    >
+                      <path
+                        d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+                        fill="none"
+                        strokeLinecap="full"
+                      />
+                      <path
+                        d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+                        fill="none"
+                        strokeLinecap="full"
+                      />
+                      <circle
+                        cx="12"
+                        cy="12"
+                        fill="none"
+                        r="11.25"
+                        strokeMiterlimit="10"
+                      />
+                    </g>
+                  </div>
+                </div>
               </th>
               <th
                 className="css-11dd6zr"
@@ -184,11 +283,44 @@ exports[`<Courses /> 1`] = `
                 }
                 title="Toggle SortBy"
               >
-                <p
-                  className="css-7woomv"
+                <div
+                  className="css-1ik4laa"
                 >
-                  Points 
-                </p>
+                  <p
+                    className="css-7woomv"
+                  >
+                    Points
+                  </p>
+                  <div
+                    className="css-50atwj"
+                    focusable={false}
+                    role="presentation"
+                    viewBox="0 0 24 24"
+                  >
+                    <g
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    >
+                      <path
+                        d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+                        fill="none"
+                        strokeLinecap="full"
+                      />
+                      <path
+                        d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+                        fill="none"
+                        strokeLinecap="full"
+                      />
+                      <circle
+                        cx="12"
+                        cy="12"
+                        fill="none"
+                        r="11.25"
+                        strokeMiterlimit="10"
+                      />
+                    </g>
+                  </div>
+                </div>
               </th>
             </tr>
           </thead>

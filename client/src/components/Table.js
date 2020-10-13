@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useTable, useGlobalFilter, useSortBy } from "react-table";
-import { PseudoBox, Box, Text } from "@chakra-ui/core";
+import { PseudoBox, Box, Text, Icon, Flex } from "@chakra-ui/core";
 import { colors as c } from "../colors";
+import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 
 const Table = ({ columns, data, getRowProps = () => ({}), currRow, searchInput, rowHover }) => {
     const [dataLength, setDataLength] = useState(null);
@@ -67,9 +68,10 @@ const TableHeader = ({ headerGroup }) => {
         <Box as="tr" {...headerGroup.getHeaderGroupProps()} color={c.lightBlue}>
             {headerGroup.headers.map((column) => (
                 <Box as="th" m={0} p="0.5rem" {...column.getHeaderProps(column.getSortByToggleProps())}>
-                    <Text textAlign="left">
-                        {`${column.render("Header")} ${column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : ""}`}
-                    </Text>
+                    <Flex direction="row" width="100%">
+                        <Text textAlign="left">{`${column.render("Header")}`}</Text>
+                        <Icon as={column.isSorted ? (column.isSortedDesc ? TiArrowSortedDown : TiArrowSortedUp) : ""} mt={1} ml={1} />
+                    </Flex>
                 </Box>
             ))}
         </Box>
