@@ -13,8 +13,8 @@ const parseRequirements = (requirementsStr) => {
     const resReqStr = cleanRequirements.filter(r => r.includes('Restriction')).map(r => r.replace('Restriction: ', ''))[0] || ""
     const notesStr = cleanRequirements.filter(r => !r.includes('Prerequisite') && !r.includes('Corequisite') && !r.includes('Restriction'))[0] || ""
 
-    const prerequisites = (preReqStr.length > 0 ? preReqStr : null)
-    const corequisities = (coReqStr.length > 0 ? coReqStr : null)
+    const prerequisites = (preReqStr.length > 0 ? [preReqStr] : [])
+    const corequisities = (coReqStr.length > 0 ? [coReqStr] : [])
     const restrictions = [resReqStr, notesStr].filter(r => r !== "")
 
     return [
