@@ -17,7 +17,7 @@ json2md.converters.programmeDegree = (input, json2md) => {
 };
 
 json2md.converters.notes = (input, json2md) => {
-    return `## Notes: ${input}`;
+    return `## Notes:`;
 };
 
 json2md.converters.completed = (input, json2md) => {
@@ -35,6 +35,7 @@ export const parsePlanWithStudent = (plan, student, programmeDegree, startYear) 
         { programmeDegree: programmeDegree.name },
         { courseAllocations: parseCourseAllocations(plan.courseAllocations, startYear) },
         { notes: plan.notes },
+        { ul: plan.notes.split("\n") },
         { completed: plan.completed },
     ];
     return parsedObjectArray;
