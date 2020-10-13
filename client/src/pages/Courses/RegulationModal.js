@@ -65,6 +65,7 @@ const customStyles = {
 const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg }) => {
     const [currentReg, setCurrentReg] = useState(defaultReg);
     const [outputRegulation, setOutputRegulation] = useState([]);
+    const [selectValue,setSelectValue] = useState([])
 
     // Text field
     const [noteValue, setNoteValue] = useState("");
@@ -83,6 +84,7 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
     const handleAddToRegArrayClick = (type) => {
         if (type === "POINTS") {
             setOutputRegulation([...outputRegulation, `${currentReg.points} points from ${currentReg.courses.join(", ")}`]);
+            setSelectValue([])
         } else if (noteValue.length > 0 && type === "NOTE") {
             setOutputRegulation([...outputRegulation, currentReg.courses[0]]);
             setNoteValue("");
@@ -111,16 +113,19 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
     };
 
     const handleSelectChange = (newValue, actionMeta) => {
-        if (actionMeta.action === "select-option") {
+        if (actionMeta.action === "select-option" || actionMeta.action === "create-option") { 
             const latestCourses = newValue.map((x) => x.label);
+            setSelectValue(newValue)
             handleCourseSelect(latestCourses);
         }
 
         if (actionMeta.action === "pop-value" || actionMeta.action === "remove-value" || actionMeta.action === "clear") {
             if (newValue === null) {
                 updateReg("courses")([], "POINTS");
+                setSelectValue(newValue)
             } else {
                 const latestCourses = newValue.map((x) => x.label);
+                setSelectValue(newValue)
                 handleCourseSelect(latestCourses);
             }
         }
@@ -243,6 +248,7 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
                                             formatCreateLabel={(userInput) => `Add Ghost Course: ${userInput}`}
                                             styles={customStyles}
                                             autoSize={true}
+                                            value={selectValue}
                                         />
                                         <IconButton
                                             aria-label="Add input"
