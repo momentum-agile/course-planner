@@ -1,0 +1,34 @@
+version: "3"
+services:
+  client:
+    build:
+      context: "./client"
+      dockerfile: "Dockerfile"
+    ports:
+      - "3000:3000"
+    stdin_open: true # fixes the auto exit issue: https://github.com/facebook/create-react-app/issues/8688
+    volumes:
+      - ./client/src:/app/src
+    depends_on:
+      - api
+  api:
+    build:
+      context: "./api"
+      dockerfile: "Dockerfile"
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./api/src:/app/src
+    environment:
+      - DB_CONN_URL="mongodb://mongo:27017"
+      - PORT=8080
+    depends_on:
+      - mongo
+  mongo:
+    image: "mongo:latest"
+    ports:
+      - "27018:27017"
+    volumes:
+      - ./course-planner-database:/data/db # persist database between restarts, only works on nix machines
+    logging:
+      driver: "none" # disables the database log because spam

@@ -30,10 +30,19 @@ Course Planner is a project created by students at the University of Auckland fo
 ###  Stopping the development environment
 If you are done running the application, run `ctrl + c` and then run the command: `docker-compose down` to stop containers.
 
+
+#  Running the application as the product owner
+
+1. `chmod +x start.sh`
+2. `chmod +x stop.sh`
+3. To run the application: `./start.sh`
+4. To stop the application: `ctrl+c` and then `./stop.sh`
+5. Note that a folder `course-planner-database` folder is made. If this folder is accidentally deleted then all your data will be lost :(
+
 ---
 
 ## Viewing the Application
-Once you have run the client/frontend, go to [localhost:3000](http://localhost:3000)
+Once you have run the client/frontend, go to [localhost:3000](http://localhost:3000) in a browser of your choice.
 
 ## Viewing the API Documentation
 Once you have run the API/backend, go to [localhost:8080/swagger](http://localhost:8080/swagger)
