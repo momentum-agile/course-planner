@@ -1,6 +1,6 @@
 import json2md from "json2md";
 
-json2md.converters.name = (input, json2md) => {
+json2md.converters.name = (input) => {
     return `# ${input}`;
 };
 
@@ -8,23 +8,23 @@ json2md.converters.courseAllocations = (input, json2md) => {
     return json2md(input);
 };
 
-json2md.converters.student = (input, json2md) => {
+json2md.converters.student = (input) => {
     return `## Student Name: ${input}`;
 };
 
-json2md.converters.programmeDegree = (input, json2md) => {
+json2md.converters.programmeDegree = (input) => {
     return `## Degree: ${input}`;
 };
 
-json2md.converters.notes = (input, json2md) => {
+json2md.converters.notes = () => {
     return `## Notes:`;
 };
 
-json2md.converters.completed = (input, json2md) => {
+json2md.converters.completed = (input) => {
     return `## Completed: ${input}`;
 };
 
-json2md.converters.year = (input, json2md) => {
+json2md.converters.year = (input) => {
     return `## Completed: ${input}`;
 };
 
@@ -35,7 +35,7 @@ export const parsePlanWithStudent = (plan, student, programmeDegree, startYear) 
         { programmeDegree: programmeDegree.name },
         { courseAllocations: parseCourseAllocations(plan.courseAllocations, startYear) },
         { notes: plan.notes },
-        { ul: plan.notes.split("\n") },
+        { ul: plan.notes ? plan.notes.split("\n") : [] },
         { completed: plan.completed },
     ];
     return parsedObjectArray;
@@ -80,5 +80,6 @@ const parseCourseAllocations = (courseAllocations, startYear) => {
 
         return acc;
     }, []);
+
     return final;
 };

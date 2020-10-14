@@ -87,7 +87,6 @@ const RegulationTable = ({ name, updateCourse, course, regulationList }) => {
 
     const splitRegulation = (reg) => {
         // const validCourseCodeRegex = /^([A-Za-z])*(\s?)([1-9][0-9][0-9])([A-Za-z]{0,3})$/;
-        // TODO: Change this to make each course code a separate bubble?
         // Could use validCourseCodeRegex (defined above)
         return [reg];
     };

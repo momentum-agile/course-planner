@@ -29,24 +29,23 @@ const SemesterField = ({ value, isEditing, onChange }) => {
                 Semester(s)
             </Text>
 
-            {!isEditing
-                ? (
-                    <Flex justify="center">
-                        {value.map((sem, idx) =>
-                            <Tag size="md" key={idx} rounded="full" variant="solid" variantColor="teal" mr={1}>
-                                {sem}
-                            </Tag>
-                        )}
-                    </Flex>
-                ) : (
-                    <Stack spacing={10} isInline pt="10px">
-                        {semMapping.map((sem, idx) => (
-                            <Checkbox key={idx} borderColor={c.lightBlue} isChecked={checkedSems[idx]} onChange={() => updateSem(idx)}>
-                                {sem}
-                            </Checkbox>
-                        ))}
-                    </Stack>
-                )}
+            {!isEditing ? (
+                <Flex justify="center">
+                    {value.map((sem, idx) => (
+                        <Tag size="md" key={idx} rounded="full" variant="solid" variantColor="cyan" mr={1}>
+                            {sem}
+                        </Tag>
+                    ))}
+                </Flex>
+            ) : (
+                <Stack spacing={10} isInline pt="10px">
+                    {semMapping.map((sem, idx) => (
+                        <Checkbox key={idx} borderColor={c.lightBlue} isChecked={checkedSems[idx]} onChange={() => updateSem(idx)}>
+                            {sem}
+                        </Checkbox>
+                    ))}
+                </Stack>
+            )}
         </Flex>
     );
 };

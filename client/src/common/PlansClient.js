@@ -3,19 +3,34 @@ import ApiClient from "./ApiClient";
 const endpoint = "plan";
 
 const getPlans = () => {
-    return ApiClient("plan");
-};
-
-const createProgrammePlan = (programmeID, newPlan) => {
-    return ApiClient(`${endpoint}/programmedegree/${programmeID}`, {
-        method: "POST",
-        body: newPlan,
+    return ApiClient(endpoint, {
+        method: "GET",
     });
 };
-const createStudentPlan = (studentUpi, newPlan) => {
+
+const getPlan = (id) => {
+    return ApiClient(`${endpoint}/${id}`, {
+        method: "GET",
+    });
+};
+
+const createProgrammePlan = (programmeID, plan) => {
+    return ApiClient(`${endpoint}/programmedegree/${programmeID}`, {
+        method: "POST",
+        body: plan,
+    });
+};
+const createStudentPlan = (studentUpi, plan) => {
     return ApiClient(`${endpoint}/student/${studentUpi}`, {
         method: "POST",
-        body: newPlan,
+        body: plan,
+    });
+};
+
+const updatePlan = (plan) => {
+    return ApiClient(endpoint, {
+        method: "PUT",
+        body: plan,
     });
 };
 
@@ -25,24 +40,13 @@ const deletePlan = (id) => {
     });
 };
 
-const getPlan = (id) => {
-    return ApiClient(`${endpoint}/${id}`);
-};
-
-const updatePlan = (plan) => {
-    return ApiClient(`${endpoint}`, {
-        body: plan,
-        method: "PUT",
-    });
-};
-
 const PlansClient = {
     getPlans,
+    getPlan,
     createStudentPlan,
     createProgrammePlan,
-    deletePlan,
     updatePlan,
-    getPlan,
+    deletePlan,
 };
 
 export default PlansClient;

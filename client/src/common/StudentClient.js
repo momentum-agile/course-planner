@@ -1,7 +1,28 @@
 import ApiClient from "./ApiClient";
 
 const getStudents = () => {
-    return ApiClient(`student`);
+    return ApiClient(`student`, {
+        method: "GET",
+    });
+};
+
+const getStudent = (upi) => {
+    return ApiClient(`student/${upi}`, {
+        method: "GET",
+    });
+};
+
+const getStudentById = (id) => {
+    return ApiClient(`student/id/${id}`, {
+        method: "GET",
+    });
+};
+
+const addStudent = (student) => {
+    return ApiClient(`student`, {
+        method: "POST",
+        body: student,
+    });
 };
 
 const editStudent = (student) => {
@@ -17,28 +38,13 @@ const deleteStudent = (upi) => {
     });
 };
 
-const addStudent = (student) => {
-    return ApiClient(`student`, {
-        method: "POST",
-        body: student,
-    });
-};
-
-const getStudent = (upi) => {
-    return ApiClient(`student/${upi}`);
-};
-
-const getStudentByID = (id) => {
-    return ApiClient(`student/id/${id}`);
-};
-
 const StudentClient = {
-    getStudent,
     getStudents,
-    editStudent,
-    getStudentById: getStudentByID,
-    deleteStudent,
+    getStudent,
+    getStudentById,
     addStudent,
+    editStudent,
+    deleteStudent,
 };
 
 export default StudentClient;

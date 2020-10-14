@@ -18,22 +18,6 @@ import { DebounceInput } from "react-debounce-input";
 const reqsToolTip = "To complete the chosen programme, this plan should satisfy all of these regulations.";
 const generateYears = (to) => (to && [...Array(to).keys()]) || [];
 
-const PlanOptions = ({ plan, detail, setOpenConfirmationDialog, openConfirmationDialog, onDelete, onEditName, onExport, onClear }) => {
-    return (
-        <MenuWrapper
-            item={plan}
-            detail={detail}
-            itemType="Plan"
-            setOpenConfirmationDialog={setOpenConfirmationDialog}
-            openConfirmationDialog={openConfirmationDialog}
-            onClear={onClear}
-            confirm={onDelete}
-            onEdit={onEditName}
-            onExport={onExport}
-        />
-    );
-};
-
 const Plan = () => {
     const {
         student,
@@ -54,8 +38,10 @@ const Plan = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
     const [isPlanNameEdited, setIsPlanNameEdited] = useState(false);
+
     const toast = useToast();
     const history = useHistory();
+
     useHotkeys("cmd+s, ctrl+s", (e) => {
         e.preventDefault();
         toast({
@@ -81,8 +67,6 @@ const Plan = () => {
         return courses.filter((val) => !unique.includes(val.courseCode) || val.isPlaceholder);
     };
     const years = () => generateYears(numYears);
-
-    // TODO: The programme variable's requirements should have an attribute to check
 
     return (
         <Flex height="100vh" width="100%" direction="row" backgroundColor={c.white}>
@@ -148,7 +132,9 @@ const Plan = () => {
                             Courses
                         </Text>
                     </Flex>
+
                     <SearchBar searchCategory="Courses" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+
                     <Flex align="center" justify="center" width="100%" height="100%">
                         <Flex
                             height="100%"
@@ -297,6 +283,22 @@ const Plan = () => {
                 </Flex>
             </Flex>
         </Flex>
+    );
+};
+
+const PlanOptions = ({ plan, detail, setOpenConfirmationDialog, openConfirmationDialog, onDelete, onEditName, onExport, onClear }) => {
+    return (
+        <MenuWrapper
+            item={plan}
+            detail={detail}
+            itemType="Plan"
+            setOpenConfirmationDialog={setOpenConfirmationDialog}
+            openConfirmationDialog={openConfirmationDialog}
+            onClear={onClear}
+            confirm={onDelete}
+            onEdit={onEditName}
+            onExport={onExport}
+        />
     );
 };
 

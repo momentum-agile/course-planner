@@ -30,7 +30,6 @@ const ProgrammeCard = ({ currentID, programme, to }) => {
                     width="300px"
                     height="150px"
                     marginTop="20px"
-                    // TODO (Dins & Vee): change highlight color
                     _hover={{ transform: "scale(1.05, 1.05)" }}
                     _active={{}}
                     _focus={{ bg: c.iceBlue }}

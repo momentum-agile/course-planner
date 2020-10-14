@@ -19,6 +19,7 @@ const OptionsMenu = ({ onDelete, onEdit, onClear }) => {
                                 color={isOpen ? c.whiteGrey : c.black}
                             />
                         </MenuButton>
+
                         <MenuList placement="bottom-end" minWidth="160px">
                             <MenuGroup>
                                 {onEdit && (

@@ -1,19 +1,29 @@
 import ApiClient from "./ApiClient";
 
+const endpoint = "course";
+
 const getCourses = () => {
-    return ApiClient(`course`);
+    return ApiClient(endpoint, {
+        method: "GET",
+    });
 };
 
 const createCourse = (course) => {
-    return ApiClient("course", { body: course, method: "POST" });
+    return ApiClient(endpoint, {
+        method: "POST",
+        body: course,
+    });
 };
 
 const updateCourse = (course) => {
-    return ApiClient("course", { body: course, method: "PUT" });
+    return ApiClient(endpoint, {
+        method: "PUT",
+        body: course,
+    });
 };
 
 const deleteCourse = (courseCode) => {
-    return ApiClient(`course/${courseCode}`, {
+    return ApiClient(`${endpoint}/${courseCode}`, {
         method: "DELETE",
     });
 };
@@ -22,7 +32,7 @@ const CourseClient = {
     getCourses,
     createCourse,
     updateCourse,
-    deleteCourse
+    deleteCourse,
 };
 
 export default CourseClient;

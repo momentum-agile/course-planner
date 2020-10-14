@@ -1,7 +1,8 @@
-// == Color Constants ==
-// Please try to use colors that have already been added here, or add to this list.
-// We should always use a constant rather than a raw hex value.
-
+/**
+ * ====== Color Constants ======
+ * Please try to use colors that have already been added here, or add to this list.
+ * We should always use a constant rather than a raw hex value.
+ */
 const colors = {
     white: "#FFFFFF",
     black: "#000000",

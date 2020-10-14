@@ -16,6 +16,7 @@ import { colors as c } from "../../colors";
 
 const NewProgrammeModal = ({ notifyAddition, isOpen, onClose }) => {
     const history = useHistory();
+
     const { createProgramme } = useProgrammmes();
     const [programmeName, setProgrammeName] = useState("");
     const [newProgramme, setNewProgramme] = useState({
@@ -53,6 +54,7 @@ const NewProgrammeModal = ({ notifyAddition, isOpen, onClose }) => {
         <>
             <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
                 <AlertDialogOverlay />
+
                 <AlertDialogContent>
                     <AlertDialogHeader fontSize="2xl" fontWeight="bold" width="100%">
                         Create New Programme

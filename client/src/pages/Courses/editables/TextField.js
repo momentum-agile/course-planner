@@ -40,7 +40,7 @@ const TextField = ({ isRequired = false, name, title, value, isEditing, onChange
         <Box>
             {name === "code" ? (
                 <Flex justify="center" pt="10px" pb="3px">
-                    <Text fontSize="25px" color={c.white} bg={c.teal} p="8px" borderRadius="20px">
+                    <Text fontSize="25px" color={c.white} bg={c.lightBlue} p="8px" borderRadius="20px">
                         {value}
                     </Text>
                 </Flex>

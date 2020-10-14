@@ -11,6 +11,7 @@ const ExistingProgramme = ({ programme, notifyUpdate }) => {
     const history = useHistory();
     const { deleteProgramme, updateProgramme, createProgrammeDegreePlan } = useProgrammmes();
     const { data } = useCourses();
+
     const [programmeDegreeInfo, setProgrammeDegreeInfo] = useState({});
     const [createNewRequirements, setCreateNewRequirements] = useState(false);
     const [editRequirements, setEditRequirements] = useState(-1);
@@ -37,7 +38,6 @@ const ExistingProgramme = ({ programme, notifyUpdate }) => {
             name: name,
         };
 
-        // TODO: show popup success message
         setIsEdited(false);
 
         // Update the programme and refresh
@@ -57,6 +57,7 @@ const ExistingProgramme = ({ programme, notifyUpdate }) => {
     const confirmDeleteRegulation = (regulation) => {
         const updatedRegulations = programme.regulations.filter((r) => r._id !== regulation._id);
         const updatedProgramme = { ...programme, regulations: updatedRegulations };
+
         updateProgramme(updatedProgramme, notifyUpdate);
         setOpenConfirmationDeleteRegulation(false);
         setCreateNewRequirements(false);

@@ -57,6 +57,7 @@ const CourseTile = ({ allocationId, courseName, courses, updateData, data, isPla
             ) : (
                 <Flex width="5%" />
             )}
+
             <Flex ref={drag} cursor="pointer" style={{ opacity }} width="100%" direction="row" justify="center" align="center">
                 <Flex>
                     <Text flex="1" textAlign="center" fontWeight="bold" fontSize="xl" color={c.greyBlue}>
@@ -64,6 +65,7 @@ const CourseTile = ({ allocationId, courseName, courses, updateData, data, isPla
                     </Text>
                 </Flex>
             </Flex>
+
             <Flex width="5%">
                 {isHovered ? (
                     <Flex width="5%">
@@ -99,6 +101,7 @@ const SemesterBox = ({ semester, data, year, updateData, courses }) => {
 
     const isActive = canDrop && isOver;
     let backgroundColor = c.greyBlue;
+
     if (isActive) {
         backgroundColor = c.iceBlue;
     } else if (canDrop) {
@@ -112,6 +115,7 @@ const SemesterBox = ({ semester, data, year, updateData, courses }) => {
                     {semester === "S1" ? "Semester 1" : "Semester 2"}
                 </Text>
             </Flex>
+
             <Flex
                 id={`${year}${semester}`}
                 width="75%"
@@ -194,8 +198,8 @@ const Year = ({ year, data, startYear, updateData, courses, setStartYear }) => {
                 </Flex>
             </Flex>
             <Flex width="100%" direction="row" marginTop="5px">
-                {["S1", "S2"].map((semester) => (
-                    <SemesterBox semester={semester} year={year} data={data} updateData={updateData} courses={courses} />
+                {["S1", "S2"].map((semester, idx) => (
+                    <SemesterBox key={idx} semester={semester} year={year} data={data} updateData={updateData} courses={courses} />
                 ))}
             </Flex>
         </Flex>

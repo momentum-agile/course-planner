@@ -42,6 +42,7 @@ const PlanTable = ({ columns, data }) => {
                         </Box>
                     ))}
                 </Box>
+
                 <Box as="tbody" {...getTableBodyProps()}>
                     {rows.map((row, i) => {
                         prepareRow(row);

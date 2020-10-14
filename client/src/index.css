@@ -57,5 +57,17 @@ code {
 
 /* Handle */
 .studentPlansBox::-webkit-scrollbar-thumb {
-    background: "#BBBBBB";
+    background: #bbbbbb;
+}
+
+/* width */
+.programmesBox::-webkit-scrollbar {
+    height: 3px;
+    width: 5px;
+    border-radius: 3px;
+}
+
+/* Handle */
+.programmesBox::-webkit-scrollbar-thumb {
+    background: #d3d3d3;
 }

@@ -19,10 +19,9 @@ import useCourses from "../Courses/useCourses";
 import useProgrammes from "./useProgrammes";
 import { SingleSelect } from "../../components";
 import { colors as c } from "../../colors";
-import { useHorizontalScroll} from "./scrollHook"
+import { useHorizontalScroll } from "./scrollHook";
 
-
-const InlineRegulations = ({ closeEdit, programme, notifyUpdate, regulation, heading }) => {
+const InlineRegulations = ({ closeEdit, programme, notifyUpdate, regulation }) => {
     const { data } = useCourses();
     const { updateProgramme } = useProgrammes();
     const [courses, setCourses] = useState([]);
@@ -71,7 +70,7 @@ const InlineRegulations = ({ closeEdit, programme, notifyUpdate, regulation, hea
     }, [regulation, data]);
 
     const scrollRef = useHorizontalScroll();
-    
+
     return (
         <PseudoBox
             height="50px"
@@ -101,6 +100,7 @@ const InlineRegulations = ({ closeEdit, programme, notifyUpdate, regulation, hea
                     <option value="ATLEAST">At Least</option>
                     <option value="UPTO">Up to</option>
                 </Select>
+
                 {/* Number input for Points */}
                 <NumberInput
                     step={5}
@@ -118,9 +118,11 @@ const InlineRegulations = ({ closeEdit, programme, notifyUpdate, regulation, hea
                         <NumberDecrementStepper />
                     </NumberInputStepper>
                 </NumberInput>
+
                 <Text textAlign="left" width="3%" fontSize="10px" color={c.darkBlue} ml={-3}>
                     FROM
                 </Text>
+
                 {/* Course Dropdown */}
                 <Flex direction="row" width="55%" align="center">
                     <SingleSelect
@@ -149,6 +151,7 @@ const InlineRegulations = ({ closeEdit, programme, notifyUpdate, regulation, hea
                             </Flex>
                         ))}
                     </Flex>
+
                     <Flex direction="row" justify="flex-end" align="flex-end" ml={2}>
                         <IconButton
                             as={AiOutlineCloseCircle}

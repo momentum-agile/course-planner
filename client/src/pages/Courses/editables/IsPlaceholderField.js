@@ -19,7 +19,7 @@ const IsPlaceholderField = ({ value, isEditing, onChange }) => {
             {!isEditing ? (
                 value && (
                     <Flex justify="center">
-                        <Tag height="10px" mt="20px" size="md" rounded="full" variant="solid" variantColor="teal" mr={1}>
+                        <Tag height="10px" mt="20px" size="md" rounded="full" variant="solid" variantColor="cyan" mr={1}>
                             Placeholder
                         </Tag>
                     </Flex>

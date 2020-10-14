@@ -18,6 +18,7 @@ const Home = () => {
                 </Flex>
                 <Image src="./momentum_logo.png" alt="Team Momentum Logo" width="10%" mb={2} ml={2} />
             </Flex>
+
             <Flex width="30%" backgroundColor={c.white}>
                 <Flex width="100%" direction="column" marginTop="60px">
                     <Flex marginTop="30px" align="center" justify="center" direction="column">

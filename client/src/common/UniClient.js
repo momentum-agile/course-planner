@@ -1,21 +1,30 @@
 import ApiClient from "./ApiClient";
 
-const createAllUniApiCourses = (subject, data) => {
-    return ApiClient(`uni/programme?subject=${subject}`, { body: { data }, method: "POST" });
-};
+const endpoint = "uni";
 
 const getUniCoursesForDegree = (degree) => {
-    return ApiClient(`uni/programme?subject=${degree}`);
+    return ApiClient(`${endpoint}/programme?subject=${degree}`, {
+        method: "GET",
+    });
 };
 
 const getSpecificCourse = (subject, courseNbr) => {
-    return ApiClient(`uni/course?subject=${subject}&catalogNbr=${courseNbr}`);
+    return ApiClient(`${endpoint}/course?subject=${subject}&catalogNbr=${courseNbr}`, {
+        method: "GET",
+    });
+};
+
+const createAllUniApiCourses = (subject, data) => {
+    return ApiClient(`${endpoint}/programme?subject=${subject}`, {
+        method: "POST",
+        body: { data },
+    });
 };
 
 const UniClient = {
-    createAllUniApiCourses,
     getUniCoursesForDegree,
     getSpecificCourse,
+    createAllUniApiCourses,
 };
 
 export default UniClient;

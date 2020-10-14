@@ -1,30 +1,36 @@
 import ApiClient from "./ApiClient";
 
+const endpoint = "programmedegree";
+
 const getProgrammes = () => {
-    return ApiClient(`programmedegree`);
-};
-
-const createProgramme = (newProgramme) => {
-    return ApiClient(`programmedegree`, {
-        method: "POST",
-        body: newProgramme,
-    });
-};
-
-const deleteProgramme = (id) => {
-    return ApiClient(`programmedegree/${id}`, {
-        method: "DELETE",
+    return ApiClient(endpoint, {
+        method: "GET",
     });
 };
 
 const getProgramme = (id) => {
-    return ApiClient(`programmedegree/${id}`);
+    return ApiClient(`${endpoint}/${id}`, {
+        method: "GET",
+    });
+};
+
+const createProgramme = (programme) => {
+    return ApiClient(endpoint, {
+        method: "POST",
+        body: programme,
+    });
 };
 
 const updateProgramme = (programme) => {
-    return ApiClient(`programmedegree`, {
-        body: programme,
+    return ApiClient(endpoint, {
         method: "PUT",
+        body: programme,
+    });
+};
+
+const deleteProgramme = (id) => {
+    return ApiClient(`${endpoint}/${id}`, {
+        method: "DELETE",
     });
 };
 
@@ -32,8 +38,8 @@ const ProgrammesClient = {
     getProgrammes,
     getProgramme,
     createProgramme,
-    deleteProgramme,
     updateProgramme,
+    deleteProgramme,
 };
 
 export default ProgrammesClient;

@@ -47,8 +47,16 @@ const Programmes = () => {
 
                 <SearchBar searchCategory="Programmes" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
 
-                {/* TODO: style scrollbar */}
-                <Flex width="100%" justify="center" align="flex-start" overflowY="auto" marginTop="15px" marginBottom="15px" height="100%">
+                <Flex
+                    className="programmesBox"
+                    width="100%"
+                    justify="center"
+                    align="flex-start"
+                    overflowY="auto"
+                    marginTop="15px"
+                    marginBottom="15px"
+                    height="100%"
+                >
                     <SimpleGrid columns={2} spacingX="50px">
                         {/* Create new Programme Button */}
                         <Button
@@ -68,8 +76,8 @@ const Programmes = () => {
                         </Button>
 
                         {/* List of Programmes */}
-                        {filter(programmeDegrees, { name: searchTerm }).map((programme) => (
-                            <ProgrammeCard currentID={location.id} to={programme._id} programme={programme} />
+                        {filter(programmeDegrees, { name: searchTerm }).map((programme, idx) => (
+                            <ProgrammeCard key={idx} currentID={location.id} to={programme._id} programme={programme} />
                         ))}
                     </SimpleGrid>
                 </Flex>

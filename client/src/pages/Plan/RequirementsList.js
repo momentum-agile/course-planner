@@ -7,6 +7,7 @@ import usePlan from "./usePlan";
 const RequirementsList = ({ programme }) => {
     const regulations = (programme && programme.regulations) || [];
     const { courses } = usePlan();
+
     return (
         <Flex
             direction="column"
@@ -21,6 +22,7 @@ const RequirementsList = ({ programme }) => {
             {regulations.length > 0 ? (
                 regulations.map((reg, i) => (
                     <ProgrammeRequirementsItem
+                        key={i}
                         itemNumber={i + 1}
                         pointRequirement={reg.pointRequirement}
                         points={reg.points}

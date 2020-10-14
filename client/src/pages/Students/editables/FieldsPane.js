@@ -31,6 +31,7 @@ const FieldsPane = ({ item, name, upi, id, isNew, isEditing, onEdit, onChange, o
             <Flex justify="center">
                 <TextField isRequired title="name" value={name} isEditing={isEditing} onChange={onChange} />
             </Flex>
+
             <Flex justify="center">
                 <TextField isRequired title="upi" value={upi} isEditing={isEditing} onChange={onChange} />
                 <TextField isRequired title="id" value={id} isEditing={isEditing} onChange={onChange} />

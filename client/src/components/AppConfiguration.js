@@ -8,7 +8,6 @@ import { HTML5Backend } from "react-dnd-html5-backend";
  * Wrapper Component to wrap all the different configurations
  * the main App Component uses.
  */
-
 const AppConfiguration = ({ children }) => {
     return (
         <DndProvider backend={HTML5Backend}>
@@ -20,7 +19,9 @@ const AppConfiguration = ({ children }) => {
     );
 };
 
-// See: https://chakra-ui.com/getting-started
+/**
+ * See: https://chakra-ui.com/getting-started
+ */
 const customTheme = {
     ...theme,
     fontSizes: {

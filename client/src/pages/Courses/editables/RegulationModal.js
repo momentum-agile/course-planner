@@ -340,7 +340,7 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
                             <Flex justify="flex-end">
                                 <ButtonGroup m="2" spacing={4}>
                                     <Button
-                                        variantColor="teal"
+                                        variantColor="cyan"
                                         variant="solid"
                                         onClick={handleAnd}
                                         isDisabled={
@@ -352,7 +352,7 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
                                         AND
                                     </Button>
                                     <Button
-                                        variantColor="teal"
+                                        variantColor="cyan"
                                         variant="solid"
                                         onClick={handleOr}
                                         isDisabled={
@@ -382,7 +382,7 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
                             <Flex>
                                 {outputRegulation.map((reg, i) => (
                                     <>
-                                        <Tag size="sm" key={i} rounded="full" variant="solid">
+                                        <Tag m="2px" size="sm" key={i} rounded="full" variant="solid" variantColor="cyan">
                                             <TagLabel>{reg}</TagLabel>
                                             <TagCloseButton onClick={() => handleRegTagCloseClick(reg)} />
                                         </Tag>

@@ -10,13 +10,45 @@ import {
     useToast,
 } from "@chakra-ui/core";
 
-const ConfirmationDialog = ({ isOpen, onClose, confirm, itemType, item, detail, action, navigateTo }) => {
+const ConfirmationDialog = ({ isOpen, onClose, confirm, itemType, item, detail, action }) => {
     const cancelRef = React.useRef();
     const toast = useToast();
+
+    const buttonClick = () => {
+        switch (itemType) {
+            case "Course":
+                confirm(item.courseCode);
+                break;
+            case "Programme":
+                confirm();
+                break;
+            case "Student":
+                confirm(item.upi);
+                break;
+            case "Regulation":
+                confirm(item);
+                break;
+            default:
+                confirm(item);
+                break;
+        }
+
+        toast({
+            title: `${action} ${itemType}  `,
+            description: `${itemType}${detail ? ` '${detail}' ` : " "}has been successfully ${action.toLowerCase()}d`,
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+        });
+
+        onClose();
+    };
+
     return (
         <>
             <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
                 <AlertDialogOverlay />
+
                 <AlertDialogContent>
                     <AlertDialogHeader fontSize="lg" fontWeight="bold">
                         {action} {itemType}
@@ -30,39 +62,7 @@ const ConfirmationDialog = ({ isOpen, onClose, confirm, itemType, item, detail, 
                         <Button ref={cancelRef} onClick={onClose}>
                             Cancel
                         </Button>
-                        <Button
-                            variantColor="red"
-                            onClick={() => {
-                                switch (itemType) {
-                                    case "Course":
-                                        confirm(item.courseCode);
-                                        break;
-                                    case "Programme":
-                                        confirm();
-                                        break;
-                                    case "Student":
-                                        confirm(item.upi);
-                                        break;
-                                    case "Regulation":
-                                        confirm(item);
-                                        break;
-                                    default:
-                                        confirm(item);
-                                        break;
-                                }
-                                toast({
-                                    title: `${action} ${itemType}  `,
-                                    description: `${itemType}${
-                                        detail ? ` '${detail}' ` : " "
-                                    }has been successfully ${action.toLowerCase()}d`,
-                                    status: "success",
-                                    duration: 5000,
-                                    isClosable: true,
-                                });
-                                onClose();
-                            }}
-                            ml={3}
-                        >
+                        <Button variantColor="red" onClick={buttonClick} ml={3}>
                             {action}
                         </Button>
                     </AlertDialogFooter>

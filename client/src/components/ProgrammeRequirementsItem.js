@@ -3,7 +3,7 @@ import { Flex, Text, Stack, PseudoBox, Tag, TagLabel, Box } from "@chakra-ui/cor
 import { colors as c } from "../colors";
 import { useDrag } from "react-dnd";
 import { ItemTypes } from "../pages/Plan/ItemTypes";
-import { useHorizontalScroll} from "../pages/Programmes/scrollHook"
+import { useHorizontalScroll } from "../pages/Programmes/scrollHook";
 
 function DraggableCourseText({ index, courseName }) {
     const [, drag] = useDrag({
@@ -13,8 +13,6 @@ function DraggableCourseText({ index, courseName }) {
         }),
     });
 
-    // TODO(Nisa + Vee): Make this DND actually work in requirements list
-
     return (
         <Box ref={drag}>
             <Tag size="sm" key={index} rounded="full" variant="solid" variantColor="cyan" mr={1}>
@@ -23,15 +21,14 @@ function DraggableCourseText({ index, courseName }) {
         </Box>
     );
 }
-const ProgrammeRequirementsItem = ({ itemNumber, pointRequirement, points, courseList, onDelete, onEdit, deleteButton, isDrag }) => {
+const ProgrammeRequirementsItem = ({ itemNumber, pointRequirement, points, courseList, onEdit, deleteButton, isDrag }) => {
     const pointRequirementMap = {
         EXACTLY: "Exactly",
         ATLEAST: "At least",
         UPTO: "Up to",
     };
-    
-    const scrollRef = useHorizontalScroll();
 
+    const scrollRef = useHorizontalScroll();
 
     return (
         <PseudoBox
@@ -66,11 +63,19 @@ const ProgrammeRequirementsItem = ({ itemNumber, pointRequirement, points, cours
                 <Text textAlign="left" width="8%" fontSize="10px" color={c.darkBlue}>
                     FROM
                 </Text>
-                <Stack ref={scrollRef} className="programmeRequirements" textAlign="left" isInline overflowX="scroll" width="70%" ml={isDrag && 2}>
+                <Stack
+                    ref={scrollRef}
+                    className="programmeRequirements"
+                    textAlign="left"
+                    isInline
+                    overflowX="scroll"
+                    width="70%"
+                    ml={isDrag && 2}
+                >
                     <Flex mb={courseList.length > 2 ? 1 : 0}>
                         {courseList.reverse().map((course, index) =>
                             isDrag ? (
-                                <DraggableCourseText index={index} courseName={course} />
+                                <DraggableCourseText key={index} index={index} courseName={course} />
                             ) : (
                                 <Tag size="sm" key={course._id} rounded="full" variant="solid" variantColor="cyan" mr={1}>
                                     <TagLabel>{course.courseCode}</TagLabel>

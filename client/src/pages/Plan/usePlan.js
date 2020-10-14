@@ -3,6 +3,8 @@ import CoursePlannerClient from "../../common/CoursePlannerClient";
 import { useHistory, useParams } from "react-router-dom";
 
 const usePlan = () => {
+    const history = useHistory();
+
     const [student, setStudent] = useState();
     const [programme, setProgramme] = useState({});
     const { planId } = useParams();
@@ -11,8 +13,7 @@ const usePlan = () => {
     const [lastSaveDate, setLastSaveDate] = useState(new Date());
 
     const initPage = useCallback(async () => {
-        // Promise.all because we are going to have a lot of API calls
-        // once requirements/cousres/notes come in !
+        // Promise.all because we are going to have a lot of API calls once requirements/courses/notes come in !
         Promise.all([CoursePlannerClient.getCourses(), CoursePlannerClient.getPlan(planId)])
             .then(([courses, plan]) => {
                 setCourses(courses);
@@ -44,12 +45,12 @@ const usePlan = () => {
     const setStartYear = (startYear) => CoursePlannerClient.updatePlan({ ...plan, startYear }).then(updatePlan);
 
     const setNumYears = (numYears) => CoursePlannerClient.updatePlan({ ...plan, numYears }).then(updatePlan);
-    const history = useHistory();
 
     const deletePlan = (student, programme) =>
         CoursePlannerClient.deletePlan(plan._id).then(() =>
             student ? history.push(`/students/${student.upi}`) : history.push(`/programmes/${programme._id}`),
         );
+
     return {
         student,
         deletePlan,

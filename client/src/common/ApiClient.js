@@ -17,10 +17,6 @@ const ApiClient = (endpoint, { body, ...customConfig } = {}) => {
         config.body = JSON.stringify(body);
     }
 
-    const url = `${BACKEND_URL}/${endpoint}`;
-
-    console.log(`Making call to: ${url}`);
-
     return window.fetch(`${BACKEND_URL}/${endpoint}`, config).then(async (res) => {
         const text = await res.text();
         const data = text.length ? JSON.parse(text) : {};

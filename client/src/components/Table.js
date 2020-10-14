@@ -77,6 +77,7 @@ const TableHeader = ({ headerGroup }) => {
         </Box>
     );
 };
+
 const TableRow = React.forwardRef(({ row, getRowProps, rowHover }, ref) => (
     <PseudoBox as="tr" ref={ref} {...row.getRowProps(getRowProps(row))} _hover={rowHover}>
         {row.cells.map((cell) => {

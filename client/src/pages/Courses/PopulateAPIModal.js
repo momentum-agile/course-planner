@@ -22,7 +22,7 @@ import _, { debounce } from "lodash";
 import Input from "@chakra-ui/core/dist/Input";
 import { colors } from "../../colors";
 
-const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
+const PopulateAPIModal = ({ isOpen, onClose, confirm }) => {
     const cancelRef = useRef();
     const [searchTerm, setSearchTerm] = useState("");
     const [data, setData] = useState([]);
@@ -61,7 +61,7 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
             : setLoading(false);
     };
 
-    const delayedCallUniAPI = useCallback(debounce(callUniAPI, 500), [APISearchTerm]);
+    const delayedCallUniAPI = useCallback(debounce(callUniAPI, 800), [APISearchTerm]);
 
     useEffect(() => {
         delayedCallUniAPI();
@@ -148,6 +148,7 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                     width="100%"
                                 />
+
                                 <Flex direction="row" p={2} width="100%">
                                     <Flex width="50%" direction="column" justify="center">
                                         <Text textAlign="center" mb={1} as="b">
@@ -178,6 +179,7 @@ const PopulateAPIModal = ({ isOpen, onClose, confirm, navigateTo }) => {
                                         </Flex>
                                     </Flex>
                                 </Flex>
+
                                 <CheckboxGroup variantColor="blue" maxHeight="500px" overflowY="scroll" ml={2} mt={2}>
                                     {filter(data, { courseCode: searchTerm }).map(({ courseCode, inDatabase, checked, overwrite }, idx) => (
                                         <Flex direction="row" justifyContent="around" ml={4} key={idx}>
