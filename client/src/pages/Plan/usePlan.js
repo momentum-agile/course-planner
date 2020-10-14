@@ -13,7 +13,7 @@ const usePlan = () => {
     const [lastSaveDate, setLastSaveDate] = useState(new Date());
 
     const initPage = useCallback(async () => {
-        // Promise.all because we are going to have a lot of API calls once requirements/courses/notes come in !
+        // Promise.all because we are going to have a lot of API calls once requirements/courses/notes come in!
         Promise.all([CoursePlannerClient.getCourses(), CoursePlannerClient.getPlan(planId)])
             .then(([courses, plan]) => {
                 setCourses(courses);

@@ -15,7 +15,7 @@ const fetchAllCourses = async (subject, year) => {
         () => {
             controller.abort();
         },
-        2000,
+        5000,
     );
 
     try {
@@ -39,7 +39,7 @@ const fetchParticularCourse = async (subject, catalogNbr, year) => {
         () => {
             controller.abort();
         },
-        2000,
+        5000,
     );
 
     try {

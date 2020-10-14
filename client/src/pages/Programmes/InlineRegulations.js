@@ -28,12 +28,6 @@ const InlineRegulations = ({ closeEdit, programme, notifyUpdate, regulation }) =
     const [points, setPoints] = useState(15);
     const [pointRequirement, setPointRequirement] = useState("EXACTLY");
 
-    const handleAddCourse = (course) => {
-        if (!courses.includes(course)) {
-            setCourses((oldCourses) => [course, ...oldCourses]);
-        }
-    };
-
     const handleRemoveCourse = (courseId) => {
         const filteredCourses = courses.filter((course) => course._id !== courseId);
         setCourses(filteredCourses);
@@ -126,8 +120,10 @@ const InlineRegulations = ({ closeEdit, programme, notifyUpdate, regulation }) =
                 {/* Course Dropdown */}
                 <Flex direction="row" width="55%" align="center">
                     <SingleSelect
-                        onChange={(course) => handleAddCourse(course)}
-                        data={data.map((course) => ({ value: course, label: course.courseCode }))}
+                        onChange={(course) => setCourses([...courses, course])}
+                        data={data
+                            .filter((course) => !courses.includes(course))
+                            .map((course) => ({ value: course, label: course.courseCode }))}
                         placeholder="Search"
                     />
                     <Flex
