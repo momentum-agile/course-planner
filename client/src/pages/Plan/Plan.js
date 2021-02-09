@@ -15,7 +15,7 @@ import { parsePlanWithStudent } from "./JsonCustomConverter";
 import fileDownload from "js-file-download";
 import { DebounceInput } from "react-debounce-input";
 
-const reqsToolTip = "To complete the chosen programme, this plan should satisfy all of these regulations.";
+const reqsToolTip = "To complete the chosen programme, this plan should satisfy all of these requirements.";
 const generateYears = (to) => (to && [...Array(to).keys()]) || [];
 
 const Plan = () => {
@@ -103,7 +103,7 @@ const Plan = () => {
                 >
                     <Flex direction="row" align="center">
                         <Text width="90%" textAlign="center" fontWeight="bold" color={c.whiteGrey} fontSize="xl">
-                            Regulations
+                            Requirements
                         </Text>
                         <Tooltip label={reqsToolTip} placement="bottom" bg={c.greyBlue} color={c.darkBlue}>
                             <Icon name="question-outline" color={c.white} marginLeft="5px" align="center" justify="center" />

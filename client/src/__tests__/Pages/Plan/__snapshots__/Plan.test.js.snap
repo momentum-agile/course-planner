@@ -96,7 +96,7 @@ exports[`<Plan /> 1`] = `
         <p
           className="css-1owbezk"
         >
-          Regulations
+          Requirements
         </p>
         <svg
           className="css-rw24u3"
@@ -142,7 +142,7 @@ exports[`<Plan /> 1`] = `
           <p
             className="css-7rubkk"
           >
-            No Regulations have been set for this Programme yet.
+            No requirements have been set for this programme yet.
           </p>
         </div>
       </div>

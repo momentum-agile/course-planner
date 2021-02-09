@@ -32,7 +32,7 @@ const RequirementsList = ({ programme }) => {
                 ))
             ) : (
                 <Text color={c.white} fontSize="xs" mt={-5} textAlign="center">
-                    No Regulations have been set for this Programme yet.
+                    No requirements have been set for this programme yet.
                 </Text>
             )}
         </Flex>

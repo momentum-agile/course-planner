@@ -25,6 +25,7 @@ import {
     Switch,
     FormLabel,
     ButtonGroup,
+    useToast,
 } from "@chakra-ui/core";
 import CreatableSelect from "react-select/creatable";
 import ReactTooltip from "react-tooltip";
@@ -67,13 +68,14 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
     const [currentReg, setCurrentReg] = useState(defaultReg);
     const [outputRegulation, setOutputRegulation] = useState([]);
     const [selectValue, setSelectValue] = useState([]);
+    const toast = useToast();
 
     // Text field
     const [noteValue, setNoteValue] = useState("");
 
     const addToolTip = "Please add an AND or OR statement before adding another course";
 
-    const { data } = useCourses();
+    const { data, createCourse } = useCourses();
 
     useEffect(() => {
         if (editReg) {
@@ -83,6 +85,19 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
 
     // plus button
     const handleAddToRegArrayClick = (type) => {
+        selectValue.forEach((s) => {
+            if (s.__isNew__) {
+                createCourse({ name: s.label, courseCode: s.label, points: 15, semester: [], isPlaceholder: true });
+                toast({
+                    isClosable: true,
+                    duration: 9000,
+                    title: "Placeholder Course Created",
+                    description: `Course '${s.label}' has been successfully created and labelled as a placeholder`,
+                    status: "success",
+                });
+            }
+        });
+
         if (type === "POINTS") {
             setOutputRegulation([...outputRegulation, `${currentReg.points} points from ${currentReg.courses.join(", ")}`]);
             setSelectValue([]);
@@ -255,7 +270,7 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
                                                 onChange={handleSelectChange}
                                                 options={data.map((course) => ({ value: course, label: course.courseCode }))}
                                                 placeholder="Courses"
-                                                formatCreateLabel={(userInput) => `Add Ghost Course: ${userInput}`}
+                                                formatCreateLabel={(userInput) => `Create new course: ${userInput}`}
                                                 styles={customStyles}
                                                 autoSize={true}
                                                 value={selectValue}
@@ -318,7 +333,7 @@ const RegulationModal = ({ isOpen, onClose, title, updateCourse, course, editReg
                                             .map((course) => ({ value: course, label: course.courseCode }))
                                             .filter((c) => !outputRegulation.includes(c.label))}
                                         placeholder="Courses"
-                                        formatCreateLabel={(userInput) => `Add Ghost Course: ${userInput}`}
+                                        formatCreateLabel={(userInput) => `Create new course: ${userInput}`}
                                         styles={customStyles}
                                         autoSize={true}
                                         value={selectValue}
