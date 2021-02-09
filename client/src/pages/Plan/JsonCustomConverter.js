@@ -13,7 +13,7 @@ json2md.converters.student = (input) => {
 };
 
 json2md.converters.programmeDegree = (input) => {
-    return `## Degree: ${input}`;
+    return `## Programme: ${input}`;
 };
 
 json2md.converters.notes = () => {
